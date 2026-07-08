@@ -1320,6 +1320,59 @@ const Q = [
 {t:"M14 · CASB", q:"What is a function of a Cloud Access Security Broker (CASB)?",
  o:["Physically securing server racks only","Managing and enforcing security policies, scanning for malware, and monitoring/auditing activity for cloud services","Replacing the need for any authentication","Only managing DNS records"], a:1,
  e:"<b>CASB</b> يدير ويفرض سياسات الأمان، يفحص البرمجيات الضارة، ويراقب/يدقق النشاط — عبر Forward Proxy، Reverse Proxy، أو API."},
+
+// ---------- Module 4 · Lesson 4.6 (IP Troubleshooting) ----------
+{t:"M4 · Neighbor Discovery", q:"If a host cannot perform neighbor discovery, which tool should you use first to verify the host configuration?",
+ o:["A cloud firewall dashboard","ipconfig (Windows) or ip/ifconfig (Linux)","A wireless heat map tool","An SDN controller"], a:1,
+ e:"إذا تعذّر على المضيف اكتشاف الجيران، أول خطوة استخدام <code class=\"k\">ipconfig</code> (ويندوز) أو <code class=\"k\">ip</code>/<code class=\"k\">ifconfig</code> (لينكس) للتحقق من إعداد المضيف."},
+
+{t:"M4 · Incorrect IP Scenario", q:"Host A is 192.168.1.10/24 and Host B is 192.168.1.11/24. Host C is configured as 192.168.0.21/24. What is the problem?",
+ o:["Nothing, all three hosts can communicate normally","Host C is actually on a different subnet (192.168.0.0) than A and B (192.168.1.0), so it likely cannot communicate with them directly","Host C has an invalid MAC address","The subnet mask is too long"], a:1,
+ e:"عنوان Host C يقع فعليًا بشبكة <b>192.168.0.0</b> وليس <b>192.168.1.0</b> رغم نفس القناع — ستحاول A وB الوصول له عبر الـgateway، وعلى الأغلب لن يتمكن Host C من التواصل بالشبكة إطلاقًا."},
+
+{t:"M4 · Network/Broadcast Address", q:"Which two addresses can never be assigned as a valid host address within a subnet?",
+ o:["The default gateway and DNS server addresses","The network address and the broadcast address","The loopback and multicast addresses","The first and last usable addresses"], a:1,
+ e:"لا يجوز أبدًا استخدام <b>عنوان الشبكة (network address)</b> ولا <b>عنوان البث (broadcast address)</b> كعنوان مضيف — كلاهما محجوز."},
+
+{t:"M4 · Mask Too Long", q:"A host is configured with a longer subnet mask than it should have. What is the likely effect?",
+ o:["It will use less bandwidth","It will think it needs to route through the default gateway to reach hosts that are actually on the same local network, adding unnecessary load on the router","It will automatically fix itself via DHCP","It will immediately lose all IP connectivity"], a:1,
+ e:"قناع أطول من اللازم يجعل المضيف يظن أنه يحتاج توجيهًا عبر الـdefault gateway للتواصل مع مضيفين هم فعليًا بنفس شبكته المحلية — يُحمّل الراوتر بترافيك غير ضروري."},
+
+{t:"M4 · Mask Too Short", q:"A host is configured with a shorter subnet mask than it should have. What can happen?",
+ o:["It will think a remote host is on its local network and fail to use the gateway when it should, potentially triggering an ICMP redirect from the router","It will always work correctly regardless","It will disable itself automatically","It will only affect wireless connections"], a:0,
+ e:"قناع أقصر من اللازم يجعل المضيف يظن أن مضيفًا بعيدًا بنفس شبكته المحلية، فيفشل بالتواصل لأنه لا يستخدم الـgateway وهو محتاجه — وقد يرسل الراوتر رسائل <b>ICMP redirect</b> بهذي الحالة."},
+
+{t:"M4 · Duplicate IP OS", q:"How do Windows and Linux typically differ in handling a duplicate IP address?",
+ o:["Windows ignores it silently; Linux always crashes","Windows detects it and disables the IP with a warning; Linux typically does not disable the interface but may log a warning","Linux disables the IP automatically; Windows never detects duplicates","Both operating systems behave identically"], a:1,
+ e:"<b>Windows</b> يكتشف تكرار عنوان IP ويعطّله مع تحذير. <b>Linux</b> عادة لا يعطّل الواجهة لكنه قد يسجّل تحذيرًا بالسجلات — ويحدث \"race condition\" يحدد أي مضيف يستقبل الترافيك."},
+
+{t:"M4 · Duplicate IP Diagnosis", q:"Which sequence of tools helps diagnose a duplicate IP address issue?",
+ o:["nslookup then dig","ping then arp -a to examine the ARP cache table (or arping -D on Linux)","traceroute then ipconfig /release","netstat then telnet"], a:1,
+ e:"للتشخيص: <code class=\"k\">ping</code> ثم <code class=\"k\">arp -a</code> لفحص عناوين MAC بجدول ARP، وعلى لينكس أداة <code class=\"k\">arping -D</code> للإبلاغ عن ردود مكرَّرة."},
+
+{t:"M4 · Duplicate MAC", q:"What can duplicate MAC address issues on a network be a sign of?",
+ o:["A normal DHCP renewal process","A potential spoofing attack","A successful firmware update","A properly functioning switch"], a:1,
+ e:"⚠️ مشاكل عنونة MAC (تكرار عنوان) قد تكون مؤشرًا على هجوم <b>spoofing</b> — تستحق فحصًا أمنيًا وليس فقط تقنيًا."},
+
+{t:"M4 · Ping Sequence Order", q:"What is the correct order of the general ping troubleshooting sequence for IP forwarding issues?",
+ o:["Ping gateway → Ping loopback → Ping host → Ping remote host","Ping loopback → Ping host → Ping gateway → Ping remote host → Ping host name → Establish session","Ping remote host → Ping gateway → Ping loopback → Ping host","Establish session → Ping loopback → Ping gateway → Ping host"], a:1,
+ e:"التسلسل الصحيح: <b>Ping loopback</b> → <b>Ping host</b> → <b>Ping gateway</b> → <b>Ping remote host</b> → <b>Ping host name</b> → <b>Establish session</b> — من الأقرب للأبعد."},
+
+{t:"M4 · Ping Loopback Fail", q:"If pinging the loopback address (127.0.0.1) fails, what should you do?",
+ o:["Replace the network cable only","Reinstall the network protocol stack, since TCP/IP is not installed or loaded correctly","Ignore it since loopback failures are not meaningful","Immediately suspect the ISP"], a:1,
+ e:"فشل ping لعنوان الـloopback (<code class=\"k\">127.0.0.1</code>) يعني أن TCP/IP غير مثبَّت أو محمَّل بشكل صحيح — الحل إعادة تثبيت حزمة بروتوكول الشبكة."},
+
+{t:"M4 · Ping Local Host Fail", q:"If a host cannot ping its own IP address, what does this suggest?",
+ o:["A remote DNS server is down","There might have been a configuration error, or the network adapter/driver could be faulty","The default gateway is misconfigured","The subnet mask is too short"], a:1,
+ e:"تعذّر ping عنوان IP الخاص بالمضيف نفسه يشير لخطأ إعداد أو عطل بمحول الشبكة (adapter) أو الـdriver."},
+
+{t:"M4 · ICMP Blocking", q:"Why is it important to remember when using ping for troubleshooting, especially with remote hosts?",
+ o:["Ping never fails for remote hosts","ICMP could be blocked by a firewall or security software, which may cause a ping failure that isn't a true connectivity problem","Ping only works over IPv6","Ping always requires administrator privileges"], a:1,
+ e:"<b>ICMP</b> قد يكون محجوبًا بجدار ناري أو برنامج أمان، خصوصًا عند ping لمضيف بعيد — فشل الـping هنا لا يعني بالضرورة مشكلة اتصال حقيقية."},
+
+{t:"M4 · Same Subnet Ping Fail", q:"A local host on the same subnet cannot be pinged and returns 'destination unreachable.' What should you check first?",
+ o:["The DNS server's uptime","That the IP configuration doesn't contain an incorrect IP address or netmask","The cloud provider's status page","The wireless channel overlap"], a:1,
+ e:"عند فشل ping لمضيف بنفس الـsubnet مع خطأ \"destination unreachable\"، تحققي أولًا من عدم وجود عنوان IP أو netmask خاطئ. إذا كانت صحيحة والـping ما زال ينتهي بمهلة، اشتبهي بمشكلة أمنية أو بطبقة Data Link/Physical."},
 ];
 
 const MODULES = [
@@ -1359,7 +1412,7 @@ const MODULE_DOMAIN = {M1:1,M2:2,M3:2,M4:1,M5:2,M6:3,M7:1,M8:3,M9:4,M10:4,M11:4,
 function getDomain(tag){
  if(/Troubleshoot|\bTS\b|Channel Overlap|Overcapacity/i.test(tag)) return 5;
  if(/^M3 · (Port Indicators|Show Commands|Interface Status|Interface Errors|Network Loops)/.test(tag)) return 5;
- if(/^M4 · (ipconfig|arp Command|ping)/.test(tag)) return 5;
+ if(/^M4 · (ipconfig|arp Command|ping|Neighbor Discovery|Incorrect IP Scenario|Network\/Broadcast Address|Mask Too Long|Mask Too Short|Duplicate IP|Duplicate MAC|Ping )/.test(tag)) return 5;
  if(/^M6 · DNS Tools/.test(tag)) return 5;
  if(/^M8 · (Packet Capture|Wireshark|Flow Data)/.test(tag)) return 5;
  if(/^M10 · (Firewall Misconfig|Implicit Deny)/.test(tag)) return 5;

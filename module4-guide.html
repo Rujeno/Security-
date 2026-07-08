@@ -110,7 +110,7 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 4</span>
   <h1>الوحدة 4 — عنونة الشبكات</h1>
-  <p>Configuring Network Addressing — IP Basics · IPv4 Addressing · Subnetting/CIDR/VLSM · IP Troubleshooting Tools · IPv6</p>
+  <p>Configuring Network Addressing — IP Basics · IPv4 Addressing · Subnetting/CIDR/VLSM · IP Troubleshooting Tools · IPv6 · IP Troubleshooting</p>
  </div>
 </header>
 
@@ -122,6 +122,7 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  <a href="#m4-subnetting">4.3 Subnetting</a>
  <a href="#m4-tools">4.4 IP Tools</a>
  <a href="#m4-ipv6">4.5 IPv6</a>
+ <a href="#m4-ipts">4.6 IP Troubleshooting</a>
 </div></nav>
 
 <main>
@@ -303,8 +304,57 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
   <tr><td><b>Tunneling</b></td><td>تغليف حزم IPv6 داخل حزم IPv4 لعبور شبكة IPv4</td><td>ربط "جزر IPv6" داخل شبكة IPv4</td></tr>
   <tr><td><b>NAT64</b></td><td>ترجمة IPv6 إلى IPv4 والعكس</td><td>بيئات تنتقل لـIPv6 لكن تحتاج موارد IPv4</td></tr>
  </table>
+</section>
 
- <div class="tip"><b>ملخص الوحدة 4</b>: IP يربط شبكات متعددة بعناوين فريدة؛ IPv4 = 32 bit/4 octets؛ الـsubnet = segment على طبقة الشبكة (L3)؛ أدوات TCP/IP للفحص والإعداد؛ IPv6 = ثمانية مجموعات 16-bit بصيغة hex.</div>
+<section id="m4-ipts">
+ <span class="mod-tag">MODULE 4 · LESSON 4.6</span>
+ <h2>استكشاف أخطاء IP — IP Troubleshooting</h2>
+ <p class="sub">IP Configuration Issues · Duplicate IP/MAC · IP Forwarding Issues</p>
+
+ <div class="card">
+  <p>استكشاف أخطاء إعداد IP يحدث بطبقة <b>Network</b>. إذا استبعدتِ مشكلة بطبقتي Physical وData Link، الخطوة التالية فحص العنونة والإعداد الأساسي. إذا تعذّر على المضيف اكتشاف الجيران (neighbor discovery)، استخدمي أولًا <code class="k">ipconfig</code> (ويندوز) أو <code class="k">ip</code>/<code class="k">ifconfig</code> (لينكس) للتحقق من إعداد المضيف.</p>
+ </div>
+
+ <div class="card">
+  <p><b>عنوان IP خاطئ (Incorrect IP Address)</b>: كل مضيف يجب أن يملك نفس قناع الشبكة (netmask) مثل جيرانه، وعنوان مضيف صالح وفريد ضمن الـsubnet.</p>
+  <p><b>مثال</b>: الشبكة <code class="k">192.168.1.0/24</code> — Host A: <code class="k">192.168.1.10</code>، Host B: <code class="k">192.168.1.11</code> (كلاهما صحيح) — لكن Host C: <code class="k">192.168.0.21</code> بنفس القناع <code class="k">255.255.255.0</code> يقع فعليًا بـ<b>subnet مختلفة</b> (192.168.0.0 وليس 192.168.1.0). ستحاول Host A وB الوصول لـHost C عبر الـdefault gateway، وHost C على الأغلب لن تتمكن من التواصل بالشبكة إطلاقًا.</p>
+  <p><b>مع أقنعة غير افتراضية</b> (مثل <code class="k">/28</code>) يصعب تحديد نطاق المضيفين الصالح بالنظر السريع — لازم تحويل العناوين لثنائي للتأكد. تذكّري: لا عنوان الشبكة (network address) ولا عنوان البث (broadcast address) يصلحان كعنوان مضيف.</p>
+ </div>
+
+ <div class="card">
+  <p><b>قناع شبكة خاطئ (Incorrect Subnet Mask)</b> — سيناريوهان:</p>
+  <ul>
+   <li><b>قناع أطول من اللازم</b>: المضيف يظن أنه يحتاج توجيه (route) عبر الـdefault gateway للتواصل مع مضيفين هم فعليًا بنفس الشبكة المحلية — يُحمّل الراوتر بترافيك غير ضروري.</li>
+   <li><b>قناع أقصر من اللازم</b>: المضيف يظن أن مضيفًا بعيدًا هو بنفس شبكته المحلية بينما هو فعليًا بشبكة أخرى — يفشل بالتواصل لأنه لا يستخدم الـgateway وهو محتاجه. قد يرسل الراوتر رسائل <b>ICMP redirect</b> للمضيف بهذي الحالة.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>تكرار عناوين IP وMAC (Duplicate IP/MAC Address Issues)</b>:</p>
+  <ul>
+   <li><b>Duplicate IP</b>: قد ينتج عن خطأ بالإعداد اليدوي أو تعارض بنطاق DHCP. <b>Windows</b> يكتشف التكرار ويعطّل العنوان مع تحذير. <b>Linux</b> عادة لا يعطّل الواجهة لكنه قد يسجّل تحذيرًا بالسجلات — يحدث "race condition" يحدد أي مضيف يستقبل الترافيك. للتشخيص: <code class="k">ping</code> ثم <code class="k">arp -a</code> لفحص عناوين MAC، وعلى لينكس أداة <code class="k">arping -D</code> للإبلاغ عن ردود مكرَّرة.</li>
+   <li><b>Duplicate MAC</b>: يسبب مشكلة مشابهة — يتنافس الجهازان على الرد على استعلامات ARP، وينقسم التواصل بينهما أو يصل لواحد فقط. نادر الحدوث إلا مع عنونة مُدارة محليًا (locally administered addressing). ⚠️ مشاكل عنونة MAC قد تكون مؤشرًا على هجوم <b>spoofing</b>.</li>
+   <li><b>تشخيص مشاكل MAC</b>: أداة <code class="k">arp</code> للتحقق من عناوين MAC المسجّلة لكل مضيف، <code class="k">ipconfig</code> أو <code class="k">ip neigh</code> لفحص عنوان MAC للواجهة، فحص جداول MAC/ARP على السويتشات والراوترات، واستخدام محلّل بروتوكول (protocol analyzer) لفحص ترافيك ARP وتحديد من يحاول انتحال نفس عنوان MAC.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>مشاكل توجيه IP (IP Forwarding Issues)</b>: إذا بدا إعداد عنوان المضيف المحلي صحيحًا، أكملي سلسلة اختبارات اتصال بـ<code class="k">ping</code> لتحديد موقع ونطاق العطل المحتمل:</p>
+  <div class="flow">
+   <span>Ping loopback</span><i>←</i><span>Ping host</span><i>←</i><span>Ping gateway</span><i>←</i><span>Ping remote host</span><i>←</i><span>Ping host name</span><i>←</i><span>Establish session</span>
+  </div>
+  <ol style="padding-right:22px;margin:8px 0">
+   <li style="margin-bottom:10px"><b>Ping عنوان الـloopback</b> (<code class="k">127.0.0.1</code>): للتأكد أن TCP/IP مثبَّت ومحمَّل بشكل صحيح — إذا فشل، أعيدي تثبيت حزمة بروتوكول الشبكة.</li>
+   <li style="margin-bottom:10px"><b>Ping عنوان IP المضيف المحلي</b>: للتأكد أنه أُضيف بشكل صحيح وأن محول الشبكة (network adapter) يعمل — إذا فشل، فقد يكون خطأ إعداد أو عطل بالمحول/الـdriver.</li>
+   <li style="margin-bottom:10px"><b>Ping عنوان IP الـdefault gateway</b>: للتأكد أنه يعمل ويمكن التواصل مع مضيف آخر بالشبكة المحلية.</li>
+   <li style="margin-bottom:10px"><b>Ping عناوين IP لمضيفين آخرين بنفس الـsubnet</b>: لاختبار مشاكل الإعداد المحلي أو الرابط. إذا تعذّر الـping وكان الخطأ "destination unreachable"، تحققي من عدم وجود عنوان IP أو netmask خاطئ. إذا كانت صحيحة لكن الـping ما زال ينتهي بمهلة، اشتبهي بمشكلة أمنية (مثل إعداد أمان منفذ السويتش) أو مشكلة بطبقة Data Link أو Physical.</li>
+   <li style="margin-bottom:10px"><b>Ping عنوان IP لمضيف بعيد</b>: للتأكد من إمكانية التواصل عبر الراوتر. إذا تعذّر الوصول لعنوان بعيد، تحققي من إعداد الـdefault gateway بالمضيف المحلي لاستبعاد مشكلة gateway خاطئ. إذا كان الـgateway صحيحًا ويمكن عمل ping له، ابدئي التحقيق ببنية التوجيه (routing infrastructure).</li>
+  </ol>
+ </div>
+
+ <div class="tip">⚠️ انتبهي أن <b>ICMP</b> قد يكون محجوبًا بجدار ناري أو برنامج أمان، خصوصًا عند عمل ping لمضيفين بعيدين. هذا الأسلوب المنهجي مناسب عند عدم القدرة على تشخيص السبب أو عند التحقق من إعداد IP جديد/مُعدَّل — لكن عمليًا، قد تبدئين مباشرة بـping لمضيف بعيد لتحديد المشكلة أو إعادة إنتاجها بسرعة.</div>
+
+ <div class="tip"><b>ملخص الوحدة 4</b>: IP يربط شبكات متعددة بعناوين فريدة؛ IPv4 = 32 bit/4 octets؛ الـsubnet = segment على طبقة الشبكة (L3)؛ أدوات TCP/IP للفحص والإعداد؛ IPv6 = ثمانية مجموعات 16-bit بصيغة hex؛ استكشاف الأخطاء يبدأ بفحص الإعداد المحلي ثم تسلسل ping من loopback حتى مضيف بعيد.</div>
 </section>
 
 </main>
