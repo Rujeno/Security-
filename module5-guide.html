@@ -80,6 +80,15 @@ tr:nth-child(even) td{background:var(--soft)}
 .flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
 .flow i{color:var(--signal);font-style:normal;font-weight:700}
 
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr}}
+
 .modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
 .modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
 .modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
@@ -219,6 +228,25 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
   <p><b>NAT</b>: يعدّل معلومات عنوان الشبكة في رؤوس الحزم أثناء عبورها، ما يزيد الأمان بإخفاء عناوين IP الداخلية عن الشبكات الخارجية، ويتيح لعدة أجهزة بالشبكة المحلية مشاركة عنوان IP عام واحد، وبالتالي <b>يوفّر عناوين IP العامة</b>.</p>
  </div>
 
+ <div class="diagram">
+  <svg viewBox="0 0 500 150" style="max-width:520px">
+   <rect x="10" y="35" width="150" height="80" rx="10" fill="#eef4f6" stroke="#5b7280" stroke-width="1.5"/>
+   <text x="85" y="65" text-anchor="middle" font-size="13" font-weight="700" fill="#0e1b25">Private LAN</text>
+   <text x="85" y="85" text-anchor="middle" font-size="11.5" fill="#12617c">192.168.1.10</text>
+   <text x="85" y="102" text-anchor="middle" font-size="11.5" fill="#12617c">192.168.1.11</text>
+   <line x1="160" y1="75" x2="205" y2="75" stroke="#5b7280" stroke-width="2" marker-end="url(#arr5)"/>
+   <rect x="205" y="45" width="100" height="60" rx="8" fill="#0d3b4f"/>
+   <text x="255" y="70" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">NAT</text>
+   <text x="255" y="88" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffb48c">Router</text>
+   <line x1="305" y1="75" x2="350" y2="75" stroke="#5b7280" stroke-width="2" marker-end="url(#arr5)"/>
+   <ellipse cx="425" cy="75" rx="75" ry="45" fill="#12617c"/>
+   <text x="425" y="70" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Internet</text>
+   <text x="425" y="90" text-anchor="middle" font-size="11.5" fill="#ffe38a">203.0.113.5</text>
+   <defs><marker id="arr5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5b7280"/></marker></defs>
+  </svg>
+  <div class="cap">NAT يترجم عناوين IP الخاصة المتعددة داخل الشبكة المحلية إلى عنوان IP عام واحد عند الخروج للإنترنت.</div>
+ </div>
+
  <div class="two">
   <div class="card">
    <p><b>Dynamic NAT</b></p>
@@ -299,6 +327,25 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
  <div class="card">
   <p><b>VLAN IDs والعضوية</b>: كل VLAN له معرّف فريد (<b>VLAN ID</b>)، وكل جهاز عضو في VLAN معيّن. الأجهزة تستخدم VLAN IDs لإدارة الترافيك، ويحتاج <b>Inter-VLAN routing</b> للتواصل بين VLANs مختلفة.</p>
+ </div>
+
+ <div class="diagram">
+  <svg viewBox="0 0 400 130" style="max-width:420px">
+   <rect x="20" y="10" width="360" height="40" rx="8" fill="#0d3b4f"/>
+   <text x="200" y="35" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Switch</text>
+   <rect x="30" y="60" width="30" height="20" rx="3" fill="#12617c"/>
+   <rect x="70" y="60" width="30" height="20" rx="3" fill="#12617c"/>
+   <rect x="110" y="60" width="30" height="20" rx="3" fill="#12617c"/>
+   <rect x="160" y="60" width="30" height="20" rx="3" fill="#e8672c"/>
+   <rect x="200" y="60" width="30" height="20" rx="3" fill="#e8672c"/>
+   <rect x="240" y="60" width="30" height="20" rx="3" fill="#e8672c"/>
+   <rect x="290" y="60" width="30" height="20" rx="3" fill="#1a7f5c"/>
+   <rect x="330" y="60" width="30" height="20" rx="3" fill="#1a7f5c"/>
+   <text x="75" y="100" text-anchor="middle" font-size="12" fill="#12617c" font-weight="700">VLAN 10 (Sales)</text>
+   <text x="215" y="100" text-anchor="middle" font-size="12" fill="#e8672c" font-weight="700">VLAN 20 (IT)</text>
+   <text x="325" y="100" text-anchor="middle" font-size="12" fill="#1a7f5c" font-weight="700">VLAN 30 (Voice)</text>
+  </svg>
+  <div class="cap">نفس السويتش الفيزيائي، لكن كل مجموعة منافذ (ports) معزولة منطقيًا في VLAN مختلف — كأنها شبكات منفصلة تمامًا رغم مشاركة نفس العتاد.</div>
  </div>
 
  <div class="card">
