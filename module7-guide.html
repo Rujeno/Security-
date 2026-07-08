@@ -80,6 +80,15 @@ tr:nth-child(even) td{background:var(--soft)}
 .flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
 .flow i{color:var(--signal);font-style:normal;font-weight:700}
 
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr}}
+
 .modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
 .modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
 .modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
@@ -271,6 +280,23 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
   <tr><td><b>RPO (Recovery Point Objective)</b></td><td>أقصى فقدان بيانات مقبول بعد حادثة</td></tr>
  </table>
 
+ <div class="diagram">
+  <svg viewBox="0 0 500 110" style="max-width:520px">
+   <line x1="20" y1="55" x2="480" y2="55" stroke="#5b7280" stroke-width="2"/>
+   <rect x="80" y="50" width="170" height="10" fill="#e8672c" opacity="0.35"/>
+   <rect x="250" y="50" width="170" height="10" fill="#12617c" opacity="0.35"/>
+   <circle cx="80" cy="55" r="6" fill="#12617c"/>
+   <circle cx="250" cy="55" r="6" fill="#e8672c"/>
+   <circle cx="420" cy="55" r="6" fill="#1a7f5c"/>
+   <text x="80" y="85" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0e1b25">Last Backup</text>
+   <text x="250" y="85" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0e1b25">Disaster</text>
+   <text x="420" y="85" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0e1b25">Recovery Complete</text>
+   <text x="165" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#e8672c">RPO — Data Loss Window</text>
+   <text x="335" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#12617c">RTO — Downtime Window</text>
+  </svg>
+  <div class="cap">RPO = أقصى بيانات يمكن خسارتها (بين آخر نسخة احتياطية والكارثة) · RTO = أقصى وقت توقف مقبول (بين الكارثة واكتمال الاستعادة).</div>
+ </div>
+
  <div class="card">
   <p><b>مواقع التعافي من الكوارث (Disaster Recovery Sites)</b>: <b>Cold Site</b> (بنية أساسية بدون معدات جاهزة، الأبطأ والأرخص) · <b>Warm Site</b> (معدات جزئية جاهزة) · <b>Hot Site</b> (نسخة كاملة جاهزة للعمل فورًا، الأسرع والأغلى).</p>
  </div>
@@ -292,6 +318,24 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
   <tr><td><b>MTTF (Mean Time To Failure)</b></td><td>العمر المتوقع قبل فشل نظام غير قابل للإصلاح</td></tr>
   <tr><td><b>MTTR (Mean Time To Repair)</b></td><td>متوسط الوقت لإصلاح واستعادة نظام معطّل</td></tr>
  </table>
+
+ <div class="diagram">
+  <svg viewBox="0 0 400 160" style="max-width:400px">
+   <circle cx="35" cy="80" r="20" fill="#0d3b4f"/>
+   <text x="35" y="85" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Clients</text>
+   <line x1="55" y1="80" x2="135" y2="80" stroke="#5b7280" stroke-width="2" marker-end="url(#arlb)"/>
+   <rect x="135" y="60" width="100" height="40" rx="8" fill="#e8672c"/>
+   <text x="185" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Load Balancer</text>
+   <line x1="235" y1="70" x2="290" y2="25" stroke="#5b7280" stroke-width="2" marker-end="url(#arlb)"/>
+   <line x1="235" y1="80" x2="290" y2="80" stroke="#5b7280" stroke-width="2" marker-end="url(#arlb)"/>
+   <line x1="235" y1="90" x2="290" y2="135" stroke="#5b7280" stroke-width="2" marker-end="url(#arlb)"/>
+   <rect x="290" y="10" width="90" height="30" rx="6" fill="#12617c"/><text x="335" y="30" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Server 1</text>
+   <rect x="290" y="65" width="90" height="30" rx="6" fill="#12617c"/><text x="335" y="85" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Server 2</text>
+   <rect x="290" y="120" width="90" height="30" rx="6" fill="#12617c"/><text x="335" y="140" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Server 3</text>
+   <defs><marker id="arlb" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#5b7280"/></marker></defs>
+  </svg>
+  <div class="cap">Load Balancer يوزّع طلبات العملاء عبر عدة سيرفرات (Round Robin / Least Connections) لمنع إرهاق سيرفر واحد.</div>
+ </div>
 
  <div class="card">
   <p><b>Load Balancers</b>: توزّع ترافيك الشبكة عبر عدة سيرفرات (كـ"شرطي مرور")، تضمن عدم إرهاق سيرفر واحد، تقلل التوقف وتزيد قابلية التوسع. أنواعها: <span class="en">hardware-based</span> أو <span class="en">software-based</span>، وتستخدم خوارزميات مثل <b>Round Robin</b> و<b>Least Connections</b>.</p>
