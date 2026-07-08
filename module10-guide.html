@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 10 — تطبيق ميزات أمان الشبكة — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:13.5px;font-weight:600;padding:14px 14px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 10</span>
+  <h1>الوحدة 10 — تطبيق ميزات أمان الشبكة</h1>
+  <p>Applying Network Security Features — Authentication · Authorization & Account Management · Network Hardening · Switch Security · Security Rules</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html" class="active">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="quiz.html">📝</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m10-auth">10.1 Authentication</a>
+ <a href="#m10-authz">10.2 Authorization</a>
+ <a href="#m10-hardening">10.3 Hardening</a>
+ <a href="#m10-switch">10.4 Switch Security</a>
+ <a href="#m10-rules">10.5 Security Rules</a>
+</div></nav>
+
+<main>
+
+<section id="m10-auth">
+ <span class="mod-tag">MODULE 10 · LESSON 10.1</span>
+ <h2>المصادقة — Authentication</h2>
+ <p class="sub">Applying Network Security Features — AAA · Authentication Factors · SSO · Kerberos</p>
+
+ <div class="card">
+  <p><b>مفاهيم AAA</b> (تشبيه بطاقة صعود الطائرة):</p>
+  <ul>
+   <li><b>Identity</b>: حساب أو معرّف يمثّل مستخدمًا/جهازًا/عملية بشكل فريد على الشبكة — <i>من يدّعي أنه هو</i>.</li>
+   <li><b>Authentication</b>: عامل/عوامل تثبت أن الشخص هو من يدّعي — <i>إثبات الهوية</i>.</li>
+   <li><b>Authorization</b>: الحقوق والصلاحيات الممنوحة داخل النظام — <i>أين مسموح له الذهاب وأي مستوى وصول</i>.</li>
+   <li><b>Accounting</b>: تتبّع الاستخدام المصرّح/غير المصرّح به للمورد — <i>تسجيل النشاط</i>.</li>
+  </ul>
+ </div>
+
+ <h3>طرق المصادقة (Authentication Factors)</h3>
+ <table>
+  <tr><th>العامل</th><th>مثال</th></tr>
+  <tr><td><b>Something you know</b></td><td>كلمة مرور (Password)</td></tr>
+  <tr><td><b>Something you have</b></td><td>بطاقة ذكية (Smart card)</td></tr>
+  <tr><td><b>Something you are</b></td><td>بصمة الإصبع (Fingerprint)</td></tr>
+  <tr><td><b>Something you do</b></td><td>نمط المشي (Gait)</td></tr>
+  <tr><td><b>Somewhere you are</b></td><td>السياج الجغرافي (Geofencing)</td></tr>
+  <tr><td><b>Somewhen you are</b></td><td>قيود زمنية (Time restrictions)</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>Single Sign-On (SSO)</b>: تسجيل دخول واحد يمنح وصولًا لعدة تطبيقات/خدمات (مثل حساب Microsoft الواحد للوصول لـTeams, Outlook, OneDrive, SharePoint) بدون تكرار تسجيل الدخول لكل خدمة.</p>
+  <p><b>Kerberos</b>: بروتوكول مصادقة SSO يستخدم نظام <b>tickets</b> (عبر Ticket Granting Service) للتحقق من هوية المستخدم مرة واحدة، ثم استخدام التذاكر للوصول للخدمات المختلفة بدون إعادة إدخال بيانات الدخول.</p>
+ </div>
+</section>
+
+<section id="m10-authz">
+ <span class="mod-tag">MODULE 10 · LESSON 10.2</span>
+ <h2>التفويض وإدارة الحسابات</h2>
+ <p class="sub">Authorization and Account Management — Access Control Models · PAM</p>
+
+ <div class="two">
+  <div class="card">
+   <p><b>DAC (Discretionary Access Control)</b></p>
+   <p>وصول يتحكم به <b>مالك</b> المورد نفسه — هو من يقرر من يصل لملفاته/موارده.</p>
+  </div>
+  <div class="card">
+   <p><b>RBAC (Role-Based Access Control)</b></p>
+   <p>الوصول يُمنح حسب <b>الدور الوظيفي</b> للمستخدم داخل المؤسسة، لا بشكل فردي.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>مصطلحات إدارة الوصول</b>:</p>
+  <ul>
+   <li><b>Privileged Account</b>: حساب للتغييرات الجوهرية بالنظام.</li>
+   <li><b>PAM (Privileged Access Management)</b>: ضوابط لمنع إساءة استخدام الحسابات المميّزة.</li>
+   <li><b>Least Privilege</b>: منح المستخدمين الصلاحيات الكافية فقط لأداء عملهم، لا أكثر.</li>
+   <li><b>Separation of Duties</b>: تقسيم المهام الحساسة بين عدة أشخاص لمنع سوء الاستخدام.</li>
+  </ul>
+ </div>
+
+ <div class="tip">مثال تطبيقي: مدير الأنظمة يحتاج وصولًا لإعدادات السيرفرات والأمان، بينما مندوب المبيعات يحتاج فقط لبرنامج المبيعات وقاعدة بيانات العملاء — هذا هو مبدأ <b>Least Privilege</b> عمليًا.</div>
+</section>
+
+<section id="m10-hardening">
+ <span class="mod-tag">MODULE 10 · LESSON 10.3</span>
+ <h2>تحصين الشبكة — Network Hardening</h2>
+ <p class="sub">Defense in Depth Model · Device & Service Hardening</p>
+
+ <div class="card">
+  <p><b>نموذج الدفاع متعدد الطبقات (Defense in Depth)</b> — من الداخل للخارج:</p>
+  <table>
+   <tr><th>الطبقة</th><th>أمثلة الضوابط</th></tr>
+   <tr><td><b>Data</b></td><td>قوائم التحكم بالوصول (ACLs)</td></tr>
+   <tr><td><b>Application</b></td><td>تحصين التطبيقات، مضاد الفيروسات</td></tr>
+   <tr><td><b>Host</b></td><td>تحصين نظام التشغيل، التحديثات، كلمة مرور BIOS</td></tr>
+   <tr><td><b>Internal Network</b></td><td>Subnets، VLANs، IDS/IPS</td></tr>
+   <tr><td><b>Perimeter</b></td><td>جدران نارية، VPN، IDS/IPS</td></tr>
+   <tr><td><b>Physical Security</b></td><td>حراس، أقفال، أجهزة تتبّع، أسوار</td></tr>
+   <tr><td><b>Policies, Procedures & Awareness</b></td><td>توعية المستخدمين، وثائق أمنية</td></tr>
+  </table>
+ </div>
+
+ <div class="tip">كل مضيف وجهاز شبكة <b>يجب تحصينه</b> — تحديث النظام، إغلاق المنافذ/الخدمات غير الضرورية، تغيير بيانات الدخول الافتراضية، وتطبيق سياسات كلمات مرور قوية.</div>
+</section>
+
+<section id="m10-switch">
+ <span class="mod-tag">MODULE 10 · LESSON 10.4</span>
+ <h2>أمان السويتش — Switch Security</h2>
+ <p class="sub">NAC · Port Security</p>
+
+ <div class="card">
+  <p><b>مصطلحات أساسية</b>: <b>NAC (Network Access Control)</b>: نظام لمصادقة وتفويض الوصول للشبكة. <b>Switch</b>: يربط ويدير الاتصال على الشبكة. <b>Switch Ports</b>: منافذ مخصصة على السويتش لتوصيل الأجهزة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>إجراءات أمان المنافذ (Port Security)</b>:</p>
+  <ul>
+   <li>تأمين الوصول الفيزيائي للسويتش.</li>
+   <li>تحديث الـfirmware بانتظام.</li>
+   <li>تعطيل المنافذ غير المستخدَمة.</li>
+   <li>إعداد <b>MAC filtering</b> لتحديد الأجهزة المسموح لها.</li>
+   <li>تفعيل <b>Router Advertisement (RA) Guard</b>.</li>
+   <li>إعداد <b>DHCP snooping</b> لفحص أصالة ترافيك DHCP.</li>
+   <li>تطبيق مصادقة <b>802.1x (EAP)</b>.</li>
+  </ul>
+ </div>
+
+ <div class="tip">سيناريو: جهاز غير مصرّح به اتصل بغرفة السيرفرات → أمّني الوصول الفيزيائي (خزائن قابلة للقفل) → عطّلي المنافذ غير المستخدَمة → فعّلي MAC filtering → فعّلي DHCP snooping لفحص أصالة ترافيك DHCP.</div>
+</section>
+
+<section id="m10-rules">
+ <span class="mod-tag">MODULE 10 · LESSON 10.5</span>
+ <h2>قواعد أمان الشبكة — Network Security Rules</h2>
+ <p class="sub">Firewalls vs Proxy Servers · Content Filtering</p>
+
+ <table>
+  <tr><th></th><th>Firewalls</th><th>Proxy Servers</th></tr>
+  <tr><td>الوظيفة</td><td>يرشّح كل الترافيك ويحظر/يسمح حسب <b>ACL</b></td><td>يفكك ويحلل الحزم للتأكد من الالتزام بالقواعد</td></tr>
+  <tr><td>التطبيق</td><td>يضمن مرور الترافيك المصرَّح به فقط</td><td>يطبّق سياسات الشركة</td></tr>
+  <tr><td>الموقع</td><td>يرشّح الترافيك الداخل/الخارج من segment الشبكة</td><td>يدير ويعيد توجيه الطلبات للتحكم بالوصول للإنترنت</td></tr>
+ </table>
+
+ <table>
+  <tr><th>معايير تصفية الجدار الناري</th><th>معايير تصفية Proxy Server</th></tr>
+  <tr><td>Protocol</td><td>عناوين URL وأسماء النطاقات</td></tr>
+  <tr><td>عنوان المصدر والوجهة</td><td>كلمات مفتاحية بالمحتوى</td></tr>
+  <tr><td>منفذ المصدر والوجهة</td><td>استخدام الـbandwidth</td></tr>
+  <tr><td>Stateful inspection</td><td>سمعة الموقع (reputation)</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>أخطاء إعداد الجدار الناري الشائعة</b>:</p>
+  <ul>
+   <li>ACL متساهلة جدًا (Overly permissive).</li>
+   <li>ACL متشددة جدًا (Overly prohibitive).</li>
+   <li>عدم تطبيق <b>implicit deny</b> (الرفض الافتراضي لما لم يُسمح صراحة).</li>
+   <li>إعدادات تسجيل (logging) غير صحيحة.</li>
+  </ul>
+ </div>
+
+ <div class="tip"><b>ملخص الوحدة 10</b>: التحكم بالوصول يضمن وصول المستخدمين/الأجهزة المصرّح لهم فقط؛ الدفاع متعدد الطبقات يحمي السرية والسلامة والتوفر؛ الجدران النارية والـProxy servers ترشّح الترافيك وتدير الطلبات؛ تصفية المحتوى تضبط الترافيك بدقة حسب البروتوكول والعناوين والمحتوى.</div>
+</section>
+
+
+</main>
+
+<div class="modnav"><a href="module9-guide.html">← الوحدة 9</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module11-guide.html">الوحدة 11 →</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 10 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>

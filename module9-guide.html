@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 9 — مفاهيم أمان الشبكة — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:13.5px;font-weight:600;padding:14px 14px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 9</span>
+  <h1>الوحدة 9 — مفاهيم أمان الشبكة</h1>
+  <p>Explaining Network Security Concepts — CIA Triad · Threats & Attacks · Spoofing · Rogue Systems · Social Engineering</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html" class="active">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="quiz.html">📝</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m9-concepts">9.1 Security Concepts</a>
+ <a href="#m9-threats">9.2 Threats & Attacks</a>
+ <a href="#m9-spoofing">9.3 Spoofing</a>
+ <a href="#m9-rogue">9.4 Rogue Systems</a>
+ <a href="#m9-social">9.5 Social Engineering</a>
+</div></nav>
+
+<main>
+
+<section id="m9-concepts">
+ <span class="mod-tag">MODULE 9 · LESSON 9.1</span>
+ <h2>مفاهيم الأمان — Security Concepts</h2>
+ <p class="sub">Explaining Network Security Concepts — CIA Triad · Vulnerability/Threat/Risk · Encryption</p>
+
+ <div class="card">
+  <p><b>CIA Triad</b>: النموذج المرجعي لأمان المعلومات، يتكوّن من:</p>
+  <ul>
+   <li><b>Confidentiality</b>: منع الوصول غير المصرح به للبيانات.</li>
+   <li><b>Integrity</b>: التأكد أن البيانات لم تتغيّر أو تُعبَث بها.</li>
+   <li><b>Availability</b>: ضمان توفر الأنظمة والبيانات عند الحاجة.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>Security Audit</b>: تقييم منهجي لأمان نظام المعلومات، يقيس التوافق مع معايير الأمان، يحدد نقاط القوة والضعف، ويوضّح مجالات التحسين.</p>
+  <p><b>أنواع تقييمات الأمان</b>: <b>Compliance Audits</b> (التحقق من الالتزام بالقوانين والمعايير) · <b>Risk-Based Audits</b> (تحديد وترتيب التهديدات/الثغرات حسب الأولوية) · <b>Technical Audits</b> (فحص عميق للبنية التقنية).</p>
+ </div>
+
+ <div class="card">
+  <p><b>إدارة المخاطر (Risk Management)</b>: تحديد الأصول الحرجة (الوظائف/الأصول الأساسية للعمل)، تحليل أثر الأعمال <b>(BIA)</b> لتقييم الخسائر المحتملة، واستراتيجيات تخفيف توازن تكلفة الضوابط الأمنية مقابل المخاطر لتحديد مستوى الخطر المقبول.</p>
+ </div>
+
+ <div class="card">
+  <p><b>الامتثال التنظيمي (Regulatory Compliance)</b>: ضمان الالتزام بكل القوانين واللوائح المتعلقة بالصناعة، لحماية البيانات والخصوصية وسلامة المعاملات.</p>
+  <div class="two">
+   <div>
+    <p><b>GDPR</b></p>
+    <p>يخص جمع/معالجة البيانات الشخصية داخل الاتحاد الأوروبي — موافقة مستنيرة وحقوق البيانات.</p>
+   </div>
+   <div>
+    <p><b>PCI DSS</b></p>
+    <p>يخص المؤسسات المتعاملة مع بطاقات الدفع — معايير لحماية بيانات حاملي البطاقات.</p>
+   </div>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>التشفير (Encryption)</b>: تحويل البيانات المقروءة (plaintext) لصيغة مشفّرة (ciphertext) لا يصل لها إلا من يملك مفتاح فك التشفير — يضمن سرية البيانات.</p>
+  <ul>
+   <li><b>Encryption Algorithm</b>: يحوّل plaintext لciphertext ويحتاج مفتاحًا لفك التشفير (لحماية الإيميلات/الملفات).</li>
+   <li><b>Cryptographic Hash Algorithm</b>: يحوّل نصًا لـhash بطول ثابت لا يمكن عكسه (لتخزين كلمات المرور والتحقق من سلامة البيانات).</li>
+  </ul>
+ </div>
+
+ <h3>حالات البيانات (States of Data)</h3>
+ <table>
+  <tr><th>الحالة</th><th>الوصف</th><th>مثال</th></tr>
+  <tr><td><b>Data at Rest</b></td><td>حماية وسائط التخزين الدائمة</td><td>أقراص صلبة مشفرة</td></tr>
+  <tr><td><b>Data in Transit</b></td><td>حماية البيانات أثناء النقل</td><td>تشفير TLS</td></tr>
+  <tr><td><b>Data in Use</b></td><td>تأمين البيانات في الذاكرة المؤقتة</td><td>تقنيات تشفير RAM</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>الثغرات (Vulnerabilities)</b>: عيوب في تصميم البرمجيات تسمح بتجاوز الحماية أو تسبب أعطالًا — أسبابها: سوء إعداد، ممارسات ضعيفة، عيوب تصميم. أثرها: تنفيذ كود عشوائي، تثبيت برامج ضارة، اختراق إعدادات الأمان.</p>
+  <ul>
+   <li><b>Zero-Day Vulnerabilities</b>: تُستغل قبل أن يتمكن المطورون من إصدار تحديث — أعلى خطورة.</li>
+   <li><b>Unpatched/Legacy Systems</b>: تشكّل خطرًا كبيرًا بسبب نقص التحديثات والدعم.</li>
+   <li><b>Vulnerability Assessment</b>: تقييم أمان النظام حسب إعداده، ومطابقته مع الأساس المرجعي المثالي، عبر فحص يدوي وأدوات آلية.</li>
+  </ul>
+ </div>
+
+ <div class="tip"><b>Deception Technologies</b>: تُربك المهاجمين وتُصعّب هجماتهم — <b>Honeypots</b> (أنظمة وهمية لاستدراج المهاجمين) و<b>Honeynets</b> (شبكات وهمية لاصطياد أوسع) — توفّر اكتشافًا مبكرًا وتحليلًا لتكتيكات المهاجمين، وتُوضَع بمناطق مراقَبة بين الإنترنت والشبكة الداخلية.</div>
+</section>
+
+<section id="m9-threats">
+ <span class="mod-tag">MODULE 9 · LESSON 9.2</span>
+ <h2>تهديدات وهجمات الشبكة — Network Threats and Attacks</h2>
+ <p class="sub">External/Internal Threats · Enumeration · DoS/DDoS · Malware</p>
+
+ <div class="two">
+  <div class="card">
+   <p><b>External Threats</b></p>
+   <p>هجمات من أفراد/جهات خارج المؤسسة (هاكرز، مجرمون سيبرانيون، تجسس) — غالبًا متطورة ومستهدفة. المكافحة: جدران نارية، أنظمة IDS، تدقيق خارجي، وتدريب توعوي.</p>
+  </div>
+  <div class="card">
+   <p><b>Internal Threats</b></p>
+   <p>تنشأ من داخل المؤسسة (موظفون، مقاولون، شركاء) — تسريب بيانات عرضي، سرقة بيانات متعمدة، تخريب. أصعب اكتشافًا بسبب الوصول الشرعي. المكافحة: صلاحيات قائمة على الدور، مراقبة نشاط المستخدم.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>هجمات الاستكشاف (Enumeration Attacks)</b>:</p>
+  <ul>
+   <li><b>Footprinting</b>: اكتشاف هيكلية الشبكة وإعدادات الأمان عبر الهندسة الاجتماعية أو فحص المنافذ.</li>
+   <li><b>Fingerprinting</b>: تحديد إصدارات النظام/البرامج، وسبر الثغرات.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>هجمات حجب الخدمة (DoS)</b>: تهدف لتعطيل الخدمة ومنع وصول المستخدمين، عبر استنزاف الموارد أو تشبّع bandwidth أو استغلال ثغرات البرمجيات — تطورت لهجمات <b>DDoS</b> معقدة باستخدام الـbotnets.</p>
+  <p><b>أمثلة DDoS</b>: <b>ICMP Flood</b> (إغراق بحزم ICMP) · <b>SYN Flood</b> (استغلال TCP handshake لمنع الوصول الشرعي) · <b>DNS Amplification</b> (استغلال سيرفرات DNS سيئة الإعداد).</p>
+  <p><b>مكافحة DDoS</b>: كشف مبكر لأنماط الترافيك غير الطبيعية، تصفية الترافيك (جدران نارية/IDS)، خطة استجابة جاهزة، وتكرار (redundancy) الشبكة لتقليل التوقف.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Botnet</b>: شبكة من الأجهزة المخترَقة تُدار عن بُعد للاستخدام الخبيث — أنواعها: <b>DDoS botnets</b>، <b>Spam botnets</b>، <b>Banking trojan botnets</b>. المكافحة: جدران نارية ومضاد فيروسات، تحليل الترافيك غير الطبيعي، عزل الأجهزة المخترَقة، وتوعية المستخدمين.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Malware</b>: برمجيات ضارة تعطّل أو تضرّ الأنظمة — أنواعها: <b>Viruses/Worms</b>، <b>Trojan</b>، <b>PUPs/PUAs</b>. تتكون من <b>vectors</b> (طرق الإصابة والانتشار) و<b>payloads</b> (الأفعال الضارة المنفَّذة كالتجسس أو الفدية).</p>
+  <p><b>Fileless Malware</b>: تهديد متطور، لا يترك كودًا على القرص، صعب الاكتشاف — يقيم في الذاكرة ويستخدم أدوات سكريبت (PowerShell, WMI)، يحافظ على استمراريته عبر تعديلات الـregistry بدون ملفات — جزء من هجمات APT/AVT متقدمة.</p>
+ </div>
+</section>
+
+<section id="m9-spoofing">
+ <span class="mod-tag">MODULE 9 · LESSON 9.3</span>
+ <h2>هجمات الانتحال — Spoofing Attacks</h2>
+ <p class="sub">On-Path Attacks · MAC Flooding · VLAN Hopping</p>
+
+ <div class="card">
+  <p><b>Spoofing</b>: التنكّر كجهة أخرى للحصول على وصول غير مصرّح به، لخداع المستخدمين/الأجهزة وتجاوز الحماية وسرقة البيانات أو نشر برمجيات ضارة. أنواعها: <b>IP spoofing</b>، <b>ARP spoofing</b>، <b>Email spoofing</b>.</p>
+ </div>
+
+ <div class="card">
+  <p><b>On-Path Attacks</b> (رجل في المنتصف): تعترض وربما تُعدّل اتصال طرفين دون اكتشاف — لسرقة معلومات حساسة أو حقن برمجيات ضارة. أنواع شائعة: <span class="en">Session hijacking, SSL stripping, DNS spoofing, Wi-Fi eavesdropping, ARP spoofing</span>.</p>
+ </div>
+
+ <div class="card">
+  <p><b>MAC Flooding Attacks</b>: تُغرق جدول CAM بالسويتش بعدد هائل من عناوين MAC، ما يسبب فشل السويتش وبثّ الترافيك للجميع — الهدف: التنصت على ترافيك غير متاح عادة. الأنواع: <span class="en">Random, Incremental, Targeted MAC flooding</span>.</p>
+ </div>
+
+ <div class="tip"><b>VLAN Hopping Attack</b>: استغلال ثغرات إعداد VLAN بالسويتش لإرسال حزم لـVLAN بدون صلاحية وصول — لتجاوز الحماية والوصول لشبكات مقيّدة. النوعان: <b>Switch Spoofing</b> و<b>Double Tagging</b>.</div>
+</section>
+
+<section id="m9-rogue">
+ <span class="mod-tag">MODULE 9 · LESSON 9.4</span>
+ <h2>هجمات الأنظمة المارقة — Rogue System Attacks</h2>
+ <p class="sub">Rogue Devices · Rogue DHCP · DNS Attacks</p>
+
+ <div class="card">
+  <p><b>Rogue Devices and Services</b>: عتاد أو برمجيات غير مصرّح بها تتصل بالشبكة بدون إذن، وقد تسبب مخاطر أمنية جسيمة — وصول غير مصرح به، نية خبيثة، اعتراض وتلاعب بالبيانات.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Rogue DHCP Server</b>: سيرفر DHCP غير مصرّح به يوزّع إعدادات شبكة خاطئة على العملاء — يُسبب توزيع إعدادات غير صالحة، إعادة توجيه الترافيك، وهجمات on-path.</p>
+ </div>
+
+ <div class="card">
+  <p><b>DNS Attacks</b>: هجمات تستهدف نظام DNS، تُضعف سلامة وتوفّر خدمات الإنترنت — تشمل تعطيل الخدمة، اختطاف النطاقات <span class="en">(domain hijacking)</span>، وتسميم الذاكرة المؤقتة <span class="en">(cache poisoning)</span>.</p>
+ </div>
+</section>
+
+<section id="m9-social">
+ <span class="mod-tag">MODULE 9 · LESSON 9.5</span>
+ <h2>الهندسة الاجتماعية — Social Engineering</h2>
+ <p class="sub">Social Engineering Types · Password Attacks</p>
+
+ <div class="card">
+  <p><b>Social Engineering</b>: تقنية تلاعب يستخدمها مجرمو الإنترنت لاستغلال الثغرات <b>البشرية</b>، لا التقنية — لخداع الأفراد ودفعهم للكشف عن معلومات سرية أو شخصية. فعّالة جدًا لأنها تستغل ميل الناس الطبيعي للثقة، ونجاحها يعتمد على ظهور المهاجم بمظهر موثوق أو ذي سلطة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>أنواع هجمات الهندسة الاجتماعية</b>:</p>
+  <ul>
+   <li><b>Shoulder Surfing</b>: التجسس على شاشة/لوحة مفاتيح الضحية مباشرة.</li>
+   <li><b>Dumpster Diving</b>: البحث في المخلفات عن معلومات حساسة.</li>
+   <li><b>Tailgating/Piggybacking</b>: دخول منطقة مقيّدة بمتابعة شخص مصرّح له.</li>
+   <li><b>Phishing</b>: رسائل خادعة (بريد/رسائل) لانتزاع معلومات أو دفع الضحية لفعل ضار.</li>
+  </ul>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Dictionary Attacks</b></p>
+   <p>تُجرِّب كل كلمات القاموس — تستهدف كلمات المرور الضعيفة والبسيطة.</p>
+  </div>
+  <div class="card">
+   <p><b>Brute Force Attacks</b></p>
+   <p>تُجرِّب كل تركيبات الأحرف الممكنة — تستهلك وقتًا طويلًا لكنها تكسر أي كلمة مرور نظريًا.</p>
+  </div>
+ </div>
+
+ <div class="tip"><b>ملخص الوحدة 9</b>: السياسات والضوابط تُبنى على <b>CIA Triad</b>؛ التقييم والمراقبة المستمرة للثغرات والتهديدات والمخاطر ضروريان؛ توعية المستخدمين بأنواع الهجمات (footprinting, spoofing, DoS, DNS manipulation, VLAN hopping, malware, password cracking, social engineering) خط دفاع أساسي.</div>
+</section>
+
+
+</main>
+
+<div class="modnav"><a href="module8-guide.html">← الوحدة 8</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module10-guide.html">الوحدة 10 →</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 9 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>

@@ -3,25 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CompTIA Network+ N10-009 — الوحدة 1 إلى 8</title>
+<title>CompTIA Network+ N10-009 — الوحدة 1 إلى 12</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--deep:#0d3b4f;--teal:#12617c;--signal:#e8672c;--line:#d8e2e7;--muted:#5b7280;--paper:#f7f9fa}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:#0e1b25;min-height:100vh;padding:40px 24px}
-.wrap{max-width:900px;width:100%;margin:0 auto;text-align:center}
+.wrap{max-width:960px;width:100%;margin:0 auto;text-align:center}
 .eyebrow{font-family:monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.12);color:var(--signal);border:1px solid rgba(232,103,44,.4);padding:4px 14px;border-radius:999px;margin-bottom:16px}
 h1{font-size:clamp(24px,4vw,34px);color:var(--deep);margin-bottom:10px}
 p.sub{color:var(--muted);margin-bottom:36px;font-size:14px}
 h2.sec{color:var(--teal);font-size:15px;font-weight:700;margin:30px 0 14px;text-align:right}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media(max-width:760px){.cards{grid-template-columns:1fr 1fr}}
-@media(max-width:420px){.cards{grid-template-columns:1fr}}
-a.card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 14px;box-shadow:0 2px 8px rgba(13,59,79,.06);transition:.15s}
+.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media(max-width:900px){.cards{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:600px){.cards{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:420px){.cards{grid-template-columns:1fr 1fr}}
+a.card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;box-shadow:0 2px 8px rgba(13,59,79,.06);transition:.15s}
 a.card:hover{border-color:var(--signal);transform:translateY(-3px)}
-a.card .icon{font-size:26px;margin-bottom:8px}
-a.card .title{color:var(--deep);font-weight:700;font-size:14px;margin-bottom:4px}
-a.card .desc{color:var(--muted);font-size:11.5px;line-height:1.5}
+a.card .icon{font-size:22px;margin-bottom:6px}
+a.card .title{color:var(--deep);font-weight:700;font-size:13px;margin-bottom:3px}
+a.card .desc{color:var(--muted);font-size:10.5px;line-height:1.45}
 .quizcard{display:block;text-decoration:none;background:linear-gradient(135deg,var(--deep),#0a2a3a);border-radius:16px;padding:26px 22px;margin-top:26px;transition:.15s}
 .quizcard:hover{transform:translateY(-3px)}
 .quizcard .icon{font-size:30px;margin-bottom:10px}
@@ -32,35 +33,35 @@ a.card .desc{color:var(--muted);font-size:11.5px;line-height:1.5}
 <body>
 <div class="wrap">
  <span class="eyebrow">CompTIA Network+ N10-009</span>
- <h1>مذاكرة الوحدات 1 إلى 8</h1>
- <p class="sub">Network Fundamentals · Cabling · Interfaces & Switches · Network Addressing · Routing · Network Services · Application Services · Network Management</p>
+ <h1>مذاكرة الوحدات 1 إلى 12</h1>
+ <p class="sub">Fundamentals · Cabling · Switching · Addressing · Routing · Network Services · Applications · Network Management · Security · Wireless</p>
 
  <h2 class="sec">📖 ملخصات الوحدات (كل وحدة بصفحتها)</h2>
  <div class="cards">
   <a class="card" href="module1-guide.html">
    <div class="icon">1️⃣</div>
    <div class="title">الوحدة 1</div>
-   <div class="desc">Topologies · OSI · SOHO · Troubleshooting</div>
+   <div class="desc">Topologies · OSI · SOHO</div>
   </a>
   <a class="card" href="module2-guide.html">
    <div class="icon">2️⃣</div>
    <div class="title">الوحدة 2</div>
-   <div class="desc">Ethernet · Cabling · Fiber · Physical Install</div>
+   <div class="desc">Ethernet · Cabling · Fiber</div>
   </a>
   <a class="card" href="module3-guide.html">
    <div class="icon">3️⃣</div>
    <div class="title">الوحدة 3</div>
-   <div class="desc">Interfaces · Switches · STP · PoE</div>
+   <div class="desc">Interfaces · Switches</div>
   </a>
   <a class="card" href="module4-guide.html">
    <div class="icon">4️⃣</div>
    <div class="title">الوحدة 4</div>
-   <div class="desc">IP Addressing · Subnetting · IPv6</div>
+   <div class="desc">IP Addressing · IPv6</div>
   </a>
   <a class="card" href="module5-guide.html">
    <div class="icon">5️⃣</div>
    <div class="title">الوحدة 5</div>
-   <div class="desc">Routing · NAT · Firewalls · VLANs</div>
+   <div class="desc">Routing · NAT · VLANs</div>
   </a>
   <a class="card" href="module6-guide.html">
    <div class="icon">6️⃣</div>
@@ -70,18 +71,38 @@ a.card .desc{color:var(--muted);font-size:11.5px;line-height:1.5}
   <a class="card" href="module7-guide.html">
    <div class="icon">7️⃣</div>
    <div class="title">الوحدة 7</div>
-   <div class="desc">TLS/NTP · Web/File Services · VoIP · DR/HA</div>
+   <div class="desc">TLS · Web/File · VoIP</div>
   </a>
   <a class="card" href="module8-guide.html">
    <div class="icon">8️⃣</div>
    <div class="title">الوحدة 8</div>
-   <div class="desc">Documentation · SNMP · Logs · Traffic Monitoring</div>
+   <div class="desc">SNMP · Logs · Traffic</div>
+  </a>
+  <a class="card" href="module9-guide.html">
+   <div class="icon">9️⃣</div>
+   <div class="title">الوحدة 9</div>
+   <div class="desc">CIA Triad · Attacks</div>
+  </a>
+  <a class="card" href="module10-guide.html">
+   <div class="icon">🔟</div>
+   <div class="title">الوحدة 10</div>
+   <div class="desc">Auth · Hardening · ACLs</div>
+  </a>
+  <a class="card" href="module11-guide.html">
+   <div class="icon">1️⃣1️⃣</div>
+   <div class="title">الوحدة 11</div>
+   <div class="desc">Zones · IoT · Physical</div>
+  </a>
+  <a class="card" href="module12-guide.html">
+   <div class="icon">1️⃣2️⃣</div>
+   <div class="title">الوحدة 12</div>
+   <div class="desc">Wi-Fi · WPA3 · Wireless TS</div>
   </a>
  </div>
 
  <a class="quizcard" href="quiz.html">
   <div class="icon">📝</div>
-  <div class="title">اختبار محاكي — كل الوحدات 1-8</div>
+  <div class="title">اختبار محاكي — كل الوحدات 1-12</div>
   <div class="desc">اختبار منفصل لكل وحدة (الأسئلة بالإنجليزي والشرح بالعربي) + اختبار شامل لكل الوحدات</div>
  </a>
 </div>

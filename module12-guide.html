@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 12 — إعداد الشبكات اللاسلكية — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:13.5px;font-weight:600;padding:14px 14px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 12</span>
+  <h1>الوحدة 12 — إعداد الشبكات اللاسلكية</h1>
+  <p>Configuring Wireless Networks — Wireless Standards · Enterprise Design · Wireless Security · Wireless Troubleshooting</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html" class="active">12</a><a href="quiz.html">📝</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m12-standards">12.1 Standards</a>
+ <a href="#m12-enterprise">12.2 Enterprise Design</a>
+ <a href="#m12-security">12.3 Security</a>
+ <a href="#m12-ts">12.4 Troubleshooting</a>
+</div></nav>
+
+<main>
+
+<section id="m12-standards">
+ <span class="mod-tag">MODULE 12 · LESSON 12.1</span>
+ <h2>مفاهيم ومعايير الشبكات اللاسلكية</h2>
+ <p class="sub">Configuring Wireless Networks — 802.11 Standards</p>
+
+ <div class="card">
+  <p><b>802.11 (Wi-Fi)</b>: معايير وضعتها <b>IEEE</b> تحدد كيفية تواصل الموجات الراديوية عبر المسافات، وتضمن التوافق بين الأجهزة اللاسلكية.</p>
+  <ul>
+   <li><b>Physical Layer</b>: يُرمِّز البيانات لإشارات راديوية بأساليب تضمين مختلفة.</li>
+   <li><b>MAC</b>: يستخدم <b>CSMA/CA</b> لإرسال فعّال وتقليل التصادمات.</li>
+   <li><b>Topology</b>: نجمة منطقية (star) حول <b>Access Point (AP)</b>.</li>
+   <li><b>Wi-Fi Alliance</b>: يمنح شهادات توافق للمنتجات مع المعايير.</li>
+  </ul>
+ </div>
+
+ <table>
+  <tr><th>المعيار</th><th>التردد</th><th>السرعة الاسمية</th><th>ملاحظات</th></tr>
+  <tr><td><b>802.11a</b></td><td>5 GHz</td><td>حتى 54 Mbps</td><td>يستخدم OFDM، مدى أقصر لكن تداخل أقل</td></tr>
+  <tr><td><b>802.11b</b></td><td>2.4 GHz</td><td>حتى 11 Mbps</td><td>يستخدم DSSS/CCK</td></tr>
+  <tr><td><b>802.11g</b></td><td>2.4 GHz</td><td>حتى 54 Mbps</td><td>متوافق خلفيًا مع 802.11b، يستخدم OFDM</td></tr>
+  <tr><td><b>802.11n</b></td><td>2.4 و5 GHz</td><td>حتى 600 Mbps</td><td>يدعم MIMO وChannel Bonding (قنوات 40 MHz)</td></tr>
+  <tr><td><b>Wi-Fi 5 (802.11ac)</b></td><td>5 GHz فقط</td><td>سرعات Gigabit</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>MU-MIMO</b>: يسمح لهوائيات متعددة بالـAP بإرسال بيانات لعدة محطات (stations) في آن واحد — يحسّن كفاءة الشبكة وسرعتها للأجهزة المتعددة (مدعوم بـWi-Fi 5 وWi-Fi 6، حتى 8 محطات).</p>
+  <p><b>Band Steering</b>: يستخدم التحكم بالـbeacon لتوجيه الأجهزة نحو نطاقي 5/6 GHz بدل 2.4 GHz المزدحم — يحسّن كفاءة الشبكة ويحفظ 2.4 GHz للأجهزة التي لا تدعم النطاقات الأعلى.</p>
+ </div>
+
+ <table>
+  <tr><th></th><th>2G/3G</th><th>4G (LTE)</th><th>5G</th></tr>
+  <tr><td>أقصى سرعة</td><td>حتى 2 Mbps</td><td>حتى 300 Mbps (LTE-A)</td><td>حتى 20 Gbps</td></tr>
+  <tr><td>الاستخدام</td><td>مكالمات صوتية، إنترنت أساسي</td><td>بث، ألعاب، فيديو HD</td><td>بث 4K/8K، AR/VR، مدن ذكية</td></tr>
+ </table>
+
+ <div class="tip"><b>الإنترنت عبر الأقمار الصناعية</b>: <b>Geostationary</b> (مدار عالٍ، تغطية واسعة، latency عالٍ) مقابل <b>LEO (Low Earth Orbital)</b> (bandwidth عالٍ وlatency منخفض، يحتاج تتبعًا ديناميكيًا).</div>
+</section>
+
+<section id="m12-enterprise">
+ <span class="mod-tag">MODULE 12 · LESSON 12.2</span>
+ <h2>تصميم شبكات لاسلكية للمؤسسات</h2>
+ <p class="sub">WLAN · BSSID/ESSID · Roaming · Wireless Controllers · Antennas</p>
+
+ <div class="card">
+  <p><b>WLAN</b>: أجهزة تتواصل عبر إشارة لاسلكية، تستخدم <b>SSID</b> للاتصال. في <b>Infrastructure Mode</b>، الـ<b>AP</b> يتوسط الاتصالات، يشكّل نجمة منطقية، ويدعم عدة BSS بنطاقات مختلفة بمعرّفات SSID فريدة أو مشتركة.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>BSSID</b></p>
+   <p>معرّف فريد لنقطة وصول واحدة داخل WLAN — "عنوان" لإدارة الشبكة بكفاءة.</p>
+  </div>
+  <div class="card">
+   <p><b>ESSID</b></p>
+   <p>اسم الشبكة لعدة BSS ضمن شبكة WLAN أكبر — يدعم تجوال العميل عبر القنوات/النطاقات.</p>
+  </div>
+ </div>
+
+ <table>
+  <tr><th>العامل</th><th>التفاصيل</th></tr>
+  <tr><td>مدى Wi-Fi</td><td>داخلي ~30م، خارجي 2-3 أضعاف الداخلي؛ 2.4 GHz أفضل من 5 GHz للمدى</td></tr>
+  <tr><td>قوة الإشارة (RSSI)</td><td>تُقاس بـ<span class="en">dBm</span>؛ الأقرب لـ0 dBm أفضل (مثال: -30 dBm ممتاز، أقل من -80 dBm = فقدان حزم)</td></tr>
+  <tr><td>SNR</td><td>قيم أعلى = إشارة أوضح</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>Wireless Survey (RF Site Survey)</b>: تخطيط الشبكة اللاسلكية لتغطية وbandwidth وجودة خدمة مثالية — يحدد أفضل مكان لنقاط الوصول ومصادر التداخل المحتملة، عبر فحص ميداني وقياس قوة الإشارة وتحليل البيانات.</p>
+  <p><b>Heat Maps</b>: تمثيل بصري بالألوان لشدة الإشارة بمنطقة ما — يحدد نقاط النشاط الكثيف ومناطق تحتاج تقوية الإشارة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Wireless Roaming</b>: اتصال سلس للجهاز عبر عدة APs بدون انقطاع. <b>ESA (Extended Service Area)</b>: شبكة APs بنفس ESSID وإعدادات الأمان — الأجهزة تعيد الارتباط بـAP جديد حسب قوة الإشارة، وقد تحتاج إعادة مصادقة.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>SSID Broadcast</b></p>
+   <p>يُعلن عن وجود الشبكة لتسهيل الاتصال — يمكن تعطيله (suppress) لتعزيز الأمان.</p>
+  </div>
+  <div class="card">
+   <p><b>Beacon Frames</b></p>
+   <p>إطارات خاصة تحمل معلومات الشبكة الأساسية (SSID/ESSID, BSSID, بروتوكولات الأمان) — فاصل البث قابل للتعديل.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>WDS (Wireless Distribution System)</b>: ينشئ شبكة لاسلكية حيث التمديد غير عملي — يتطلب تطابق SSID/القناة/إعدادات الأمان بين نقاط الوصول، محطة أساسية سلكية ومحطات بعيدة لاسلكية.</p>
+  <p><b>Wireless Controllers</b>: تدير وتراقب عدة APs مركزيًا (حتى 1,500 AP و20,000 عميل)، تبسّط الإعداد، تمنع أخطاء الأجهزة الفردية، وتُعيّن العملاء لـVLANs منفصلة تلقائيًا.</p>
+ </div>
+
+ <table>
+  <tr><th>نوع الهوائي</th><th>الوصف</th></tr>
+  <tr><td><b>Omnidirectional</b></td><td>يشعّ ويستقبل بكل الاتجاهات بالتساوي — تغطية واسعة (مناسب للتركيب بالسقف)</td></tr>
+  <tr><td><b>Unidirectional</b></td><td>يركّز الإشارة باتجاه محدد — اتصالات نقطة لنقطة، يحتاج محاذاة دقيقة</td></tr>
+  <tr><td><b>Dual-Polarized</b></td><td>يرسل ويستقبل بعدة اتجاهات — يدعم الأجهزة المتحركة بجودة إشارة ثابتة</td></tr>
+ </table>
+
+ <div class="tip">مقارنة سريعة: <b>Ad Hoc (IBSS)</b> = peer-to-peer بدون AP · <b>Mesh (WMN)</b> = عقد تكتشف بعضها وتوجّه عبر HWMP، قابلة للتوسع لIoT · <b>Point to Point</b> = ربط موقعين بدون كيبل بهوائيات موجّهة (dish/Yagi).</div>
+</section>
+
+<section id="m12-security">
+ <span class="mod-tag">MODULE 12 · LESSON 12.3</span>
+ <h2>أمان الشبكات اللاسلكية — Wireless Security</h2>
+ <p class="sub">WPA2/WPA3 · Guest Networks · Rogue APs · Deauthentication</p>
+
+ <table>
+  <tr><th></th><th>WPA2</th><th>WPA3</th></tr>
+  <tr><td>الإصدار</td><td>2004، تحسين كبير عن WEP/WPA</td><td>2018، لمعالجة قيود WPA2</td></tr>
+  <tr><td>التشفير</td><td>مفتاح مشترك لكل الأجهزة، يستخدم <b>AES</b></td><td>تشفير بيانات فردي لكل جهاز</td></tr>
+  <tr><td>حماية كلمة المرور</td><td>عرضة لهجمات معينة</td><td>يصعّب كسر كلمة المرور جدًا (يحتاج تفاعل مباشر لكل محاولة)</td></tr>
+  <tr><td>Forward Secrecy</td><td>غير مدعوم</td><td>مدعوم — تسريب كلمة المرور لاحقًا لا يفكّ بيانات سابقة ملتقطة</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>Enterprise Authentication</b> (802.1X): اختيار طريقة الأمان → طلب ارتباط → تحديد جهاز الـsupplicant → مشاركة مفتاح PMK → تحقق بيانات الاعتماد → نقل مصادقة ومفتاح → اشتقاق مفتاح الجلسة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Guest Networks</b>: وصول منفصل للزوار، معزول عن الشبكة الرئيسية — أمان معزز (فصل وصول الضيوف عن الموارد الداخلية)، اتصال مبسّط دون المساس بسلامة الشبكة. الإعداد: <b>SSID منفصل</b> ووصول مقيّد (إنترنت فقط، بدون وصول للسيرفرات المحلية/البيانات الحساسة).</p>
+ </div>
+
+ <div class="card">
+  <p><b>Captive Portals</b>: خطوة مصادقة ثانوية بالشبكات المفتوحة، تتطلب تسجيل دخول عبر صفحة ويب. تستخدم <b>HTTPS</b> لتأمين بيانات الدخول، وشهادة رقمية لضمان ثقة المتصفح. أفضل الممارسات: شروط استخدام واضحة، والتوصية باستخدام <b>VPN</b> للتصفح الآمن على الشبكات المفتوحة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>مشاكل BYOD</b>: تعقيد التوافق عبر الأجهزة/الأنظمة، مستويات حماية متفاوتة، أجهزة غير محدَّثة، تحكم IT محدود، تهديدات داخلية. المكافحة: أنظمة <b>EMM</b>، مساحات عمل مؤسسية منفصلة، فرض سياسات أمنية، وفصل بيانات الشركة عن الشخصية.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Rogue Access Points / Evil Twin</b></p>
+   <p>نقطة وصول مزيّفة تحاكي شبكة شرعية — يتصل المستخدمون بدون علمهم، فيعترض المهاجم بياناتهم، ويلتقط تفاصيل الدخول، أو يثبّت برمجيات ضارة. المكافحة: فحص دوري لنقاط الوصول المارقة، وتوعية المستخدمين.</p>
+  </div>
+  <div class="card">
+   <p><b>Deauthentication Attacks</b></p>
+   <p>تُعطّل اتصال المستخدمين بنقاط الوصول، وتجبر الأجهزة على الانفصال ثم الاتصال بشبكة يتحكم بها المهاجم — تُستغل إطارات الإدارة غير المشفرة. المكافحة: مراقبة أنماط deauthentication غير الطبيعية، وتشفير/مصادقة قوية.</p>
+  </div>
+ </div>
+</section>
+
+<section id="m12-ts">
+ <span class="mod-tag">MODULE 12 · LESSON 12.4</span>
+ <h2>استكشاف أخطاء الشبكات اللاسلكية</h2>
+ <p class="sub">Coverage · Channel Overlap · Interference · Roaming · Overcapacity</p>
+
+ <div class="card">
+  <p><b>مقاييس مهمة</b>: <b>Bit Rate</b> وaffected by <b>Throughput</b>؛ <b>RF Attenuation</b>: تدهور الإشارة مع المسافة حسب قاعدة التربيع العكسي، يُقاس بـdB؛ <b>SNR</b>: هامش مثالي لجودة الاتصال. أدوات: <b>Wi-Fi Analyzers</b> (قياسات لحظية) و<b>Dedicated Wi-Fi Tester Hardware</b> (تحليل شامل).</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>ضعف التغطية اللاسلكية</b></p>
+   <p><b>الأسباب</b>: حواجز فيزيائية، مسافة أكبر من المثالية عن الـAP، تداخل كهربائي.<br><b>الحلول</b>: تركيب نقاط وصول إضافية، مُوسّعات مدى/جسور لاسلكية، مسح ميداني لتحديد المكان الأمثل، معايرة قوة الإرسال حسب أضعف جهاز عميل.</p>
+  </div>
+  <div class="card">
+   <p><b>تداخل القنوات (Channel Overlap)</b></p>
+   <p><b>Co-channel Interference (CCI)</b>: تنافس أجهزة على نفس القناة. <b>Adjacent Channel Interference (ACI)</b>: أجهزة على قنوات متداخلة تُبطئ الاتصال.<br><b>الحلول</b>: قنوات 2.4 GHz المثلى (1, 6, 11)، تباعد 25 MHz بين القنوات، وخفض قوة الـAP.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>مشاكل التداخل (Interference)</b>: CCI/ACI، حواجز فيزيائية (جدران، أثاث، أشخاص) تُضعف الإشارة، وEMI من أجهزة بنفس التردد (مايكروويف، بلوتوث). <b>الحلول</b>: وضع الـAP استراتيجيًا لتفادي الحواجز، تغيير التردد/القناة، واستخدام أدوات تحليل الطيف.</p>
+ </div>
+
+ <div class="card">
+  <p><b>مشاكل التجوال والانفصال (Roaming & Disassociation)</b>:</p>
+  <ul>
+   <li><b>Sticky Clients</b>: لا تنتقل لـAP أفضل رغم توفره.</li>
+   <li><b>Flapping Clients</b>: تتنقل بكثرة بين نقاط الوصول.</li>
+   <li>نقص دعم معايير التجوال <b>802.11k/r/v</b> يؤثر على سلاسة التجوال.</li>
+   <li>الانفصال قد ينتج عن التجوال، التداخل، عدم التوافق، أو هجمات (استغلال إطارات إدارة غير مشفرة).</li>
+  </ul>
+  <p><b>الحلول</b>: تحليل سجلات ارتباط الـAP، ضبط موقع/قوة الـAP لتغطية متوازنة، وإجراءات أمنية لكشف هجمات الانتحال.</p>
+ </div>
+
+ <div class="card">
+  <p><b>تجاوز السعة (Overcapacity)</b>: أجهزة كثيرة تحاول الاتصال بـAP واحد → ازدحام الشبكة، تشبّع bandwidth، بطء أو عدم استقرار الاتصال.</p>
+  <p><b>الحلول</b>: توزيع استراتيجي لعدة APs، تحديد عدد أقصى للأجهزة لكل AP، أدوات تشكيل الترافيك (traffic shaping)، تعيين قنوات ديناميكي، ومراقبة مستمرة بأدوات Wi-Fi للمؤسسات.</p>
+ </div>
+
+ <div class="tip"><b>ملخص الوحدة 12</b>: حدّدي متطلبات الشبكة → مسح ميداني بمخطط الموقع وWi-Fi Analyzer → حدّدي مدى الـAP حسب التقنية المختارة → اختبري التركيب (الحجم، الأمان، الوظائف) بظروف واقعية.</div>
+</section>
+
+
+</main>
+
+<div class="modnav"><a href="module11-guide.html">← الوحدة 11</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="quiz.html">الذهاب للاختبار 📝</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 12 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>

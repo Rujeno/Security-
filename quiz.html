@@ -90,20 +90,24 @@ button.nav{font-family:inherit;font-weight:700;font-size:15px;border:none;border
 <body>
 <header>
  <h1>اختبار محاكي · CompTIA Network+ N10-009</h1>
- <p>الوحدات 1 إلى 8 — Fundamentals · Cabling · Interfaces & Switches · Addressing · Routing · Services · Applications · Management — الأسئلة بالإنجليزي والشرح بالعربي</p>
+ <p>الوحدات 1 إلى 12 — Fundamentals · Cabling · Switching · Addressing · Routing · Services · Applications · Management · Security · Wireless — الأسئلة بالإنجليزي والشرح بالعربي</p>
 </header>
 
 <div class="switcher"><div class="swrap">
- <a href="index.html">🏠 الرئيسية</a>
- <a href="module1-guide.html">الوحدة 1</a>
- <a href="module2-guide.html">الوحدة 2</a>
- <a href="module3-guide.html">الوحدة 3</a>
- <a href="module4-guide.html">الوحدة 4</a>
- <a href="module5-guide.html">الوحدة 5</a>
- <a href="module6-guide.html">الوحدة 6</a>
- <a href="module7-guide.html">الوحدة 7</a>
- <a href="module8-guide.html">الوحدة 8</a>
- <a href="quiz.html" class="active">📝 الاختبار</a>
+ <a href="index.html">🏠</a>
+ <a href="module1-guide.html">1</a>
+ <a href="module2-guide.html">2</a>
+ <a href="module3-guide.html">3</a>
+ <a href="module4-guide.html">4</a>
+ <a href="module5-guide.html">5</a>
+ <a href="module6-guide.html">6</a>
+ <a href="module7-guide.html">7</a>
+ <a href="module8-guide.html">8</a>
+ <a href="module9-guide.html">9</a>
+ <a href="module10-guide.html">10</a>
+ <a href="module11-guide.html">11</a>
+ <a href="module12-guide.html">12</a>
+ <a href="quiz.html" class="active">📝</a>
 </div></div>
 
 <div class="wrap">
@@ -796,6 +800,334 @@ const Q = [
 {t:"M8 · Bandwidth Management", q:"Which methods are commonly used for bandwidth management?",
  o:["Rate limiting and traffic policing","Zone transfers and recursive queries","Port forwarding and NAT translation","VLAN tagging and trunking"], a:0,
  e:"طرق <b>Bandwidth Management</b> الشائعة: <b>Rate limiting</b> و<b>Traffic policing</b> — لتخصيص أولوية للخدمات الأساسية ومنع الازدحام."},
+
+// ---------- Module 9 ----------
+{t:"M9 · CIA Triad", q:"The CIA Triad in information security consists of which three principles?",
+ o:["Confidentiality, Integrity, Availability","Control, Isolation, Authentication","Compliance, Inspection, Auditing","Cryptography, Identity, Access"], a:0,
+ e:"<b>CIA Triad</b>: <b>Confidentiality</b> (منع الوصول غير المصرح به)، <b>Integrity</b> (عدم التلاعب بالبيانات)، و<b>Availability</b> (توفر الأنظمة عند الحاجة)."},
+
+{t:"M9 · Security Audit", q:"What is the primary purpose of a security audit?",
+ o:["To sell new security products","To systematically evaluate an organization's information system security and measure conformity to established criteria","To replace the need for firewalls","To encrypt all company data"], a:1,
+ e:"<b>Security Audit</b> تقييم منهجي لأمان نظام المعلومات، يقيس التوافق مع معايير الأمان، ويحدد نقاط القوة والضعف."},
+
+{t:"M9 · Audit Types", q:"Which type of security assessment focuses on verifying adherence to laws, regulations, and standards?",
+ o:["Technical Audit","Risk-Based Audit","Compliance Audit","Vulnerability Assessment"], a:2,
+ e:"<b>Compliance Audit</b> يتحقق من الالتزام بالقوانين واللوائح والمعايير. Risk-Based يحدد ويرتب التهديدات، وTechnical يفحص البنية التقنية بعمق."},
+
+{t:"M9 · BIA", q:"What does a Business Impact Analysis (BIA) assess?",
+ o:["The color scheme of the company website","Potential losses from threat scenarios, like a DoS attack","The number of employees in IT","The price of new hardware"], a:1,
+ e:"<b>BIA</b> يقيّم الخسائر المحتملة من سيناريوهات التهديد (مثل هجوم DoS) كجزء من إدارة المخاطر."},
+
+{t:"M9 · GDPR vs PCI DSS", q:"What is the scope of GDPR compared to PCI DSS?",
+ o:["GDPR covers credit card data; PCI DSS covers personal data in the EU","GDPR covers collection/processing of personal data in the EU; PCI DSS covers organizations handling credit card transactions","They cover identical scopes","Neither relates to data protection"], a:1,
+ e:"<b>GDPR</b> يخص جمع/معالجة البيانات الشخصية بالاتحاد الأوروبي. <b>PCI DSS</b> يخص المؤسسات المتعاملة مع بطاقات الدفع."},
+
+{t:"M9 · Encryption Purpose", q:"What is the primary purpose of encryption?",
+ o:["To speed up data transmission","To ensure data confidentiality by converting plaintext into ciphertext accessible only with a decryption key","To compress files for storage","To assign IP addresses automatically"], a:1,
+ e:"<b>التشفير</b> يحوّل البيانات المقروءة (plaintext) لصيغة مشفّرة (ciphertext) لا يصل لها إلا صاحب مفتاح فك التشفير — يضمن السرية."},
+
+{t:"M9 · Hash vs Encryption", q:"What is a key difference between a cryptographic hash algorithm and an encryption algorithm?",
+ o:["A hash can always be reversed with a key; encryption cannot","A hash transforms data into a fixed-length value that cannot be reversed; encryption converts plaintext to ciphertext that can be decrypted with a key","They are the same thing","Hashing is only used for encrypting emails"], a:1,
+ e:"<b>Hash</b> يحوّل البيانات لقيمة ثابتة الطول <b>لا يمكن عكسها</b> (لتخزين كلمات المرور). <b>Encryption</b> يحوّل plaintext لciphertext قابل لفك التشفير بمفتاح."},
+
+{t:"M9 · States of Data", q:"Which state of data does TLS encryption typically protect?",
+ o:["Data at Rest","Data in Transit","Data in Use","None of the above"], a:1,
+ e:"<b>TLS</b> يحمي <b>Data in Transit</b> (البيانات أثناء النقل). Data at Rest تُحمى بتشفير الأقراص، وData in Use بتقنيات تشفير الذاكرة."},
+
+{t:"M9 · Zero-Day", q:"What makes a Zero-Day vulnerability particularly dangerous?",
+ o:["It's exploited before developers can release a patch","It only affects outdated operating systems","It can only be exploited physically","It requires no attacker skill at all"], a:0,
+ e:"<b>Zero-Day Vulnerability</b> تُستغل قبل أن يتمكن المطورون من إصدار تحديث — ما يجعلها عالية الخطورة والتدمير."},
+
+{t:"M9 · Honeypot", q:"What is the purpose of a honeypot?",
+ o:["To speed up network traffic","To lure attackers into a fake system for early detection and analysis of their tactics","To encrypt sensitive files","To replace a firewall"], a:1,
+ e:"<b>Honeypot</b> نظام وهمي يستدرج المهاجمين، ما يوفّر اكتشافًا مبكرًا وتحليلًا لتكتيكاتهم لتحسين الدفاع."},
+
+{t:"M9 · Internal Threats", q:"Why are internal threats often harder to detect than external ones?",
+ o:["They never cause real damage","They involve legitimate access, making malicious activity harder to distinguish from normal use","Internal threats always use encryption","They only occur once a year"], a:1,
+ e:"التهديدات الداخلية أصعب اكتشافًا لأنها تستخدم <b>وصولًا شرعيًا</b>، ما يصعّب تمييز النشاط الخبيث عن الاستخدام العادي."},
+
+{t:"M9 · Footprinting vs Fingerprinting", q:"What is the difference between footprinting and fingerprinting in enumeration attacks?",
+ o:["Footprinting discovers network topology and security configurations; fingerprinting identifies system/software versions and probes for vulnerabilities","They are identical techniques","Fingerprinting only works on wireless networks","Footprinting requires physical access"], a:0,
+ e:"<b>Footprinting</b> يكتشف هيكلية الشبكة وإعدادات الأمان. <b>Fingerprinting</b> يحدد إصدارات النظام/البرامج ويسبر الثغرات."},
+
+{t:"M9 · DDoS Types", q:"Which DDoS attack type exploits misconfigured DNS servers to amplify attack traffic?",
+ o:["ICMP Flood","SYN Flood","DNS Amplification","MAC Flooding"], a:2,
+ e:"<b>DNS Amplification</b> يستغل سيرفرات DNS سيئة الإعداد لتضخيم حجم ترافيك الهجوم."},
+
+{t:"M9 · SYN Flood", q:"What does a SYN Flood attack abuse to block legitimate server access?",
+ o:["The DNS resolution process","The TCP three-way handshake","The ARP cache","The DHCP lease process"], a:1,
+ e:"<b>SYN Flood</b> يستغل <b>TCP three-way handshake</b> بإرسال طلبات SYN كثيرة بدون إكمال الاتصال، ما يمنع الوصول الشرعي."},
+
+{t:"M9 · Botnet", q:"What is a botnet?",
+ o:["A single high-performance server","A network of compromised computers infected with malware and controlled remotely for malicious use","A type of firewall","A legitimate cloud computing service"], a:1,
+ e:"<b>Botnet</b> شبكة من الأجهزة المخترَقة، مصابة ببرمجية ضارة، تُدار عن بُعد للاستخدام الخبيث (DDoS، spam، إلخ)."},
+
+{t:"M9 · Fileless Malware", q:"What makes fileless malware particularly hard to detect?",
+ o:["It always emails a copy of itself to administrators","It resides in system memory with no code on disk, using scripting tools and 'living off the land' techniques","It only targets printers","It requires a USB drive to spread"], a:1,
+ e:"البرمجيات <b>Fileless</b> تقيم بالذاكرة بدون كود على القرص، وتستخدم أدوات سكريبت (PowerShell, WMI) وتقنيات \"live off the land\" لتفادي الاكتشاف."},
+
+{t:"M9 · On-Path Attack", q:"What is the goal of an on-path (man-in-the-middle) attack?",
+ o:["To speed up network traffic between two parties","To intercept and possibly alter communications between two parties undetected, to steal data or inject malware","To permanently disconnect two devices","To encrypt traffic for both parties automatically"], a:1,
+ e:"هجوم <b>On-Path</b> يعترض وربما يُعدّل اتصال طرفين دون اكتشاف، بهدف سرقة بيانات حساسة أو حقن برمجيات ضارة."},
+
+{t:"M9 · MAC Flooding", q:"What does a MAC flooding attack do to a switch?",
+ o:["Speeds up its forwarding decisions","Overloads its CAM table with many MAC addresses, causing it to fail and broadcast traffic to all ports","Encrypts its configuration","Physically damages its ports"], a:1,
+ e:"<b>MAC Flooding</b> يُغرق جدول CAM بالسويتش بعدد هائل من عناوين MAC، ما يسبب فشله وبثّ الترافيك للجميع — ليتمكن المهاجم من التنصت."},
+
+{t:"M9 · VLAN Hopping Types", q:"What are the two common types of VLAN hopping attacks?",
+ o:["SYN Flood and ICMP Flood","Switch Spoofing and Double Tagging","Dictionary and Brute Force","Footprinting and Fingerprinting"], a:1,
+ e:"نوعا <b>VLAN Hopping</b>: <b>Switch Spoofing</b> و<b>Double Tagging</b> — كلاهما يستغل ثغرات إعداد VLAN بالسويتش لتجاوز الحماية."},
+
+{t:"M9 · Rogue DHCP", q:"What is the danger of a rogue DHCP server on a network?",
+ o:["It improves network performance","It distributes incorrect network configuration parameters to clients, potentially enabling traffic redirection and on-path attacks","It automatically patches vulnerabilities","It has no security implications"], a:1,
+ e:"<b>Rogue DHCP Server</b> يوزّع إعدادات شبكة خاطئة على العملاء، ما قد يُستَغل لإعادة توجيه الترافيك وهجمات on-path."},
+
+{t:"M9 · Social Engineering", q:"Social engineering attacks primarily exploit which type of vulnerability?",
+ o:["Software bugs","Human trust and behavior, not technical weaknesses","Hardware failures","Network protocol flaws"], a:1,
+ e:"<b>Social Engineering</b> يستغل ثغرات <b>بشرية</b> (ميل الناس للثقة) وليس تقنية — لخداع الأفراد وانتزاع معلومات حساسة."},
+
+{t:"M9 · Password Attacks", q:"What is the difference between a dictionary attack and a brute force attack?",
+ o:["A dictionary attack tries all dictionary words targeting weak passwords; a brute force attack tries all possible character combinations and is more time-consuming","They are identical techniques","Brute force only works on wireless networks","Dictionary attacks require physical access"], a:0,
+ e:"<b>Dictionary Attack</b> يجرّب كلمات القاموس ضد كلمات المرور الضعيفة. <b>Brute Force</b> يجرّب كل التركيبات الممكنة — أبطأ لكنه يكسر أي كلمة مرور نظريًا."},
+
+// ---------- Module 10 ----------
+{t:"M10 · AAA Framework", q:"In the AAA framework, what does 'Authorization' determine?",
+ o:["Who a user claims to be","Proof that a user is who they claim to be","The rights and permissions granted to a subject within a system","Tracking of resource usage"], a:2,
+ e:"<b>Authorization</b> يحدد الحقوق والصلاحيات الممنوحة لموضوع داخل النظام — أين مسموح له الذهاب وأي مستوى وصول له."},
+
+{t:"M10 · Identity vs Authentication", q:"What is the difference between Identity and Authentication?",
+ o:["Identity is proof of who you are; Authentication is your account/ID","Identity is an account/ID that represents a user; Authentication is the factor(s) that prove you are who you claim to be","They are the same concept","Authentication only applies to devices, not users"], a:1,
+ e:"<b>Identity</b> حساب/معرّف يمثّل المستخدم. <b>Authentication</b> العامل (أو العوامل) التي تثبت أنه فعلًا من يدّعي."},
+
+{t:"M10 · Auth Factors", q:"A fingerprint scan is an example of which authentication factor?",
+ o:["Something you know","Something you have","Something you are","Somewhere you are"], a:2,
+ e:"بصمة الإصبع مثال على <b>Something you are</b> (خصائصك الفيزيائية/البيومترية)."},
+
+{t:"M10 · Geofencing Factor", q:"Restricting login based on a user's physical location is an example of which authentication factor?",
+ o:["Something you know","Somewhere you are","Something you do","Something you have"], a:1,
+ e:"التقييد حسب الموقع الجغرافي هو <b>Somewhere you are</b> — مثل الـGeofencing."},
+
+{t:"M10 · SSO", q:"What is the main benefit of Single Sign-On (SSO)?",
+ o:["Users must log in separately to every application","Users authenticate once and gain access to multiple applications/services without repeated logins","It removes the need for any authentication","It only works with email systems"], a:1,
+ e:"<b>SSO</b> يسمح للمستخدم بالمصادقة مرة واحدة والوصول لعدة تطبيقات/خدمات بدون تكرار تسجيل الدخول."},
+
+{t:"M10 · Kerberos", q:"What mechanism does Kerberos use to allow access to multiple services after a single authentication?",
+ o:["Community strings","Tickets issued by a Ticket Granting Service","MAC address filtering","VLAN tagging"], a:1,
+ e:"<b>Kerberos</b> يستخدم نظام <b>tickets</b> عبر Ticket Granting Service — تُصادق مرة واحدة وتستخدم التذاكر للوصول لخدمات متعددة."},
+
+{t:"M10 · DAC vs RBAC", q:"What is the difference between DAC and RBAC access control models?",
+ o:["DAC access is controlled by the resource owner; RBAC access is granted based on job role","RBAC is controlled by the resource owner; DAC is role-based","They are identical models","Neither model involves permissions"], a:0,
+ e:"<b>DAC</b>: المالك نفسه يقرر من يصل لموارده. <b>RBAC</b>: الوصول يُمنح حسب الدور الوظيفي للمستخدم بالمؤسسة."},
+
+{t:"M10 · Least Privilege", q:"What does the principle of Least Privilege mean?",
+ o:["Granting all users administrator access by default","Granting users just enough rights to perform their job, and no more","Removing all access controls","Giving privileged access only to IT managers"], a:1,
+ e:"<b>Least Privilege</b>: منح المستخدمين الصلاحيات الكافية فقط لأداء عملهم، ولا شيء أكثر."},
+
+{t:"M10 · Separation of Duties", q:"What is the purpose of Separation of Duties?",
+ o:["To let one person handle every sensitive task alone","To divide sensitive tasks among multiple people to prevent misuse","To eliminate the need for audits","To reduce the number of employees needed"], a:1,
+ e:"<b>Separation of Duties</b>: تقسيم المهام الحساسة بين عدة أشخاص لمنع إساءة الاستخدام من فرد واحد."},
+
+{t:"M10 · Defense in Depth Perimeter", q:"In the Defense in Depth model, which layer includes firewalls, VPNs, and IDS/IPS?",
+ o:["Data layer","Host layer","Perimeter layer","Physical Security layer"], a:2,
+ e:"طبقة <b>Perimeter</b> بنموذج Defense in Depth تشمل جدران نارية، VPN، وIDS/IPS."},
+
+{t:"M10 · Defense in Depth Data", q:"Which layer of Defense in Depth uses Access Control Lists (ACLs)?",
+ o:["Data layer","Application layer","Physical Security layer","Policies, Procedures & Awareness layer"], a:0,
+ e:"طبقة <b>Data</b> هي أعمق طبقة بنموذج Defense in Depth وتستخدم <b>ACLs</b> للتحكم بالوصول للبيانات نفسها."},
+
+{t:"M10 · NAC", q:"What does Network Access Control (NAC) do?",
+ o:["Encrypts all wireless traffic","Authenticates and authorizes access to a network","Physically locks switch ports","Replaces the need for VLANs"], a:1,
+ e:"<b>NAC</b> نظام لمصادقة وتفويض الوصول للشبكة — يتحقق من الأجهزة قبل السماح لها بالاتصال."},
+
+{t:"M10 · DHCP Snooping", q:"What is the purpose of DHCP snooping as a port security measure?",
+ o:["To speed up DHCP lease renewal","To inspect DHCP traffic for authenticity and block rogue DHCP servers","To disable DHCP entirely","To encrypt DHCP traffic"], a:1,
+ e:"<b>DHCP Snooping</b> يفحص ترافيك DHCP للتأكد من أصالته، ويحظر سيرفرات DHCP المارقة (rogue)."},
+
+{t:"M10 · 802.1x", q:"What does implementing 802.1x (EAP) authentication on switch ports accomplish?",
+ o:["It disables all switch ports","It requires devices to authenticate before gaining network access through a port","It removes the need for firmware updates","It only works with wireless networks"], a:1,
+ e:"<b>802.1x (EAP)</b> يفرض على الأجهزة المصادقة قبل السماح لها بالوصول للشبكة عبر منفذ السويتش."},
+
+{t:"M10 · Firewall vs Proxy", q:"What is a key functional difference between a firewall and a proxy server?",
+ o:["A firewall filters traffic based on ACLs; a proxy server deconstructs and analyzes packets to enforce company policies and manage/redirect requests","They perform identical functions","Proxy servers cannot filter by URL","Firewalls only work on wireless networks"], a:0,
+ e:"<b>Firewall</b> يرشّح الترافيك حسب <b>ACLs</b>. <b>Proxy Server</b> يفكك ويحلل الحزم لتطبيق سياسات الشركة وإدارة/إعادة توجيه الطلبات."},
+
+{t:"M10 · Firewall Criteria", q:"Which of the following is a typical firewall filtering criterion, as opposed to a proxy server criterion?",
+ o:["Content keywords","Website reputation","Source and destination port, with stateful inspection","Bandwidth usage"], a:2,
+ e:"معايير تصفية الجدار الناري: البروتوكول، عنوان/منفذ المصدر والوجهة، والـstateful inspection. أما content keywords وreputation فمعايير Proxy Server."},
+
+{t:"M10 · Firewall Misconfig", q:"Which of these is a common firewall misconfiguration?",
+ o:["Applying an implicit deny by default","An overly permissive or overly prohibitive ACL, or improper logging settings","Using stateful inspection","Filtering by source and destination address"], a:1,
+ e:"أخطاء شائعة: ACL متساهلة أو متشددة جدًا، عدم تطبيق implicit deny، وإعدادات logging غير صحيحة."},
+
+{t:"M10 · Implicit Deny", q:"What does 'implicit deny' mean in firewall rule configuration?",
+ o:["All traffic is allowed unless explicitly blocked","Traffic not explicitly permitted is blocked by default","Only encrypted traffic is allowed","It disables logging"], a:1,
+ e:"<b>Implicit Deny</b>: أي ترافيك لم يُسمح به صراحة يُحظر تلقائيًا — القاعدة الافتراضية الآمنة بنهاية أي ACL."},
+
+// ---------- Module 11 ----------
+{t:"M11 · Zone-Based Security", q:"What is the main goal of Zone-Based Security?",
+ o:["To eliminate the need for firewalls","To organize a network into security zones with specific requirements, ensuring secure traffic flow and controlled access between zones","To merge all networks into a single flat zone","To disable all internal traffic"], a:1,
+ e:"<b>Zone-Based Security</b> يقسّم الشبكة لمناطق أمنية بمتطلبات محددة، لضمان تدفق آمن للترافيك والتحكم بالوصول بينها."},
+
+{t:"M11 · Guest Zone", q:"Which network zone type is designed for external visitors with limited privileges, isolated from critical resources?",
+ o:["Private Security Networks","Private Client Networks","Guest Network","Public Server Network"], a:2,
+ e:"<b>Guest Network</b> مخصصة للزوار الخارجيين، بصلاحيات محدودة ومعزولة عن الموارد الحرجة."},
+
+{t:"M11 · Perimeter Network", q:"What is the primary function of a perimeter network?",
+ o:["To store the organization's most sensitive private database","To act as a secure buffer zone between the internal network and the untrusted Internet, filtering traffic and hosting public-facing servers","To physically separate employees from each other","To replace the need for a firewall"], a:1,
+ e:"<b>Perimeter Network</b> منطقة عازلة آمنة بين الشبكة الداخلية والإنترنت غير الموثوق، ترشّح الترافيك وتستضيف سيرفرات عامة."},
+
+{t:"M11 · Screened Subnet", q:"In a screened subnet architecture, what is the role of the internal router?",
+ o:["It separates the external network from the perimeter network","It separates the perimeter network from the internal network","It hosts publicly accessible servers","It has no defined role"], a:1,
+ e:"<b>Internal Router</b> يفصل شبكة الـperimeter عن الشبكة الداخلية. الـExternal Router يفصل الخارجية عن الـperimeter."},
+
+{t:"M11 · IDS vs IPS", q:"What is the key operational difference between an IDS and an IPS?",
+ o:["An IDS stops attacks immediately, halting traffic; an IPS only alerts administrators","An IDS monitors and alerts while traffic keeps flowing; an IPS stops attacks immediately, halting traffic until investigated","They are functionally identical","Neither can detect known attack patterns"], a:1,
+ e:"<b>IDS</b> يراقب وينبّه بينما يستمر تدفق الترافيك. <b>IPS</b> يوقف الهجوم فورًا ويحجب الترافيك حتى التحقيق."},
+
+{t:"M11 · Industrial IoT", q:"Industrial IoT devices are primarily used to:",
+ o:["Provide personal entertainment only","Monitor and control aspects of industrial operations to improve efficiency and safety","Replace healthcare providers","Manage social media accounts"], a:1,
+ e:"أجهزة IoT الصناعية تراقب وتتحكم بجوانب العمليات الصناعية، لتحسين الكفاءة والسلامة."},
+
+{t:"M11 · ICS vs SCADA", q:"What is the difference between ICS and SCADA?",
+ o:["ICS manages and controls industrial processes broadly (automating plant operations); SCADA focuses specifically on real-time data acquisition and control","They are entirely unrelated concepts","SCADA only works with IoT consumer devices","ICS is a wireless-only standard"], a:0,
+ e:"<b>ICS</b> يدير ويتحكم بالعمليات الصناعية عمومًا (أتمتة عمليات المصانع). <b>SCADA</b> يركّز تحديدًا على جمع البيانات والتحكم اللحظي."},
+
+{t:"M11 · NB-IoT", q:"What is Narrowband-IoT (NB-IoT) best suited for?",
+ o:["High-bandwidth video streaming","Sending small data packets in challenging environments using a low-power LTE variant","Gaming applications requiring low latency","4K video broadcasting"], a:1,
+ e:"<b>NB-IoT</b> نسخة LTE منخفضة الطاقة، مناسبة لإرسال حزم بيانات صغيرة ببيئات صعبة."},
+
+{t:"M11 · IoT Attack Surface", q:"What is a major security challenge introduced by IoT devices?",
+ o:["They decrease the network's attack surface","They increase the attack surface, and many have weak default security settings","They eliminate the need for network segmentation","They cannot connect to any network"], a:1,
+ e:"أجهزة IoT <b>تزيد سطح الهجوم</b>، وكثير منها له إعدادات أمان افتراضية ضعيفة — لذا الـsegmentation مهم جدًا."},
+
+{t:"M11 · IoT Risk Mitigation", q:"What is a recommended mitigation strategy for consumer-grade IoT device risks?",
+ o:["Never update the device firmware","Secure and patch IoT administrative interfaces","Give the device full network access permanently","Disable all monitoring"], a:1,
+ e:"للأجهزة الاستهلاكية: تأمين وتحديث واجهات الإدارة بانتظام لتقليل مخاطر الإعدادات الافتراضية الضعيفة ونقص التحديثات."},
+
+{t:"M11 · Physical Security Importance", q:"Why is physical security considered the first line of defense?",
+ o:["It has no real impact on network resources","Inadequate physical security can lead to data theft, hardware damage, and unauthorized access before any network-level control applies","It only matters for wireless networks","It replaces the need for encryption"], a:1,
+ e:"إهمال الأمان الفيزيائي قد يؤدي لسرقة بيانات، ضرر بالعتاد، ووصول غير مصرح — قبل حتى تفعيل أي ضابط أمان على مستوى الشبكة."},
+
+{t:"M11 · Badge vs Biometric", q:"What is the difference between a badge reader and a biometric lock?",
+ o:["A badge reader authenticates via smart badges; a biometric lock authenticates using physical features like fingerprints","They are identical technologies","Biometric locks require no authentication at all","Badge readers only work on doors, never on server racks"], a:0,
+ e:"<b>Badge Reader</b> يحدد ويفوّض الوصول عبر بطاقات ذكية. <b>Biometric Lock</b> يصادق باستخدام السمات الفيزيائية (بصمة، وجه...)."},
+
+{t:"M11 · PTZ Cameras", q:"What distinguishes PTZ (Pan-Tilt-Zoom) cameras from fixed cameras?",
+ o:["PTZ cameras cannot record video","PTZ cameras offer versatility to cover extensive areas, zoom in on details, and track movement, while fixed cameras record specific entry points","Fixed cameras have wider coverage than PTZ","PTZ cameras only work indoors"], a:1,
+ e:"<b>PTZ</b> توفّر تغطية واسعة، تقريب وتتبّع الحركة. <b>Fixed Cameras</b> تسجّل كل من يمر بنقاط دخول محددة فقط."},
+
+{t:"M11 · Geofencing", q:"What is geofencing primarily used for in physical/mobile security?",
+ o:["Encrypting network traffic","Creating a virtual boundary in real-world geography to control device functionality and enable context-aware authentication","Replacing badge readers entirely","Blocking all Wi-Fi signals"], a:1,
+ e:"<b>Geofencing</b> ينشئ حدًا افتراضيًا بجغرافيا العالم الحقيقي، يتحكم بوظائف الجهاز (كتعطيل الكاميرا خارج المنطقة) ويتيح مصادقة واعية بالسياق."},
+
+{t:"M11 · PoE Cameras", q:"What is a benefit of smaller IP cameras supporting Power over Ethernet (PoE)?",
+ o:["They require a separate power outlet at every location","They can receive both data and power over a single Ethernet cable, simplifying installation","They cannot integrate with IP networks","They only work with coaxial cabling"], a:1,
+ e:"كاميرات IP الصغيرة الداعمة لـ<b>PoE</b> تستقبل البيانات والطاقة عبر كيبل واحد، ما يبسّط التركيب."},
+
+// ---------- Module 12 ----------
+{t:"M12 · 802.11 MAC", q:"What technique does 802.11's MAC layer use to minimize collisions?",
+ o:["CSMA/CD","CSMA/CA","TDMA","FDMA"], a:1,
+ e:"معيار 802.11 يستخدم <b>CSMA/CA</b> (Collision Avoidance) لإرسال فعّال وتقليل التصادمات — عكس الإيثرنت السلكي الذي يستخدم CSMA/CD."},
+
+{t:"M12 · 802.11a", q:"What is a key characteristic of the 802.11a standard?",
+ o:["Operates in the crowded 2.4 GHz band with a long range","Operates in the 5 GHz band, avoiding the crowded 2.4 GHz band, but with shorter range","Uses only Bluetooth frequencies","Offers no data rate improvement over earlier standards"], a:1,
+ e:"<b>802.11a</b> يعمل في نطاق <b>5 GHz</b>، يتجنّب ازدحام 2.4 GHz، لكن مداه أقصر."},
+
+{t:"M12 · 802.11n MIMO", q:"What technology does 802.11n use to significantly increase bandwidth and reliability?",
+ o:["MIMO (Multiple Input Multiple Output) and Channel Bonding","Only a single antenna configuration","CSMA/CD exclusively","Bluetooth pairing"], a:0,
+ e:"<b>802.11n</b> يستخدم <b>MIMO</b> (هوائيات متعددة) و<b>Channel Bonding</b> (دمج قناتين 20MHz لقناة 40MHz) لزيادة bandwidth والموثوقية."},
+
+{t:"M12 · Wi-Fi 5 Band", q:"Wi-Fi 5 (802.11ac) operates on which frequency band?",
+ o:["2.4 GHz only","5 GHz exclusively","Both 2.4 and 5 GHz equally","900 MHz"], a:1,
+ e:"<b>Wi-Fi 5 (802.11ac)</b> يعمل حصريًا على نطاق <b>5 GHz</b>، بسرعات تصل لـGigabit."},
+
+{t:"M12 · MU-MIMO", q:"What does MU-MIMO enable?",
+ o:["A single antenna serving one device at a time","Multiple antennae at the AP sending data to multiple stations simultaneously","Disabling Wi-Fi during peak hours","Encrypting traffic between APs only"], a:1,
+ e:"<b>MU-MIMO</b> يسمح لهوائيات متعددة بالـAP بإرسال بيانات لعدة محطات في آن واحد — يحسّن الكفاءة والسرعة."},
+
+{t:"M12 · Band Steering", q:"What is the purpose of Band Steering?",
+ o:["To prioritize connecting devices to 5/6 GHz bands over the crowded 2.4 GHz band for better performance","To block all 5 GHz connections","To disable band selection entirely","To force all devices onto 2.4 GHz"], a:0,
+ e:"<b>Band Steering</b> يستخدم التحكم بالـbeacon ليوجّه الأجهزة نحو نطاقي 5/6 GHz بدل 2.4 GHz المزدحم."},
+
+{t:"M12 · 5G", q:"What is a defining characteristic of 5G compared to 4G?",
+ o:["Lower peak data rates than 4G","Peak data rates up to 20 Gbps, supporting massive MIMO and IoT at ultra-high speed","It only supports voice calls","It uses the same spectrum range as 2G"], a:1,
+ e:"<b>5G</b> يوفّر سرعات تصل لـ<b>20 Gbps</b>، ويدعم massive MIMO وإنترنت الأشياء بسرعة فائقة."},
+
+{t:"M12 · LEO Satellites", q:"What is an advantage of Low Earth Orbital (LEO) satellites over Geostationary satellites?",
+ o:["Higher latency and lower bandwidth","Lower latency and higher bandwidth, due to closer orbit (requiring dynamic tracking)","No need for dynamic alignment","They never require tracking equipment"], a:1,
+ e:"أقمار <b>LEO</b> أقرب للأرض → bandwidth أعلى وlatency أقل، لكنها تحتاج تتبعًا ديناميكيًا (عكس Geostationary ذات latency الأعلى)."},
+
+{t:"M12 · BSSID vs ESSID", q:"What is the difference between a BSSID and an ESSID?",
+ o:["BSSID is a unique identifier for a single access point; ESSID is the network name shared across multiple BSSs in a larger WLAN","They are identical identifiers","ESSID only applies to wired networks","BSSID identifies client devices, not access points"], a:0,
+ e:"<b>BSSID</b> معرّف فريد لنقطة وصول واحدة. <b>ESSID</b> اسم الشبكة المشترك بين عدة BSS ضمن WLAN أكبر، يدعم تجوال العميل."},
+
+{t:"M12 · RSSI", q:"In RSSI signal strength measurement, which value generally indicates a better signal?",
+ o:["A value further from 0 dBm, like -90 dBm","A value closer to 0 dBm, like -30 dBm","RSSI is unrelated to signal quality","Only positive dBm values matter"], a:1,
+ e:"بمقياس <b>RSSI</b>: كل ما اقتربت القيمة من <b>0 dBm</b> (مثل -30) كانت الإشارة أقوى؛ أقل من -80 dBm يعني فقدان حزم."},
+
+{t:"M12 · Wireless Survey", q:"What is the primary purpose of a wireless (RF) site survey?",
+ o:["To sell new routers","To determine optimal access point placement and identify potential sources of interference for coverage and quality of service","To disable all wireless devices temporarily","To replace the need for heat maps"], a:1,
+ e:"<b>Wireless Survey</b> يحدد أفضل مكان لنقاط الوصول ومصادر التداخل المحتملة، لتحقيق تغطية وbandwidth وجودة خدمة مثالية."},
+
+{t:"M12 · Heat Maps", q:"What do wireless heat maps visually represent?",
+ o:["Network cable lengths","The intensity of signal strength across an area, to identify hotspots and areas needing signal enhancement","Employee locations only","Firewall rule configurations"], a:1,
+ e:"<b>Heat Maps</b> تمثيل بصري بالألوان لشدة الإشارة بمنطقة ما — تحدد نقاط النشاط الكثيف والمناطق التي تحتاج تقوية."},
+
+{t:"M12 · Wireless Roaming ESA", q:"What defines an Extended Service Area (ESA) in wireless roaming?",
+ o:["A single isolated access point with no roaming support","A network of APs sharing the same ESSID and security settings, allowing seamless device transitions","A wired-only network segment","An area with no Wi-Fi coverage"], a:1,
+ e:"<b>ESA</b>: شبكة من نقاط الوصول بنفس <b>ESSID</b> وإعدادات الأمان، تسمح بانتقال الجهاز بسلاسة بينها."},
+
+{t:"M12 · Beacon Frames", q:"What information do beacon frames carry?",
+ o:["Only the device's MAC address","Essential network information like SSID/ESSID, BSSID, and security protocols","User passwords in plaintext","Only the AP's firmware version"], a:1,
+ e:"<b>Beacon Frames</b> تحمل معلومات الشبكة الأساسية: SSID/ESSID، BSSID، وبروتوكولات الأمان."},
+
+{t:"M12 · WDS", q:"What is the purpose of a Wireless Distribution System (WDS)?",
+ o:["To create a wireless network extension where running cable is impractical","To disable wireless connectivity","To encrypt only guest network traffic","To replace SSIDs with static IP addresses"], a:0,
+ e:"<b>WDS</b> ينشئ توسعة شبكة لاسلكية حيث التمديد الكيبلي غير عملي — يتطلب تطابق SSID/القناة/إعدادات الأمان بين نقاط الوصول."},
+
+{t:"M12 · Wireless Controllers", q:"What is a key function of a wireless controller in an enterprise network?",
+ o:["Managing and monitoring multiple APs centrally, including automatic SSID/channel/security configuration","Physically replacing every access point","Only handling billing for internet service","Disabling VLAN assignment for clients"], a:0,
+ e:"<b>Wireless Controller</b> يدير ويراقب عدة APs مركزيًا، ويضبط SSID/القناة/الأمان تلقائيًا، ويُعيّن العملاء لـVLANs منفصلة."},
+
+{t:"M12 · Omnidirectional Antennas", q:"What is an omnidirectional antenna best suited for?",
+ o:["Focused point-to-point links over long distances","Wide area coverage, radiating signal equally in all directions (e.g., ceiling-mounted)","Only underwater communications","Blocking wireless signals"], a:1,
+ e:"الهوائي <b>Omnidirectional</b> يشعّ بكل الاتجاهات بالتساوي — مثالي لتغطية واسعة (يُركَّب عادة بالسقف)."},
+
+{t:"M12 · Mesh Topology", q:"What characterizes a wireless Mesh (WMN) topology?",
+ o:["It requires a single central access point that all nodes must connect to directly","Nodes discover and peer with each other, using routing protocols like HWMP, and stations don't need to be in direct range of each other","It cannot scale for IoT networks","It only supports two devices at a time"], a:1,
+ e:"شبكة <b>Mesh (WMN)</b>: العقد تكتشف بعضها وتتوجّه عبر بروتوكولات مثل <b>HWMP</b>، ولا تحتاج أن تكون بمدى راديو مباشر لبعضها — قابلة للتوسع لشبكات IoT."},
+
+{t:"M12 · WPA2 vs WPA3", q:"What is a key security improvement WPA3 offers over WPA2?",
+ o:["WPA3 uses a single shared key for all devices, like WPA2","WPA3 provides individualized data encryption per device and forward secrecy, making password cracking much harder","WPA3 removed AES encryption entirely","WPA3 has no protection against brute-force attacks"], a:1,
+ e:"<b>WPA3</b> يوفّر تشفيرًا فرديًا لكل جهاز و<b>forward secrecy</b>، ويصعّب كسر كلمة المرور جدًا (يحتاج تفاعلًا مباشرًا لكل محاولة)."},
+
+{t:"M12 · Forward Secrecy", q:"What does 'forward secrecy' in WPA3 protect against?",
+ o:["An attacker who later learns your password being able to decrypt previously captured traffic","Physical theft of the router","Weak default SSID names","Slow Wi-Fi speeds"], a:0,
+ e:"<b>Forward Secrecy</b>: حتى لو عرف مهاجم كلمة المرور لاحقًا، لن يستطيع فك تشفير بيانات <b>مُلتقَطة سابقًا</b> — فقط البيانات الجديدة معرّضة."},
+
+{t:"M12 · Guest Network Practice", q:"What is a best practice for guest network implementation?",
+ o:["Use the same SSID as the main network for simplicity","Use a separate SSID with restricted access limited to the Internet, isolated from internal servers and sensitive data","Give guests full access to internal file servers","Disable authentication entirely for guests"], a:1,
+ e:"أفضل ممارسة: <b>SSID منفصل</b> للضيوف بوصول مقيّد (إنترنت فقط)، معزول تمامًا عن السيرفرات الداخلية والبيانات الحساسة."},
+
+{t:"M12 · Captive Portal", q:"What is the purpose of a captive portal?",
+ o:["To block all internet access permanently","To act as a secondary authentication step on open networks, requiring users to authenticate through a web page","To replace WPA3 encryption","To hide the network's SSID"], a:1,
+ e:"<b>Captive Portal</b> خطوة مصادقة ثانوية بالشبكات المفتوحة، تتطلب تسجيل دخول عبر صفحة ويب (تستخدم HTTPS وشهادة رقمية)."},
+
+{t:"M12 · Evil Twin", q:"What is an 'evil twin' attack?",
+ o:["A legitimate backup access point for redundancy","A fraudulent Wi-Fi access point mimicking a legitimate network to intercept user data","A type of antenna used for long-range links","A firewall rule that blocks rogue devices"], a:1,
+ e:"<b>Evil Twin</b>: نقطة وصول مزيّفة تحاكي شبكة شرعية، يتصل بها المستخدمون بدون علمهم فيعترض المهاجم بياناتهم."},
+
+{t:"M12 · Deauth Attack", q:"What do deauthentication attacks exploit to disrupt Wi-Fi connections?",
+ o:["Encrypted management frames","Unencrypted management frames, forcing devices to disconnect and reconnect to an attacker-controlled network","The DHCP lease renewal process","The DNS resolution process"], a:1,
+ e:"هجمات <b>Deauthentication</b> تستغل إطارات الإدارة <b>غير المشفرة</b>، تجبر الأجهزة على الانفصال ثم الاتصال بشبكة يتحكم بها المهاجم."},
+
+{t:"M12 · Channel Overlap", q:"Which 2.4 GHz channels are recommended to avoid Adjacent Channel Interference (ACI)?",
+ o:["2, 5, and 9","1, 6, and 11","3, 7, and 10","4, 8, and 12"], a:1,
+ e:"القنوات المثلى بنطاق 2.4 GHz لتفادي ACI: <b>1, 6, 11</b> — مع تباعد 25 MHz بينها."},
+
+{t:"M12 · Overcapacity", q:"What is a common solution to wireless overcapacity issues?",
+ o:["Installing a single powerful access point for the entire building","Strategic AP placement to spread out client connections, plus setting a maximum client limit per AP","Removing all access points","Disabling traffic shaping tools"], a:1,
+ e:"لتجاوز السعة: توزيع استراتيجي لعدة APs لتوزيع الأجهزة، وتحديد حد أقصى للعملاء لكل AP، مع أدوات traffic shaping ومراقبة مستمرة."},
 ];
 
 const MODULES = [
@@ -807,6 +1139,10 @@ const MODULES = [
  {key:"M6", label:"الوحدة 6", eng:"Implementing Network Services"},
  {key:"M7", label:"الوحدة 7", eng:"Application Services"},
  {key:"M8", label:"الوحدة 8", eng:"Supporting Network Management"},
+ {key:"M9", label:"الوحدة 9", eng:"Network Security Concepts"},
+ {key:"M10", label:"الوحدة 10", eng:"Applying Network Security Features"},
+ {key:"M11", label:"الوحدة 11", eng:"Supporting Network Security Design"},
+ {key:"M12", label:"الوحدة 12", eng:"Configuring Wireless Networks"},
 ];
 
 let activeQ = [];
@@ -826,7 +1162,7 @@ function buildHome(){
  });
  const allBtn = document.createElement("button");
  allBtn.className = "selcard all";
- allBtn.innerHTML = `<div class="stag">FULL MOCK EXAM</div><div class="stitle">كل الوحدات 1–8</div><div class="scount">${Q.length} سؤالًا بنمط الاختبار الكامل</div>`;
+ allBtn.innerHTML = `<div class="stag">FULL MOCK EXAM</div><div class="stitle">كل الوحدات 1–12</div><div class="scount">${Q.length} سؤالًا بنمط الاختبار الكامل</div>`;
  allBtn.onclick = ()=>startQuiz("ALL");
  grid.appendChild(allBtn);
 }
