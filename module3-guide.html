@@ -80,6 +80,15 @@ tr:nth-child(even) td{background:var(--soft)}
 .flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
 .flow i{color:var(--signal);font-style:normal;font-weight:700}
 
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr}}
+
 .modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
 .modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
 .modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
@@ -155,6 +164,24 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  </div>
 
  <h3>تركيب إطار الإيثرنت — Ethernet Frame Format</h3>
+ <div class="diagram">
+  <svg viewBox="0 0 600 70" style="max-width:600px">
+   <rect x="0" y="15" width="60" height="40" fill="#0d3b4f"/>
+   <rect x="60" y="15" width="90" height="40" fill="#12617c"/>
+   <rect x="150" y="15" width="90" height="40" fill="#e8672c"/>
+   <rect x="240" y="15" width="50" height="40" fill="#1a7f5c"/>
+   <rect x="290" y="15" width="250" height="40" fill="#eef4f6" stroke="#5b7280" stroke-width="1.5"/>
+   <rect x="540" y="15" width="60" height="40" fill="#0d3b4f"/>
+  </svg>
+  <div class="cap">
+   <span style="display:inline-block;width:10px;height:10px;background:#0d3b4f"></span> Preamble/SFD &nbsp;
+   <span style="display:inline-block;width:10px;height:10px;background:#12617c"></span> Destination MAC &nbsp;
+   <span style="display:inline-block;width:10px;height:10px;background:#e8672c"></span> Source MAC &nbsp;
+   <span style="display:inline-block;width:10px;height:10px;background:#1a7f5c"></span> EtherType &nbsp;
+   <span style="display:inline-block;width:10px;height:10px;background:#eef4f6;border:1px solid #5b7280"></span> Payload &nbsp;
+   <span style="display:inline-block;width:10px;height:10px;background:#0d3b4f"></span> FCS
+  </div>
+ </div>
  <table>
   <tr><th>الحقل</th><th>الوظيفة</th></tr>
   <tr><td>Preamble</td><td>سلسلة مزامنة (synchronization sequence)</td></tr>
@@ -180,6 +207,21 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  <span class="mod-tag">MODULE 3 · LESSON 3.2</span>
  <h2>سويتشات الإيثرنت — Ethernet Switches</h2>
  <p class="sub">Hub vs Bridge vs Switch وأنواع السويتشات</p>
+
+ <div class="diagrow">
+  <div class="dbox">
+   <svg viewBox="0 0 180 180"><line x1="90" y1="90" x2="90" y2="20" stroke="#e8672c" stroke-width="3"/><line x1="90" y1="90" x2="160" y2="90" stroke="#e8672c" stroke-width="3"/><line x1="90" y1="90" x2="90" y2="160" stroke="#e8672c" stroke-width="3"/><line x1="90" y1="90" x2="20" y2="90" stroke="#e8672c" stroke-width="3"/><circle cx="90" cy="90" r="16" fill="#0d3b4f"/><circle cx="90" cy="20" r="12" fill="#e8672c"/><circle cx="160" cy="90" r="12" fill="#e8672c"/><circle cx="90" cy="160" r="12" fill="#e8672c"/><circle cx="20" cy="90" r="12" fill="#e8672c"/></svg>
+   <div class="cap">Hub — Broadcast to All Ports</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 180 180"><line x1="90" y1="90" x2="90" y2="20" stroke="#e8672c" stroke-width="3"/><line x1="90" y1="90" x2="160" y2="90" stroke="#d8e2e7" stroke-width="3"/><line x1="90" y1="90" x2="90" y2="160" stroke="#e8672c" stroke-width="3"/><line x1="90" y1="90" x2="20" y2="90" stroke="#d8e2e7" stroke-width="3"/><circle cx="90" cy="90" r="16" fill="#0d3b4f"/><circle cx="90" cy="20" r="12" fill="#e8672c"/><circle cx="160" cy="90" r="12" fill="#b7c6cc"/><circle cx="90" cy="160" r="12" fill="#e8672c"/><circle cx="20" cy="90" r="12" fill="#b7c6cc"/></svg>
+   <div class="cap">Bridge — Splits Physical Segments</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 180 180"><line x1="90" y1="90" x2="90" y2="20" stroke="#d8e2e7" stroke-width="3"/><line x1="90" y1="90" x2="160" y2="90" stroke="#e8672c" stroke-width="3"/><line x1="90" y1="90" x2="90" y2="160" stroke="#d8e2e7" stroke-width="3"/><line x1="90" y1="90" x2="20" y2="90" stroke="#d8e2e7" stroke-width="3"/><circle cx="90" cy="90" r="16" fill="#0d3b4f"/><circle cx="90" cy="20" r="12" fill="#b7c6cc"/><circle cx="160" cy="90" r="12" fill="#e8672c"/><circle cx="90" cy="160" r="12" fill="#b7c6cc"/><circle cx="20" cy="90" r="12" fill="#b7c6cc"/></svg>
+   <div class="cap">Switch — Unicast to Destination Port</div>
+  </div>
+ </div>
 
  <div class="two">
   <div class="card">
