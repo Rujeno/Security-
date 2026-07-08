@@ -80,6 +80,15 @@ tr:nth-child(even) td{background:var(--soft)}
 .flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
 .flow i{color:var(--signal);font-style:normal;font-weight:700}
 
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr}}
+
 .modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
 .modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
 .modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
@@ -216,6 +225,26 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
   <p><b>وظائفه</b>: مراقبة أجهزة الشبكة، اكتشاف أعطال الشبكة، وضبط الأجهزة عن بُعد.</p>
  </div>
 
+ <div class="diagram">
+  <svg viewBox="0 0 380 130" style="max-width:380px">
+   <rect x="20" y="40" width="120" height="50" rx="8" fill="#0d3b4f"/>
+   <text x="80" y="61" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">SNMP Manager</text>
+   <text x="80" y="77" text-anchor="middle" font-size="10.5" font-weight="700" fill="#ffb48c">(NMS)</text>
+   <rect x="240" y="40" width="120" height="50" rx="8" fill="#12617c"/>
+   <text x="300" y="61" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Agent</text>
+   <text x="300" y="77" text-anchor="middle" font-size="10.5" font-weight="700" fill="#cfe4ec">(Router/Switch)</text>
+   <line x1="140" y1="53" x2="235" y2="53" stroke="#12617c" stroke-width="2" marker-end="url(#arS)"/>
+   <text x="190" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#12617c">Get / Set</text>
+   <line x1="240" y1="80" x2="145" y2="80" stroke="#e8672c" stroke-width="2" marker-end="url(#arS2)"/>
+   <text x="190" y="103" text-anchor="middle" font-size="11" font-weight="700" fill="#e8672c">Trap (عند حدوث عطل)</text>
+   <defs>
+    <marker id="arS" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#12617c"/></marker>
+    <marker id="arS2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#e8672c"/></marker>
+   </defs>
+  </svg>
+  <div class="cap">الـManager يطلب/يضبط بيانات من الـAgent (Get/Set)، بينما الـAgent يبادر بإرسال Trap فور حدوث عطل دون انتظار طلب.</div>
+ </div>
+
  <div class="card">
   <p><b>مكونات SNMP</b>:</p>
   <ul>
@@ -266,6 +295,20 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
  <div class="card">
   <p><b>ترتيب أولوية الأحداث والتنبيهات</b>: تصنيف الأحداث من <b>Emergency (0)</b> إلى <b>Debug (7)</b> حسب الأهمية، والتنبيهات الآلية تُطلَق حسب شدة الحدث/العتبات/الشذوذ — يمنع الغرق بتنبيهات غير حرجة ويحدد أولوية الأحداث الحرجة.</p>
+ </div>
+
+ <div class="diagram">
+  <svg viewBox="0 0 400 60" style="max-width:420px">
+   <rect x="10" y="10" width="46" height="30" fill="#8b1e1e"/><text x="33" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">0</text>
+   <rect x="58" y="10" width="46" height="30" fill="#a8341f"/><text x="81" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">1</text>
+   <rect x="106" y="10" width="46" height="30" fill="#c24a20"/><text x="129" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2</text>
+   <rect x="154" y="10" width="46" height="30" fill="#e8672c"/><text x="177" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3</text>
+   <rect x="202" y="10" width="46" height="30" fill="#d19a2c"/><text x="225" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">4</text>
+   <rect x="250" y="10" width="46" height="30" fill="#8a9a2c"/><text x="273" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">5</text>
+   <rect x="298" y="10" width="46" height="30" fill="#3f8a5c"/><text x="321" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">6</text>
+   <rect x="346" y="10" width="46" height="30" fill="#1a7f5c"/><text x="369" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">7</text>
+  </svg>
+  <div class="cap">تصاعديًا من الأخطر (يسار): 0 Emergency · 1 Alert · 2 Critical · 3 Error · 4 Warning · 5 Notice · 6 Informational · 7 Debug (الأقل أهمية).</div>
  </div>
 
  <div class="card">
