@@ -80,6 +80,15 @@ tr:nth-child(even) td{background:var(--soft)}
 .flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
 .flow i{color:var(--signal);font-style:normal;font-weight:700}
 
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr}}
+
 .modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
 .modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
 .modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
@@ -258,6 +267,16 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
   <div class="card">
    <p><b>Rogue Access Points / Evil Twin</b></p>
    <p>نقطة وصول مزيّفة تحاكي شبكة شرعية — يتصل المستخدمون بدون علمهم، فيعترض المهاجم بياناتهم، ويلتقط تفاصيل الدخول، أو يثبّت برمجيات ضارة. المكافحة: فحص دوري لنقاط الوصول المارقة، وتوعية المستخدمين.</p>
+   <div class="diagram">
+    <svg viewBox="0 0 380 160" style="max-width:380px">
+     <rect x="20" y="15" width="130" height="45" rx="8" fill="#12617c"/><text x="85" y="34" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">Legitimate AP</text><text x="85" y="50" text-anchor="middle" fill="#cfe4ec" font-size="9.5">SSID: "Office-WiFi"</text>
+     <rect x="230" y="15" width="130" height="45" rx="8" fill="#e8672c"/><text x="295" y="34" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">Evil Twin</text><text x="295" y="50" text-anchor="middle" fill="#ffe9dc" font-size="9.5">SSID: "Office-WiFi"</text>
+     <circle cx="190" cy="130" r="22" fill="#0d3b4f"/><text x="190" y="135" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">Client</text>
+     <line x1="150" y1="60" x2="195" y2="112" stroke="#b7c6cc" stroke-width="2" stroke-dasharray="4 3"/>
+     <line x1="230" y1="60" x2="200" y2="112" stroke="#e8672c" stroke-width="2.5"/>
+    </svg>
+    <div class="cap">نفس اسم الشبكة (SSID) بالضبط — الجهاز يظن أنه يتصل بالشبكة الشرعية بينما يتصل فعليًا بجهاز المهاجم.</div>
+   </div>
   </div>
   <div class="card">
    <p><b>Deauthentication Attacks</b></p>
@@ -283,6 +302,17 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
   <div class="card">
    <p><b>تداخل القنوات (Channel Overlap)</b></p>
    <p><b>Co-channel Interference (CCI)</b>: تنافس أجهزة على نفس القناة. <b>Adjacent Channel Interference (ACI)</b>: أجهزة على قنوات متداخلة تُبطئ الاتصال.<br><b>الحلول</b>: قنوات 2.4 GHz المثلى (1, 6, 11)، تباعد 25 MHz بين القنوات، وخفض قوة الـAP.</p>
+  </div>
+ </div>
+
+ <div class="diagrow" style="grid-template-columns:1fr 1fr">
+  <div class="dbox">
+   <svg viewBox="0 0 300 90"><rect x="10" y="20" width="80" height="50" fill="#1a7f5c" opacity="0.85" rx="4"/><text x="50" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Ch 1</text><rect x="110" y="20" width="80" height="50" fill="#1a7f5c" opacity="0.85" rx="4"/><text x="150" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Ch 6</text><rect x="210" y="20" width="80" height="50" fill="#1a7f5c" opacity="0.85" rx="4"/><text x="250" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Ch 11</text></svg>
+   <div class="cap">Non-Overlapping — بدون تداخل (الأفضل)</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 300 90"><rect x="30" y="20" width="80" height="50" fill="#e8672c" opacity="0.55" rx="4"/><rect x="80" y="20" width="80" height="50" fill="#e8672c" opacity="0.55" rx="4"/><rect x="130" y="20" width="80" height="50" fill="#e8672c" opacity="0.55" rx="4"/><text x="120" y="50" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Ch 2-3-4</text></svg>
+   <div class="cap">Adjacent Channel Interference — قنوات متجاورة متداخلة (مشكلة)</div>
   </div>
  </div>
 
