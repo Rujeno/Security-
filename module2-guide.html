@@ -80,6 +80,15 @@ tr:nth-child(even) td{background:var(--soft)}
 .flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
 .flow i{color:var(--signal);font-style:normal;font-weight:700}
 
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr}}
+
 .modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
 .modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
 .modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
@@ -182,6 +191,21 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  <span class="mod-tag">MODULE 2 · LESSON 2.2</span>
  <h2>الكيابل النحاسية والموصلات</h2>
  <p class="sub">Copper Cables and Connectors</p>
+
+ <div class="diagrow">
+  <div class="dbox">
+   <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="68" fill="#f7f9fa" stroke="#5b7280" stroke-width="3"/><circle cx="55" cy="55" r="16" fill="#12617c"/><circle cx="105" cy="55" r="16" fill="#e8672c"/><circle cx="55" cy="105" r="16" fill="#1a7f5c"/><circle cx="105" cy="105" r="16" fill="#0d3b4f"/></svg>
+   <div class="cap">UTP — 4 Twisted Pairs, No Shield</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="68" fill="#f7f9fa" stroke="#5b7280" stroke-width="3"/><circle cx="80" cy="80" r="58" fill="none" stroke="#12617c" stroke-width="3" stroke-dasharray="4 3"/><circle cx="55" cy="55" r="14" fill="#12617c"/><circle cx="105" cy="55" r="14" fill="#e8672c"/><circle cx="55" cy="105" r="14" fill="#1a7f5c"/><circle cx="105" cy="105" r="14" fill="#0d3b4f"/></svg>
+   <div class="cap">STP — Same Pairs + Conductive Shield</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="68" fill="#0d3b4f"/><circle cx="80" cy="80" r="34" fill="#e8672c"/></svg>
+   <div class="cap">Coaxial — Center Conductor + Metal Shield</div>
+  </div>
+ </div>
 
  <div class="two">
   <div class="card">
@@ -287,6 +311,15 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <li><b>Buffer</b>: غلاف خارجي واقٍ.</li>
   </ul>
   <p><b>المزايا</b>: سرعات حتى <span class="en">800 Gbps</span>، جودة إشارة لمسافات طويلة، و<b>مناعة كاملة ضد EMI</b>.</p>
+ </div>
+
+ <div class="diagram">
+  <svg viewBox="0 0 200 200" style="max-width:220px">
+   <circle cx="100" cy="100" r="90" fill="#0d3b4f"/>
+   <circle cx="100" cy="100" r="55" fill="#12617c"/>
+   <circle cx="100" cy="100" r="20" fill="#ffe38a"/>
+  </svg>
+  <div class="cap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffe38a"></span> Core (يمر فيه الضوء) &nbsp; <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#12617c"></span> Cladding (يعكس الضوء) &nbsp; <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#0d3b4f"></span> Buffer (غلاف واقٍ)</div>
  </div>
 
  <h3>Single Mode vs Multimode</h3>
