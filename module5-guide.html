@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 5 — التوجيه والسويتشنج المتقدم — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:14px;font-weight:600;padding:14px 16px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 5</span>
+  <h1>الوحدة 5 — التوجيه والسويتشنج المتقدم</h1>
+  <p>Configuring Routing and Advanced Switching — Routing Technologies · Dynamic Routing · NAT · Firewalls · Enterprise Topologies · VLANs</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠 الرئيسية</a><a href="module1-guide.html">الوحدة 1</a><a href="module2-guide.html">الوحدة 2</a><a href="module3-guide.html">الوحدة 3</a><a href="module4-guide.html">الوحدة 4</a><a href="module5-guide.html" class="active">الوحدة 5</a><a href="module6-guide.html">الوحدة 6</a><a href="module7-guide.html">الوحدة 7</a><a href="module8-guide.html">الوحدة 8</a><a href="quiz.html">📝 الاختبار</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m5-routing">5.1 Routing</a>
+ <a href="#m5-dynamic">5.2 Dynamic Routing</a>
+ <a href="#m5-nat">5.3 NAT</a>
+ <a href="#m5-firewalls">5.4 Firewalls</a>
+ <a href="#m5-enterprise">5.5 Enterprise Topo</a>
+ <a href="#m5-vlan">5.6 VLANs</a>
+ <a href="#m5-ts">5.7 Routing/VLAN TS</a>
+</div></nav>
+
+<main>
+
+<section id="m5-routing">
+ <span class="mod-tag">MODULE 5 · LESSON 5.1</span>
+ <h2>تقنيات التوجيه — Routing Technologies</h2>
+ <p class="sub">Configuring Routing and Advanced Switching — Routing Tables & Path Selection</p>
+
+ <div class="card">
+  <p><b>إدخال جدول التوجيه (Routing Table Entry)</b> يتحدد بأربع معلومات أساسية:</p>
+  <ul>
+   <li><b>Protocol</b>: البروتوكول المستخدم لتعلّم المسار (static, RIP, OSPF...).</li>
+   <li><b>Destination</b>: الشبكة الوجهة.</li>
+   <li><b>Interface</b>: المنفذ الخارج منه الترافيك.</li>
+   <li><b>Gateway/Next hop</b>: العنوان التالي في الطريق للوصول للوجهة.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>أنواع إدخالات جدول التوجيه</b>: <span class="en">Directly connected routes</span> (شبكات متصلة مباشرة) · <span class="en">Remote routes</span> (شبكات بعيدة عبر راوتر آخر) · <span class="en">Host routes</span> (مسار لمضيف واحد محدد) · <span class="en">Default route</span> (المسار الافتراضي لأي وجهة غير معروفة).</p>
+ </div>
+
+ <div class="flow">
+  <span>Receive the packet</span><i>←</i><span>Examine the packet</span><i>←</i><span>Consult the routing table</span><i>←</i><span>Make a forwarding decision</span><i>←</i><span>Forward the packet</span>
+ </div>
+
+ <div class="card">
+  <p><b>قاعدة وضع الراوتر (Router Placement)</b>:</p>
+  <ul>
+   <li>الأجهزة على نفس الـsubnet/IP network <b>لا يجب</b> أن يفصل بينها راوتر.</li>
+   <li>الأجهزة على subnets/IP networks مختلفة <b>يجب</b> أن يفصل بينها راوتر.</li>
+  </ul>
+ </div>
+
+ <h3>أدوات التوجيه</h3>
+ <table>
+  <tr><th>الأداة</th><th>الوظيفة</th></tr>
+  <tr><td><span class="en">show route</span></td><td>يعرض جدول التوجيه</td></tr>
+  <tr><td><span class="en">show arp</span></td><td>يسرد إدخالات جدول ARP الحالية</td></tr>
+  <tr><td><span class="en">route</span></td><td>يعرض جدول التوجيه IP الخاص بمضيف</td></tr>
+  <tr><td><span class="en">traceroute</span></td><td>يتتبع مسار الحزمة حتى الوجهة</td></tr>
+ </table>
+</section>
+
+<section id="m5-dynamic">
+ <span class="mod-tag">MODULE 5 · LESSON 5.2</span>
+ <h2>بروتوكولات التوجيه الديناميكي — Dynamic Routing</h2>
+ <p class="sub">Static vs Dynamic Routing · RIP · EIGRP · OSPF · BGP</p>
+
+ <table>
+  <tr><th>الخاصية</th><th>Static Routing</th><th>Dynamic Routing</th></tr>
+  <tr><td>الإعداد</td><td>يدوي</td><td>يتكيّف تلقائيًا مع تغيّرات الشبكة</td></tr>
+  <tr><td>المرونة</td><td>غير مرن — يحتاج تدخل يدوي للتحديث</td><td>مرن — يتكيّف لحظيًا</td></tr>
+  <tr><td>التحكم</td><td>تحكم كامل بمسارات التوجيه</td><td>تحكم مباشر أقل بالمسارات</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>بروتوكولات التوجيه الديناميكي (Dynamic Routing Protocols)</b>: خوارزميات تحدّث معلومات المسار تلقائيًا وتضبط المسارات بين عقد الشبكة عبر توزيع معلومات الـtopology.</p>
+  <p><b>المزايا</b>: قابلية التوسع، التكيّف مع تغيّرات الشبكة، وتقليل عبء الإدارة.</p>
+  <p><b>اعتبارات</b>: تحتاج معالجة وذاكرة أكبر، والإعداد الصحيح مهم جدًا للأمان والكفاءة.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>RIP (Routing Information Protocol)</b></p>
+   <p>بروتوكول قديم (legacy) يجد أفضل مسار باستخدام <b>hop count</b> كمقياس، بحد أقصى <b>15 hop</b>. غير مناسب للشبكات الكبيرة وبطيء التقارب (convergence).</p>
+  </div>
+  <div class="card">
+   <p><b>EIGRP (Enhanced IGRP)</b></p>
+   <p>بروتوكول <span class="en">distance-vector</span> متقدم، يستخدم مقاييس (bandwidth, delay, load, reliability)، يدعم IPv4 وIPv6 معًا. <b>ملكية Cisco</b> وأكثر تعقيدًا بالإعداد.</p>
+  </div>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>OSPF (Open Shortest Path First)</b></p>
+   <p>بروتوكول <span class="en">link-state</span> يحسب أقصر مسار عبر خوارزمية <b>Shortest Path First</b>، يدعم topologies معقدة، لكنه يحتاج تخطيطًا أدق وbandwidth أكثر من بروتوكولات distance-vector.</p>
+  </div>
+  <div class="card">
+   <p><b>BGP (Border Gateway Protocol)</b></p>
+   <p>بروتوكول يمكّن الإنترنت من تبادل معلومات التوجيه بين <span class="en">autonomous systems</span>. قابل للتوسع لحجم الإنترنت، يستخدم <b>path vector</b>، ويدعم <b>CIDR</b>.</p>
+  </div>
+ </div>
+</section>
+
+<section id="m5-nat">
+ <span class="mod-tag">MODULE 5 · LESSON 5.3</span>
+ <h2>ترجمة عناوين الشبكة — Network Address Translation</h2>
+ <p class="sub">NAT Types · Edge Routers · PAT</p>
+
+ <div class="card">
+  <p><b>NAT</b>: يعدّل معلومات عنوان الشبكة في رؤوس الحزم أثناء عبورها، ما يزيد الأمان بإخفاء عناوين IP الداخلية عن الشبكات الخارجية، ويتيح لعدة أجهزة بالشبكة المحلية مشاركة عنوان IP عام واحد، وبالتالي <b>يوفّر عناوين IP العامة</b>.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Dynamic NAT</b></p>
+   <p>يربط العناوين الداخلية بمجموعة (pool) من العناوين الخارجية ديناميكيًا — يسمح لعدد أكبر من الأجهزة بمشاركة نفس عناوين IP الخارجية.</p>
+  </div>
+  <div class="card">
+   <p><b>Static NAT</b></p>
+   <p>يترجم عنوان IP داخلي واحد إلى عنوان IP خارجي واحد ثابت — يسمح باتصالات واردة (inbound) تبدأ من خارج الشبكة.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>Edge Router</b>: يقع عند حدود الشبكة المتصلة بشبكات خارجية (كالإنترنت)، يدير تدفق البيانات بين الداخل والخارج، يوجّه البيانات لوجهتها، وينفّذ NAT ويطبّق إجراءات الأمان.</p>
+  <ul>
+   <li><b>CE (Customer Edge)</b>: عند حافة شبكة العميل، يربط الشبكة الداخلية بشبكة المزوّد ويعمل كحاجز أمني.</li>
+   <li><b>PE (Provider's Edge)</b>: عند حافة شبكة المزوّد، يركّز على حماية سرية بيانات العميل أثناء عبورها شبكة المزوّد.</li>
+  </ul>
+ </div>
+
+ <div class="tip"><b>PAT (Port Address Translation)</b>: شكل من NAT يسمح لعدة أجهزة داخلية بمشاركة عنوان IP عام واحد في نفس الوقت، عبر تمييز كل اتصال برقم منفذ (port) مختلف — الأشيع استخدامًا في راوترات SOHO.</div>
+</section>
+
+<section id="m5-firewalls">
+ <span class="mod-tag">MODULE 5 · LESSON 5.4</span>
+ <h2>الجدران النارية — Firewalls</h2>
+ <p class="sub">Firewall Types · Stateless vs Stateful</p>
+
+ <table>
+  <tr><th>النوع</th><th>الوصف</th></tr>
+  <tr><td><b>Hardware</b></td><td>أجهزة قائمة بذاتها (standalone appliances) أو مدمجة داخل الراوترات</td></tr>
+  <tr><td><b>Software</b></td><td>تعمل على نظام التشغيل (OS-based) أو برامج طرف ثالث</td></tr>
+  <tr><td><b>Cloud-based</b></td><td>جدار ناري كخدمة سحابية <span class="en">(Firewall as a Service - FAAS)</span></td></tr>
+  <tr><td><b>UTM (Unified Threat Management)</b></td><td>أجهزة أمنية شاملة تجمع عدة وظائف بجهاز واحد</td></tr>
+  <tr><td><b>NGFW (Next-Generation Firewall)</b></td><td>جدار ناري متقدم بقدرات فحص أعمق</td></tr>
+ </table>
+
+ <table>
+  <tr><th>الخاصية</th><th>Stateless (Packet Filtering)</th><th>Stateful (Circuit Level Gateway)</th></tr>
+  <tr><td>آلية الفحص</td><td>يُرشِّح حسب IP وbروتوكول ورقم المنفذ فقط</td><td>يفحص الحزم ويتتبع حالة الاتصالات النشطة</td></tr>
+  <tr><td>طبقة العمل</td><td>Network layer</td><td>Session layer</td></tr>
+  <tr><td>الاستخدام الأنسب</td><td>شبكات صغيرة أو متطلبات أمان أبسط</td><td>شبكات الشركات حيث حماية البيانات الحساسة أمر حرج</td></tr>
+ </table>
+</section>
+
+<section id="m5-enterprise">
+ <span class="mod-tag">MODULE 5 · LESSON 5.5</span>
+ <h2>هيكليات شبكات المؤسسات — Enterprise Network Topologies</h2>
+ <p class="sub">Tree Topology · Hybrid Topologies</p>
+
+ <div class="card">
+  <p><b>Tree Topology</b>: هيكلية هرمية تجمع خصائص من الـstar والـbus — عقد مجمّعة في مجموعات نجمية (star groups) متصلة ببعضها عبر backbone خطي.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Hybrid Topologies</b>: تُستخدم عندما لا تكفي هيكلية أساسية واحدة (star/mesh/point-to-point)، فتُمزَج عدة هيكليات معًا لتحقيق <b>التكرار (redundancy)</b> و<b>تحمّل الأعطال (fault tolerance)</b>.</p>
+  <ul>
+   <li><b>Hierarchical Star</b>: طبقات متتالية من الـstar topology.</li>
+   <li><b>Hierarchical Star-Mesh</b>: دمج الـstar الهرمي مع روابط mesh للتكرار.</li>
+   <li><b>Star of Stars</b>: مجموعات star متصلة بنقطة مركزية.</li>
+   <li><b>3-Tiered Network Hierarchy</b>: ثلاث طبقات (core, distribution, access) — الأشيع في شبكات المؤسسات الكبيرة.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="m5-vlan">
+ <span class="mod-tag">MODULE 5 · LESSON 5.6</span>
+ <h2>الشبكات المحلية الافتراضية — Virtual LANs</h2>
+ <p class="sub">VLAN Segmentation · Tagging · VLAN Types · Trunking</p>
+
+ <div class="card">
+  <p><b>VLAN</b>: تُنشئ شبكات منفصلة منطقيًا داخل بنية تحتية فيزيائية واحدة.</p>
+  <ul>
+   <li><b>Segmentation</b>: تقسّم الشبكة لأجزاء معزولة صغيرة، بدون الحاجة لعتاد منفصل.</li>
+   <li><b>Flexibility</b>: تجميع المستخدمين والأجهزة حسب الوظيفة أو القسم أو الفريق، بغض النظر عن الموقع الفيزيائي.</li>
+   <li><b>Simplified Administration</b>: يمكن إدارة تغييرات/نقل الشبكة بسهولة دون تعديل التمديدات الفيزيائية.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>VLAN IDs والعضوية</b>: كل VLAN له معرّف فريد (<b>VLAN ID</b>)، وكل جهاز عضو في VLAN معيّن. الأجهزة تستخدم VLAN IDs لإدارة الترافيك، ويحتاج <b>Inter-VLAN routing</b> للتواصل بين VLANs مختلفة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Port Tagging</b>: طريقة لتوسيم حزم البيانات بمعرّف VLAN.</p>
+  <ul>
+   <li><b>Tagged ports</b>: مُهيّأة لاستقبال وفهم الحزم التي تحمل معرّف VLAN.</li>
+   <li><b>Untagged ports</b>: تستقبل البيانات بدون معرّف VLAN.</li>
+  </ul>
+ </div>
+
+ <h3>أنواع VLANs</h3>
+ <table>
+  <tr><th>النوع</th><th>الوصف</th></tr>
+  <tr><td><b>Default VLAN</b></td><td>VLAN بمعرّف <span class="en">ID 1</span>، يجب أن يبقى غير مستخدَم — غيّري المنافذ غير المستخدَمة من ID 1</td></tr>
+  <tr><td><b>Native VLAN</b></td><td>يستقبل كل الإطارات غير الموسومة (untagged)؛ يجب أن يكون منفصلًا عن الـDefault VLAN، ومطابقًا على كل السويتشات</td></tr>
+  <tr><td><b>Voice VLAN</b></td><td>يتعامل مع ترافيك أنظمة VoIP، يضمن جودة اتصال الصوت، ويعطيها أولوية</td></tr>
+  <tr><td><b>Management VLAN</b></td><td>يدير أجهزة وخدمات الشبكة، معزول عن ترافيك المستخدمين وعن Default VLAN</td></tr>
+ </table>
+
+ <div class="tip"><b>Trunking</b>: يجمع عدة روابط فيزيائية في رابط منطقي واحد ينقل ترافيك عدة VLANs معًا بين السويتشات.</div>
+</section>
+
+<section id="m5-ts">
+ <span class="mod-tag">MODULE 5 · LESSON 5.7</span>
+ <h2>استكشاف أخطاء التوجيه والـVLAN</h2>
+ <p class="sub">Routing and VLAN Troubleshooting</p>
+
+ <div class="card">
+  <p><b>مشاكل جدول التوجيه</b>: اشتبهي بمشكلة توجيه إذا نجح ping للـdefault gateway لكن فشل مع بعض/كل المضيفين على شبكة بعيدة.</p>
+  <div class="flow">
+   <span>Verify connectivity</span><i>←</i><span>Review routing table entries</span><i>←</i><span>Check subnet masks</span><i>←</i><span>Examine static & dynamic routes</span><i>←</i><span>Use traceroute</span>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>مشاكل الـDefault Route وحلقات التوجيه</b>: إعداد خاطئ لـdefault routes أو توزيعها لراوترات أخرى قد يسبب <b>routing loops</b>.</p>
+  <div class="flow">
+   <span>Verify host configuration</span><i>←</i><span>Ping default gateway</span><i>←</i><span>Check router settings</span><i>←</i><span>Review physical connections</span><i>←</i><span>Identify routing loops</span>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>مشاكل تخصيص VLAN</b>: الأجهزة على نفس VLAN تحتاج إعداد IP متطابق (عنوان، subnet mask، gateway، DNS).</p>
+  <div class="flow">
+   <span>Check physical connectivity</span><i>←</i><span>Ping the loopback address</span><i>←</i><span>Ping the default gateway</span><i>←</i><span>Ping a remote host or server</span>
+  </div>
+ </div>
+
+ <div class="tip"><b>ملخص الوحدة 5</b>: جداول التوجيه هي خرائط الراوتر الداخلية لتوجيه الحزم؛ التوجيه الديناميكي يُؤتمت تبادل معلومات المسار بين الراوترات؛ NAT يترجم بين عناوين خاصة وعامة للوصول للإنترنت؛ VLANs تنشئ أجزاء شبكة منطقية داخل شبكة فيزيائية واحدة.</div>
+</section>
+
+
+</main>
+
+<div class="modnav"><a href="module4-guide.html">← الوحدة 4</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module6-guide.html">الوحدة 6 →</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 5 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>

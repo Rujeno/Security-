@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 7 — خدمات التطبيقات — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:14px;font-weight:600;padding:14px 16px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 7</span>
+  <h1>الوحدة 7 — خدمات التطبيقات</h1>
+  <p>Explaining Application Services — TLS/NTP/PTP · Web/File/Database Services · Email/Voice · Disaster Recovery & HA</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠 الرئيسية</a><a href="module1-guide.html">الوحدة 1</a><a href="module2-guide.html">الوحدة 2</a><a href="module3-guide.html">الوحدة 3</a><a href="module4-guide.html">الوحدة 4</a><a href="module5-guide.html">الوحدة 5</a><a href="module6-guide.html">الوحدة 6</a><a href="module7-guide.html" class="active">الوحدة 7</a><a href="module8-guide.html">الوحدة 8</a><a href="quiz.html">📝 الاختبار</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m7-tls">7.1 TLS/NTP/PTP</a>
+ <a href="#m7-services">7.2 Web/File/DB</a>
+ <a href="#m7-email">7.3 Email/Voice</a>
+ <a href="#m7-dr">7.4 DR & HA</a>
+</div></nav>
+
+<main>
+
+<section id="m7-tls">
+ <span class="mod-tag">MODULE 7 · LESSON 7.1</span>
+ <h2>أمان التطبيقات ومزامنة الوقت</h2>
+ <p class="sub">Explaining Application Services — TLS · NTP · PTP</p>
+
+ <div class="card">
+  <p><b>TLS (Transport Layer Security)</b> يوفر ثلاث خصائص أساسية:</p>
+  <ul>
+   <li><b>Encryption</b>: تشفير البيانات.</li>
+   <li><b>Authentication</b>: تأكيد هوية السيرفر عبر الشهادات (certificates).</li>
+   <li><b>Integrity</b>: التأكد أن البيانات لم تتغيّر أثناء النقل.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>TLS Handshake</b>:</p>
+  <div class="flow">
+   <span>Client Hello</span><i>←</i><span>Server Hello</span><i>←</i><span>Client Key Exchange</span><i>←</i><span>Session Key Established</span><i>←</i><span>Server Finished</span>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>NTP (Network Time Protocol)</b>: يزامن ساعات الأنظمة مع <b>UTC</b> عبر بروتوكول <span class="en">UDP</span> على المنفذ <b>123</b>.</p>
+  <ul>
+   <li><b>Hierarchy</b>: ينظّم الأجهزة هرميًا حسب بُعدها عن الساعة المرجعية (stratum).</li>
+   <li><b>Synchronization</b>: يزامن الأجهزة عبر رسائل مُختَّمة زمنيًا (timestamped) بين الأقران.</li>
+   <li><b>Algorithms</b>: يستخدم خوارزميات معقدة لحساب تأخير الشبكة والـjitter.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>PTP (Precision Time Protocol)</b>: دقة زمنية أعلى من NTP، تُستخدم في العمليات الصناعية، شبكات 5G، الأجهزة الطبية، الخدمات المالية، والبث.</p>
+  <ul>
+   <li><b>Grandmaster clock</b>: المصدر الزمني الرئيسي بمجال PTP.</li>
+   <li><b>Boundary clock</b> و<b>Ordinary clock</b>: أنواع ساعات أخرى بالتسلسل الهرمي.</li>
+   <li>الأدوار: <span class="en">TimeTransmitter, TimeReceiver, Grandmaster, Boundary</span>.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="m7-services">
+ <span class="mod-tag">MODULE 7 · LESSON 7.2</span>
+ <h2>خدمات الويب والملفات وقواعد البيانات</h2>
+ <p class="sub">HTTP/HTTPS · FTP/SFTP · SMB · NAS · RDBMS vs NoSQL</p>
+
+ <div class="card">
+  <p><b>HTTP</b>: بروتوكول لجلب الموارد (مستندات HTML، صور، فيديوهات) من الويب — أساس أي تبادل بيانات على الويب.</p>
+  <div class="flow">
+   <span>User enters URL</span><i>←</i><span>Browser sends HTTP request</span><i>←</i><span>Server interprets & retrieves files</span><i>←</i><span>HTTP Response</span><i>←</i><span>Browser renders webpage</span>
+  </div>
+ </div>
+
+ <table>
+  <tr><th></th><th>HTTP</th><th>HTTPS</th></tr>
+  <tr><td>التشفير</td><td>لا يشفّر البيانات</td><td>يستخدم تشفير TLS (SSL)</td></tr>
+  <tr><td>المنفذ</td><td>Port 80</td><td>Port 443</td></tr>
+  <tr><td>الرابط</td><td><span class="en">http://</span></td><td><span class="en">https://</span></td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>FTP (File Transfer Protocol)</b>:</p>
+  <ul>
+   <li><b>Authentication</b>: يطلب بيانات دخول، وبعض السيرفرات تسمح بوصول مجهول (anonymous).</li>
+   <li><b>Channels</b>: قناة أوامر (command) للتعليمات والردود، وقناة بيانات (data) لنقل الملفات.</li>
+   <li><b>Transfer Modes</b>: <span class="en">Active</span> (السيرفر يتصل بالعميل لنقل البيانات) و<span class="en">Passive</span> (العميل يبدأ اتصالات الأوامر/البيانات لتجنب مشاكل الجدار الناري).</li>
+  </ul>
+ </div>
+
+ <table>
+  <tr><th></th><th>FTP</th><th>SFTP</th></tr>
+  <tr><td>التشفير</td><td>بيانات غير مشفرة</td><td>بيانات مشفرة</td></tr>
+  <tr><td>القنوات</td><td>قناتان</td><td>قناة واحدة</td></tr>
+  <tr><td>المنافذ</td><td>Port 20 و21</td><td>Port 22</td></tr>
+ </table>
+
+ <div class="two">
+  <div class="card">
+   <p><b>SMB (Server Message Block)</b></p>
+   <p>يسمح للأجهزة على نفس الشبكة بمشاركة الموارد. يُستخدم في <span class="en">Windows</span>، وفي <span class="en">Linux</span> عبر <span class="en">Samba</span>.</p>
+  </div>
+  <div class="card">
+   <p><b>NAS (Network Attached Storage)</b></p>
+   <p>يوفّر وصولًا عن بُعد للملفات ووصولًا متزامنًا لعدة أجهزة. مكوناته: معالج، ذاكرة، أقراص صلبة، ونظام تشغيل مخصص (غالبًا لينكس).</p>
+  </div>
+ </div>
+
+ <table>
+  <tr><th></th><th>RDBMS</th><th>NoSQL</th></tr>
+  <tr><td>هيكل التخزين</td><td>يحتاج schema محددة مسبقًا (جداول مرتبطة بمعرّفات فريدة)</td><td>بدون schema أو schema ديناميكية (key-value, wide columns)</td></tr>
+  <tr><td>التوسع</td><td>Vertically scalable</td><td>Horizontally scalable</td></tr>
+  <tr><td>الأفضلية</td><td>يتعامل مع استعلامات معقدة (SQL)</td><td>بساطة وسرعة لأنواع معيّنة من الاستعلامات، وصول عبر APIs فوق HTTPS</td></tr>
+ </table>
+</section>
+
+<section id="m7-email">
+ <span class="mod-tag">MODULE 7 · LESSON 7.3</span>
+ <h2>خدمات البريد والصوت</h2>
+ <p class="sub">SMTP · IMAP · VoIP · SIP</p>
+
+ <div class="card">
+  <p><b>SMTP (Simple Mail Transfer Protocol)</b>: يُستخدم لإرسال البريد من سيرفر لآخر، يوجّه الرسائل من عميل المرسل لسيرفر بريد المستقبل. يمكن دمجه مع TLS لتشفير البريد أثناء النقل.</p>
+  <p><b>المنافذ</b>: Port 25 (عادي) · Port 465 (implicit TLS) · Port 587 (explicit TLS).</p>
+ </div>
+
+ <div class="card">
+  <p><b>IMAP (Internet Message Access Protocol)</b>: يتيح الوصول لإدارة البريد عن بُعد، ويخزّن الرسائل على السيرفر. وظائفه: الاتصال بسيرفر البريد، المزامنة، قراءة الرسائل، وإدارتها.</p>
+ </div>
+
+ <table>
+  <tr><th></th><th>VoIP</th><th>PBX</th><th>VoIP-Enabled PBX</th></tr>
+  <tr><td>الوظيفة</td><td>ينقل مكالمات صوتية عبر شبكات IP، يدعم الصوت والفيديو والوسائط المتعددة</td><td>يربط خطوط الهاتف الداخلية بمنظمة، يدير المكالمات الواردة/الصادرة والبريد الصوتي والتحويل</td><td>يجمع وظائف PBX مع VoIP، يعمل عبر LAN أو WAN، يقلل الاعتماد على البنية الفيزيائية</td></tr>
+ </table>
+
+ <h3>بروتوكولات VoIP</h3>
+ <table>
+  <tr><th>البروتوكول</th><th>الوظيفة</th></tr>
+  <tr><td><b>RTP (Real-Time Protocol)</b></td><td>ينقل الصوت/الفيديو عبر الإنترنت لحظيًا، يستخدم منافذ UDP زوجية (even) لبث الوسائط</td></tr>
+  <tr><td><b>RTCP (Real-Time Transport Control Protocol)</b></td><td>يوفّر إحصائيات ومعلومات تحكم لجلسة RTP، تقرير عن فقدان الحزم والـjitter، منفذ فردي (odd) أعلى من RTP بواحد</td></tr>
+  <tr><td><b>SIP (Session Initiation Protocol)</b></td><td>يبدأ ويدير وينهي جلسات الاتصال اللحظي، يستخدم TCP/UDP منفذ 5060 (بدون تشفير) و5061 (بتشفير TLS)</td></tr>
+ </table>
+</section>
+
+<section id="m7-dr">
+ <span class="mod-tag">MODULE 7 · LESSON 7.4</span>
+ <h2>التعافي من الكوارث والتوفر العالي</h2>
+ <p class="sub">Disaster Recovery and High Availability</p>
+
+ <div class="card">
+  <p><b>مفاهيم التعافي من الكوارث</b>:</p>
+  <ul>
+   <li><b>BRP (Disaster Recovery Plan)</b>: إرشادات وإجراءات، تحضير ومنع.</li>
+   <li><b>Tabletop Exercises</b>: محاكاة (simulation) وتعلّم بنّاء (constructive learning).</li>
+   <li><b>Validation Tests</b>: اختبار وظيفي (functional)، اختبار سيناريو (scenario)، اختبار كامل النطاق (full-scale).</li>
+   <li><b>BCP (Business Continuity Plan)</b>: فريق BCP، تحليل أثر الأعمال (BIA)، وخطة التواصل بالأزمات.</li>
+  </ul>
+ </div>
+
+ <table>
+  <tr><th>المقياس</th><th>المعنى</th></tr>
+  <tr><td><b>HA (High Availability)</b></td><td>يضمن استمرارية عمل النظام</td></tr>
+  <tr><td><b>MTD (Maximum Tolerable Downtime)</b></td><td>أطول فترة انقطاع بدون تأثير شديد</td></tr>
+  <tr><td><b>RTO (Recovery Time Objective)</b></td><td>الوقت اللازم لاستعادة الخدمات بعد انقطاع</td></tr>
+  <tr><td><b>WRT (Work Recovery Time)</b></td><td>الوقت للتأكد من سلامة النظام/البيانات بعد الاستعادة</td></tr>
+  <tr><td><b>RPO (Recovery Point Objective)</b></td><td>أقصى فقدان بيانات مقبول بعد حادثة</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>مواقع التعافي من الكوارث (Disaster Recovery Sites)</b>: <b>Cold Site</b> (بنية أساسية بدون معدات جاهزة، الأبطأ والأرخص) · <b>Warm Site</b> (معدات جزئية جاهزة) · <b>Hot Site</b> (نسخة كاملة جاهزة للعمل فورًا، الأسرع والأغلى).</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Fault Tolerance</b></p>
+   <p>يحافظ على استمرار العمل رغم فشل مكوّن، يعمل بسعة مخفّضة بدل التوقف الكامل، عبر التكرار (replication)، فحص الأخطاء، والـfailover.</p>
+  </div>
+  <div class="card">
+   <p><b>Redundancy</b></p>
+   <p>يكرر المكونات الأساسية لموثوقية أعلى، يوفّر مسارات/سعة احتياطية، ويمنع انهيار النظام من فشل نقطة واحدة.</p>
+  </div>
+ </div>
+
+ <table>
+  <tr><th>المؤشر (KPI)</th><th>المعنى</th></tr>
+  <tr><td><b>MTBF (Mean Time Between Failures)</b></td><td>متوسط الوقت بين أعطال النظام</td></tr>
+  <tr><td><b>MTTF (Mean Time To Failure)</b></td><td>العمر المتوقع قبل فشل نظام غير قابل للإصلاح</td></tr>
+  <tr><td><b>MTTR (Mean Time To Repair)</b></td><td>متوسط الوقت لإصلاح واستعادة نظام معطّل</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>Load Balancers</b>: توزّع ترافيك الشبكة عبر عدة سيرفرات (كـ"شرطي مرور")، تضمن عدم إرهاق سيرفر واحد، تقلل التوقف وتزيد قابلية التوسع. أنواعها: <span class="en">hardware-based</span> أو <span class="en">software-based</span>، وتستخدم خوارزميات مثل <b>Round Robin</b> و<b>Least Connections</b>.</p>
+ </div>
+
+ <div class="card">
+  <p><b>High Availability Clusters</b>: أنظمة تضمن تشغيلًا مستمرًا وتقلل التوقف عبر مكونات مكرَّرة وآليات failover — مثالية حيث الاستمرارية حرجة (قواعد البيانات، خدمات الأعمال).</p>
+ </div>
+
+ <div class="tip"><b>First Hop Redundancy</b>: يضمن استمرار خدمة الشبكة عبر التبديل التلقائي لبوابة احتياطية إذا فشلت الأساسية — بروتوكولات مثل <b>HSRP</b> و<b>VRRP</b> توفّر failover سريع وتمنع single point of failure عند البوابة.</div>
+</section>
+
+
+</main>
+
+<div class="modnav"><a href="module6-guide.html">← الوحدة 6</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module8-guide.html">الوحدة 8 →</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 7 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>

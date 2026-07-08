@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 8 — دعم إدارة الشبكة — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:14px;font-weight:600;padding:14px 16px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 8</span>
+  <h1>الوحدة 8 — دعم إدارة الشبكة</h1>
+  <p>Supporting Network Management — Policies & Documentation · Discovery & Monitoring · SNMP · Event Management · Packet Capture · Traffic Monitoring</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠 الرئيسية</a><a href="module1-guide.html">الوحدة 1</a><a href="module2-guide.html">الوحدة 2</a><a href="module3-guide.html">الوحدة 3</a><a href="module4-guide.html">الوحدة 4</a><a href="module5-guide.html">الوحدة 5</a><a href="module6-guide.html">الوحدة 6</a><a href="module7-guide.html">الوحدة 7</a><a href="module8-guide.html" class="active">الوحدة 8</a><a href="quiz.html">📝 الاختبار</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m8-policies">8.1 Policies & Docs</a>
+ <a href="#m8-discovery">8.2 Discovery</a>
+ <a href="#m8-snmp">8.3 SNMP</a>
+ <a href="#m8-events">8.4 Event Mgmt</a>
+ <a href="#m8-packet">8.5 Packet Capture</a>
+ <a href="#m8-traffic">8.6 Traffic Mon</a>
+</div></nav>
+
+<main>
+
+<section id="m8-policies">
+ <span class="mod-tag">MODULE 8 · LESSON 8.1</span>
+ <h2>السياسات التنظيمية والتوثيق</h2>
+ <p class="sub">Supporting Network Management — Organizational Policies and Documentation</p>
+
+ <div class="card">
+  <p><b>أهمية التوثيق</b>: يسهّل استكشاف الأخطاء، يضمن الاتساق، يدعم التوسع والترقيات، ويدعم استمرارية العمل عند تغيّر الموظفين.</p>
+  <p><b>أنواع التوثيق</b>: <span class="en">Configuration management, Backup management, Change management, Asset management, Network management</span>.</p>
+ </div>
+
+ <div class="card">
+  <p><b>إدارة الإعدادات (Configuration Management)</b>:</p>
+  <div class="flow">
+   <span>Identify service assets</span><i>←</i><span>Consider a CMS solution</span><i>←</i><span>Determine an identification strategy</span><i>←</i><span>Establish a CI management plan</span><i>←</i><span>Monitor configuration drift</span>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>إدارة النسخ الاحتياطي لأجهزة الشبكة</b>: توثيق النسخ الاحتياطية والإجراءات، جدول نسخ منتظم، تدقيق والتحقق من النسخ، الحفاظ على سجل الإصدارات، وضبط تسجيل بيانات الحالة عن بُعد.</p>
+ </div>
+
+ <div class="card">
+  <p><b>إدارة التغيير (Change Management)</b>: بروتوكول توثيق شامل، استخدام قوالب موحّدة، تطبيق ضبط الإصدارات وإدارة الصلاحيات، حلقة تغذية راجعة (feedback loop)، ومراجعة/تحديث التوثيق بانتظام.</p>
+ </div>
+
+ <div class="card">
+  <p><b>إدارة الأصول (Asset Management) — الجرد</b>: تسجيل وصف الأصل، تاريخ الشراء، سجل الخدمة، الحالة، والموقع؛ تحديث التوثيق بانتظام؛ اعتماد أدوات برمجية لإدارة الأصول؛ وتطبيق ضوابط وصول صارمة على توثيق الجرد.</p>
+ </div>
+
+ <table>
+  <tr><th>النوع</th><th>المحتوى</th></tr>
+  <tr><td><b>Physical Network Diagrams</b></td><td>تفاصيل المكونات المادية، معلومات الموقع، وتفاصيل التمديدات</td></tr>
+  <tr><td><b>Logical Network Diagrams</b></td><td>البروتوكولات المستخدمة، التنظيم حسب الوظيفة لا الموقع الفيزيائي، ونقاط الترابط</td></tr>
+  <tr><td><b>IP Address Management</b></td><td>مخطط عنونة متسق، تسجيل عناوين IP، واستخدام أدوات أتمتة</td></tr>
+ </table>
+</section>
+
+<section id="m8-discovery">
+ <span class="mod-tag">MODULE 8 · LESSON 8.2</span>
+ <h2>اكتشاف الأجهزة والمراقبة</h2>
+ <p class="sub">Host Discovery and Monitoring</p>
+
+ <div class="card">
+  <p><b>Network Discovery</b>: تحديد أجهزة وخدمات الشبكة، لإدارة الشبكة والتدقيق الأمني. أدوات: <span class="en">Nmap, AngryIP, PRTG</span>.</p>
+ </div>
+
+ <div class="card">
+  <p><b>تقنيات فحص Nmap</b>:</p>
+  <ul>
+   <li><b>Basic Scans</b>: الإجراء الافتراضي يرسل ping وحزم TCP ACK للمنافذ 80 و443، إضافة لعمليات مسح ARP وND على الشبكات المحلية.</li>
+   <li><b>Host Discovery</b>: خيار <code class="k">-sn</code> يكتشف الأجهزة بدون مسح المنافذ.</li>
+   <li><b>Service and OS Detection</b>: يحدد الخدمات ونظام التشغيل العامل على المضيف.</li>
+   <li><b>Stealth Scans</b>: لتفادي الاكتشاف وتحديد المضيفين غير المستجيبين.</li>
+  </ul>
+ </div>
+
+ <table>
+  <tr><th></th><th>CDP (Cisco Discovery Protocol)</th><th>LLDP (Link Layer Discovery Protocol)</th></tr>
+  <tr><td>الملكية</td><td>أداة خاصة بـCisco</td><td>بروتوكول قياسي IEEE</td></tr>
+  <tr><td>الوظيفة</td><td>يكتشف كيفية اتصال الأجهزة، نظام التشغيل، وعناوين IP</td><td>نفس الوظيفة، لكن قياسي عبر الموردين</td></tr>
+  <tr><td>النطاق</td><td>معلومات من أجهزة CDP المتصلة مباشرة فقط</td><td>معلومات من كل أجهزة LLDP المتصلة مباشرة</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>Performance Monitoring</b>: يتتبع سرعة وكفاءة الشبكة عبر مقاييس (bandwidth, throughput, CPU/memory, storage, latency, response time, error rate)، إنشاء خط أساس (baseline) من القيم التاريخية للمقارنة، وتنبيهات عند تجاوز العتبات (threshold alerts).</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Availability Monitoring</b></p>
+   <p>يتحقق أن أجهزة وخدمات الشبكة تعمل ومتاحة عند الحاجة — اكتشاف مبكر للانقطاع، منع تأثير أوسع، استقرار الشبكة، وتحسين أداء السيرفر.</p>
+  </div>
+  <div class="card">
+   <p><b>Configuration Monitoring</b></p>
+   <p>يتحقق أن كل أجهزة الشبكة بحالة معروفة — مقارنة الإعداد الحالي بـ<b>baseline/golden configuration</b>، إعداد الإنتاج (production)، والإعداد الاحتياطي (backup).</p>
+  </div>
+ </div>
+</section>
+
+<section id="m8-snmp">
+ <span class="mod-tag">MODULE 8 · LESSON 8.3</span>
+ <h2>SNMP — بروتوكول إدارة الشبكة البسيط</h2>
+ <p class="sub">Simple Network Management Protocol</p>
+
+ <div class="card">
+  <p><b>SNMP</b>: يعمل في طبقة <b>Application</b>، ويستخدم منفذي UDP <b>161/162</b>.</p>
+  <p><b>وظائفه</b>: مراقبة أجهزة الشبكة، اكتشاف أعطال الشبكة، وضبط الأجهزة عن بُعد.</p>
+ </div>
+
+ <div class="card">
+  <p><b>مكونات SNMP</b>:</p>
+  <ul>
+   <li><b>SNMP Manager (NMS)</b>: نظام مركزي لمراقبة الشبكة، يُعرف أيضًا بـ<span class="en">Network Management Station</span>.</li>
+   <li><b>SNMP Agent</b>: وحدة برمجية على الأجهزة المُدارة (راوترات، سويتشات)، تحتفظ بمعلومات بقاعدة بيانات.</li>
+   <li><b>MIB (Management Information Base)</b>: مجموعة هرمية من معلومات الموارد المُدارة، منظّمة بفئات (system, interface, IP...).</li>
+  </ul>
+ </div>
+
+ <h3>رسائل SNMP</h3>
+ <table>
+  <tr><th>الرسالة</th><th>الوظيفة</th></tr>
+  <tr><td><span class="en">GetRequest</span></td><td>استرجاع بيانات من الـagents</td></tr>
+  <tr><td><span class="en">GetNextRequest</span></td><td>الحصول على قيمة متغيّر تالٍ (لإدخالات الجداول)</td></tr>
+  <tr><td><span class="en">SetRequest</span></td><td>ضبط قيمة عنصر معيّن</td></tr>
+  <tr><td><span class="en">Response</span></td><td>تأكيد نجاح ضبط القيمة</td></tr>
+  <tr><td><span class="en">Trap</span></td><td>يُرسَل من الـagent عند حدوث عطل</td></tr>
+  <tr><td><span class="en">InformRequest</span></td><td>مثل Trap لكن مع تأكيد استلام</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>أمان SNMP</b>:</p>
+  <ul>
+   <li><b>SNMPv2c</b>: تجنّبي إرسال <span class="en">community strings</span> نصية صريحة عبر الشبكة، استخدمي strings معقدة وليست الافتراضية، وقيّدي العمليات عبر ACLs لعناوين معروفة.</li>
+   <li><b>SNMPv3</b>: يوفّر تشفيرًا ومصادقة قوية للمستخدم، باستخدام قوائم أسماء مستخدمين وصلاحيات بدل الـcommunity strings.</li>
+   <li>أوضاع المصادقة: <code class="k">authNoPriv</code> (مصادقة بدون تشفير) و<code class="k">authPriv</code> (مصادقة مع تشفير باستخدام بيانات المستخدم).</li>
+  </ul>
+ </div>
+</section>
+
+<section id="m8-events">
+ <span class="mod-tag">MODULE 8 · LESSON 8.4</span>
+ <h2>إدارة الأحداث — Event Management</h2>
+ <p class="sub">Network Device Logs · Syslog · SIEM</p>
+
+ <div class="card">
+  <p><b>سجلات أجهزة الشبكة</b>: مصادر بيانات لمراقبة الشبكة، استكشاف الأخطاء، والتدقيق الأمني. أنواعها: <b>System Logs</b>، <b>Application Logs</b>، <b>Audit Logs</b>، <b>Performance/Traffic Logs</b>.</p>
+  <p><b>استخدامات السجلات</b>: تحديد مشاكل الشبكة وتحسين الأداء، تتبع الوصول غير المصرح به والانتهاكات (أمان/امتثال)، ومراجعة دورية مع تخزين آمن للسلامة والاستخدام الجنائي.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Log Collectors</b>: تمركز وتبسيط إدارة سجلات الشبكة، عبر تجميع بيانات السجلات في مستودع واحد — الفوائد: إدارة مركزية، كفاءة، وقابلية التوسع.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Syslog</b>: بروتوكول قياسي لإرسال رسائل السجل، يستخدم منفذ <span class="en">UDP 514</span>، له <span class="en">PRI Code</span> ومرونة عالية — منتشر جدًا ويسهّل التكامل بين الأنظمة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>ترتيب أولوية الأحداث والتنبيهات</b>: تصنيف الأحداث من <b>Emergency (0)</b> إلى <b>Debug (7)</b> حسب الأهمية، والتنبيهات الآلية تُطلَق حسب شدة الحدث/العتبات/الشذوذ — يمنع الغرق بتنبيهات غير حرجة ويحدد أولوية الأحداث الحرجة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>SIEM (Security Information and Event Management)</b>: يحلل تنبيهات الأمان من التطبيقات وأجهزة الشبكة لحظيًا، يدمج إدارة معلومات الأمان (SIM) وإدارة أحداث الأمان (SEM).</p>
+  <p><b>وظائفه الأساسية</b>: تجميع السجلات (Log Aggregation)، ربط الأحداث (Event Correlation)، والتنبيه (Alerting).</p>
+  <p><b>الفوائد</b>: رؤية لحظية، اكتشاف واستجابة للتهديدات، إدارة الامتثال، تحسين وضع الأمان، وتقليل وقت الاستجابة للحوادث.</p>
+ </div>
+</section>
+
+<section id="m8-packet">
+ <span class="mod-tag">MODULE 8 · LESSON 8.5</span>
+ <h2>التقاط وتحليل الحزم</h2>
+ <p class="sub">Packet Capture and Analysis</p>
+
+ <div class="card">
+  <p><b>Packet Capture</b>: تسجيل ترافيك الشبكة للتحليل واستكشاف الأخطاء، باستخدام مكتبة <span class="en">libpcap</span> مع إمكانية فلترة لالتقاط بيانات محددة. مثال أمر: <code class="k">tcpdump -i eth0</code></p>
+ </div>
+
+ <div class="card">
+  <p><b>أدوات تحليل الحزم</b>: <span class="en">tcpdump</span> · <span class="en">Wireshark</span> · <span class="en">ngrep</span> — تُستخدم لتشخيص المشاكل أو مراقبة صحة الشبكة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>تقنيات تحليل الالتقاط</b>:</p>
+  <ul>
+   <li><b>أهداف التحليل</b>: فهم تدفق الترافيك، تحديد سوء الإعداد، واكتشاف الشذوذ.</li>
+   <li><b>ميزات Wireshark</b>: فحص الرأس والحمولة إطارًا بإطار، واستخدام <span class="en">Follow TCP Stream</span> لإعادة تركيب بيانات الجلسة.</li>
+   <li><b>أدوات إحصائية</b>: <span class="en">Conversations</span>، <span class="en">Protocol Hierarchy</span>، وتحليل الترافيك.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="m8-traffic">
+ <span class="mod-tag">MODULE 8 · LESSON 8.6</span>
+ <h2>مراقبة الترافيك — Traffic Monitoring</h2>
+ <p class="sub">Flow Data · Bandwidth Management · Traffic Shaping</p>
+
+ <div class="card">
+  <p><b>Traffic Monitoring</b>: مراقبة وتحليل مستمر لتدفق الترافيك عبر الشبكة لضمان الأداء والأمان الأمثل — يحدد اتجاهات حجم الترافيك، يراقب الأداء لاكتشاف الشذوذ، ويساعد بتخطيط السعة وتعديلات تصميم الشبكة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>مشاكل الأداء الشائعة</b>: فقدان الحزم والتأخير والـjitter (يؤثر على جودة الخدمة QoS)، اختناقات bandwidth تُبطئ نقل البيانات، عتاد شبكة سيء الإعداد، وبنية تحتية قديمة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Flow Data</b>: معلومات مستخرَجة من حزم البيانات تعطي رؤية عن تدفق الترافيك — تشمل عناوين IP المصدر/الوجهة، أحجام الحزم، والطوابع الزمنية. ضرورية لتحليل الأداء واستكشاف الأخطاء، وتُستخدم في تحديد أنماط الترافيك واكتشاف الشذوذ.</p>
+ </div>
+
+ <div class="card">
+  <p><b>أدوات اختبار الترافيك</b>: تطبيقات تحاكي ترافيك الشبكة وتختبر أداء المكونات — تحدد اختناقات الشبكة وحدود السعة. تشمل مولّدات الحزم، محاكيات الشبكة، وأدوات قياس الإنتاجية. أمثلة: <span class="en">Wireshark, iperf, NetFlow Analyzer</span>.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Bandwidth Management</b></p>
+   <p>تقنيات للتحكم بتدفق الترافيك لتحسين أو ضمان الأداء — تخصيص bandwidth بأولوية للخدمات الأساسية، منع الازدحام وضمان استخدام عادل، عبر <span class="en">rate limiting</span> و<span class="en">traffic policing</span>.</p>
+  </div>
+  <div class="card">
+   <p><b>Traffic Shaping</b></p>
+   <p>إعطاء أولوية للترافيك لضمان حصول التطبيقات الحرجة على bandwidth المطلوب — بتأخير الحزم لتنظيم التدفق وتقليل الازدحام. أدوات: <b>QoS</b>، <b>DiffServ</b>، و<b>MPLS</b>.</p>
+  </div>
+ </div>
+
+ <div class="tip"><b>ملخص الوحدة 8</b>: التوثيق والتغيير المُدار يمنع فوضى الشبكة؛ أدوات الاكتشاف (Nmap, CDP/LLDP) تحدد الأجهزة والاتصالات؛ SNMP يراقب ويضبط الأجهزة عن بُعد؛ السجلات وSIEM يجمّعان ويحلّلان الأحداث الأمنية؛ التقاط الحزم ومراقبة الترافيك يشخّصان مشاكل الأداء.</div>
+</section>
+
+
+</main>
+
+<div class="modnav"><a href="module7-guide.html">← الوحدة 7</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="quiz.html">الذهاب للاختبار 📝</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 8 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>

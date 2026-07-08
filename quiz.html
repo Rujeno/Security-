@@ -90,7 +90,7 @@ button.nav{font-family:inherit;font-weight:700;font-size:15px;border:none;border
 <body>
 <header>
  <h1>اختبار محاكي · CompTIA Network+ N10-009</h1>
- <p>الوحدة 1 (Fundamentals) · الوحدة 2 (Cabling) · الوحدة 3 (Interfaces & Switches) · الوحدة 4 (Network Addressing) — الأسئلة بالإنجليزي والشرح بالعربي</p>
+ <p>الوحدات 1 إلى 8 — Fundamentals · Cabling · Interfaces & Switches · Addressing · Routing · Services · Applications · Management — الأسئلة بالإنجليزي والشرح بالعربي</p>
 </header>
 
 <div class="switcher"><div class="swrap">
@@ -99,6 +99,10 @@ button.nav{font-family:inherit;font-weight:700;font-size:15px;border:none;border
  <a href="module2-guide.html">الوحدة 2</a>
  <a href="module3-guide.html">الوحدة 3</a>
  <a href="module4-guide.html">الوحدة 4</a>
+ <a href="module5-guide.html">الوحدة 5</a>
+ <a href="module6-guide.html">الوحدة 6</a>
+ <a href="module7-guide.html">الوحدة 7</a>
+ <a href="module8-guide.html">الوحدة 8</a>
  <a href="quiz.html" class="active">📝 الاختبار</a>
 </div></div>
 
@@ -456,6 +460,342 @@ const Q = [
 {t:"M4 · Transition", q:"When is NAT64 the best choice among transition mechanisms?",
  o:["In an environment gradually moving to IPv6 but still needing access to IPv4 resources","In an IPv4-only environment with no future transition plan","Only to encrypt traffic between networks","Only to compress the size of sent packets"], a:0,
  e:"<b>NAT64</b> يترجم بين IPv6 وIPv4 والعكس — الأنسب للبيئات التي تنتقل إلى IPv6 لكنها ما زالت بحاجة الوصول لموارد <b>IPv4</b>."},
+
+// ---------- Module 5 ----------
+{t:"M5 · Routing Tables", q:"Which four parameters typically define a routing table entry?",
+ o:["Source, Destination, TTL, Checksum","Protocol, Destination, Interface, Gateway/Next hop","VLAN ID, MAC address, Port, Speed","Hostname, IP, Subnet, DNS"], a:1,
+ e:"إدخال جدول التوجيه يتحدد بـ<b>Protocol</b> (بروتوكول تعلّم المسار)، <b>Destination</b> (الشبكة الوجهة)، <b>Interface</b> (منفذ الخروج)، و<b>Gateway/Next hop</b> (العنوان التالي بالطريق)."},
+
+{t:"M5 · Route Types", q:"Which type of route is used when no other matching entry exists in the routing table?",
+ o:["Directly connected route","Host route","Default route","Remote route"], a:2,
+ e:"<b>Default route</b> هو المسار المستخدَم عندما لا يوجد إدخال مطابق آخر لوجهة الحزمة — بوابة الخروج الافتراضية لأي وجهة غير معروفة."},
+
+{t:"M5 · Router Placement", q:"According to router placement rules, when must two devices be separated by a router?",
+ o:["When they are on the same subnet","When they are on different subnets or IP networks","Only when using wireless connections","Never — routers only connect to the Internet"], a:1,
+ e:"القاعدة: الأجهزة على نفس الـsubnet/IP network <b>لا يجب</b> أن يفصل بينها راوتر، لكن الأجهزة على شبكات <b>مختلفة يجب</b> أن يفصل بينها راوتر."},
+
+{t:"M5 · Routing Tools", q:"Which command-line tool tracks the path a packet takes to reach its destination?",
+ o:["show arp","route","traceroute","show route"], a:2,
+ e:"<b>traceroute</b> يتتبع مسار الحزمة عبر كل الـhops حتى تصل للوجهة. show route/route يعرضان جدول التوجيه، وshow arp يعرض جدول ARP."},
+
+{t:"M5 · Static vs Dynamic", q:"What is a key advantage of dynamic routing over static routing?",
+ o:["Complete manual control over every path","Automatically adjusts to network changes in real time","Requires no processing power","Uses less memory than static routing"], a:1,
+ e:"الـ<b>Dynamic Routing</b> يتكيّف تلقائيًا وبشكل لحظي مع تغيّرات الشبكة، بعكس الـStatic اللي يحتاج تدخل يدوي لكل تحديث."},
+
+{t:"M5 · RIP", q:"RIP uses which metric for path selection, and what is its maximum hop limit?",
+ o:["Bandwidth, unlimited hops","Hop count, 15 maximum hops","Delay, 255 maximum hops","Load, 30 maximum hops"], a:1,
+ e:"<b>RIP</b> بروتوكول قديم (legacy) يستخدم <b>hop count</b> كمقياس، بحد أقصى <b>15 hop</b> — غير مناسب للشبكات الكبيرة وبطيء التقارب."},
+
+{t:"M5 · EIGRP", q:"Which statement about EIGRP is correct?",
+ o:["It is an open standard supported by all vendors","It's a Cisco-proprietary distance-vector protocol using bandwidth, delay, load, and reliability metrics","It only supports IPv4 networks","It uses hop count as its only metric"], a:1,
+ e:"<b>EIGRP</b> بروتوكول <span class=\"en\">distance-vector</span> متقدم وملكية <b>Cisco</b>، يستخدم مقاييس (bandwidth, delay, load, reliability) ويدعم IPv4 وIPv6 معًا."},
+
+{t:"M5 · OSPF", q:"OSPF is best described as:",
+ o:["A distance-vector protocol using hop count","A link-state protocol that computes the shortest path using the SPF algorithm","A protocol limited to small networks only","A protocol that doesn't support complex topologies"], a:1,
+ e:"<b>OSPF</b> بروتوكول <span class=\"en\">link-state</span> يحسب أقصر مسار عبر خوارزمية <b>Shortest Path First</b>، ويدعم topologies معقدة لكنه يحتاج bandwidth وتخطيطًا أكثر."},
+
+{t:"M5 · BGP", q:"What makes BGP suitable for exchanging routing information across the entire Internet?",
+ o:["It only works within a single autonomous system","It's scalable to the Internet's size, uses a path vector protocol, and supports CIDR","It requires manual configuration for every route","It uses hop count exclusively"], a:1,
+ e:"<b>BGP</b> يمكّن الإنترنت من تبادل معلومات التوجيه بين <span class=\"en\">autonomous systems</span>، قابل للتوسع لحجم الإنترنت، يستخدم <b>path vector</b>، ويدعم <b>CIDR</b>."},
+
+{t:"M5 · NAT", q:"What is one of the main reasons organizations use NAT?",
+ o:["To increase the number of required public IP addresses","To hide internal IP addresses and conserve public IP addresses","To disable internal network communication","To slow down external traffic intentionally"], a:1,
+ e:"<b>NAT</b> يخفي عناوين IP الداخلية عن الشبكات الخارجية (يزيد الأمان) ويتيح لعدة أجهزة مشاركة IP عام واحد، ما <b>يوفّر عناوين IP العامة</b>."},
+
+{t:"M5 · NAT Types", q:"What is the difference between Dynamic NAT and Static NAT?",
+ o:["Dynamic NAT maps internal addresses to a pool of external addresses; Static NAT maps one internal address to one fixed external address","Static NAT uses a pool of addresses; Dynamic NAT is fixed","They are identical in function","Dynamic NAT only works with IPv6"], a:0,
+ e:"<b>Dynamic NAT</b> يربط العناوين الداخلية بـ<span class=\"en\">pool</span> من العناوين الخارجية ديناميكيًا. <b>Static NAT</b> يترجم عنوانًا داخليًا واحدًا لعنوان خارجي ثابت، ويسمح باتصالات واردة."},
+
+{t:"M5 · Edge Routers", q:"What distinguishes a Customer Edge (CE) router from a Provider Edge (PE) router?",
+ o:["CE is located at the customer's network edge acting as a security barrier; PE is at the provider's edge focused on protecting customer data across the provider network","CE and PE are the same device with different names","PE is always inside the customer's building","CE routers never perform NAT"], a:0,
+ e:"<b>CE</b> عند حافة شبكة العميل ويعمل كحاجز أمني ويربطها بشبكة المزوّد. <b>PE</b> عند حافة شبكة المزوّد ويركّز على حماية سرية بيانات العميل عبر شبكته."},
+
+{t:"M5 · Firewalls", q:"What is the key difference between stateless and stateful firewall inspection?",
+ o:["Stateless filters based on IP/protocol/port only; stateful inspects packets and tracks the state of active connections","Stateless tracks connection state; stateful only filters by IP","They provide identical protection at the same OSI layer","Stateful firewalls cannot be used in corporate networks"], a:0,
+ e:"<b>Stateless (Packet Filtering)</b> يرشّح حسب IP/بروتوكول/منفذ فقط في Network layer. <b>Stateful (Circuit Level Gateway)</b> يفحص الحزم ويتتبع حالة الاتصالات النشطة في Session layer."},
+
+{t:"M5 · UTM", q:"What best describes a Unified Threat Management (UTM) appliance?",
+ o:["A device that performs a single security function only","An all-in-one security appliance combining multiple security functions","A protocol for encrypting VLAN traffic","A type of routing protocol"], a:1,
+ e:"<b>UTM</b> جهاز أمني شامل (all-in-one) يجمع عدة وظائف أمنية بجهاز واحد، بعكس الجدران النارية المتخصصة بوظيفة واحدة."},
+
+{t:"M5 · Hybrid Topologies", q:"Why are hybrid topologies used in enterprise networks?",
+ o:["Because a single basic topology isn't enough, so multiple topologies are combined for redundancy and fault tolerance","Because they are always cheaper than a single topology","Because they eliminate the need for switches","Because they only work in small home networks"], a:0,
+ e:"الـ<b>Hybrid Topologies</b> تُستخدم عند عدم كفاية هيكلية أساسية واحدة، فتُمزَج عدة هيكليات لتحقيق <b>redundancy</b> و<b>fault tolerance</b> (مثل hierarchical star أو 3-tiered hierarchy)."},
+
+{t:"M5 · VLAN Purpose", q:"What is the primary purpose of a VLAN?",
+ o:["To physically separate cables into different rooms","To create separate logical networks within a single physical network infrastructure","To increase the maximum cable distance","To replace the need for IP addressing"], a:1,
+ e:"الـ<b>VLAN</b> تُنشئ شبكات منفصلة <b>منطقيًا</b> داخل بنية تحتية فيزيائية واحدة — تقسيم، مرونة بالتجميع حسب الوظيفة، وإدارة مبسّطة بدون تعديل التمديدات."},
+
+{t:"M5 · Default VLAN", q:"What is true about the Default VLAN?",
+ o:["It has VLAN ID 1 and should remain unused, with unused ports changed off ID 1","It always carries voice traffic","It must match the Native VLAN ID on every switch","It cannot be changed once configured"], a:0,
+ e:"الـ<b>Default VLAN</b> معرّفه <span class=\"en\">ID 1</span> ويجب أن يبقى غير مستخدَم — يُفضَّل تغيير المنافذ غير المستخدَمة من ID 1 لتفادي مخاطر أمنية."},
+
+{t:"M5 · Tagged Ports", q:"What is the difference between a tagged port and an untagged port?",
+ o:["Tagged ports receive and understand packets with a VLAN identifier; untagged ports receive data without one","Untagged ports only work with fiber cabling","Tagged ports cannot carry VLAN traffic","There is no difference"], a:0,
+ e:"<b>Tagged ports</b> مُهيّأة لاستقبال وفهم الحزم اللي تحمل معرّف VLAN. <b>Untagged ports</b> تستقبل البيانات بدون معرّف VLAN."},
+
+{t:"M5 · Native VLAN", q:"What is the function of the Native VLAN?",
+ o:["It receives all untagged frames and must be separate from the Default VLAN with matching IDs across switches","It only carries encrypted traffic","It is identical to the Management VLAN","It handles VoIP traffic exclusively"], a:0,
+ e:"الـ<b>Native VLAN</b> يستقبل كل الإطارات غير الموسومة (untagged)، ويجب أن يكون منفصلًا عن الـDefault VLAN، مع مطابقة الـID على كل السويتشات."},
+
+{t:"M5 · Trunking", q:"What does trunking do between switches?",
+ o:["Bundles multiple physical links into one logical link that carries traffic from multiple VLANs","Disables VLAN tagging entirely","Physically merges two switches into one","Only works with a single VLAN at a time"], a:0,
+ e:"<b>Trunking</b> يجمع عدة روابط فيزيائية في رابط منطقي واحد ينقل ترافيك عدة VLANs معًا بين السويتشات."},
+
+{t:"M5 · Routing Troubleshooting", q:"You can ping a host's default gateway but not hosts on a remote network. What should you suspect?",
+ o:["A DNS configuration issue","A routing table issue","A VLAN tagging issue only","A DHCP lease expiration"], a:1,
+ e:"نجاح ping للـgateway مع فشل الوصول لشبكة بعيدة يشير لمشكلة <b>routing table</b> — راجعي إدخالات الجدول، أقنعة الشبكة، والمسارات الثابتة/الديناميكية، واستخدمي traceroute."},
+
+{t:"M5 · VLAN Troubleshooting", q:"Devices on the same VLAN are failing to communicate. What is the most likely cause?",
+ o:["Mismatched IP configuration (address, subnet mask, gateway, or DNS) among devices on the VLAN","The VLAN ID is too high","The switch doesn't support trunking","The cable category is too low"], a:0,
+ e:"الأجهزة على نفس VLAN تحتاج إعداد IP متطابق (عنوان، قناع الشبكة، gateway، DNS) — أي تعارض بهذي الإعدادات يمنع التواصل حتى لو كانت على نفس VLAN."},
+
+// ---------- Module 6 ----------
+{t:"M6 · TCP Reliability", q:"What makes TCP a reliable transport protocol?",
+ o:["It uses a three-way handshake and tracks connection state with sequence/acknowledgment numbers","It has no header fields","It never retransmits lost data","It doesn't use port numbers"], a:0,
+ e:"<b>TCP</b> موثوق لأنه يستخدم <span class=\"en\">three-way handshake</span> ويتتبع حالة الاتصال عبر حقول <b>sequence number</b> و<b>ack number</b> لضمان وصول البيانات كاملة."},
+
+{t:"M6 · TCP Handshake", q:"What is the correct order of the TCP three-way handshake?",
+ o:["ACK → SYN → SYN-ACK","SYN → SYN-ACK → ACK","SYN-ACK → SYN → ACK","ACK → ACK → SYN"], a:1,
+ e:"الترتيب الصحيح: <b>SYN</b> (من المرسل) → <b>SYN-ACK</b> (رد المستقبل) → <b>ACK</b> (تأكيد المرسل) → Connection Established."},
+
+{t:"M6 · UDP", q:"Which statement correctly describes UDP?",
+ o:["It guarantees delivery through acknowledgments","It transmits data in a non-guaranteed, connectionless way with a simpler header than TCP","It always uses more header fields than TCP","It requires a three-way handshake before sending data"], a:1,
+ e:"<b>UDP</b> ينقل البيانات بطريقة <b>غير مضمونة (non-guaranteed)</b> وبدون اتصال مسبق، وحقول رأسه أبسط بكثير من TCP (Source port, Destination port, Message length, Checksum فقط)."},
+
+{t:"M6 · DHCP Process", q:"What is the correct order of the DHCP process (DORA)?",
+ o:["Offer → Discover → Ack → Request","Discover → Offer → Request → Ack","Request → Offer → Discover → Ack","Ack → Request → Offer → Discover"], a:1,
+ e:"عملية DHCP تُختصَر بـ<b>DORA</b>: <b>D</b>iscover (العميل) → <b>O</b>ffer (السيرفر) → <b>R</b>equest (العميل) → <b>A</b>ck (السيرفر)."},
+
+{t:"M6 · DHCP Server", q:"What must a DHCP server be configured with?",
+ o:["A dynamic IP address and no scope","A static IP address and a scope (range of IP addresses/subnet masks)","Only a default gateway","A VLAN ID and nothing else"], a:1,
+ e:"سيرفر DHCP يجب أن يُعطى <b>عنوان IP ثابت (static)</b> ويُهيَّأ بـ<b>scope</b> (نطاق عناوين IP/subnet masks) لتوزيعها على العملاء."},
+
+{t:"M6 · DHCP Reservations", q:"What is the difference between a DHCP reservation and a DHCP exclusion?",
+ o:["A reservation ties a specific IP to a device's MAC address; an exclusion sets aside a range of addresses that won't be distributed at all","They are the same thing","An exclusion is tied to a MAC address; a reservation blocks an address range","Reservations only apply to IPv6"], a:0,
+ e:"<b>Reservation</b> تضمن حصول جهاز معيّن دائمًا على نفس IP، مرتبطة بعنوان <b>MAC</b>. <b>Exclusion</b> تحجز نطاق عناوين ولا توزّعه إطلاقًا (لأجهزة مُعدَّة يدويًا مثلًا)."},
+
+{t:"M6 · APIPA Range", q:"What IP address range does a device self-assign under APIPA when no DHCP server is available?",
+ o:["10.0.0.1 – 10.255.255.255","169.254.0.1 – 169.254.254.255","192.168.0.1 – 192.168.255.255","172.16.0.1 – 172.31.255.255"], a:1,
+ e:"<b>APIPA</b> يعيّن للجهاز عنوانًا بين <code class=\"k\">169.254.0.1</code> و<code class=\"k\">169.254.254.255</code> عندما لا يتوفر DHCP — للاستخدام على الشبكة المحلية فقط."},
+
+{t:"M6 · APIPA ARP", q:"How does a device confirm its self-assigned APIPA address is unique on the network?",
+ o:["It contacts a DNS server","It uses ARP","It contacts the default gateway","It uses DHCP relay"], a:1,
+ e:"يستخدم الجهاز <b>ARP</b> للتأكد أن العنوان اللي عيّنه لنفسه فريد وغير مكرر على الشبكة المحلية."},
+
+{t:"M6 · SLAAC Limitation", q:"What is a key limitation of SLAAC compared to DHCPv6?",
+ o:["SLAAC requires a dedicated central server","SLAAC does not provide DNS server addresses","SLAAC cannot detect duplicate addresses","SLAAC is more complex to configure"], a:1,
+ e:"من قيود <b>SLAAC</b>: لا يوفّر عناوين سيرفر <b>DNS</b>، وتبنّيه محدود ببعض البيئات — بعكس <b>DHCPv6</b> اللي يوفّر تحكمًا مركزيًا وإعدادات موسّعة لكنه يحتاج سيرفر مخصص."},
+
+{t:"M6 · SLAAC Function", q:"Which of these is a core function of SLAAC?",
+ o:["DHCPv6 request and response","Link-local address configuration using an EUI-64 interface identifier and Duplicate Address Detection (DAD)","Centralized lease time management","Manual static IP assignment"], a:1,
+ e:"<b>SLAAC</b>: إعداد عنوان <span class=\"en\">Link-local</span>، معرّف واجهة <span class=\"en\">EUI-64</span>، واكتشاف تكرار العنوان (<b>DAD</b>) — كله بدون DHCP."},
+
+{t:"M6 · DHCP Relay", q:"What is the function of a DHCP Relay Agent?",
+ o:["It blocks all DHCP traffic between subnets","It acts as a bridge, receiving DHCP broadcast messages from clients and forwarding them to a DHCP server on a different subnet","It assigns static IP addresses only","It replaces the need for a DHCP server entirely"], a:1,
+ e:"<b>DHCP Relay Agent</b> يعمل كجسر شبكي — يستقبل رسائل DHCP broadcast من العملاء ويمررها لسيرفر DHCP بعيد على subnet مختلفة."},
+
+{t:"M6 · IP Helper", q:"What does the Cisco IP Helper feature do?",
+ o:["Encrypts DHCP traffic","Translates broadcast traffic to unicast so DHCP requests can cross subnet boundaries to reach a server","Blocks DHCP requests from other subnets","Assigns APIPA addresses automatically"], a:1,
+ e:"<b>IP Helper</b> ميزة على أجهزة Cisco تترجم البث (broadcast) إلى unicast لعبور حدود الـsubnet، وترسل طلبات DHCP من العملاء لسيرفر بشبكة مختلفة."},
+
+{t:"M6 · Host vs Domain Names", q:"What is the key difference between a host name and a domain name?",
+ o:["Host names are local identifiers unique on the local network; domain names are global, hierarchical, and registered with a registrar","Domain names are only used internally","Host names must be globally unique","There is no difference"], a:0,
+ e:"<b>Host Names</b> محلية يعيّنها المسؤول وفريدة على الشبكة المحلية فقط. <b>Domain Names</b> عالمية، هرمية البنية، وتُسجَّل عبر <span class=\"en\">registrar</span>."},
+
+{t:"M6 · DNS Hierarchy", q:"What is the correct order of the DNS hierarchy from top to bottom?",
+ o:["Sub-Domain → Domain → Top Level Domain → Root","Root DNS Servers → Top Level Domain → Domain → Sub-Domain","Top Level Domain → Root → Sub-Domain → Domain","Domain → Root → Sub-Domain → Top Level Domain"], a:1,
+ e:"هرمية DNS: <b>Root DNS Servers</b> → <b>Top Level Domain</b> (.com/.org/.gov) → <b>Domain</b> (comptia.org) → <b>Sub-Domain</b> (help.comptia.org)."},
+
+{t:"M6 · DNS Records", q:"Which DNS record type identifies the mail servers responsible for a domain?",
+ o:["A (Host Address)","MX (Mail Exchange)","PTR (Pointer)","TXT (Text)"], a:1,
+ e:"سجل <b>MX (Mail Exchange)</b> يحدد سيرفرات البريد المسؤولة عن نطاق ويرتب أولوية توصيل البريد. أما A فيربط الاسم بعنوان IPv4."},
+
+{t:"M6 · PTR Record", q:"What is a PTR record used for?",
+ o:["Mapping a domain name to an IPv4 address","Reverse DNS lookup, mapping an IP address back to a domain name","Storing SPF and DKIM information","Specifying mail server priority"], a:1,
+ e:"سجل <b>PTR (Pointer)</b> يُستخدم للبحث العكسي (<span class=\"en\">reverse DNS lookup</span>) — يربط عنوان IP باسم النطاق، عكس سجل A."},
+
+{t:"M6 · DNS Server Types", q:"What is the role of a secondary DNS server?",
+ o:["It's the only server that can resolve domain names","It provides redundancy and load balancing, serving as a backup if the primary server fails","It only caches results without ever resolving new domains","It manages internal IP addressing only"], a:1,
+ e:"<b>Secondary DNS Server</b> يوفّر تكرارًا (redundancy) وموازنة حِمل، ويعمل كنسخة احتياطية إذا فشل السيرفر الأساسي (Primary)."},
+
+{t:"M6 · DNS Security", q:"Which technology addresses DNS spoofing and cache poisoning?",
+ o:["DNS over HTTPS (DoH)","DNSSEC (DNS Security Extensions)","DNS over TLS (DoT)","IP Helper"], a:1,
+ e:"<b>DNSSEC</b> هو الحل المخصص لتهديدات <b>DNS spoofing وpoisoning</b>. أما DoT وDoH فيحميان من التنصت واعتراض/تلاعب حركة استعلامات DNS."},
+
+{t:"M6 · DNS Tools", q:"Which command-line tools are used to verify DNS records on Windows and Linux respectively?",
+ o:["ping and traceroute","nslookup and dig","arp and route","ipconfig and ifconfig"], a:1,
+ e:"على Windows: <code class=\"k\">nslookup</code>. على Linux: <code class=\"k\">dig</code> — كلاهما يتحقق من سجلات DNS مباشرة."},
+
+// ---------- Module 7 ----------
+{t:"M7 · TLS Properties", q:"TLS provides which three core security properties?",
+ o:["Compression, Routing, Addressing","Encryption, Authentication, Integrity","Latency reduction, Load balancing, Caching","Segmentation, Multiplexing, Framing"], a:1,
+ e:"<b>TLS</b> يوفر <b>Encryption</b> (تشفير البيانات)، <b>Authentication</b> (تأكيد هوية السيرفر بالشهادات)، و<b>Integrity</b> (التأكد أن البيانات لم تتغيّر)."},
+
+{t:"M7 · TLS Handshake", q:"What is the correct order of the TLS handshake?",
+ o:["Server Finished → Client Hello → Server Hello → Session Key Established → Client Key Exchange","Client Hello → Server Hello → Client Key Exchange → Session Key Established → Server Finished","Session Key Established → Client Hello → Server Finished → Server Hello → Client Key Exchange","Client Key Exchange → Client Hello → Server Hello → Server Finished → Session Key Established"], a:1,
+ e:"ترتيب TLS Handshake: <b>Client Hello</b> → <b>Server Hello</b> → <b>Client Key Exchange</b> → <b>Session Key Established</b> → <b>Server Finished</b>."},
+
+{t:"M7 · NTP", q:"What port and protocol does NTP use, and what does it synchronize devices to?",
+ o:["TCP port 80, synchronizes to a local time server only","UDP port 123, synchronizes system clocks to Coordinated Universal Time (UTC)","TCP port 443, synchronizes to the nearest router","UDP port 514, synchronizes log timestamps only"], a:1,
+ e:"<b>NTP</b> يزامن ساعات الأنظمة مع <b>UTC</b> عبر <span class=\"en\">UDP</span> على المنفذ <b>123</b>."},
+
+{t:"M7 · PTP", q:"PTP is best suited for which types of applications, requiring higher time precision than NTP?",
+ o:["Only casual desktop clock syncing","Industrial processes, 5G cellular data, medical devices, financial services, and broadcasting","Only email timestamp accuracy","Only DNS record timestamps"], a:1,
+ e:"<b>PTP</b> يوفّر دقة زمنية أعلى من NTP، ويُستخدم بالعمليات الصناعية، شبكات 5G، الأجهزة الطبية، الخدمات المالية، والبث."},
+
+{t:"M7 · PTP Clock", q:"In a PTP domain, which clock type is the main time source?",
+ o:["Ordinary clock","Boundary clock","Grandmaster clock","Slave clock"], a:2,
+ e:"<b>Grandmaster clock</b> هو المصدر الزمني الرئيسي بمجال PTP، وبقية الساعات (Boundary, Ordinary) تتزامن معه بالتسلسل الهرمي."},
+
+{t:"M7 · HTTP vs HTTPS", q:"What is the key difference between HTTP and HTTPS?",
+ o:["HTTPS uses TLS encryption on port 443; HTTP does not encrypt data and uses port 80","HTTP is more secure than HTTPS","They both use the same port","HTTPS never uses TLS"], a:0,
+ e:"<b>HTTPS</b> = نسخة آمنة من HTTP تستخدم تشفير <b>TLS</b> على المنفذ <b>443</b>. <b>HTTP</b> لا يشفّر البيانات ويستخدم المنفذ <b>80</b>."},
+
+{t:"M7 · FTP Modes", q:"What is the difference between FTP's Active and Passive transfer modes?",
+ o:["In Active mode the server connects back to the client to transfer data; in Passive mode the client initiates both command and data connections to avoid firewall issues","Active mode is always encrypted; Passive mode is not","Passive mode requires two servers","There is no functional difference"], a:0,
+ e:"<b>Active</b>: السيرفر يتصل بالعميل لنقل البيانات. <b>Passive</b>: العميل يبدأ اتصالات الأوامر والبيانات — يتجنّب مشاكل الجدار الناري."},
+
+{t:"M7 · FTP vs SFTP", q:"What is a key difference between FTP and SFTP?",
+ o:["FTP transmits encrypted data over one channel; SFTP transmits unencrypted data over two channels","FTP transmits unencrypted data over two channels (ports 20/21); SFTP transmits encrypted data over one channel (port 22)","They use identical ports and encryption","SFTP cannot transfer files, only list them"], a:1,
+ e:"<b>FTP</b>: بيانات غير مشفرة، قناتان (أوامر+بيانات)، منافذ <b>20 و21</b>. <b>SFTP</b>: بيانات مشفرة، قناة واحدة، منفذ <b>22</b>."},
+
+{t:"M7 · SMB", q:"What is the primary purpose of the SMB (Server Message Block) protocol?",
+ o:["Sending email between mail servers","Allowing computers on the same network to share resources (used natively on Windows and via Samba on Linux)","Synchronizing system clocks","Resolving domain names to IP addresses"], a:1,
+ e:"<b>SMB</b> يسمح للأجهزة على نفس الشبكة بمشاركة الموارد — أصلي على <span class=\"en\">Windows</span>، ومتاح على <span class=\"en\">Linux</span> عبر <b>Samba</b>."},
+
+{t:"M7 · NAS", q:"What are the typical components of a NAS (Network Attached Storage) device?",
+ o:["Only a power supply and a cable","A processor, memory, hard drives, and typically a bespoke Linux-based OS","A firewall and a router only","A DNS server and a DHCP server"], a:1,
+ e:"جهاز <b>NAS</b> يتكوّن من معالج وذاكرة وأقراص صلبة، مع نظام تشغيل مخصص (غالبًا لينكس)، ويوفّر وصولًا متزامنًا لعدة أجهزة عن بُعد."},
+
+{t:"M7 · RDBMS vs NoSQL", q:"What is a key difference between RDBMS and NoSQL databases?",
+ o:["RDBMS requires a predefined schema and is vertically scalable; NoSQL is schema-less/dynamic and horizontally scalable","NoSQL always requires a predefined schema","RDBMS cannot handle complex queries","They are functionally identical"], a:0,
+ e:"<b>RDBMS</b> يحتاج <span class=\"en\">schema</span> محددة مسبقًا وقابل للتوسع رأسيًا (vertically). <b>NoSQL</b> بلا schema أو schema ديناميكية وقابل للتوسع أفقيًا (horizontally)."},
+
+{t:"M7 · SMTP", q:"What is SMTP used for, and which ports does it commonly use?",
+ o:["Reading emails from a server; ports 143 and 993","Sending emails from one server to another; ports 25, 465 (implicit TLS), and 587 (explicit TLS)","Resolving domain names; port 53","Synchronizing clocks; port 123"], a:1,
+ e:"<b>SMTP</b> يُستخدم لإرسال البريد بين السيرفرات. المنافذ: <b>25</b> (عادي)، <b>465</b> (implicit TLS)، <b>587</b> (explicit TLS)."},
+
+{t:"M7 · IMAP", q:"What is the primary function of IMAP?",
+ o:["Sending emails from a client to a mail server","Accessing and managing email remotely, with emails stored on the server","Encrypting voice calls","Assigning IP addresses automatically"], a:1,
+ e:"<b>IMAP</b> يتيح الوصول لإدارة البريد عن بُعد، مع بقاء الرسائل مخزّنة على السيرفر (اتصال، مزامنة، قراءة، وإدارة الرسائل)."},
+
+{t:"M7 · VoIP-Enabled PBX", q:"What does a VoIP-enabled PBX do?",
+ o:["Only manages traditional analog phone lines with no IP capability","Combines traditional PBX functions with VoIP, operating over a LAN or WAN and reducing reliance on physical infrastructure","Replaces DNS servers","Only works with FTP file transfers"], a:1,
+ e:"<b>VoIP-Enabled PBX</b> يجمع وظائف PBX التقليدي مع VoIP، يعمل عبر LAN أو WAN، ويقلل الاعتماد على البنية التحتية الفيزيائية."},
+
+{t:"M7 · VoIP Protocols", q:"Which protocol initiates, maintains, and terminates real-time communication sessions like VoIP calls?",
+ o:["RTP (Real-Time Protocol)","RTCP (Real-Time Transport Control Protocol)","SIP (Session Initiation Protocol)","SMTP"], a:2,
+ e:"<b>SIP</b> يبدأ ويدير وينهي جلسات الاتصال اللحظي (مثل مكالمات VoIP)، بينما RTP ينقل الصوت/الفيديو وRTCP يوفّر إحصائيات الجلسة."},
+
+{t:"M7 · RTP Ports", q:"RTP uses which type of UDP port numbers for streaming media?",
+ o:["Even-numbered ports","Odd-numbered ports","Only port 443","Only port 25"], a:0,
+ e:"<b>RTP</b> يستخدم منافذ UDP <b>زوجية (even)</b> لبث الوسائط، بينما RTCP يستخدم المنفذ الفردي (odd) الأعلى منه بواحد."},
+
+{t:"M7 · DR Metrics", q:"What does RTO (Recovery Time Objective) measure?",
+ o:["The maximum acceptable data loss after an event","The time required to restore services after a disruption","The average time between system failures","The longest disruption tolerable without severe impact"], a:1,
+ e:"<b>RTO</b> = الوقت اللازم لاستعادة الخدمات بعد انقطاع. أما RPO فيقيس أقصى فقدان بيانات مقبول، وMTD أطول انقطاع محتمل بدون تأثير شديد."},
+
+{t:"M7 · DR Sites", q:"Which disaster recovery site type is fully equipped and ready to take over operations almost immediately?",
+ o:["Cold site","Warm site","Hot site","Backup site"], a:2,
+ e:"<b>Hot Site</b> نسخة كاملة جاهزة للعمل فورًا (الأسرع والأغلى). Warm site معدات جزئية جاهزة، وCold site بنية أساسية بدون معدات جاهزة (الأبطأ والأرخص)."},
+
+{t:"M7 · Fault Tolerance vs Redundancy", q:"What is the difference between fault tolerance and redundancy?",
+ o:["Fault tolerance maintains operation at reduced capacity during a failure; redundancy duplicates key components to prevent a single failure from causing collapse","They are identical concepts","Redundancy always shuts the system down during failure","Fault tolerance only applies to software, not hardware"], a:0,
+ e:"<b>Fault Tolerance</b>: يحافظ على العمل بسعة مخفّضة عند فشل مكوّن. <b>Redundancy</b>: يكرر المكونات الأساسية لمنع انهيار النظام من فشل نقطة واحدة."},
+
+{t:"M7 · Load Balancing", q:"Which of these are examples of load balancing algorithms?",
+ o:["Round Robin and Least Connections","SYN and ACK","SOA and MX","DoT and DoH"], a:0,
+ e:"من خوارزميات موازنة الحمل الشائعة: <b>Round Robin</b> و<b>Least Connections</b> — تحدد كيف يوزّع الـload balancer الطلبات على السيرفرات."},
+
+{t:"M7 · First Hop Redundancy", q:"What is the purpose of First Hop Redundancy protocols like HSRP/VRRP?",
+ o:["To encrypt traffic between routers","To automatically switch to a backup gateway if the primary one fails, preventing a single point of failure","To assign IP addresses via DHCP","To compress network traffic"], a:1,
+ e:"بروتوكولات <b>HSRP/VRRP</b> تضمن التبديل التلقائي لبوابة احتياطية إذا فشلت الأساسية، ما يمنع الـ<span class=\"en\">single point of failure</span> عند البوابة."},
+
+// ---------- Module 8 ----------
+{t:"M8 · Documentation", q:"What is one of the key benefits of proper network documentation?",
+ o:["It makes troubleshooting harder","It facilitates troubleshooting, ensures consistency, and supports scalability and staff turnover","It eliminates the need for change management","It replaces the need for backups"], a:1,
+ e:"التوثيق الجيد <b>يسهّل استكشاف الأخطاء</b>، يضمن الاتساق، يدعم التوسع والترقيات، ويدعم استمرارية العمل عند تغيّر الموظفين."},
+
+{t:"M8 · Configuration Management", q:"What is generally the first step in the configuration management process?",
+ o:["Monitor configuration drift","Identify service assets","Establish a CI management plan","Determine an identification strategy"], a:1,
+ e:"خطوات إدارة الإعدادات: <b>Identify service assets</b> → Consider a CMS solution → Determine an identification strategy → Establish a CI management plan → Monitor configuration drift."},
+
+{t:"M8 · Asset Management", q:"What information should typically be recorded for each asset in an inventory?",
+ o:["Only the asset's color","Description, purchase date, service history, status, and location","Only the IP address","Only the manufacturer name"], a:1,
+ e:"جرد الأصول يسجّل: <b>وصف الأصل</b>، تاريخ الشراء، سجل الخدمة، الحالة، والموقع — مع تحديث دوري وضوابط وصول صارمة."},
+
+{t:"M8 · Discovery Tools", q:"Which of these is a common network discovery tool mentioned for identifying devices and services?",
+ o:["Nmap","Notepad","Excel","Photoshop"], a:0,
+ e:"<b>Nmap</b> (مع AngryIP وPRTG) من أدوات اكتشاف الشبكة الأساسية لتحديد الأجهزة والخدمات المتصلة."},
+
+{t:"M8 · Nmap", q:"Which Nmap switch performs host discovery without port scanning?",
+ o:["-sT","-sn","-sV","-p"], a:1,
+ e:"خيار <code class=\"k\">-sn</code> بأداة Nmap يكتشف الأجهزة الحيّة على الشبكة بدون فحص المنافذ (port scanning)."},
+
+{t:"M8 · CDP vs LLDP", q:"What is the key difference between CDP and LLDP?",
+ o:["CDP is Cisco-proprietary; LLDP is an IEEE standards-based protocol supported across vendors","LLDP is Cisco-proprietary; CDP is the IEEE standard","They are the exact same protocol under different names","CDP only works over Wi-Fi"], a:0,
+ e:"<b>CDP</b> أداة خاصة بشركة <b>Cisco</b>. <b>LLDP</b> بروتوكول قياسي <b>IEEE</b> يعمل عبر أجهزة موردين مختلفين — كلاهما يكتشف كيفية اتصال الأجهزة ونظام التشغيل وعناوين IP."},
+
+{t:"M8 · Performance Baseline", q:"Why is establishing a performance baseline important?",
+ o:["It has no practical use","It provides historical values to compare against current performance and detect deviations","It replaces the need for monitoring tools","It only applies to security audits"], a:1,
+ e:"الـ<b>baseline</b> يوفّر قيمًا تاريخية تُقارَن بالأداء الحالي لاكتشاف الانحرافات وضبط <span class=\"en\">threshold alerts</span> المناسبة."},
+
+{t:"M8 · Configuration Monitoring", q:"What does Configuration Monitoring verify, as opposed to Availability Monitoring?",
+ o:["That devices and services are operational when needed","That all network appliances are in a known state, compared against a baseline/golden configuration","The speed and efficiency of network traffic","The physical location of devices"], a:1,
+ e:"<b>Configuration Monitoring</b> يتحقق أن كل الأجهزة بحالة معروفة مقارنة بـ<b>baseline/golden configuration</b>. أما <b>Availability Monitoring</b> فيتحقق من تشغيل الخدمات وتوفّرها."},
+
+{t:"M8 · SNMP Basics", q:"At which layer does SNMP operate, and which ports does it use?",
+ o:["Network layer, TCP ports 80/443","Application layer, UDP ports 161/162","Data Link layer, UDP port 53","Transport layer, TCP port 22"], a:1,
+ e:"<b>SNMP</b> يعمل في طبقة <b>Application</b>، ويستخدم منفذي <span class=\"en\">UDP</span> <b>161/162</b>."},
+
+{t:"M8 · SNMP Agent", q:"What is the function of an SNMP Agent?",
+ o:["It's the centralized system that monitors the whole network","A software module on managed devices (like routers/switches) that maintains information in a database","It only sends emails about faults","It replaces the need for a MIB"], a:1,
+ e:"<b>SNMP Agent</b> وحدة برمجية على الأجهزة المُدارة (راوترات/سويتشات) تحتفظ بمعلومات بقاعدة بيانات. أما <b>SNMP Manager (NMS)</b> فهو النظام المركزي للمراقبة."},
+
+{t:"M8 · MIB", q:"What is a MIB (Management Information Base)?",
+ o:["A type of firewall","A hierarchical collection of managed resource information organized into categories (system, interface, IP, etc.)","A routing protocol","An encryption algorithm"], a:1,
+ e:"<b>MIB</b> مجموعة هرمية من معلومات الموارد المُدارة، منظّمة بفئات مثل system, interface, IP وغيرها."},
+
+{t:"M8 · SNMP Trap", q:"What triggers an SNMP Trap message?",
+ o:["A scheduled daily report","An agent sending it when a fault occurs","A manual request from the SNMP Manager for data","A DNS resolution failure"], a:1,
+ e:"رسالة <b>Trap</b> يرسلها الـ<span class=\"en\">agent</span> عند حدوث <b>عطل (fault)</b> — تختلف عن GetRequest اللي يطلبها الـManager لاسترجاع بيانات."},
+
+{t:"M8 · SNMPv3", q:"What is a major security advancement of SNMPv3 over SNMPv2c?",
+ o:["SNMPv3 uses plaintext community strings, which is more secure","SNMPv3 offers encryption and strong user authentication using username/permission lists instead of community strings","SNMPv3 removed the need for authentication entirely","SNMPv3 only works over TCP"], a:1,
+ e:"<b>SNMPv3</b> يوفّر تشفيرًا ومصادقة قوية باستخدام قوائم أسماء مستخدمين وصلاحيات، بدل الاعتماد على <span class=\"en\">community strings</span> النصية الصريحة في v2c."},
+
+{t:"M8 · Syslog Port", q:"What port does the standard Syslog protocol use?",
+ o:["UDP port 161","UDP port 514","TCP port 443","TCP port 22"], a:1,
+ e:"<b>Syslog</b> يستخدم منفذ <span class=\"en\">UDP 514</span> لإرسال رسائل السجل بصيغة قياسية."},
+
+{t:"M8 · Syslog Severity", q:"In Syslog severity levels, which end of the scale represents the most critical events?",
+ o:["Debug (7) is most critical","Emergency (0) is most critical","They are ranked alphabetically, not by severity","Severity levels don't affect alerting"], a:1,
+ e:"مستويات شدة Syslog تتدرج من <b>Emergency (0)</b> (الأخطر) إلى <b>Debug (7)</b> (الأقل أهمية)."},
+
+{t:"M8 · SIEM", q:"What does a SIEM system primarily do?",
+ o:["Only stores backup files","Analyzes security alerts from applications and network devices in real-time, combining log aggregation, event correlation, and alerting","Replaces the need for firewalls","Only manages DNS records"], a:1,
+ e:"<b>SIEM</b> يحلل تنبيهات الأمان من التطبيقات وأجهزة الشبكة لحظيًا، ويجمع بين تجميع السجلات، ربط الأحداث، والتنبيه."},
+
+{t:"M8 · Packet Capture", q:"Which library is commonly used under the hood for packet capturing tools like tcpdump?",
+ o:["OpenSSL","libpcap","libcurl","zlib"], a:1,
+ e:"أدوات التقاط الحزم مثل <span class=\"en\">tcpdump</span> تعتمد على مكتبة <b>libpcap</b> لالتقاط الحزم، مع إمكانية فلترة لبيانات محددة."},
+
+{t:"M8 · Wireshark", q:"What does the 'Follow TCP Stream' feature in Wireshark do?",
+ o:["Deletes captured packets","Reconstructs session data from a TCP conversation for easier analysis","Blocks a specific IP address","Converts packets to UDP"], a:1,
+ e:"<b>Follow TCP Stream</b> بأداة Wireshark يعيد تركيب بيانات جلسة TCP كاملة لتسهيل تحليلها، بدل مراجعة كل حزمة على حدة."},
+
+{t:"M8 · Flow Data", q:"What kind of information does Flow Data typically include?",
+ o:["Only the device's serial number","Source/destination IPs, packet sizes, and timestamps","Only the operating system version","Only the color of the network cable"], a:1,
+ e:"<b>Flow Data</b> تشمل عناوين IP المصدر/الوجهة، أحجام الحزم، والطوابع الزمنية — ضرورية لتحليل الأداء وتحديد أنماط الترافيك واكتشاف الشذوذ."},
+
+{t:"M8 · Traffic Shaping", q:"Which of the following are tools/technologies used for traffic shaping?",
+ o:["QoS, DiffServ, and MPLS","SMTP, IMAP, and POP3","DNS, DHCP, and ARP","STP, VLAN, and NAT"], a:0,
+ e:"أدوات <b>Traffic Shaping</b>: <b>QoS</b>، <b>DiffServ</b>، و<b>MPLS</b> — تعطي أولوية للترافيك الحرج عبر تأخير الحزم وتنظيم التدفق."},
+
+{t:"M8 · Bandwidth Management", q:"Which methods are commonly used for bandwidth management?",
+ o:["Rate limiting and traffic policing","Zone transfers and recursive queries","Port forwarding and NAT translation","VLAN tagging and trunking"], a:0,
+ e:"طرق <b>Bandwidth Management</b> الشائعة: <b>Rate limiting</b> و<b>Traffic policing</b> — لتخصيص أولوية للخدمات الأساسية ومنع الازدحام."},
 ];
 
 const MODULES = [
@@ -463,6 +803,10 @@ const MODULES = [
  {key:"M2", label:"الوحدة 2", eng:"Cabling & Physical Install"},
  {key:"M3", label:"الوحدة 3", eng:"Interfaces & Switches"},
  {key:"M4", label:"الوحدة 4", eng:"Network Addressing"},
+ {key:"M5", label:"الوحدة 5", eng:"Routing & Advanced Switching"},
+ {key:"M6", label:"الوحدة 6", eng:"Implementing Network Services"},
+ {key:"M7", label:"الوحدة 7", eng:"Application Services"},
+ {key:"M8", label:"الوحدة 8", eng:"Supporting Network Management"},
 ];
 
 let activeQ = [];
@@ -482,7 +826,7 @@ function buildHome(){
  });
  const allBtn = document.createElement("button");
  allBtn.className = "selcard all";
- allBtn.innerHTML = `<div class="stag">FULL MOCK EXAM</div><div class="stitle">كل الوحدات 1–4</div><div class="scount">${Q.length} سؤالًا بنمط الاختبار الكامل</div>`;
+ allBtn.innerHTML = `<div class="stag">FULL MOCK EXAM</div><div class="stitle">كل الوحدات 1–8</div><div class="scount">${Q.length} سؤالًا بنمط الاختبار الكامل</div>`;
  allBtn.onclick = ()=>startQuiz("ALL");
  grid.appendChild(allBtn);
 }
