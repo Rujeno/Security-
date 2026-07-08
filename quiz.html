@@ -37,6 +37,10 @@ header p{color:#b9d2dd;font-size:14.5px;margin-top:6px}
 .selcard.all .stag{color:#ffb48c}
 .selcard.all .stitle{color:#fff}
 .selcard.all .scount{color:#b9d2dd}
+.selcard.exam{grid-column:1/-1;background:linear-gradient(135deg,var(--signal),#b8461f);border-color:var(--signal)}
+.selcard.exam .stag{color:#ffe4d6}
+.selcard.exam .stitle{color:#fff}
+.selcard.exam .scount{color:#ffe4d6}
 
 /* progress */
 .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:14px;color:var(--muted);font-weight:600}
@@ -90,7 +94,7 @@ button.nav{font-family:inherit;font-weight:700;font-size:15px;border:none;border
 <body>
 <header>
  <h1>اختبار محاكي · CompTIA Network+ N10-009</h1>
- <p>الوحدات 1 إلى 12 — Fundamentals · Cabling · Switching · Addressing · Routing · Services · Applications · Management · Security · Wireless — الأسئلة بالإنجليزي والشرح بالعربي</p>
+ <p>الوحدات 1 إلى 14 (المنهج كاملًا) — Fundamentals · Cabling · Switching · Addressing · Routing · Services · Applications · Management · Security · Wireless · Remote Access · Cloud — الأسئلة بالإنجليزي والشرح بالعربي</p>
 </header>
 
 <div class="switcher"><div class="swrap">
@@ -107,6 +111,8 @@ button.nav{font-family:inherit;font-weight:700;font-size:15px;border:none;border
  <a href="module10-guide.html">10</a>
  <a href="module11-guide.html">11</a>
  <a href="module12-guide.html">12</a>
+ <a href="module13-guide.html">13</a>
+ <a href="module14-guide.html">14</a>
  <a href="quiz.html" class="active">📝</a>
 </div></div>
 
@@ -1128,6 +1134,192 @@ const Q = [
 {t:"M12 · Overcapacity", q:"What is a common solution to wireless overcapacity issues?",
  o:["Installing a single powerful access point for the entire building","Strategic AP placement to spread out client connections, plus setting a maximum client limit per AP","Removing all access points","Disabling traffic shaping tools"], a:1,
  e:"لتجاوز السعة: توزيع استراتيجي لعدة APs لتوزيع الأجهزة، وتحديد حد أقصى للعملاء لكل AP، مع أدوات traffic shaping ومراقبة مستمرة."},
+
+// ---------- Module 13 ----------
+{t:"M13 · WAN vs LAN", q:"What is the key difference between a WAN and a LAN?",
+ o:["A WAN covers shorter localized areas; a LAN spans large distances","A WAN carries data over large distances, often using public networks; a LAN covers shorter, localized areas","They are identical in scope","LANs always use public infrastructure"], a:1,
+ e:"<b>WAN</b> ينقل البيانات لمسافات كبيرة، غالبًا عبر شبكات عامة. <b>LAN</b> يغطي مناطق أصغر ومحلية."},
+
+{t:"M13 · CE/PE Routers", q:"At the WAN Network layer, what connects customer and provider sites?",
+ o:["Switches only","CE (Customer Edge) and PE (Provider Edge) routers, using public IPv4/IPv6 addresses","Wireless access points","Hubs"], a:1,
+ e:"راوترات <b>CE وPE</b> تربط مواقع العميل والمزوّد، وتُخصَّص عناوين IPv4/IPv6 <b>عامة</b> للتعريف العالمي."},
+
+{t:"M13 · T1 Line", q:"What is a key characteristic of a T1 leased line?",
+ o:["Shared bandwidth that slows during peak times","High reliability with dedicated bandwidth, using time-division multiplexing, ideal for businesses needing constant connectivity","No professional installation required","Speeds exceeding 1 Gbps"], a:1,
+ e:"<b>T1</b>: موثوقية عالية، bandwidth مخصص (dedicated)، يستخدم TDM، مثالي للأعمال التي تحتاج اتصالًا ثابتًا — لكن تركيبه احترافي وتكلفته أعلى."},
+
+{t:"M13 · DSL Types", q:"What is the difference between ADSL and SDSL?",
+ o:["ADSL is symmetrical, SDSL is asymmetrical","ADSL is asymmetrical, SDSL is symmetrical","They are the same technology","Neither uses existing phone lines"], a:1,
+ e:"<b>ADSL</b> غير متماثل (سرعة تحميل/رفع مختلفة). <b>SDSL</b> متماثل (نفس السرعة بالاتجاهين) — كلاهما يستخدم خطوط الهاتف الموجودة."},
+
+{t:"M13 · FTTP vs FTTC", q:"What is the main advantage of FTTP over FTTC?",
+ o:["FTTP is always cheaper to install","FTTP eliminates non-fiber connection points for the highest possible speed, while FTTC still requires a final coax/copper leg","FTTC has higher speeds than FTTP","FTTP is available everywhere while FTTC is not"], a:1,
+ e:"<b>FTTP</b> يمدّ الألياف حتى المبنى مباشرة (أعلى سرعة ممكنة)، بينما <b>FTTC</b> يحتاج مرحلة أخيرة نحاسية/coax من الرصيف للمبنى."},
+
+{t:"M13 · Tunneling Purpose", q:"What is the primary purpose of tunneling protocols?",
+ o:["To slow down network traffic intentionally","To securely pass private data across public networks by encapsulating packets within packets","To eliminate the need for encryption","To replace routing tables"], a:1,
+ e:"بروتوكولات النفق تمرّر بيانات خاصة بأمان عبر شبكات عامة، عبر <b>تغليف الحزم داخل حزم أخرى</b>، لإنشاء أنفاق آمنة."},
+
+{t:"M13 · IPSec Modes", q:"What is the difference between IPSec Transport mode and Tunnel mode?",
+ o:["Transport mode encrypts the entire packet including the header; Tunnel mode encrypts only the payload","Transport mode encrypts only the payload (used within a private network); Tunnel mode encrypts the entire IP packet including the header (ideal for VPNs)","They are identical modes","Neither mode uses encryption"], a:1,
+ e:"<b>Transport Mode</b> يشفّر الحمولة فقط (داخل شبكة خاصة). <b>Tunnel Mode</b> يشفّر الحزمة كاملة بما فيها الرأس — مثالي لشبكات VPN."},
+
+{t:"M13 · AH vs ESP", q:"In IPSec, what is the difference between AH and ESP?",
+ o:["AH (Authentication Header) provides IP header integrity; ESP (Encapsulating Security Payload) encrypts the payload for confidentiality","AH encrypts the payload; ESP provides header integrity","They perform identical functions","Neither provides encryption"], a:0,
+ e:"<b>AH</b> يوفّر سلامة رأس IP (integrity). <b>ESP</b> يشفّر الحمولة لضمان السرية (confidentiality)."},
+
+{t:"M13 · IKE Purpose", q:"What is the purpose of IKE (Internet Key Exchange) in IPSec?",
+ o:["To physically install VPN hardware","To negotiate and establish SAs, provide mutual authentication, and exchange cryptographic keys","To replace the need for encryption entirely","To manage DNS records"], a:1,
+ e:"<b>IKE</b> يتفاوض وينشئ <b>SAs</b>، يوفّر مصادقة متبادلة، ويتبادل مفاتيح التشفير — أساسي لبنية VPN موثوقة."},
+
+{t:"M13 · IKEv2", q:"What is an advantage of IKEv2 over IKEv1?",
+ o:["IKEv2 does not support EAP authentication","IKEv2 supports EAP authentication, has simplified setup, better NAT traversal, and MOBIKE for mobile connectivity","IKEv2 is only used for site-to-site VPNs","IKEv2 has no encryption support"], a:1,
+ e:"<b>IKEv2</b> يدعم <b>EAP</b>، إعداد أبسط، اجتياز NAT أفضل، و<b>MOBIKE</b> للاتصال المتنقل — المفضّل للحلول الحديثة."},
+
+{t:"M13 · Client-to-Site VPN", q:"What is a Client-to-Site VPN best suited for?",
+ o:["Permanently connecting two entire office networks","Individual remote workers and field employees connecting to a corporate network over the public Internet","Only internal East-West datacenter traffic","Replacing DNS servers"], a:1,
+ e:"<b>Client-to-Site VPN</b> مثالي للعاملين عن بُعد والموظفين الميدانيين، يتصلون بشبكة الشركة عبر الإنترنت العام."},
+
+{t:"M13 · PPTP Deprecated", q:"Why is PPTP considered deprecated for VPN use?",
+ o:["It is too fast for modern networks","It has significant security flaws","It requires too much bandwidth","It only works with IPv6"], a:1,
+ e:"<b>PPTP</b> مُهجَّر (deprecated) بسبب ثغرات أمنية جوهرية — يُفضَّل L2TP/IPSec أو SSL/TLS VPN بدلًا منه."},
+
+{t:"M13 · Split vs Full Tunnel", q:"What is the difference between a split tunnel and a full tunnel VPN?",
+ o:["A split tunnel routes only corporate traffic through the VPN; a full tunnel routes all traffic through the VPN","A full tunnel routes only corporate traffic; a split tunnel routes everything","They are identical","Neither routes any traffic through the VPN"], a:0,
+ e:"<b>Split Tunnel</b> يمرر فقط ترافيك الشركة عبر النفق (باقي الترافيك مباشر للإنترنت). <b>Full Tunnel</b> يمرر كل الترافيك عبر النفق."},
+
+{t:"M13 · Clientless VPN Tech", q:"What technology does a clientless VPN typically use to provide browser-based access?",
+ o:["A dedicated hardware VPN client","HTML5's canvas element and WebSockets","Telnet","IPv4 only, no HTML support"], a:1,
+ e:"الـ<b>Clientless VPN</b> يستخدم <span class=\"en\">HTML5 canvas وWebSockets</span> للوصول عبر المتصفح بدون برنامج VPN مخصص."},
+
+{t:"M13 · Site-to-Site Use Case", q:"Which of these is a common use case for Site-to-Site VPNs?",
+ o:["Connecting a single homeworker's laptop","Securely connecting offices across locations, such as during mergers and acquisitions","Replacing SSH for server management","Eliminating the need for a VPN gateway"], a:1,
+ e:"<b>Site-to-Site VPN</b> يُستخدم لربط الفروع بأمان، خصوصًا بحالات الدمج والاستحواذ وربط شبكات IIoT."},
+
+{t:"M13 · SSH vs Telnet", q:"What does SSH provide that Telnet does not?",
+ o:["Faster connection speeds only","Full encryption of all communications, protecting against sniffing and replay attacks","Support for graphical interfaces only","A larger character set"], a:1,
+ e:"<b>SSH</b> يشفّر كل الاتصالات، بعكس <b>Telnet</b> غير المشفّر وعرضة للتنصت وهجمات إعادة التشغيل."},
+
+{t:"M13 · Telnet Port", q:"What port does the Telnet daemon listen on by default?",
+ o:["TCP 22","TCP 23","TCP 3389","UDP 161"], a:1,
+ e:"<b>Telnet Daemon</b> يستمع افتراضيًا على المنفذ <b>TCP 23</b>."},
+
+{t:"M13 · RDP", q:"What port and security feature does RDP typically use?",
+ o:["TCP port 3389, secured with encryption and Network Level Authentication (NLA)","UDP port 53, with no encryption","TCP port 22, using SSH keys only","TCP port 80, unencrypted"], a:0,
+ e:"<b>RDP</b> يستخدم المنفذ <b>TCP 3389</b>، ومؤمّن بتشفير و<b>NLA (Network Level Authentication)</b>."},
+
+{t:"M13 · OOB Management", q:"What is the primary benefit of Out-of-Band (OOB) management?",
+ o:["It uses the same channel as regular data traffic","It provides a dedicated channel for secure device administration, especially useful during network outages","It eliminates the need for console cables","It only works over wireless connections"], a:1,
+ e:"<b>OOB</b> يوفّر قناة مخصصة لإدارة الجهاز بمعزل عن ترافيك البيانات — مفيدة جدًا أثناء انقطاع الشبكة."},
+
+{t:"M13 · Jump Box", q:"What is the purpose of a jump box?",
+ o:["To directly expose every server to the public Internet","To act as a secure single entry point for administrators to reach servers in a protected subnet, reducing the attack surface","To replace firewalls entirely","To provide unrestricted access to any device on the network"], a:1,
+ e:"<b>Jump Box</b> نقطة دخول آمنة وحيدة للمسؤولين للوصول لسيرفرات محمية — يقلل سطح الهجوم."},
+
+{t:"M13 · SSH Commands", q:"Which SSH command securely copies files between hosts on a network?",
+ o:["ssh-keygen","scp","ssh-add","sshd"], a:1,
+ e:"<b>scp</b> ينسخ ملفات بأمان بين المضيفين. ssh-keygen يولّد مفاتيح، ssh-add يضيفها للوكيل، وsshd خدمة الاستماع بالسيرفر."},
+
+// ---------- Module 14 ----------
+{t:"M14 · North-South vs East-West", q:"What is the difference between North-South and East-West traffic in a datacenter?",
+ o:["North-South is server-to-server traffic; East-West is external client access","North-South is external client access to datacenter resources; East-West is server-to-server communication within the datacenter","They are identical traffic types","Neither type requires security consideration"], a:1,
+ e:"<b>North-South</b>: وصول العملاء الخارجيين لموارد مركز البيانات. <b>East-West</b>: تواصل السيرفرات ببعضها داخل مركز البيانات."},
+
+{t:"M14 · Spine and Leaf", q:"In a Spine and Leaf topology, how are spine switches connected?",
+ o:["Spine switches connect to each other but not to leaf switches","Spine switches interconnect with all leaf switches but not with each other","Spine switches only connect to end-user devices","There is only ever one spine switch"], a:1,
+ e:"سويتشات <b>Spine</b> تتصل بكل سويتشات <b>Leaf</b> لكن ليس ببعضها البعض — هيكلية full mesh بين الطبقتين."},
+
+{t:"M14 · Spine and Leaf STP", q:"What is a key benefit of Spine and Leaf topology regarding Spanning Tree Protocol?",
+ o:["It requires more STP instances than traditional topologies","Its loop-free design eliminates the need for Spanning Tree Protocol","STP is mandatory for every spine-leaf deployment","It doubles STP convergence time"], a:1,
+ e:"تصميم Spine and Leaf <b>بلا حلقات (loop-free)</b> يُلغي الحاجة لـ<b>STP</b> أصلًا."},
+
+{t:"M14 · SAN", q:"What does a SAN (Storage Area Network) primarily provide?",
+ o:["Wireless internet access for guests","Access to consolidated, block-level data storage, separated from the local network","Email routing services","DNS resolution for internal hosts"], a:1,
+ e:"<b>SAN</b> شبكة مخصصة لتوفير وصول لتخزين بيانات موحّد على مستوى الكتلة (block-level)، منفصلة عن الشبكة المحلية."},
+
+{t:"M14 · Fibre Channel", q:"What is Fibre Channel primarily used for?",
+ o:["Wireless network broadcasting","A high-speed data transfer protocol serving as the backbone for SANs","Email encryption","DHCP address assignment"], a:1,
+ e:"<b>Fibre Channel</b> بروتوكول نقل بيانات عالي السرعة، العمود الفقري لشبكات <b>SAN</b>."},
+
+{t:"M14 · Scalability Types", q:"What is the difference between horizontal and vertical scaling in cloud computing?",
+ o:["Horizontal scaling adds/removes servers (scale out/in); vertical scaling upgrades an existing server's specifications (scale up/down)","Horizontal scaling upgrades specs; vertical scaling adds servers","They are the same concept","Neither applies to cloud computing"], a:0,
+ e:"<b>Horizontal Scaling</b> (Scale Out/In): إضافة/إزالة سيرفرات. <b>Vertical Scaling</b> (Scale Up/Down): ترقية مواصفات سيرفر موجود."},
+
+{t:"M14 · Elasticity", q:"What defines elasticity in cloud computing?",
+ o:["Manually adjusting resources once a year","The ability of a system to automatically adjust and allocate computing resources on demand","A fixed resource allocation that never changes","Only applies to on-premises infrastructure"], a:1,
+ e:"<b>Elasticity</b>: قدرة النظام على تعديل وتخصيص موارد الحوسبة <b>تلقائيًا</b> حسب الطلب، لضمان أداء مثالي رغم تذبذب الاستخدام."},
+
+{t:"M14 · Hosted Private Cloud", q:"What characterizes a Hosted Private Cloud?",
+ o:["Shared resources across many unrelated organizations","Exclusively used by one organization but hosted by a third party, offering better security and performance at higher cost","No security controls of any kind","Free of charge for all users"], a:1,
+ e:"<b>Hosted Private Cloud</b>: حصري لمؤسسة واحدة، يستضيفه طرف ثالث — أمان وأداء أفضل، لكن تكلفة أعلى."},
+
+{t:"M14 · Cloud Service Models", q:"Which cloud service model provides hardware and software tools over the internet, typically for application development?",
+ o:["IaaS","SaaS","PaaS","DaaS"], a:2,
+ e:"<b>PaaS (Platform as a Service)</b> يوفّر أدوات عتاد وبرمجيات لتطوير التطبيقات — أمثلة: Oracle Database، Azure SQL، Google App Engine."},
+
+{t:"M14 · IaaS Example", q:"Which of these is an example of IaaS (Infrastructure as a Service)?",
+ o:["Microsoft 365","AWS EC2 / Azure Virtual Machines","Salesforce","Google App Engine"], a:1,
+ e:"<b>AWS EC2</b> وAzure Virtual Machines أمثلة على <b>IaaS</b> — موارد حوسبة افتراضية عبر الإنترنت."},
+
+{t:"M14 · CDN", q:"What is the primary function of a Content Delivery Network (CDN)?",
+ o:["To slow down website loading for security","To cache and distribute content across geographically dispersed servers for faster access near consumers","To replace the need for cloud storage","To block all external traffic to a website"], a:1,
+ e:"<b>CDN</b> يخزّن مؤقتًا (caches) ويوزّع المحتوى عبر سيرفرات موزّعة جغرافيًا، لوصول أسرع قرب المستخدم."},
+
+{t:"M14 · Containers vs VMs", q:"What is a key advantage of containers over virtual machines?",
+ o:["Containers require full hardware emulation, increasing overhead","Containers share the host system's kernel, significantly reducing overhead compared to VMs","Containers cannot be scaled easily","Containers always run multiple operating systems"], a:1,
+ e:"<b>Containers</b> تشارك kernel المضيف، ما يقلل الاستهلاك (overhead) بشكل كبير مقارنة بالـ<b>VMs</b> التي تحاكي عتادًا كاملًا."},
+
+{t:"M14 · VPC", q:"What is a Virtual Private Cloud (VPC)?",
+ o:["A physical private datacenter only","An isolated environment within a public cloud, allowing organizations to run applications securely with configurable virtual networking","A type of VPN protocol","A public DNS server"], a:1,
+ e:"<b>VPC</b> بيئة معزولة داخل سحابة عامة، تتيح تشغيل التطبيقات بأمان مع شبكة افتراضية قابلة للتخصيص."},
+
+{t:"M14 · Public vs Private Subnet", q:"What distinguishes a public subnet from a private subnet in cloud networking?",
+ o:["A public subnet has an Internet gateway configured as its default route; a private subnet remains private without a default Internet route even if a gateway is attached","A private subnet always has faster internet access","They are functionally identical","Public subnets cannot host any servers"], a:0,
+ e:"<b>Public Subnet</b>: مسار افتراضي عبر Internet Gateway. <b>Private Subnet</b>: تبقى خاصة بدون مسار افتراضي حتى لو كانت مربوطة بـgateway."},
+
+{t:"M14 · NAT Gateway Cloud", q:"What does a cloud NAT Gateway allow?",
+ o:["Inbound Internet access requiring a public IP for every VM","Outbound Internet access without requiring a public IP for VM instances","Full bidirectional communication requiring public IPs on all VMs","Nothing related to Internet access"], a:1,
+ e:"<b>NAT Gateway</b> بالسحابة يسمح بوصول <b>outbound</b> للإنترنت بدون الحاجة لعنوان IP عام لكل VM."},
+
+{t:"M14 · Direct Connect", q:"What is Direct Connect/Colocation best suited for?",
+ o:["Low-bandwidth, high-latency distributed networks","High-bandwidth, low-latency connectivity ideal for centralized operations, requiring physical infrastructure within or connected to a datacenter","Only wireless connections","Replacing VPNs entirely with no physical infrastructure"], a:1,
+ e:"<b>Direct Connect/Colocation</b>: bandwidth عالٍ وlatency منخفض، مثالي للعمليات المركزية، يحتاج بنية فيزيائية بمركز بيانات."},
+
+{t:"M14 · Cloud Firewall Layers", q:"At which OSI layer does a cloud firewall perform stateful inspection of connections?",
+ o:["Layer 3 (Network)","Layer 4 (Transport)","Layer 7 (Application)","Layer 2 (Data Link)"], a:1,
+ e:"<b>Layer 4 (Transport)</b> هي طبقة الـ<b>stateful inspection</b> للاتصالات. Layer 3 يفلتر IP/منافذ، وLayer 7 يحلل محتوى البروتوكول."},
+
+{t:"M14 · Security Groups vs Lists", q:"What is the key difference between security groups and security lists in cloud networking?",
+ o:["Security groups operate at the instance level with stateful filtering; security lists operate at the subnet level with stateless filtering","Security groups operate at the subnet level; security lists operate at the instance level","They are identical concepts","Neither can filter traffic"], a:0,
+ e:"<b>Security Groups</b>: مستوى الـinstance، تصفية <b>stateful</b>. <b>Security Lists</b>: مستوى الـsubnet، تصفية <b>stateless</b>، تسمح بقواعد allow وdeny."},
+
+{t:"M14 · IaC", q:"What is Infrastructure as Code (IaC)?",
+ o:["Writing traditional application code only","Managing IT infrastructure through machine-readable definition files, enabling automated and consistent provisioning","A manual process for configuring servers one at a time","A type of network cable"], a:1,
+ e:"<b>IaC</b>: إدارة البنية التحتية عبر ملفات تعريف قابلة للقراءة آليًا، لنشر تلقائي ومتسق وفعّال التكلفة."},
+
+{t:"M14 · IaC Tools", q:"Which of these is a common Infrastructure as Code tool?",
+ o:["Wireshark","Terraform","Nmap","tcpdump"], a:1,
+ e:"<b>Terraform</b> (مع Ansible, Chef, Puppet, AWS CloudFormation) من أدوات <b>IaC</b> الشائعة."},
+
+{t:"M14 · SDN Controller", q:"In Software-Defined Networking (SDN), what is the role of the SDN Controller?",
+ o:["It has no role in the network","It acts as the 'brain' of the network, separating control and forwarding functions for centralized management","It only handles physical cabling","It replaces the need for any APIs"], a:1,
+ e:"<b>SDN Controller</b> هو \"دماغ\" الشبكة — يفصل وظائف التحكم والتوجيه لإدارة مركزية ومرونة أعلى."},
+
+{t:"M14 · Overlay Network", q:"What is an overlay network?",
+ o:["A physical-only network with no virtual components","A virtual network built on top of an existing physical network, allowing logical links between nodes (e.g., VPNs, VXLAN)","A type of firewall","A wireless-only technology"], a:1,
+ e:"<b>Overlay Network</b>: شبكة افتراضية فوق شبكة فيزيائية موجودة، تتيح روابط منطقية بين العقد — أمثلة: VPNs، VXLAN."},
+
+{t:"M14 · Zero Trust Principle", q:"Which of these is a core principle of Zero Trust Architecture?",
+ o:["Trust all devices inside the network by default","Assume no entity is trusted by default, inside or outside the network, requiring continuous verification","Grant maximum privileges to all users for convenience","Disable all authentication for internal traffic"], a:1,
+ e:"مبدأ <b>Zero Trust</b> الأساسي: لا يُوثَق بأي جهة افتراضيًا (داخل أو خارج الشبكة)، مع تحقق مستمر لكل جلسة."},
+
+{t:"M14 · SASE", q:"What does SASE (Secure Access Service Edge) combine?",
+ o:["Only physical firewalls with no cloud component","SD-WAN technology with Security Service Edge (SSE) in a cloud-based architecture","Telnet and FTP services","Only DNS and DHCP services"], a:1,
+ e:"<b>SASE</b> يدمج <b>SD-WAN</b> مع <b>SSE (Secure Service Edge)</b> ببنية سحابية موحّدة تجمع الشبكة والأمان."},
+
+{t:"M14 · CASB", q:"What is a function of a Cloud Access Security Broker (CASB)?",
+ o:["Physically securing server racks only","Managing and enforcing security policies, scanning for malware, and monitoring/auditing activity for cloud services","Replacing the need for any authentication","Only managing DNS records"], a:1,
+ e:"<b>CASB</b> يدير ويفرض سياسات الأمان، يفحص البرمجيات الضارة، ويراقب/يدقق النشاط — عبر Forward Proxy، Reverse Proxy، أو API."},
 ];
 
 const MODULES = [
@@ -1143,11 +1335,39 @@ const MODULES = [
  {key:"M10", label:"الوحدة 10", eng:"Applying Network Security Features"},
  {key:"M11", label:"الوحدة 11", eng:"Supporting Network Security Design"},
  {key:"M12", label:"الوحدة 12", eng:"Configuring Wireless Networks"},
+ {key:"M13", label:"الوحدة 13", eng:"Comparing Remote Access Methods"},
+ {key:"M14", label:"الوحدة 14", eng:"Summarizing Cloud Concepts"},
 ];
 
 let activeQ = [];
+let currentKey = null;
 let idx=0, score=0, answers=[];
 const $=id=>document.getElementById(id);
+
+// Official CompTIA Network+ N10-009 exam domain weighting
+// (source: CompTIA/TestOut Transition Guide, "Domains and Weighting")
+const DOMAINS = [
+ {id:1, ar:"1.0 مفاهيم الشبكات", en:"Networking Concepts", weight:23},
+ {id:2, ar:"2.0 تطبيق الشبكات", en:"Network Implementation", weight:20},
+ {id:3, ar:"3.0 عمليات الشبكة", en:"Network Operations", weight:19},
+ {id:4, ar:"4.0 أمان الشبكة", en:"Network Security", weight:14},
+ {id:5, ar:"5.0 استكشاف الأخطاء", en:"Network Troubleshooting", weight:24},
+];
+const MODULE_DOMAIN = {M1:1,M2:2,M3:2,M4:1,M5:2,M6:3,M7:1,M8:3,M9:4,M10:4,M11:4,M12:2,M13:3,M14:1};
+// Topic-level overrides where a question's lesson maps to a different domain
+// than its module's default (based on the official Objective Mapping lesson index)
+function getDomain(tag){
+ if(/Troubleshoot|\bTS\b|Channel Overlap|Overcapacity/i.test(tag)) return 5;
+ if(/^M3 · (Port Indicators|Show Commands|Interface Status|Interface Errors|Network Loops)/.test(tag)) return 5;
+ if(/^M4 · (ipconfig|arp Command|ping)/.test(tag)) return 5;
+ if(/^M6 · DNS Tools/.test(tag)) return 5;
+ if(/^M8 · (Packet Capture|Wireshark|Flow Data)/.test(tag)) return 5;
+ if(/^M10 · (Firewall Misconfig|Implicit Deny)/.test(tag)) return 5;
+ if(/^M7 · (DR |DR Metrics|DR Sites|Fault Tolerance|Load Balancing|First Hop|HA Clusters)/.test(tag)) return 3;
+ if(/^M12 · (WPA2|WPA3|Forward Secrecy|Guest Network|Captive Portal|Evil Twin|Deauth)/.test(tag)) return 4;
+ const mod = tag.split(" ")[0];
+ return MODULE_DOMAIN[mod] || 1;
+}
 
 function buildHome(){
  const grid = $("selGrid");
@@ -1162,13 +1382,47 @@ function buildHome(){
  });
  const allBtn = document.createElement("button");
  allBtn.className = "selcard all";
- allBtn.innerHTML = `<div class="stag">FULL MOCK EXAM</div><div class="stitle">كل الوحدات 1–12</div><div class="scount">${Q.length} سؤالًا بنمط الاختبار الكامل</div>`;
+ allBtn.innerHTML = `<div class="stag">FULL MOCK EXAM</div><div class="stitle">كل الوحدات 1–14</div><div class="scount">${Q.length} سؤالًا بنمط الاختبار الكامل</div>`;
  allBtn.onclick = ()=>startQuiz("ALL");
  grid.appendChild(allBtn);
+
+ const examBtn = document.createElement("button");
+ examBtn.className = "selcard exam";
+ examBtn.innerHTML = `<div class="stag">REAL EXAM SIMULATION</div><div class="stitle">محاكاة الاختبار الفعلي — 90 سؤالًا</div><div class="scount">عيّنة عشوائية موزّعة بنفس نسب مجالات اختبار N10-009 الرسمية (23% / 20% / 19% / 14% / 24%)</div>`;
+ examBtn.onclick = ()=>startQuiz("EXAMSIM");
+ grid.appendChild(examBtn);
+}
+
+function shuffle(arr){
+ const a = arr.slice();
+ for(let i=a.length-1;i>0;i--){
+  const j = Math.floor(Math.random()*(i+1));
+  [a[i],a[j]] = [a[j],a[i]];
+ }
+ return a;
+}
+
+function buildExamSim(totalSize){
+ const byDomain = {1:[],2:[],3:[],4:[],5:[]};
+ Q.forEach(q=>byDomain[getDomain(q.t)].push(q));
+ // largest-remainder apportionment so counts sum exactly to totalSize
+ const raw = DOMAINS.map(d=>({id:d.id, exact:totalSize*d.weight/100}));
+ raw.forEach(r=>r.base=Math.floor(r.exact));
+ let allocated = raw.reduce((s,r)=>s+r.base,0);
+ raw.sort((a,b)=>(b.exact-b.base)-(a.exact-a.base));
+ for(let i=0;i<totalSize-allocated;i++) raw[i%raw.length].base++;
+ const picks = [];
+ raw.forEach(r=>{
+  const pool = shuffle(byDomain[r.id]);
+  picks.push(...pool.slice(0, Math.min(r.base, pool.length)));
+ });
+ return shuffle(picks);
 }
 
 function startQuiz(key){
- activeQ = key==="ALL" ? Q : Q.filter(q=>q.t.startsWith(key+" "));
+ currentKey = key;
+ if(key==="EXAMSIM") activeQ = buildExamSim(90);
+ else activeQ = key==="ALL" ? Q : Q.filter(q=>q.t.startsWith(key+" "));
  idx=0; score=0; answers=[];
  $("home").style.display="none";
  $("result").style.display="none";
@@ -1218,9 +1472,7 @@ $("backBtn").onclick=()=>{
  window.scrollTo({top:0,behavior:"smooth"});
 };
 $("restart").onclick=()=>{
- const currentTag = activeQ[0].t.split(" ")[0];
- const key = activeQ.length===Q.length ? "ALL" : currentTag;
- startQuiz(key);
+ startQuiz(currentKey);
 };
 $("menuBtn").onclick=()=>{
  $("result").style.display="none";

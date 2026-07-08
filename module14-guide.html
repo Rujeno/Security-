@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 14 — تلخيص مفاهيم السحابة — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:13.5px;font-weight:600;padding:14px 14px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 14</span>
+  <h1>الوحدة 14 — تلخيص مفاهيم السحابة</h1>
+  <p>Summarizing Cloud Concepts — Datacenter & Storage Networks · Cloud Concepts · Cloud Networking · Modern Network Environments</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html" class="active">14</a><a href="quiz.html">📝</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m14-datacenter">14.1 Datacenter/SAN</a>
+ <a href="#m14-cloud">14.2 Cloud Concepts</a>
+ <a href="#m14-cloudnet">14.3 Cloud Networking</a>
+ <a href="#m14-modern">14.4 Modern Environments</a>
+</div></nav>
+
+<main>
+
+<section id="m14-datacenter">
+ <span class="mod-tag">MODULE 14 · LESSON 14.1</span>
+ <h2>شبكات مراكز البيانات والتخزين</h2>
+ <p class="sub">Summarizing Cloud Concepts — Datacenter and Storage Networks</p>
+
+ <div class="card">
+  <p><b>مكونات تصميم شبكة مركز البيانات الحديث</b>: <b>Virtualization</b> (شبكات رشيقة وقابلة للتوسع)، <b>Overlay Networks</b> (ترافيك آمن ومرن بين السيرفرات)، <b>Zero Trust Architecture</b> (مصادقة/تفويض لكل طلب)، وميزات <b>High Availability</b> (شبكة، طاقة، مناخ، تحكم بالوصول).</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>North-South Traffic</b></p>
+   <p>وصول العملاء الخارجيين لموارد مركز البيانات.</p>
+  </div>
+  <div class="card">
+   <p><b>East-West Traffic</b></p>
+   <p>تواصل السيرفرات ببعضها داخل مركز البيانات — يحتاج أمانًا متقدمًا وإدارة ترافيك فعّالة.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>Spine and Leaf Topology</b>: هيكلية ثنائية الطبقة لتحسين تدفق ترافيك مركز البيانات.</p>
+  <ul>
+   <li><b>Spine Layer</b>: العمود الفقري بسويتشات توزيع عليا، متصلة بكل سويتشات الـleaf لكن ليس ببعضها.</li>
+   <li><b>Leaf Layer</b>: سويتشات وصول متصلة بكل سويتش spine بهيكلية full mesh — مسارات مباشرة للأجهزة بدون اتصالات بين الـleaf switches نفسها.</li>
+  </ul>
+  <p><b>فوائدها</b>: latency متوقعة (قفزة واحدة من أي سيرفر للعمود الفقري)، موازنة حمل وfailover (مسارات متعددة زائدة)، تصميم بلا حلقات (يُلغي الحاجة لـSTP)، قابلية توسع وتكرار (إضافة عقد spine/leaf بسهولة)، واتصال عالي السرعة (سويتشات ToR).</p>
+ </div>
+
+ <div class="card">
+  <p><b>SAN (Storage Area Network)</b>: شبكة مخصصة لتوفير وصول لتخزين بيانات موحّد على مستوى الكتلة (block-level)، تفصل موارد التخزين عن الشبكة المحلية.</p>
+  <p><b>مكوناتها</b>: أجهزة تخزين (RAID arrays، مكتبات أشرطة)، <b>SAN Fabric</b> (سويتشات وdirectors تربط السيرفرات بأجهزة التخزين)، و<b>SAN Software</b> (أدوات إدارة وإعداد).</p>
+  <p><b>فوائدها</b>: توفر عالٍ، قابلية توسع، latency منخفض وthroughput عالٍ. حالات الاستخدام: إدارة قواعد البيانات، استمرارية الأعمال، والتخزين السحابي.</p>
+ </div>
+
+ <div class="tip"><b>Fibre Channel (FC)</b>: بروتوكول نقل بيانات عالي السرعة، العمود الفقري لشبكات SAN (الإملاء البريطاني "Fibre" يميّزه عن كيابل الألياف البصرية "fiber"). المكونات: <b>Initiators</b> (سيرفرات بـHBA)، <b>Targets</b> (منافذ أجهزة التخزين)، و<b>FC Switches</b>. المزايا: أداء، مرونة، سرعة، وآليات QoS.</div>
+</section>
+
+<section id="m14-cloud">
+ <span class="mod-tag">MODULE 14 · LESSON 14.2</span>
+ <h2>مفاهيم الحوسبة السحابية — Cloud Concepts</h2>
+ <p class="sub">Scalability · Elasticity · Deployment Models · Service Models</p>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Scalability (قابلية التوسع)</b></p>
+   <p>قدرة النظام السحابي على التعامل مع كمية عمل متزايدة. أنواعها: <b>Horizontal Scaling</b> (توسع أفقي — إضافة/إزالة سيرفرات) و<b>Vertical Scaling</b> (توسع رأسي — ترقية مواصفات سيرفر موجود).</p>
+  </div>
+  <div class="card">
+   <p><b>Elasticity (المرونة)</b></p>
+   <p>قدرة النظام على تعديل وتخصيص موارد الحوسبة <b>تلقائيًا</b> حسب الطلب — تضمن أداءً مثاليًا رغم تذبذب الاستخدام (توسع تلقائي، فعالية تكلفة، استجابة لحظية).</p>
+  </div>
+ </div>
+
+ <h3>نماذج نشر السحابة (Cloud Deployment Models)</h3>
+ <table>
+  <tr><th>النموذج</th><th>الوصف</th><th>المميزات</th><th>العيوب</th></tr>
+  <tr><td><b>Public Cloud</b></td><td>موارد مشتركة عبر الإنترنت من مزوّدي CSP</td><td>فعّال تكلفة، اشتراكات pay-as-you-go</td><td>مخاطر أعلى بالأداء والأمان</td></tr>
+  <tr><td><b>Hosted Private Cloud</b></td><td>حصري لمؤسسة واحدة، يستضيفه طرف ثالث</td><td>أمان وأداء أفضل</td><td>أغلى تكلفة</td></tr>
+  <tr><td><b>Private Cloud</b></td><td>مملوك ومُشغَّل من المؤسسة نفسها</td><td>تحكم أكبر بالخصوصية والأمان</td><td>الأنسب لخدمات تحتاج تحكم وصول صارم</td></tr>
+  <tr><td><b>Hybrid Cloud</b></td><td>مزيج من الحلول العامة والخاصة</td><td>مرونة بالتوسع، توازن أمان/تكلفة</td><td>تعقيد إدارة عدة بيئات</td></tr>
+ </table>
+
+ <h3>نماذج خدمة السحابة (Cloud Service Models)</h3>
+ <table>
+  <tr><th>النموذج</th><th>الوصف</th><th>أمثلة</th></tr>
+  <tr><td><b>IaaS</b></td><td>موارد حوسبة افتراضية عبر الإنترنت</td><td>AWS EC2, Azure VMs, OpenStack</td></tr>
+  <tr><td><b>SaaS</b></td><td>تطبيقات برمجية عبر الإنترنت (اشتراك)</td><td>Microsoft 365, Salesforce, Google Workspace</td></tr>
+  <tr><td><b>PaaS</b></td><td>أدوات عتاد وبرمجيات لتطوير التطبيقات</td><td>Oracle Database, Azure SQL, Google App Engine</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>مزايا نماذج الخدمة السحابية</b>: توسع ومرونة (بدون تغيير عتاد فيزيائي)، فعالية تكلفة (ادفعي فقط لما تستخدمينه)، سرعة وكفاءة (نشر أسرع)، وسهولة الوصول والتعاون (من أي مكان).</p>
+ </div>
+
+ <div class="tip"><b>CDN (Content Delivery Network)</b>: حل تخزين مؤقت (caching) للمواقع/التطبيقات عالية الترافيك — يوزّع السيرفرات والملفات قرب المستخدم لوصول أسرع، عبر مراكز بيانات موزّعة جغرافيًا، يحسّن التوفر والأداء وقابلية التوسع، ويتعامل بسهولة مع ارتفاعات الترافيك المفاجئة.</div>
+</section>
+
+<section id="m14-cloudnet">
+ <span class="mod-tag">MODULE 14 · LESSON 14.3</span>
+ <h2>الشبكات السحابية — Cloud Networking</h2>
+ <p class="sub">Cloud Instances · VPCs · Gateways · Cloud Firewalls</p>
+
+ <table>
+  <tr><th>نوع الـInstance</th><th>الوصف</th></tr>
+  <tr><td><b>Virtual Machines (VMs)</b></td><td>سيرفرات كاملة بعتاد محاكى، تشغّل نظام تشغيل وتطبيقات متعددة — عزل كامل، استهلاك موارد أعلى</td></tr>
+  <tr><td><b>Containers</b></td><td>بيئات معزولة خفيفة لتشغيل التطبيقات، تشارك kernel المضيف — استهلاك أقل، سهلة التوسع والإدارة</td></tr>
+  <tr><td><b>Virtual Appliances</b></td><td>حزم برمجية جاهزة مُهيّأة مسبقًا (جدران نارية، راوترات) — مُحسَّنة لمهمة محددة</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>VPC (Virtual Private Cloud)</b>: بيئة معزولة داخل سحابة عامة، تتيح تشغيل التطبيقات بأمان.</p>
+  <ul>
+   <li>كل VPC معزول عن باقي المستأجرين (tenants) بالسحابة.</li>
+   <li>المستأجرون يمكنهم تخصيص شبكتهم الافتراضية.</li>
+   <li>طبقات أمان متعددة، منها security groups وACLs.</li>
+  </ul>
+  <p><b>Public Subnet</b>: يتطلب ربط <span class="en">Internet Gateway</span> وضبطه كمسار افتراضي. <b>Private Subnet</b>: تبقى خاصة بدون مسار افتراضي للإنترنت حتى لو مربوطة بـInternet Gateway.</p>
+ </div>
+
+ <table>
+  <tr><th>خيار الاتصال</th><th>الخصائص</th></tr>
+  <tr><td><b>VPN</b></td><td>فعّال تكلفة، سهل التطبيق، مناسب للشبكات الموزّعة — تحديات محتملة بالـlatency/bandwidth</td></tr>
+  <tr><td><b>Direct Connect / Colocation</b></td><td>bandwidth عالٍ وlatency منخفض، مثالي للعمليات المركزية، يحتاج بنية فيزيائية داخل/متصلة بمركز بيانات</td></tr>
+  <tr><td><b>Transit Gateways</b></td><td>يبسّط هيكلية الشبكة، يمكّن اتصالات multi-VPC وVPC-to-on-premises، قابلية توسع وسهولة إدارة</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>Cloud Firewall Security</b>: حاجز بين موارد السحابة والتهديدات الخارجية، يفرض قواعد للسماح/الحظر — تقسيم للأداء والامتثال، تصفية حسب طبقات OSI:</p>
+  <ul>
+   <li><b>Layer 3</b>: تصفية عناوين IP ومنافذ TCP/UDP.</li>
+   <li><b>Layer 4</b>: فحص حالة الاتصالات (stateful inspection).</li>
+   <li><b>Layer 7</b>: تحليل رؤوس البروتوكول للتصفية حسب المحتوى.</li>
+  </ul>
+ </div>
+
+ <table>
+  <tr><th></th><th>Security Groups</th><th>Security Lists</th></tr>
+  <tr><td>المستوى</td><td>مستوى الـinstance</td><td>مستوى الـsubnet</td></tr>
+  <tr><td>نوع التصفية</td><td>Stateful</td><td>Stateless</td></tr>
+  <tr><td>القواعد</td><td>allow فقط (أي ترافيك غير مطابق يُرفض)</td><td>allow وdeny للتحكم الدقيق</td></tr>
+  <tr><td>النطاق</td><td>عدة مجموعات لكل instance</td><td>قائمة واحدة تؤثر على عدة instances بنفس الـsubnet</td></tr>
+ </table>
+</section>
+
+<section id="m14-modern">
+ <span class="mod-tag">MODULE 14 · LESSON 14.4</span>
+ <h2>بيئات الشبكات الحديثة — Modern Network Environments</h2>
+ <p class="sub">IaC · SDN · Overlay Networks · Zero Trust · SASE</p>
+
+ <div class="card">
+  <p><b>IaC (Infrastructure as Code)</b>: إدارة البنية التحتية عبر ملفات تعريف قابلة للقراءة آليًا — كود لإدارة وتوفير البنية التحتية تلقائيًا وبأمان، لنشر متسق وسريع وفعّال التكلفة.</p>
+  <p><b>أدوات IaC</b>: <span class="en">Terraform</span> (كود إعلاني لتوفير أي سحابة/بنية)، <span class="en">Ansible</span> (لغة إعلانية للأتمتة)، <span class="en">Chef</span> (recipes/cookbooks)، <span class="en">Puppet</span> (نهج إعلاني)، <span class="en">AWS CloudFormation</span>.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Source Control</b>: طريقة لإدارة وتتبّع تغييرات الكود بتطوير البرمجيات — أساسي للمشاريع التعاونية وسلامة الكود. المكونات: version control، central repository، branching، وconflict identification.</p>
+ </div>
+
+ <div class="card">
+  <p><b>SDN (Software-Defined Networking)</b>: يبسّط إدارة الشبكة بفصل وظائف التحكم والتوجيه، يسمح بالبرمجة المباشرة للتحكم بالشبكة.</p>
+  <ul>
+   <li><b>SDN Controller</b>: "دماغ" الشبكة.</li>
+   <li><b>Southbound APIs</b>: التواصل بين الـcontroller والأجهزة.</li>
+   <li><b>Northbound APIs</b>: الواجهة بين الـcontroller وتطبيقات الأعمال.</li>
+  </ul>
+  <p>حالات استخدام: افتراضية الشبكة، الحوسبة السحابية، إدارة مراكز البيانات، وإنترنت الأشياء.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Overlay Network</b>: شبكة افتراضية مبنية فوق شبكة فيزيائية موجودة، تتيح روابط منطقية بين العقد. أمثلة: <b>VPNs</b>، بروتوكولات تغليف مثل <b>VXLAN</b> (لتطبيقات مراكز البيانات) — تسهّل تقسيم الشبكة وعزلها.</p>
+  <p><b>SD-WAN</b>: نهج مبتكر لتصميم WAN المؤسسات — اتصال محسّن بين الفروع ومراكز البيانات والسحابة، تحسين تدفق الترافيك بالأتمتة والإدارة المركزية وأنفاق IPsec آمنة.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Zero Trust Architecture — المبادئ الأساسية</b>:</p>
+  <ul>
+   <li><b>Assume No Trust</b>: لا يُوثَق بأي جهة (مستخدم/جهاز) افتراضيًا، سواء داخل الشبكة أو خارجها.</li>
+   <li><b>Continuous Verification</b>: مصادقة وتفويض مستمر لكل جلسة/معاملة.</li>
+   <li><b>Least Privilege Access</b>: أقل صلاحيات ممكنة لإنجاز المهمة، لتقليل مسارات الهجوم المحتملة.</li>
+  </ul>
+  <p><b>التطبيق</b>: مصادقة/تفويض قائم على السياسة مركزيًا، فصل مستويات التحكم والبيانات، ومناطق ثقة ضمنية وتقسيم دقيق (microsegmentation).</p>
+ </div>
+
+ <div class="tip"><b>SASE (Secure Access Service Edge)</b>: بنية سحابية تجمع وظائف الشبكة والأمان بانتشار عالمي — تدمج <b>SD-WAN</b> مع <b>SSE (Secure Service Edge)</b>. وظائف SSE تشمل Zero Trust وCASB (Cloud Access Security Broker) الذي يفرض سياسات الأمان، يفحص البرمجيات الضارة، ويراقب النشاط — عبر Forward Proxy، Reverse Proxy، أو API.</div>
+</section>
+
+
+</main>
+
+<div class="modnav"><a href="module13-guide.html">← الوحدة 13</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="quiz.html">الذهاب للاختبار 📝</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 14 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>
