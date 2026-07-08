@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار محاكي — N10-009 · الوحدة 1 إلى 4</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0e1b25;--paper:#f7f9fa;--deep:#0d3b4f;--teal:#12617c;--signal:#e8672c;--line:#d8e2e7;--muted:#5b7280;--soft:#eef4f6;--good:#1a7f5c;--bad:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.85;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.93em}
+header{background:linear-gradient(135deg,var(--deep),#0a2a3a);color:#fff;padding:34px 20px;text-align:center}
+header h1{font-size:clamp(21px,3.4vw,30px)}
+header p{color:#b9d2dd;font-size:14.5px;margin-top:6px}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:820px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:14px;font-weight:600;padding:14px 18px;display:inline-block;border-bottom:3px solid transparent;transition:.15s}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.wrap{max-width:820px;margin:0 auto;padding:26px 18px 70px}
+
+/* home / module selector */
+#home{padding:10px 0}
+#home h2{color:var(--deep);font-size:20px;margin-bottom:6px}
+#home p.lead{color:var(--muted);font-size:14.5px;margin-bottom:24px}
+.selgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:560px){.selgrid{grid-template-columns:1fr}}
+.selcard{display:block;text-decoration:none;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:22px;cursor:pointer;transition:.15s;text-align:right;font-family:inherit;width:100%}
+.selcard:hover{border-color:var(--signal);transform:translateY(-2px);box-shadow:0 4px 14px rgba(13,59,79,.1)}
+.selcard .stag{font-family:'IBM Plex Mono',monospace;direction:ltr;color:var(--signal);font-weight:700;font-size:12px;letter-spacing:.08em}
+.selcard .stitle{color:var(--deep);font-weight:700;font-size:17px;margin:6px 0 4px}
+.selcard .scount{color:var(--muted);font-size:13.5px}
+.selcard.all{grid-column:1/-1;background:linear-gradient(135deg,var(--deep),#0a2a3a);border-color:var(--deep)}
+.selcard.all .stag{color:#ffb48c}
+.selcard.all .stitle{color:#fff}
+.selcard.all .scount{color:#b9d2dd}
+
+/* progress */
+.meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:14px;color:var(--muted);font-weight:600}
+.bar{height:8px;background:#e2eaee;border-radius:99px;overflow:hidden;margin-bottom:22px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--signal));transition:width .35s}
+
+.qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;box-shadow:0 2px 8px rgba(13,59,79,.06)}
+.qtag{display:inline-block;font-size:12px;font-weight:700;color:var(--teal);background:var(--soft);border-radius:99px;padding:3px 12px;margin-bottom:12px;font-family:'IBM Plex Mono',monospace;direction:ltr}
+.qtext{font-size:18px;font-weight:700;color:var(--deep);margin-bottom:18px;direction:ltr;text-align:left;font-family:'IBM Plex Mono',monospace;line-height:1.6}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;background:#fff;text-align:left;direction:ltr;font-family:'IBM Plex Mono',monospace;font-size:15px;line-height:1.6;transition:.15s;width:100%}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--soft)}
+.opt.correct{border-color:var(--good);background:#e9f6f0;font-weight:600}
+.opt.wrong{border-color:var(--bad);background:#fdeeec}
+.opt:disabled{cursor:default;opacity:.92}
+
+.explain{display:none;margin-top:16px;border-radius:12px;padding:14px 18px;font-size:15px;background:#fff7f1;border:1px solid #f3c9ab}
+.explain.show{display:block}
+.explain b{color:var(--signal)}
+.verdict{display:none;font-weight:700;margin-top:14px;font-size:15.5px}
+.verdict.ok{display:block;color:var(--good)}
+.verdict.no{display:block;color:var(--bad)}
+
+.controls{display:flex;justify-content:space-between;margin-top:20px;gap:10px}
+button.nav{font-family:inherit;font-weight:700;font-size:15px;border:none;border-radius:12px;padding:11px 26px;cursor:pointer}
+#nextBtn{background:var(--deep);color:#fff}
+#nextBtn:disabled{background:#c3d2da;cursor:not-allowed}
+#backBtn{background:none;color:var(--muted);border:1.5px solid var(--line)!important;padding:11px 22px}
+#backBtn:hover{border-color:var(--teal)!important;color:var(--teal)}
+
+/* result */
+#result{display:none;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:44px 28px}
+.score-ring{width:150px;height:150px;border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:var(--deep);background:conic-gradient(var(--good) calc(var(--p)*1%), #e2eaee 0)}
+.score-ring span{background:#fff;width:112px;height:112px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+#result h2{color:var(--deep);margin-bottom:8px}
+#result p{color:var(--muted);margin-bottom:6px}
+#result .msg{font-weight:700;font-size:18px;margin:10px 0 20px}
+.resultBtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+#restart{background:var(--signal);color:#fff}
+#menuBtn{background:var(--deep);color:#fff}
+.review{margin-top:26px;text-align:right}
+.review h3{color:var(--teal);margin-bottom:12px}
+.rv{border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px;font-size:14.5px;background:#fff}
+.rv .rvq{direction:ltr;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#33475a;display:block;margin:4px 0}
+.rv .rvc{direction:ltr;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:13.5px;display:block}
+.rv.miss{border-right:4px solid var(--bad)}
+.rv.hit{border-right:4px solid var(--good)}
+@media(max-width:560px){.qcard{padding:20px 16px}}
+</style>
+</head>
+<body>
+<header>
+ <h1>اختبار محاكي · CompTIA Network+ N10-009</h1>
+ <p>الوحدة 1 (Fundamentals) · الوحدة 2 (Cabling) · الوحدة 3 (Interfaces & Switches) · الوحدة 4 (Network Addressing) — الأسئلة بالإنجليزي والشرح بالعربي</p>
+</header>
+
+<div class="switcher"><div class="swrap">
+ <a href="index.html">🏠 الرئيسية</a>
+ <a href="module1-guide.html">الوحدة 1</a>
+ <a href="module2-guide.html">الوحدة 2</a>
+ <a href="module3-guide.html">الوحدة 3</a>
+ <a href="module4-guide.html">الوحدة 4</a>
+ <a href="quiz.html" class="active">📝 الاختبار</a>
+</div></div>
+
+<div class="wrap">
+
+ <div id="home">
+  <h2>اختاري اختبار الوحدة</h2>
+  <p class="lead">كل اختبار مستقل بنافذته الخاصة — الأسئلة بالإنجليزي (بنفس لغة الاختبار الفعلي) والشرح بالعربي بعد كل إجابة.</p>
+  <div class="selgrid" id="selGrid"></div>
+ </div>
+
+ <div id="quizArea" style="display:none">
+  <div class="meta"><span id="counter"></span><span id="scoreLive"></span></div>
+  <div class="bar"><i id="prog"></i></div>
+  <div class="qcard">
+   <span class="qtag" id="qtag"></span>
+   <div class="qtext" id="qtext"></div>
+   <div class="opts" id="opts"></div>
+   <div class="verdict" id="verdict"></div>
+   <div class="explain" id="explain"></div>
+   <div class="controls">
+    <button class="nav" id="backBtn">← رجوع لقائمة الوحدات</button>
+    <button class="nav" id="nextBtn" disabled>السؤال التالي ←</button>
+   </div>
+  </div>
+ </div>
+
+ <div id="result">
+  <div class="score-ring" id="ring"><span id="scoreTxt"></span></div>
+  <h2>انتهى الاختبار!</h2>
+  <p id="finalLine"></p>
+  <p class="msg" id="msg"></p>
+  <div class="resultBtns">
+   <button class="nav" id="restart">إعادة هذا الاختبار ⟳</button>
+   <button class="nav" id="menuBtn">قائمة الوحدات 🏠</button>
+  </div>
+  <div class="review" id="reviewBox"></div>
+ </div>
+
+</div>
+
+<script>
+const Q = [
+// ---------- Module 1 ----------
+{t:"M1 · Network Types", q:"A small company wants a single central device to provide file services and authentication for all employee devices. Which network model does this describe?",
+ o:["Peer-to-Peer","Client-Server","Mesh network","Ad-hoc network"], a:1,
+ e:"وجود <b>server مركزي</b> يقدّم الموارد والخدمات للأجهزة (clients) هو تعريف نموذج <b>Client-Server</b>. أما P2P فكل جهاز يعمل client وserver معًا بدون جهاز مركزي."},
+
+{t:"M1 · LAN Types", q:"What is the correct definition of a LAN (Local Area Network)?",
+ o:["A network spanning multiple cities","A network confined to a single geographical location","A network connecting ISPs to each other","A wireless-only network"], a:1,
+ e:"الـ<b>LAN</b> محصورة في <b>single geographical location</b> — سواء كانت SOHO أو Enterprise LAN أو Datacenter."},
+
+{t:"M1 · Topologies", q:"In a point-to-point network, a device cannot transmit and receive at the same time. What is this called?",
+ o:["Full-duplex","Simplex","Half-duplex","Multiplex"], a:2,
+ e:"<b>Half-duplex</b> = إرسال أو استقبال بالتناوب وليس معًا. <b>Full-duplex</b> = الاثنان في نفس اللحظة."},
+
+{t:"M1 · Topologies", q:"Which statement about Star Topology is correct?",
+ o:["Every node is directly connected to every other node","The concentrator represents a single point of failure","No central device is required","The link count formula is n*(n-1)/2"], a:1,
+ e:"في Star كل عقدة تتصل بجهاز مركزي (<b>concentrator</b>)، وإذا تعطل تسقط الشبكة كلها = <b>single point of failure</b>. معادلة n*(n−1)/2 تخص <b>full mesh</b>."},
+
+{t:"M1 · Topologies", q:"A company needs a network that keeps working even if some links fail, so packets can take alternate paths. Which topology should it choose?",
+ o:["Star","Point-to-Point","Bus","Mesh"], a:3,
+ e:"<b>Mesh</b> توفر مسارات متعددة (multiple routes) = <b>resilience</b> عند فشل العقد أو الروابط. الـpartial mesh هو الشائع عمليًا لصعوبة توفير روابط الـfull mesh."},
+
+{t:"M1 · Topologies", q:"How many links are required for a full mesh network of 6 nodes?",
+ o:["6","12","15","30"], a:2,
+ e:"المعادلة: n*(n−1)/2 → 6×5÷2 = <b>15</b> رابطًا."},
+
+{t:"M1 · OSI", q:"What is the correct order of the OSI layers from Layer 1 to Layer 7?",
+ o:["Physical, Data Link, Network, Transport, Session, Presentation, Application",
+    "Application, Presentation, Session, Transport, Network, Data Link, Physical",
+    "Physical, Network, Data Link, Session, Transport, Presentation, Application",
+    "Data Link, Physical, Network, Transport, Presentation, Session, Application"], a:0,
+ e:"من 1→7: <b>P</b>hysical, <b>D</b>ata Link, <b>N</b>etwork, <b>T</b>ransport, <b>S</b>ession, <b>P</b>resentation, <b>A</b>pplication — تذكري: <b>Please Do Not Throw Sausage Pizza Away</b>."},
+
+{t:"M1 · OSI", q:"A switch forwards frames using MAC addresses. At which OSI layer does it operate?",
+ o:["Layer 1 – Physical","Layer 2 – Data Link","Layer 3 – Network","Layer 4 – Transport"], a:1,
+ e:"<b>Data Link (L2)</b>: نقل البيانات بين العقد على نفس الـsegment باستخدام <b>hardware/MAC addresses</b>، وأجهزتها: Switch, Bridge, NIC, Wireless AP."},
+
+{t:"M1 · OSI", q:"Which layer is responsible for giving packets a destination IP address and forwarding them to the intended network?",
+ o:["Data Link","Transport","Network","Session"], a:2,
+ e:"<b>Network (L3)</b>: نقل البيانات عبر شبكة من الشبكات باستخدام network & host IDs، وأجهزتها: <b>Router, ACL, Basic Firewall</b>."},
+
+{t:"M1 · OSI", q:"Encryption/decryption and MIME are functions of which layer?",
+ o:["Application","Presentation","Session","Transport"], a:1,
+ e:"<b>Presentation (L6)</b>: تجهيز شكل البيانات — encryption, encoding, compression, وMIME."},
+
+{t:"M1 · OSI", q:"Segmenting data, reassembling it, and tracking communication between applications using port numbers — which layer?",
+ o:["Network","Session","Transport","Data Link"], a:2,
+ e:"<b>Transport (L4)</b>: segmentation وreassembly وتتبّع الاتصالات بين التطبيقات عبر <b>port numbers</b> (مثل 80 للويب و25 للبريد)."},
+
+{t:"M1 · OSI", q:"SMTP, DNS, and FTP are protocol examples of which layer?",
+ o:["Layer 7 – Application","Layer 6 – Presentation","Layer 5 – Session","Layer 4 – Transport"], a:0,
+ e:"<b>Application (L7)</b> تتفاعل مباشرة مع برامج المستخدم لطلب خدمات الشبكة — أمثلتها: <b>SMTP, DNS, FTP</b>."},
+
+{t:"M1 · OSI", q:"Which layers are considered the \"Responsibility of the Network,\" not the host?",
+ o:["Layers 4 through 7","Layers 1 through 3","Layers 5 through 7","Layer 4 only"], a:1,
+ e:"الطبقات <b>1–3</b> (Physical, Data Link, Network) مسؤولية الشبكة، والطبقات <b>4–7</b> مسؤولية الـHost."},
+
+{t:"M1 · SOHO", q:"Which service does a SOHO router run at the Network layer to automatically give every local device an IP address?",
+ o:["DNS","NAT only","DHCP server","ARP"], a:2,
+ e:"الراوتر يشغّل <b>DHCP server</b> ليمنح كل host عنوان IP، بينما واجهة الـWAN تأخذ <b>public IP address</b> من المزود."},
+
+{t:"M1 · SOHO", q:"On a SOHO router, the WAN port is used to:",
+ o:["Connect the local printer","Connect to the Internet Service Provider (ISP)","Wire local LAN devices","Broadcast Wi-Fi"], a:1,
+ e:"<b>WAN port</b> = الاتصال بشبكة الـ<b>ISP</b>. منافذ RJ-45 LAN للأجهزة المحلية، والـantennas للواي فاي."},
+
+{t:"M1 · Binary", q:"What is the binary representation of the number 205?",
+ o:["11001101","10101101","11010011","11001011"], a:0,
+ e:"205 = 128+64+8+4+1 → <b>1100 1101</b>. طريقة الحل: اطرحي أكبر قوة للـ2 ممكنة بالتتابع."},
+
+{t:"M1 · Troubleshooting", q:"What is the first step in CompTIA's troubleshooting methodology?",
+ o:["Establish a theory of probable cause","Identify the problem","Test the theory","Document findings"], a:1,
+ e:"الترتيب: <b>Identify the problem</b> → Establish a theory → Test the theory → Establish a plan → Implement → Verify → Document."},
+
+{t:"M1 · Troubleshooting", q:"A technician identified the problem, established a theory, and tested it successfully. What is the next step?",
+ o:["Implement the solution","Document findings","Establish a plan of action","Verify full system functionality"], a:2,
+ e:"بعد نجاح اختبار النظرية تأتي خطوة <b>Establish a plan of action</b> ثم التنفيذ (Implement) ثم التحقق (Verify) ثم التوثيق."},
+
+{t:"M1 · Troubleshooting", q:"When is escalation the right call? (choose the most accurate)",
+ o:["As soon as any fix fails","When the problem is under system warranty or beyond your knowledge and authority","Only when the customer requests it","Escalation never happens before documentation"], a:1,
+ e:"مبررات التصعيد: المشكلة <b>تتجاوز معرفتك/قدرتك</b>، تقع تحت <b>system warranty</b>، نطاقها كبير جدًا، أو العميل صعب/مسيء."},
+
+{t:"M1 · Troubleshooting", q:"A technician always starts by checking the cable and power, then moves up to higher layers. Which approach is this?",
+ o:["Top-down","Divide-and-conquer","Bottom-up","Random substitution"], a:2,
+ e:"<b>Bottom-up</b> = البدء من Physical صعودًا. <b>Top-down</b> يبدأ من Application نزولًا، و<b>divide-and-conquer</b> يبدأ من طبقة وسطى."},
+
+// ---------- Module 2 ----------
+{t:"M2 · Ethernet", q:"What layers do IEEE 802.3 standards define for wired Ethernet?",
+ o:["Network and Transport","Physical and MAC (Data Link)","Session and Presentation","Application only"], a:1,
+ e:"<b>IEEE 802.3</b> يعرّف الـ<b>Physical layer</b> وآلية <b>MAC (Media Access Control)</b> في طبقة Data Link للإيثرنت السلكي."},
+
+{t:"M2 · Ethernet", q:"What is the minimum cable category to run 1000Base-T (Gigabit Ethernet) according to the standards table?",
+ o:["Cat5","Cat5e","Cat6","Cat7"], a:2,
+ e:"حسب جدول المعايير: <b>1000Base-T و10GBase-T يتطلبان Cat6 أو أعلى</b>، بينما 100Base-T يكتفي بـCat5e."},
+
+{t:"M2 · CSMA/CD", q:"In CSMA/CD, what happens immediately after a collision is detected?",
+ o:["Retransmission happens immediately with no wait","A jam signal is sent, then the device waits per the backoff algorithm","The port is permanently shut down","The medium switches to full-duplex"], a:1,
+ e:"الحل عند التصادم: <b>Jam signal</b> لإعلام الجميع، ثم انتظار عشوائي عبر <b>Backoff algorithm</b> قبل إعادة الإرسال."},
+
+{t:"M2 · Copper", q:"An industrial environment has machinery causing significant electromagnetic interference (EMI), and you need a high-speed copper cable for distances up to 100m. What's the best choice?",
+ o:["UTP","STP","Coaxial","RJ11 cabling"], a:1,
+ e:"<b>STP (Shielded Twisted Pair)</b> يوفر تدريعًا موصلًا يحمي من <b>EMI</b> ويقلل crosstalk — الخيار النحاسي الصحيح للبيئات عالية التداخل."},
+
+{t:"M2 · Copper", q:"Which statement correctly describes an RJ45 connector?",
+ o:["6 positions / 4 connectors, used for telephones","8 positions / 8 connectors, used for computer networking","A fiber optic connector with a push-pull design","Supports a maximum of 24 Mbps"], a:1,
+ e:"<b>RJ45</b>: 8 مواضع/8 موصلات، لشبكات الحاسب حتى 10 Gbps. أما <b>RJ11</b> (6P4C) فللهاتف والمودم بسرعة 24 Mbps."},
+
+{t:"M2 · Copper", q:"You need to run cable through an air-handling space above a drop ceiling. Which cable rating must you use?",
+ o:["Riser-rated","Plenum-rated","Direct burial","Outdoor-rated"], a:1,
+ e:"<b>Plenum-rated</b> مصنوع من مواد مقاومة للحريق منخفضة السمّية لفراغات الهواء (plenum spaces). أما <b>Riser</b> فللفراغات الرأسية بين الطوابق."},
+
+{t:"M2 · Structured Cabling", q:"In a structured cabling system, what is the vertical cabling that connects floors and telecom rooms called?",
+ o:["Horizontal cabling","Work area cabling","Backbone cabling","Demarc extension"], a:2,
+ e:"<b>Backbone cabling</b> = الروابط الرأسية بين الطوابق/الغرف. <b>Horizontal cabling</b> على مستوى الطابق الواحد، و<b>Entrance facilities/Demarc</b> نقطة دخول خدمة المزود."},
+
+{t:"M2 · Fiber", q:"You need to connect two sites over a very long distance using fiber optic cable with minimal attenuation. Which type do you choose?",
+ o:["Multimode fiber (MMF)","Single mode fiber (SMF)","Coaxial","Twinaxial"], a:1,
+ e:"<b>SMF</b>: قلب صغير ونمط ضوء واحد → انعكاس وتوهين أقل → مثالي <b>للمسافات الطويلة</b>. الـMMF أنسب للمسافات القصيرة (Datacenters/LANs)."},
+
+{t:"M2 · Fiber", q:"Which fiber connector has a 1.25mm ferrule size and is preferred for heavily populated patch panels?",
+ o:["SC","ST","LC","RJ45"], a:2,
+ e:"<b>LC (Lucent Connector)</b>: ferrule صغير <b>1.25mm</b> بتصميم duplex — مثالي للوحات المزدحمة. SC وST حجمهما 2.5mm."},
+
+{t:"M2 · Cable Troubleshooting", q:"A technician needs to trace an unlabeled cable running through walls in a bundle of cables. Which tool should be used?",
+ o:["Loopback tool","Tone generator and probe (Fox and Hound)","Crimp tool","Punch-down tool"], a:1,
+ e:"<b>Tone generator + probe</b> (يُعرف بـ<b>Fox and Hound</b>): يضخ إشارة في الكيبل ويتتبعها المسبار عبر الجدران أو داخل الحزم. الـloopback لاختبار المنافذ/الـtransceivers."},
+
+// ---------- Module 3 ----------
+{t:"M3 · NIC", q:"A network interface card (NIC) is a transceiver component that connects a device to the transmission medium and has a unique MAC address. Which OSI layer does it operate at?",
+ o:["Layer 1 – Physical","Layer 2 – Data Link","Layer 3 – Network","Layer 4 – Transport"], a:1,
+ e:"<b>NIC</b> يعمل في <b>Data Link (L2)</b> لأنه يُعرَّف بعنوان <b>MAC address</b> فريد، وقد يحتوي على أكثر من منفذ على نفس البطاقة."},
+
+{t:"M3 · Transceivers", q:"What is the primary function of a modular transceiver?",
+ o:["Generating the device's IP address","Terminating different cable and connector types, operating at Data Link","Encrypting data before transmission","Routing packets between different networks"], a:1,
+ e:"الـ<b>modular transceivers</b> تسمح بإنهاء أنواع متعددة من الكيابل/الموصلات على نفس المنفذ، وتعمل في طبقة <b>Data Link</b> مثل الـNIC."},
+
+{t:"M3 · Transceivers", q:"A technician notices packet loss and poor network performance, but the link doesn't fully drop. What is the most likely cause?",
+ o:["Mismatched port type (no link)","A signal strength issue","The port is administratively disabled","The port is blocked by STP"], a:1,
+ e:"أعراض <b>signal strength</b>: اتصالات متقطعة، <b>packet loss</b>، وأداء ضعيف. بينما mismatched ports تُسبب انعدام الرابط (no link) بشكل واضح وليس تدهورًا تدريجيًا."},
+
+{t:"M3 · MAC Address", q:"A 48-bit MAC address consists of two main parts. What are they?",
+ o:["Network ID and Host ID","OUI (Organizationally Unique Identifier) and Device ID","IP Address and Port Number","Preamble and SFD"], a:1,
+ e:"عنوان MAC = <b>OUI</b> (يحدد الشركة المصنّعة) + <b>Device ID</b> (بناءً على موديل الجهاز وتاريخ التصنيع) — 48 bit، أزواج hex مفصولة بنقطتين أو شرطات."},
+
+{t:"M3 · Ethernet Frame", q:"Which field in an Ethernet frame holds the code used to check for transmission errors?",
+ o:["Preamble","SFD","Ether Type","FCS (Frame Check Sequence)"], a:3,
+ e:"<b>FCS</b> هو الحقل الأخير في الإطار ويحمل <b>error-checking code</b>. أما Preamble/SFD فللمزامنة وبداية الإطار، وEther Type يحدد بروتوكول الـpayload."},
+
+{t:"M3 · MAC Address", q:"A broadcast MAC address (which makes every device on the network receive and process the frame) consists of:",
+ o:["All bits set to zero (00:00:00:00:00:00)","All bits set to one (FF:FF:FF:FF:FF:FF)","The OUI only","The same address as the sender"], a:1,
+ e:"إذا كان عنوان MAC كله بتات <b>1</b> (يظهر كـ FF:FF:FF:FF:FF:FF) فهو عنوان <b>broadcast</b>، وكل الأجهزة على الشبكة تستقبل الإطار وتعالجه."},
+
+{t:"M3 · Hub vs Switch", q:"What is the fundamental difference between a Hub and a Switch in how they send data?",
+ o:["A hub sends only to the destination port, a switch sends to all ports","A switch sends only to the destination port, a hub sends to every other port","Both send to all ports the same way","Both send only to the destination port"], a:1,
+ e:"<b>Hub</b> يبث الإرسال لكل منفذ آخر (يعمل بالـPhysical layer فقط). <b>Switch</b> يتعلم عناوين MAC ويرسل الإطار لمنفذ الوجهة المحدد فقط، ما يقلل الازدحام."},
+
+{t:"M3 · Bridge", q:"What is the function of a Bridge on a network?",
+ o:["Only amplifying the electrical signal","Separating physical segments while keeping all nodes on the same logical network","Automatically distributing IP addresses","Encrypting traffic between networks"], a:1,
+ e:"الـ<b>Bridge</b> يفصل الشبكة إلى <b>physical segments</b> منفصلة بينما يحافظ على أن جميع العُقد جزء من نفس <b>logical network</b>."},
+
+{t:"M3 · Switch Types", q:"What is the key difference between a managed switch and an unmanaged switch?",
+ o:["Managed switches can be configured and customized; unmanaged switches have no configuration options","The exact opposite is true","They are the same thing with different names","The only difference is the number of ports"], a:0,
+ e:"<b>Managed switches</b> يمكن ضبط إعداداتها (VLANs, STP...)، بينما <b>Unmanaged switches</b> لا تملك أي خيارات إعداد — توصيل وتشغيل فقط."},
+
+{t:"M3 · Switch Types", q:"What is the difference between a modular switch and a fixed switch?",
+ o:["A modular switch has a fixed number of ports, a fixed switch accepts different module types/counts","A modular switch can be equipped with different numbers/types of ports, a fixed switch ships with a set number of ports","They are the same thing","Fixed switches are only for home use"], a:1,
+ e:"<b>Modular switches</b> تُهيَّأ بأعداد وأنواع منافذ مختلفة حسب الحاجة، بينما <b>Fixed switches</b> تأتي بعدد منافذ ثابت مسبقًا."},
+
+{t:"M3 · Link Aggregation", q:"Combining two or more separate cabled links into a single logical channel to provide redundancy and cost efficiency is called:",
+ o:["Spanning Tree Protocol","Link Aggregation / NIC Teaming","Power over Ethernet","Jumbo Framing"], a:1,
+ e:"<b>Link Aggregation (NIC Teaming)</b>: دمج رابطين+ في قناة منطقية واحدة → <b>redundancy</b> و<b>cost effective</b>."},
+
+{t:"M3 · MTU", q:"What is the standard Maximum Transmission Unit (MTU) for a normal Ethernet frame, compared to a jumbo frame?",
+ o:["1500 bytes standard vs. up to 9216 bytes for a jumbo frame","9216 bytes standard vs. 1500 bytes for a jumbo frame","64 bytes standard only","There is no defined maximum"], a:0,
+ e:"الإطار العادي MTU = <b>1500 bytes</b>. الـ<b>Jumbo frame</b> يدعم حمولة حتى <b>9216 bytes</b> لتقليل عدد الإطارات المرسلة، لكنه يخالف معايير الإيثرنت القياسية."},
+
+{t:"M3 · STP", q:"What is the primary function of Spanning Tree Protocol (STP)?",
+ o:["Speeding up data transfer between switches","Preventing bridge loops and providing fault tolerance","Encrypting network traffic","Distributing IP addresses to devices"], a:1,
+ e:"<b>STP</b> بروتوكول طبقة <b>Data Link (L2)</b> يمنع <b>bridge loops</b> ويوفر <b>fault tolerance</b> عبر حظر الروابط الزائدة منطقيًا."},
+
+{t:"M3 · PoE", q:"What is the main benefit of Power over Ethernet (PoE)?",
+ o:["Faster data transfer only","Delivering both data and electrical power over a single cable to simplify installation","Encrypting the connection between devices","Increasing the maximum distance for copper cable"], a:1,
+ e:"<b>PoE</b> يسمح لكيبل واحد بنقل <b>data</b> و<b>power</b> معًا للأجهزة المتصلة (مثل كاميرات وAPs)، ما يبسّط التركيب والتوسع."},
+
+{t:"M3 · Port Indicators", q:"A switch port indicator glows solid amber. What does this usually mean?",
+ o:["The link is connected with no traffic","The port is blocked by the Spanning Tree algorithm","A fault has been detected on the port","The link isn't working at all"], a:1,
+ e:"<b>Solid amber</b> = المنفذ <b>blocked by the spanning tree algorithm</b>. أما blinking amber فيعني fault detected، وsolid green يعني connected بدون traffic."},
+
+{t:"M3 · Port Indicators", q:"A blinking amber indicator on a switch port means:",
+ o:["Normal link with regular traffic","A fault has been detected","The port is only blocked by STP","There's no connection at all"], a:1,
+ e:"<b>Blinking amber</b> تعني وجود <b>fault</b> تم اكتشافه على ذلك المنفذ ويستحق الفحص الفوري."},
+
+{t:"M3 · Show Commands", q:"Which switch command shows the configuration that will be used the next time the device restarts?",
+ o:["show running-config","show startup-config","show interface","show version"], a:1,
+ e:"<b>show startup-config</b> = الإعداد الذي سيُطبَّق عند <b>next restart</b>. أما <b>show running-config</b> فهو الإعداد <b>النشط حاليًا</b>."},
+
+{t:"M3 · Interface Status", q:"A switch port status shows as \"Administratively down/down.\" What does this mean?",
+ o:["An automatic fault due to a network error or policy violation","Manually disabled by the administrator using the shutdown command","The physical layer is up but Data Link is automatically disabled","The cable is simply not physically connected"], a:1,
+ e:"<b>Administratively down/down</b> = تم تعطيل الواجهة يدويًا من المسؤول باستخدام أمر <b>shutdown</b>. أما \"Down/error disabled\" فهو تعطيل تلقائي بسبب خطأ أو مخالفة سياسة."},
+
+{t:"M3 · Interface Errors", q:"A CRC (Cyclic Redundancy Check) error on a network interface usually indicates:",
+ o:["Noise, interference, or equipment malfunction (the computed checksum doesn't match the transmitted one)","Collisions only between devices","The frame exceeding the maximum allowed size","A VLAN misconfiguration only"], a:0,
+ e:"خطأ <b>CRC</b> يعني أن checksum المحسوب للإطار لا يطابق المرسَل — مؤشر على <b>noise, interference, or equipment malfunction</b>."},
+
+{t:"M3 · Network Loops", q:"A network is suffering from loops caused by redundant connections. What is the standard recommended fix?",
+ o:["Increasing broadcast domains","Enabling Spanning Tree Protocol (STP) and properly configuring redundant links","Increasing the frame MTU","Disabling PoE on all ports"], a:1,
+ e:"حلول <b>network loops</b>: تهيئة صحيحة للاتصالات الزائدة، تفعيل <b>STP</b>، وتوعية المستخدمين. أما broadcast storms فحلها يكون بمراقبة DHCP وتقسيم (segment) الشبكة."},
+
+// ---------- Module 4 ----------
+{t:"M4 · ARP", q:"What is the function of ARP (Address Resolution Protocol)?",
+ o:["Translating a domain name into an IP address","Mapping an IP address to its corresponding MAC address on the local network","Automatically distributing IP addresses to devices","Encrypting communication between hosts"], a:1,
+ e:"<b>ARP</b> يعمل مثل دليل هاتف: يربط عنوان <b>IP</b> بعنوان <b>MAC</b> المقابل له ليتم توجيه الإطار بشكل صحيح على الشبكة المحلية."},
+
+{t:"M4 · Addressing Types", q:"An Anycast address sends data to:",
+ o:["Every host on the network or subnet","The nearest device from a group of devices sharing the same address (for load balancing and redundancy)","One specific host only, with no alternatives","A specific pre-registered group only"], a:1,
+ e:"<b>Anycast</b>: عنوان واحد لمجموعة أجهزة، وتُرسل البيانات إلى <b>أقرب جهاز</b> منها — يُستخدم لـ<b>load balancing</b> و<b>redundancy</b>."},
+
+{t:"M4 · Addressing Types", q:"A Broadcast address in IPv4 (addressed to the last IP in a network/subnet) sends data to:",
+ o:["One specific device only (unicast)","Every host on that network or subnet","The nearest device only","A specific pre-registered group"], a:1,
+ e:"<b>Broadcast</b> مُعنوَن لآخر IP في الشبكة/الـsubnet، ويصل إلى <b>جميع المضيفين</b> على تلك الشبكة أو الـsubnet."},
+
+{t:"M4 · Addressing Types", q:"A Multicast address directs data to:",
+ o:["Every device on the Internet, without exception","A specific group of host addresses subscribed to that address","Always just one device","Only the nearest device geographically"], a:1,
+ e:"<b>Multicast</b> مُعنوَن لـ<b>مجموعة محددة</b> من عناوين المضيفين، وتصل البيانات لكل الأعضاء المشتركين في تلك المجموعة على الشبكة أو الـsubnet."},
+
+{t:"M4 · Binary", q:"Convert the binary 11000011 to decimal (Base 10).",
+ o:["194","97","131","201"], a:1,
+ e:"بالأوزان 128-64-32-16-8-4-2-1: البتات المفعّلة هي 64+32+1 = <b>97</b>."},
+
+{t:"M4 · IPv4 Structure", q:"How many total bits make up an IPv4 address, and how is it divided?",
+ o:["48 bits divided into 6 parts","32 bits divided into four octets, each 8 bits","64 bits divided into 4 parts of 16 bits","16 bits only, undivided"], a:1,
+ e:"عنوان <b>IPv4</b> = تمثيل عشري لأربع مجموعات ثنائية (<b>octets</b>)، كل octet <b>8 bits</b> → المجموع <b>32 bit</b>."},
+
+{t:"M4 · IP Formatting", q:"In the apartment building analogy for IP addressing, what does the Network ID represent?",
+ o:["The apartment number within the building","The building's address/number itself, shared by all residents","The resident's name only","The floor the apartment is on"], a:1,
+ e:"<b>Network ID</b> يشبه رقم <b>المبنى</b> — مشترك بين كل المضيفين على نفس الشبكة، بينما <b>Host ID</b> يشبه رقم <b>الشقة</b> ويحدد مضيفًا بعينه داخل تلك الشبكة."},
+
+{t:"M4 · Subnet Mask", q:"What is the function of the Subnet Mask?",
+ o:["Encrypting the IP address before transmission","Identifying the network portion of an IP address, to determine whether a packet is sent directly or forwarded","Automatically generating MAC addresses","Blocking unwanted data packets"], a:1,
+ e:"الـ<b>Subnet Mask</b> يحدد <b>network portion</b> من عنوان IP. إذا طابق الـnetwork ID الشبكةَ المحلية تُرسل الحزمة مباشرة، وإلا تُمرَّر (<b>forwarded</b>) لشبكة أخرى."},
+
+{t:"M4 · Default Gateway", q:"In the apartment building analogy, the Default Gateway represents:",
+ o:["The user's apartment number","The building's main entrance/lobby that everyone exits through to reach the outside","A personal mailbox","An internal alarm system"], a:1,
+ e:"الـ<b>Default Gateway</b> يشبه <b>المدخل الرئيسي</b> للمبنى — الطريق الذي يمر عبره أي اتصال خارج الشبكة المحلية."},
+
+{t:"M4 · Private Ranges", q:"Which IP range represents the Class A private range?",
+ o:["172.16.0.0 – 172.31.255.255","10.0.0.0 – 10.255.255.255","192.168.0.0 – 192.168.255.255","224.0.0.0 – 239.255.255.255"], a:1,
+ e:"نطاقات الـprivate: <b>Class A: 10.0.0.0–10.255.255.255</b> · Class B: 172.16.0.0–172.31.255.255 · Class C: 192.168.0.0–192.168.255.255."},
+
+{t:"M4 · Reserved Ranges", q:"The range 224.0.0.0 – 239.255.255.255 (sometimes referred to as Class D) is actually used as:",
+ o:["An additional private range for local networks","A reserved Multicast range, not for assignment as regular host addresses","An additional public range","Exclusively a broadcast range"], a:1,
+ e:"⚠️ تنبيه دقيق: 224.0.0.0–239.255.255.255 ليس نطاقًا خاصًا فعليًا بل هو نطاق <b>Multicast</b> محجوز — يظهر أحيانًا في جداول مرجعية بجانب النطاقات الخاصة لكنه مختلف الغرض تمامًا."},
+
+{t:"M4 · Scheme Design", q:"When designing a private IPv4 addressing scheme, which fundamental rule must be observed?",
+ o:["The Network ID or Host ID can be all 1-bits (it has no effect)","The Network ID or Host ID cannot be all 1-bits (that's a broadcast address), and every Host ID must be unique within its subnet","The Network ID doesn't need to be unique across the network","The same Host ID can repeat on more than one device in the same subnet"], a:1,
+ e:"قواعد التصميم: الـNetwork ID من مدى خاص صالح، لا يجوز أن يكون Network/Host ID <b>كله بتات 1</b> (broadcast)، وكل <b>Host ID</b> يجب أن يكون فريدًا داخل الـsubnet، وكل <b>Network ID</b> فريدًا على مستوى الشبكة."},
+
+{t:"M4 · Classless Addressing", q:"When borrowing bits from the Host portion in favor of the Network portion, what happens?",
+ o:["The number of available networks increases, and the number of hosts available per subnet decreases","The number of networks decreases, and the number of hosts increases","Nothing changes in the addressing","Only the data transfer speed increases"], a:0,
+ e:"استعارة بتات الـHost لصالح الـNetwork (Classless addressing / VLSM) تزيد <b>عدد الشبكات الفرعية المتاحة</b> لكنها تقلّل <b>عدد المضيفين</b> الممكنين بكل subnet."},
+
+{t:"M4 · Classless Example", q:"Given the network 192.168.89.0/24 (mask 255.255.255.0), and borrowing just one bit from the Host portion, what is the new subnet mask?",
+ o:["255.255.255.0 (/24), unchanged","255.255.255.128 (/25)","255.255.255.192 (/26)","255.255.255.224 (/27)"], a:1,
+ e:"استعارة بت واحد تنقل القناع من /24 إلى <b>/25 = 255.255.255.128</b>، وتنشئ شبكتين فرعيتين (مثال: 192.168.89.0/25 و192.168.89.128/25)."},
+
+{t:"M4 · CIDR", q:"What does CIDR (Classless Inter-Domain Routing) provide?",
+ o:["More efficient allocation of IP address space, by combining an address with a suffix denoting the network portion, and supporting variable-length subnetting","Encryption of traffic between networks","Automatically blocking unauthorized access","Faster DNS lookups"], a:0,
+ e:"<b>CIDR</b> يدمج عنوان IP مع لاحقة (suffix) تمثّل جزء الشبكة، ما يتيح تخصيصًا أكفأ لعناوين IP ودعم <b>variable-length subnetting</b>."},
+
+{t:"M4 · VLSM", q:"What is the key benefit of VLSM (Variable Length Subnetting)?",
+ o:["Creating subnets of different sizes within the same network for more efficient address allocation","Completely eliminating the need for a subnet mask","Forcing all subnets to be the same size","Permanently disabling broadcast addresses"], a:0,
+ e:"<b>VLSM</b> يتيح إنشاء subnets <b>بأحجام مختلفة</b> ضمن نفس الشبكة لتخصيص أكفأ للعناوين، لكنه يتطلّب تخطيطًا وإدارة دقيقة."},
+
+{t:"M4 · ipconfig", q:"What is the difference between ipconfig /release and ipconfig /renew?",
+ o:["release frees the IP address leased from DHCP, and renew requests a new address from DHCP","release renews the address, and renew frees it","Both only display the device's MAC address","There is no practical difference"], a:0,
+ e:"<b>ipconfig /release</b>: يحرر (releases) عنوان IP المستأجر من DHCP الحالي. <b>ipconfig /renew</b>: يجدد (renews) طلب الحصول على عنوان IP جديد من DHCP."},
+
+{t:"M4 · arp Command", q:"The command arp -a (or arp -g) is used to:",
+ o:["Delete all ARP cache entries","Display the current contents of the ARP cache (IP-to-MAC mapping)","Add a new manual entry to the ARP cache","Renew an IP address from DHCP"], a:1,
+ e:"<b>arp -a</b> يعرض محتويات <b>ARP cache</b> الحالية. لإضافة إدخال يدوي نستخدم <b>arp -s IP MAC</b>، ولحذف كل الإدخالات <b>arp -d</b>."},
+
+{t:"M4 · ping", q:"Which of the following are common error messages when running ping and getting no reply?",
+ o:["Destination host unreachable / No reply (request timed out)","404 Not Found / Access denied","DNS server not found / Port closed","Host blocked / Timeout only"], a:0,
+ e:"رسالتا الخطأ الشائعتان مع <b>ping</b>: <b>Destination host unreachable</b> و<b>No reply (request timed out)</b>."},
+
+{t:"M4 · IPv6 vs IPv4", q:"Roughly how many possible addresses does IPv6 provide compared to IPv4?",
+ o:["IPv6 has far fewer than IPv4","IPv6 ≈ 340 undecillion (3.4×10^38) vs. IPv4 ≈ 4.3 billion","Roughly the same number in both","IPv6 is only double the number of IPv4 addresses"], a:1,
+ e:"<b>IPv4</b>: حوالي 4.3 مليار عنوان (32 bit). <b>IPv6</b>: حوالي 340 undecillion عنوان (128 bit) — فرق هائل يحل مشكلة نفاد عناوين IPv4."},
+
+{t:"M4 · IPv6 Format", q:"An IPv6 address consists of:",
+ o:["Four decimal octets separated by dots","Eight 16-bit groups, expressed in hexadecimal (4 hex digits per group)","48 bits only, in hex format","Sixteen decimal octets"], a:1,
+ e:"<b>IPv6</b> = ثمانية مجموعات <b>16-bit</b>، كل مجموعة تُمثَّل بـ4 أرقام <b>hex</b>، مفصولة بنقطتين رأسيتين (:)."},
+
+{t:"M4 · IPv6 Structure", q:"In a standard 128-bit IPv6 address, how is it usually split between network and host?",
+ o:["The first 64 bits identify the network, the second 64 bits identify the host","Only the first 32 bits identify the network","It fully depends on a variable subnet mask, like IPv4","There is no network/host split in IPv6"], a:0,
+ e:"خلافًا لـIPv4 (حيث يتغير التقسيم حسب subnet mask)، في <b>IPv6</b> عادة أول <b>64 bit</b> لتعريف الشبكة والـ<b>64 bit</b> الثانية لتعريف المضيف."},
+
+{t:"M4 · IPv6 Link Local", q:"The IPv6 Link Local address range, the equivalent of private IPv4 addresses, begins with:",
+ o:["fe80::/10","2001::/3","::1/128","fc00::/7"], a:0,
+ e:"<b>Link Local</b>: نطاقه <b>fe80::/10</b>، يبدأ بـfe80 مع تصفير الـ54 بت التالية، وآخر 64 بت هي الـinterface ID — يعمل ضمن subnet واحد فقط، مثل الـprivate IPv4."},
+
+{t:"M4 · IPv6 Unicast", q:"Globally scoped unicast IPv6 addresses are the equivalent of:",
+ o:["Private IPv4 addresses","Public IPv4 addresses routable on the Internet","Multicast addresses only","Broadcast addresses only"], a:1,
+ e:"<b>Globally scoped unicast</b> في IPv6 قابلة للتوجيه على الإنترنت، وهي معادل <b>public IPv4 addresses</b>."},
+
+{t:"M4 · Transition", q:"Which IPv4/IPv6 transition mechanism encapsulates IPv6 packets inside IPv4 packets to cross an IPv4 network?",
+ o:["Dual Stack","Tunneling","NAT64","VLSM"], a:1,
+ e:"<b>Tunneling</b> يُغلّف حزم IPv6 داخل حزم IPv4 لعبور شبكة IPv4 — مفيد لربط \"جزر IPv6\" (IPv6 islands) داخل شبكة IPv4."},
+
+{t:"M4 · Transition", q:"What is the concept of Dual Stack in the context of IPv4/IPv6 transition?",
+ o:["Permanently disabling one protocol in favor of the other","Running IPv4 and IPv6 simultaneously on the same device/network during the transition period","Merging two IPv4 addresses into one combined address","Compressing packets to reduce their size"], a:1,
+ e:"<b>Dual Stack</b>: تشغيل <b>IPv4 وIPv6 معًا</b> في نفس الوقت — الخيار المثالي خلال الفترات الانتقالية حيث تعمل الشبكتان."},
+
+{t:"M4 · Transition", q:"When is NAT64 the best choice among transition mechanisms?",
+ o:["In an environment gradually moving to IPv6 but still needing access to IPv4 resources","In an IPv4-only environment with no future transition plan","Only to encrypt traffic between networks","Only to compress the size of sent packets"], a:0,
+ e:"<b>NAT64</b> يترجم بين IPv6 وIPv4 والعكس — الأنسب للبيئات التي تنتقل إلى IPv6 لكنها ما زالت بحاجة الوصول لموارد <b>IPv4</b>."},
+];
+
+const MODULES = [
+ {key:"M1", label:"الوحدة 1", eng:"Network Fundamentals"},
+ {key:"M2", label:"الوحدة 2", eng:"Cabling & Physical Install"},
+ {key:"M3", label:"الوحدة 3", eng:"Interfaces & Switches"},
+ {key:"M4", label:"الوحدة 4", eng:"Network Addressing"},
+];
+
+let activeQ = [];
+let idx=0, score=0, answers=[];
+const $=id=>document.getElementById(id);
+
+function buildHome(){
+ const grid = $("selGrid");
+ grid.innerHTML = "";
+ MODULES.forEach(m=>{
+  const count = Q.filter(q=>q.t.startsWith(m.key+" ")).length;
+  const btn = document.createElement("button");
+  btn.className = "selcard";
+  btn.innerHTML = `<div class="stag">${m.eng}</div><div class="stitle">${m.label}</div><div class="scount">${count} أسئلة</div>`;
+  btn.onclick = ()=>startQuiz(m.key);
+  grid.appendChild(btn);
+ });
+ const allBtn = document.createElement("button");
+ allBtn.className = "selcard all";
+ allBtn.innerHTML = `<div class="stag">FULL MOCK EXAM</div><div class="stitle">كل الوحدات 1–4</div><div class="scount">${Q.length} سؤالًا بنمط الاختبار الكامل</div>`;
+ allBtn.onclick = ()=>startQuiz("ALL");
+ grid.appendChild(allBtn);
+}
+
+function startQuiz(key){
+ activeQ = key==="ALL" ? Q : Q.filter(q=>q.t.startsWith(key+" "));
+ idx=0; score=0; answers=[];
+ $("home").style.display="none";
+ $("result").style.display="none";
+ $("quizArea").style.display="block";
+ render();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function render(){
+ const q=activeQ[idx];
+ $("qtag").textContent=q.t;
+ $("qtext").textContent=q.q;
+ $("counter").textContent=`السؤال ${idx+1} من ${activeQ.length}`;
+ $("scoreLive").textContent=`النتيجة: ${score}`;
+ $("prog").style.width=((idx)/activeQ.length*100)+"%";
+ $("verdict").className="verdict"; $("explain").className="explain"; $("explain").innerHTML="";
+ $("nextBtn").disabled=true;
+ $("nextBtn").textContent = idx===activeQ.length-1 ? "عرض النتيجة 🏁" : "السؤال التالي ←";
+ const box=$("opts"); box.innerHTML="";
+ q.o.forEach((opt,i)=>{
+  const b=document.createElement("button");
+  b.className="opt"; b.textContent=opt;
+  b.onclick=()=>choose(i,b);
+  box.appendChild(b);
+ });
+}
+function choose(i,btn){
+ const q=activeQ[idx];
+ [...$("opts").children].forEach((b,j)=>{b.disabled=true; if(j===q.a)b.classList.add("correct");});
+ const ok = i===q.a;
+ if(ok){score++;}else{btn.classList.add("wrong");}
+ answers.push({q:q.q,ok,correct:q.o[q.a],tag:q.t});
+ $("verdict").textContent = ok? "✓ إجابة صحيحة":"✗ إجابة خاطئة — الصحيح مظلل بالأخضر";
+ $("verdict").className = "verdict "+(ok?"ok":"no");
+ $("explain").innerHTML = "<b>الشرح:</b> "+q.e;
+ $("explain").className="explain show";
+ $("scoreLive").textContent=`النتيجة: ${score}`;
+ $("nextBtn").disabled=false;
+}
+$("nextBtn").onclick=()=>{
+ if(idx<activeQ.length-1){idx++; render(); window.scrollTo({top:0,behavior:"smooth"});}
+ else finish();
+};
+$("backBtn").onclick=()=>{
+ $("quizArea").style.display="none";
+ $("home").style.display="block";
+ window.scrollTo({top:0,behavior:"smooth"});
+};
+$("restart").onclick=()=>{
+ const currentTag = activeQ[0].t.split(" ")[0];
+ const key = activeQ.length===Q.length ? "ALL" : currentTag;
+ startQuiz(key);
+};
+$("menuBtn").onclick=()=>{
+ $("result").style.display="none";
+ $("home").style.display="block";
+ window.scrollTo({top:0,behavior:"smooth"});
+};
+function finish(){
+ $("quizArea").style.display="none";
+ const pct=Math.round(score/activeQ.length*100);
+ $("ring").style.setProperty("--p",pct);
+ $("scoreTxt").textContent=pct+"%";
+ $("finalLine").textContent=`أجبتِ صحيحًا على ${score} من ${activeQ.length} سؤالًا`;
+ const m=$("msg");
+ if(pct>=90){m.textContent="ممتاز — مستوى جاهزية عالٍ لهذه الوحدة 👏"; m.style.color="var(--good)";}
+ else if(pct>=75){m.textContent="جيد جدًا — راجعي الأسئلة الخاطئة أدناه وأعيدي المحاولة"; m.style.color="var(--teal)";}
+ else if(pct>=60){m.textContent="على الحد — راجعي ملخص هذه الوحدة ثم أعيدي الاختبار"; m.style.color="var(--signal)";}
+ else{m.textContent="تحتاجين مراجعة ملخص الوحدة كاملة قبل إعادة المحاولة"; m.style.color="var(--bad)";}
+ const rb=$("reviewBox");
+ const misses=answers.filter(a=>!a.ok);
+ rb.innerHTML = "<h3>مراجعة الأسئلة ("+misses.length+" خطأ)</h3>" + answers.map(a=>
+   `<div class="rv ${a.ok?'hit':'miss'}"><b>${a.ok?'✓':'✗'} ${a.tag}</b><span class="rvq">${a.q}</span><span class="rvc" style="color:var(--good)">Correct answer: ${a.correct}</span></div>`).join("");
+ $("result").style.display="block";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+buildHome();
+</script>
+</body>
+</html>

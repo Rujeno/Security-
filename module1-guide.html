@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 1 — أساسيات الشبكات — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:14px;font-weight:600;padding:14px 18px;display:inline-block;border-bottom:3px solid transparent;transition:.15s}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 1</span>
+  <h1>الوحدة 1 — أساسيات الشبكات</h1>
+  <p>Explaining Network Topologies — Networking Overview · OSI Model · SOHO Networks · Troubleshooting Methodology</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠 الرئيسية</a><a href="module1-guide.html" class="active">الوحدة 1</a><a href="module2-guide.html">الوحدة 2</a><a href="module3-guide.html">الوحدة 3</a><a href="module4-guide.html">الوحدة 4</a><a href="quiz.html">📝 الاختبار</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m1-types">1.1 أنواع الشبكات</a>
+ <a href="#m1-topo">1.1 Topologies</a>
+ <a href="#m1-osi">1.2 OSI Model</a>
+ <a href="#m1-soho">1.3 SOHO Router</a>
+ <a href="#m1-bin">1.3 Binary</a>
+ <a href="#m1-ts">1.4 Troubleshooting</a>
+</div></nav>
+
+<main>
+
+<section id="m1-types">
+ <span class="mod-tag">MODULE 1 · LESSON 1.1</span>
+ <h2>مفهوم الشبكة وأنواعها</h2>
+ <p class="sub">Networking Overview — Network Types and Characteristics</p>
+
+ <div class="card">
+  <p><b>الشبكة (Network)</b>: مجموعة من الأجهزة (computers and devices) متصلة ببعضها عبر <span class="en">transmission medium</span> (وسيط نقل: كيبل نحاسي، ألياف بصرية، أو لاسلكي)، هدفها مشاركة الموارد <span class="en">(shared resources)</span> والتواصل وتبادل المعلومات — تمامًا مثل شبكتك الاجتماعية لكن في بيئة رقمية.</p>
+ </div>
+
+ <h3>نموذجا التشغيل: Peer-to-Peer vs Client-Server</h3>
+ <div class="two">
+  <div class="card">
+   <p><b>Peer-to-Peer (P2P)</b></p>
+   <p>كل جهاز يعمل كـ <span class="en">client</span> و<span class="en">server</span> في نفس الوقت. لا يوجد جهاز مركزي. مناسبة للشبكات الصغيرة، لكن إدارتها وأمانها أصعب مع التوسع.</p>
+  </div>
+  <div class="card">
+   <p><b>Client-Server</b></p>
+   <p>يوجد <span class="en">server</span> مركزي يقدّم الخدمات والموارد (ملفات، طباعة، مصادقة) لأجهزة الـ<span class="en">clients</span>. هذا هو النموذج المعتمد في بيئات الشركات — مثل بيئتك في مدائن مع Google Workspace.</p>
+  </div>
+ </div>
+
+ <h3>الشبكة المحلية LAN وأنواعها</h3>
+ <div class="card">
+  <p><b>Local Area Network (LAN)</b>: شبكة محصورة في موقع جغرافي واحد <span class="en">(single geographical location)</span>. أنواعها حسب الحجم:</p>
+  <ul>
+   <li><b>SOHO (Small Office / Home Office)</b>: شبكة منزل أو مكتب صغير، غالبًا راوتر واحد متعدد الوظائف.</li>
+   <li><b>Enterprise LAN</b>: شبكة شركة بمبنى أو حرم، فيها سيرفرات وسويتشات مُدارة.</li>
+   <li><b>Datacenter</b>: شبكة مخصصة لربط السيرفرات وأنظمة التخزين بكثافة عالية.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="m1-topo">
+ <span class="mod-tag">MODULE 1 · LESSON 1.1</span>
+ <h2>هيكليات الشبكة — Network Topologies</h2>
+ <p class="sub">الـTopology = مخطط الاتصالات بين أجهزة الشبكة (layout of connections)</p>
+
+ <div class="card">
+  <p><b>1) Point-to-Point</b>: عقدتان فقط <span class="en">(two nodes)</span> متصلتان مباشرة بنفس الوسيط. مفاهيم مهمة هنا:</p>
+  <ul>
+   <li><b>Half-duplex</b>: الجهاز لا يستطيع الإرسال والاستقبال في نفس اللحظة (بالتناوب).</li>
+   <li><b>Full-duplex</b>: إرسال واستقبال متزامن <span class="en">(simultaneously)</span>.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>2) Star Topology</b>: كل عقدة تتصل بجهاز مركزي يسمى <span class="en">concentrator</span> عبر وسيط مخصص لها.</p>
+  <ul>
+   <li>لو كان الـconcentrator يكرر الإشارة للجميع = يعمل كـ<span class="en">Ethernet hub</span> (logical bus).</li>
+   <li>الأشيع: يتتبع عناوين الأجهزة ويوجّه الاتصال بشكل انتقائي = <b>Switch</b> (ينشئ point-to-point links).</li>
+   <li><b>العيب الأهم للاختبار</b>: الـconcentrator هو <span class="en">single point of failure</span>، وكل عقدة يجب أن تكون ضمن مسافة النقل القصوى للوسيط أو تستخدم <span class="en">repeater</span>.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>3) Mesh Topology</b>:</p>
+  <ul>
+   <li><b>Full mesh</b>: كل عقدة متصلة بكل عقدة أخرى. عدد الروابط = <code class="k">n*(n−1)/2</code> — يكبر بسرعة مع إضافة العقد.</li>
+   <li><b>Partial mesh</b>: الأكثر عملية؛ العقد تتعلم الـtopology وتمرر الحزم <span class="en">(forward packets)</span>.</li>
+   <li><b>الميزة</b>: مسارات متعددة = مرونة عالية <span class="en">(resilience)</span> عند فشل روابط أو عقد.</li>
+  </ul>
+ </div>
+
+ <div class="tip">إذا شفتِ في السؤال "single point of failure" فكري بـ<b>Star</b>، وإذا "redundant paths / resilience" فكري بـ<b>Mesh</b>، وإذا "two nodes only / duplex" فهي <b>Point-to-Point</b>.</div>
+</section>
+
+<section id="m1-osi">
+ <span class="mod-tag">MODULE 1 · LESSON 1.2</span>
+ <h2>نموذج OSI — الطبقات السبع</h2>
+ <p class="sub">OSI Model Concepts — أهم موضوع تأسيسي في الشهادة كلها</p>
+
+ <div class="card">
+  <p>نموذج مرجعي يقسّم عملية الاتصال الشبكي إلى 7 طبقات. عند <b>المرسل (Sender)</b> تنزل البيانات من الطبقة 7 إلى 1 <span class="en">(encapsulation)</span>، وعند <b>المستقبل (Receiver)</b> تصعد من 1 إلى 7 <span class="en">(de-encapsulation)</span>.</p>
+  <p><b>الجملة التذكيرية (Mnemonic)</b> من الطبقة 1 إلى 7: <span class="en">Please Do Not Throw Sausage Pizza Away</span></p>
+ </div>
+
+ <div class="osi">
+  <div class="row"><div class="num">7</div><div class="name">Application</div><div class="desc">تتفاعل مباشرة مع برامج المستخدم لطلب خدمة الشبكة. أمثلة: <span class="en">SMTP, DNS, FTP</span></div></div>
+  <div class="row"><div class="num">6</div><div class="name">Presentation</div><div class="desc">تجهيز شكل البيانات: <span class="en">Encryption/Decryption, Encoding, Compression, MIME</span></div></div>
+  <div class="row"><div class="num">5</div><div class="name">Session</div><div class="desc">إنشاء وإدارة الجلسات بين التطبيقات. أمثلة: <span class="en">NetBIOS, PAP, ASP, ADSP</span></div></div>
+  <div class="row"><div class="num">4</div><div class="name">Transport</div><div class="desc">تتبع الاتصال بين التطبيقات عبر الـports، تقسيم البيانات <span class="en">(segmentation)</span> وإعادة تجميعها <span class="en">(reassembly)</span>. أجهزة: <span class="en">Multilayer switch, Advanced firewall, IDS</span></div></div>
+  <div class="row"><div class="num">3</div><div class="name">Network</div><div class="desc">نقل الحزم <span class="en">(packets)</span> بين الشبكات باستخدام <span class="en">IP addresses</span>. أجهزة: <span class="en">Router, ACL, Basic firewall</span></div></div>
+  <div class="row"><div class="num">2</div><div class="name">Data Link</div><div class="desc">نقل الـ<span class="en">frames</span> بين العقد على نفس الـsegment باستخدام <span class="en">MAC addresses</span>. أجهزة: <span class="en">Switch, Bridge, NIC, Wireless AP</span></div></div>
+  <div class="row"><div class="num">1</div><div class="name">Physical</div><div class="desc">إرسال الـ<span class="en">bits</span> كإشارات عبر الوسيط. أمثلة: <span class="en">Cables, Hubs, Repeaters, Modem, Transceiver</span></div></div>
+ </div>
+
+ <div class="card">
+  <p><b>تقسيم المسؤولية</b> (يجي كثير بالاختبار):</p>
+  <ul>
+   <li>الطبقات <b>1–3</b> (Physical, Data Link, Network) = <b>Responsibility of the Network</b>.</li>
+   <li>الطبقات <b>4–7</b> (Transport → Application) = <b>Responsibility of the Host</b>.</li>
+  </ul>
+ </div>
+
+ <div class="tip">اربطي كل طبقة بوحدة بياناتها: L1 = <span class="en">Bits</span> · L2 = <span class="en">Frames</span> · L3 = <span class="en">Packets</span> · L4 = <span class="en">Segments</span>. واربطي الجهاز بالطبقة: Hub→1، Switch→2، Router→3.</div>
+</section>
+
+<section id="m1-soho">
+ <span class="mod-tag">MODULE 1 · LESSON 1.3</span>
+ <h2>SOHO Router — راوتر واحد بكل الطبقات</h2>
+ <p class="sub">جهاز واحد يجمع وظائف عدة طبقات من OSI</p>
+
+ <table>
+  <tr><th>الطبقة</th><th>وظيفة الـSOHO Router فيها</th></tr>
+  <tr><td><b>Physical (L1)</b></td><td>منافذ <span class="en">RJ-45 LAN ports</span> لتوصيل الأجهزة سلكيًا، <span class="en">radio antennas</span> للواي فاي، ومنفذ <span class="en">WAN port</span> للاتصال بمزود الخدمة <span class="en">(ISP)</span>.</td></tr>
+  <tr><td><b>Data Link (L2)</b></td><td>يعمل كـ<span class="en">Ethernet switch</span> + <span class="en">Wireless Access Point</span> (الـAP موصول داخليًا بمنفذ switch). كل جهاز يُعرَّف بـ<span class="en">MAC address</span>، والأجهزة السلكية واللاسلكية كلها على نفس <span class="en">layer 2 local network</span>.</td></tr>
+  <tr><td><b>Network (L3)</b></td><td>يوجّه بين الشبكة الخاصة المحلية والإنترنت العام، يشغّل <b>DHCP server</b> لتوزيع IP على الأجهزة، وواجهة الـWAN تأخذ <span class="en">public IP address</span>.</td></tr>
+  <tr><td><b>Transport / Application (L4–L7)</b></td><td>تقسيم البيانات <span class="en">(segmentation)</span> وإعادة تجميعها، وتمرير طلبات واستجابات <span class="en">Application layer</span>.</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>اتصال SOHO بالإنترنت</b>: الـ<span class="en">WAN</span> يربط شبكتك بمزود الخدمة عبر بنية مثل <span class="en">PSTN (Public Switched Telephone Network)</span>، والإنترنت نفسه يتكون من <span class="en">high-bandwidth trunks</span> تربط نقاط تبادل الإنترنت <span class="en">IXPs (Internet Exchange Points)</span> حيث تتصل شبكات مزودي الخدمة ببعض.</p>
+ </div>
+</section>
+
+<section id="m1-bin">
+ <span class="mod-tag">MODULE 1 · LESSON 1.3</span>
+ <h2>الأرقام الثنائية — Binary</h2>
+ <p class="sub">أساس فهم IP addressing و Subnetting لاحقًا</p>
+
+ <div class="card">
+  <p>النظام العشري <span class="en">(Base 10)</span> خاناته: آحاد، عشرات، مئات... أما الثنائي <span class="en">(Binary / Base 2)</span> فكل خانة من الـ8 bits لها وزن:</p>
+  <table>
+   <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+   <tr><td colspan="8" style="text-align:center">كل bit إما 1 (نجمع وزنه) أو 0 (نتجاهله)</td></tr>
+  </table>
+  <p><b>مثال 1</b> — تحويل 205: نبدأ من الأكبر: 128 ✓ (باقي 77) → 64 ✓ (باقي 13) → 32 ✗ → 16 ✗ → 8 ✓ (باقي 5) → 4 ✓ (باقي 1) → 2 ✗ → 1 ✓<br>
+  النتيجة: <code class="k">205 = 1100 1101</code></p>
+  <p><b>مثال 2</b> — تحويل 132: 128 ✓ (باقي 4) → 4 ✓<br>
+  النتيجة: <code class="k">132 = 1000 0100</code></p>
+ </div>
+</section>
+
+<section id="m1-ts">
+ <span class="mod-tag">MODULE 1 · LESSON 1.4</span>
+ <h2>منهجية استكشاف الأخطاء — Troubleshooting Methodology</h2>
+ <p class="sub">7 خطوات بالترتيب — احفظيها كتسلسل، الاختبار يسأل عن "الخطوة التالية"</p>
+
+ <div class="flow">
+  <span>1. Identify the problem</span><i>←</i>
+  <span>2. Establish a theory of probable cause</span><i>←</i>
+  <span>3. Test the theory</span><i>←</i>
+  <span>4. Establish a plan of action</span><i>←</i>
+  <span>5. Implement the solution</span><i>←</i>
+  <span>6. Verify the solution</span><i>←</i>
+  <span>7. Document findings, actions, and outcomes</span>
+ </div>
+
+ <div class="card">
+  <p><b>الخطوة 1 — Identify the problem</b>:</p>
+  <ul>
+   <li>جمع المعلومات: <span class="en">system documentation, installation/maintenance logs, vendor support sites</span>.</li>
+   <li>سؤال المستخدمين: <span class="en">open questions</span> (لاكتشاف معلومات) و<span class="en">closed questions</span> (إجابة نعم/لا محددة).</li>
+   <li>تحديد الأعراض: فحص فعلي، سجلات <span class="en">(logs)</span>، محاولة تكرار المشكلة <span class="en">(duplicate the problem)</span>.</li>
+   <li>هل تغيّر شيء؟ <span class="en">Did it ever work? What has changed since it was last working?</span></li>
+   <li>التعامل مع كل مشكلة على حدة <span class="en">(approach problems individually)</span>.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>الخطوة 2 — Establish a theory</b>: شكّكي في الأمور البديهية <span class="en">(question the obvious)</span>، وأثبتي عمل كل مكوّن منهجيًا. باستخدام OSI:</p>
+  <ul>
+   <li><b>Top-down</b>: من Application نزولًا لـPhysical.</li>
+   <li><b>Bottom-up</b>: من Physical صعودًا (الأشيع: تحقّقي من الكيبل أولًا!).</li>
+   <li>وأيضًا <b>divide-and-conquer</b> كاستراتيجية ثالثة.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>الخطوة 3 — Test the theory</b>: لا تقفزي للاستنتاجات. ومتى <b>نصعّد (Escalation)</b>؟</p>
+  <ul>
+   <li>المشكلة تتجاوز معرفتك أو صلاحيتك.</li>
+   <li>الجهاز تحت <span class="en">system warranty</span>.</li>
+   <li>نطاق المشكلة كبير جدًا، أو العميل صعب/مسيء.</li>
+  </ul>
+  <p><b>الخطوات 5–7</b>: نفّذي الحل (وصعّدي إذا احتجتِ صلاحية أعلى)، تحققي أن النظام يعمل لك وللمستخدم، ثم <b>وثّقي</b> — السجلات مفيدة لأي مشكلة مستقبلية.</p>
+ </div>
+</section>
+
+</main>
+
+<div class="modnav"><span></span><a href="index.html" class="home">🏠 الرئيسية</a><a href="module2-guide.html">الوحدة 2 →</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 1 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>

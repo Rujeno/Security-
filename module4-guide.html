@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 4 — عنونة الشبكات — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:14px;font-weight:600;padding:14px 18px;display:inline-block;border-bottom:3px solid transparent;transition:.15s}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 4</span>
+  <h1>الوحدة 4 — عنونة الشبكات</h1>
+  <p>Configuring Network Addressing — IP Basics · IPv4 Addressing · Subnetting/CIDR/VLSM · IP Troubleshooting Tools · IPv6</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠 الرئيسية</a><a href="module1-guide.html">الوحدة 1</a><a href="module2-guide.html">الوحدة 2</a><a href="module3-guide.html">الوحدة 3</a><a href="module4-guide.html" class="active">الوحدة 4</a><a href="quiz.html">📝 الاختبار</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m4-basics">4.1 IP Basics</a>
+ <a href="#m4-ipv4addr">4.2 IPv4 Addressing</a>
+ <a href="#m4-subnetting">4.3 Subnetting</a>
+ <a href="#m4-tools">4.4 IP Tools</a>
+ <a href="#m4-ipv6">4.5 IPv6</a>
+</div></nav>
+
+<main>
+
+<section id="m4-basics">
+ <span class="mod-tag">MODULE 4 · LESSON 4.1</span>
+ <h2>أساسيات بروتوكول الإنترنت — Internet Protocol Basics</h2>
+ <p class="sub">Configuring Network Addressing — ARP وأنواع العنونة</p>
+
+ <div class="card">
+  <p><b>ARP (Address Resolution Protocol)</b>: يعمل مثل دليل هاتف — يربط عنوان <span class="en">IP</span> بعنوان <span class="en">MAC</span> المقابل له على الشبكة المحلية، ليتمكن الجهاز من توجيه الإطار للوجهة الصحيحة.</p>
+ </div>
+
+ <h3>أنواع العنونة (Addressing Types)</h3>
+ <table>
+  <tr><th>النوع</th><th>الوصف</th></tr>
+  <tr><td><b>Unicast</b></td><td>مُعنوَن فقط لعنوان IP الوجهة — يُرسل للمستقبِل فقط</td></tr>
+  <tr><td><b>Broadcast</b></td><td>مُعنوَن لآخر IP في الشبكة/الـsubnet — يصل لكل المضيفين عليها</td></tr>
+  <tr><td><b>Multicast</b></td><td>مُعنوَن لمجموعة محددة من عناوين المضيفين — يصل لكل أعضاء المجموعة</td></tr>
+  <tr><td><b>Anycast</b></td><td>مُعنوَن لأي جهاز واحد من مجموعة (عادة الأقرب) — لموازنة الحمل والتكرار</td></tr>
+ </table>
+
+ <div class="tip">فرّقي: Broadcast = <b>الكل</b> على الشبكة · Multicast = <b>مجموعة محددة</b> مشتركة · Anycast = <b>الأقرب</b> من مجموعة · Unicast = <b>واحد فقط</b>.</div>
+</section>
+
+<section id="m4-ipv4addr">
+ <span class="mod-tag">MODULE 4 · LESSON 4.2</span>
+ <h2>عنونة IPv4 — IPv4 Addressing</h2>
+ <p class="sub">تركيب العنوان · Network/Host ID · Subnet Mask · Default Gateway</p>
+
+ <div class="card">
+  <p><b>تركيب عنوان IPv4</b>: تمثيل عشري لأربع مجموعات ثنائية <span class="en">(octets)</span>، كل octet <b>8 bits</b> → المجموع <b>32 bit</b>.</p>
+  <p><b>مثال تحويل ثنائي</b>: 11000011 → بالأوزان 128-64-32-16-8-4-2-1: البتات المفعّلة 64+32+1 = <code class="k">97</code></p>
+ </div>
+
+ <div class="card">
+  <p><b>تشبيه العمارة السكنية</b>:</p>
+  <ul>
+   <li><b>Network ID</b> = رقم <b>المبنى</b> (مشترك بين كل السكان/المضيفين).</li>
+   <li><b>Host ID</b> = رقم <b>الشقة</b> (يحدد مضيفًا بعينه داخل الشبكة).</li>
+   <li><b>Default Gateway</b> = <b>المدخل الرئيسي</b> للمبنى — طريق الخروج للخارج (خارج الشبكة المحلية).</li>
+   <li><b>Broadcast Address</b> = مثل <b>مكبّر صوت</b> يصل لكل السكان.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>Subnet Mask</b>: يحدد <b>الجزء الخاص بالشبكة</b> من عنوان IP. إذا طابق network ID الشبكةَ المحلية تُرسل الحزمة مباشرة، وإلا تُمرَّر (<span class="en">forwarded</span>) لشبكة أخرى.</p>
+  <p><b>مثال</b>: شبكة <code class="k">192.168.1.x</code> بقناع <code class="k">255.255.255.0</code> → أول 3 octets (24 bit) للشبكة، والoctet الأخير للمضيف.</p>
+ </div>
+</section>
+
+<section id="m4-subnetting">
+ <span class="mod-tag">MODULE 4 · LESSON 4.3</span>
+ <h2>تقسيم الشبكات الفرعية — IPv4 Subnetting</h2>
+ <p class="sub">Public vs Private · Classful/Classless · CIDR · VLSM</p>
+
+ <h3>عناوين IP العامة والخاصة</h3>
+ <table>
+  <tr><th></th><th>Public IP</th><th>Private IP</th></tr>
+  <tr><td>من يُصدرها</td><td>مزودو الخدمة (ISPs)</td><td>الشبكات الخاصة</td></tr>
+  <tr><td>التفرد</td><td>فريدة على الإنترنت بالكامل</td><td>فريدة داخل الشبكة الخاصة فقط</td></tr>
+  <tr><td>الاستخدام</td><td>أجهزة تحتاج وصولًا مباشرًا للإنترنت</td><td>أجهزة لا تُطلب مباشرة من الإنترنت</td></tr>
+ </table>
+
+ <h3>مدى عناوين IPv4 الخاصة (Private Ranges)</h3>
+ <table>
+  <tr><th>الفئة</th><th>المدى</th></tr>
+  <tr><td>Class A</td><td>10.0.0.0 – 10.255.255.255</td></tr>
+  <tr><td>Class B</td><td>172.16.0.0 – 172.31.255.255</td></tr>
+  <tr><td>Class C</td><td>192.168.0.0 – 192.168.255.255</td></tr>
+ </table>
+ <div class="tip">المدى 224.0.0.0–239.255.255.255 (المعروف بـClass D) قد يظهر بجانب الجدول أعلاه في بعض المراجع، لكنه فعليًا نطاق <b>Multicast محجوز</b> وليس عنونة خاصة عادية — لا تخلطي بينهما بالاختبار.</div>
+
+ <div class="card">
+  <p><b>قواعد تصميم مخطط عنونة IPv4</b>:</p>
+  <ul>
+   <li>عدد الشبكات/الشبكات الفرعية المطلوبة، وعدد المضيفين بكل subnet.</li>
+   <li>الـNetwork ID يجب أن يكون من مدى خاص صالح.</li>
+   <li>لا يجوز أن يكون Network ID أو Host ID <b>كله بتات 1</b> (فهذا عنوان broadcast).</li>
+   <li>كل Host ID فريد داخل الـsubnet، وكل Network ID فريد على مستوى الشبكة.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>Classless Addressing (استعارة البتات / Borrowing Bits)</b>: استعارة بتات من جزء الـHost لصالح جزء الـNetwork → <b>يزيد عدد الشبكات الفرعية المتاحة</b> لكن <b>يقلل عدد المضيفين</b> الممكنين بكل subnet.</p>
+  <p><b>مثال</b>: الشبكة <code class="k">192.168.89.0/24</code> (قناع 255.255.255.0) — باستعارة بت واحد فقط:</p>
+  <ul>
+   <li>الـNetwork ID الجديد: <code class="k">192.168.89.128</code></li>
+   <li>مدى العناوين: <code class="k">192.168.89.1 – 192.168.89.126</code></li>
+   <li>القناع الجديد: <code class="k">255.255.255.128</code> أو <code class="k">/25</code></li>
+  </ul>
+  <p>وباستعارة بتين: Network ID = <code class="k">192.168.89.192</code>، المدى <code class="k">192.168.89.1–.62</code>، القناع <code class="k">255.255.255.192 (/26)</code>.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>CIDR — Classless Inter-Domain Routing</b></p>
+   <p>يخصص مساحة عناوين IP بكفاءة أكبر، عبر دمج العنوان مع لاحقة (suffix) تمثّل جزء الشبكة، ويدعم <span class="en">variable-length subnetting</span>.</p>
+  </div>
+  <div class="card">
+   <p><b>VLSM — Variable Length Subnetting</b></p>
+   <p>ينشئ subnets <b>بأحجام مختلفة</b> داخل نفس الشبكة لتخصيص أكفأ لعناوين IP، لكنه يتطلب تخطيطًا وإدارة دقيقة.</p>
+  </div>
+ </div>
+</section>
+
+<section id="m4-tools">
+ <span class="mod-tag">MODULE 4 · LESSON 4.4</span>
+ <h2>أدوات فحص IP — IP Troubleshooting Tools</h2>
+ <p class="sub">ipconfig · ip/ifconfig · arp · ping</p>
+
+ <table>
+  <tr><th>الأمر</th><th>الوظيفة</th></tr>
+  <tr><td><span class="en">ipconfig</span></td><td>عرض IP وsubnet mask وdefault gateway لكل واجهات الشبكة</td></tr>
+  <tr><td><span class="en">ipconfig /all</span></td><td>كامل إعدادات TCP/IP بما فيها DHCP وMAC address</td></tr>
+  <tr><td><span class="en">ipconfig /renew</span></td><td>تجديد عنوان IP المستأجر من DHCP</td></tr>
+  <tr><td><span class="en">ipconfig /release</span></td><td>تحرير عنوان IP المستأجر من DHCP</td></tr>
+  <tr><td><span class="en">ip addr</span> (بديل حديث لـifconfig)</td><td>عرض إعداد واجهات الشبكة</td></tr>
+  <tr><td><span class="en">ip addr show dev eth0</span></td><td>عرض واجهة واحدة فقط</td></tr>
+  <tr><td><span class="en">ip link</span></td><td>حالة الواجهات</td></tr>
+  <tr><td><span class="en">ip link set eth0 up|down</span></td><td>تفعيل أو تعطيل واجهة</td></tr>
+  <tr><td><span class="en">ip addr add|delete</span></td><td>تعديل إعداد عنوان IP</td></tr>
+ </table>
+
+ <div class="two">
+  <div class="card">
+   <p><b>arp</b></p>
+   <ul>
+    <li><span class="en">arp -a</span> (أو -g): عرض محتويات ARP cache</li>
+    <li><span class="en">arp -s IP MAC</span>: إضافة إدخال يدوي</li>
+    <li><span class="en">arp -d</span>: حذف كل الإدخالات</li>
+   </ul>
+  </div>
+  <div class="card">
+   <p><b>ping</b></p>
+   <p>يختبر الاتصال بعنوان IP معيّن: <code class="k">ping IPaddress</code></p>
+   <p>رسائل الخطأ الشائعة: <b>Destination host unreachable</b> و<b>No reply (request timed out)</b>.</p>
+  </div>
+ </div>
+</section>
+
+<section id="m4-ipv6">
+ <span class="mod-tag">MODULE 4 · LESSON 4.5</span>
+ <h2>الإصدار السادس من IP — IPv6</h2>
+ <p class="sub">مقارنة بـIPv4 · العنونة · آليات الانتقال</p>
+
+ <table>
+  <tr><th>المقارنة</th><th>IPv4</th><th>IPv6</th></tr>
+  <tr><td>صيغة العنوان</td><td>عشري منقّط (192.168.1.1)</td><td>Hexadecimal (2001:0db8:85a3:0000:0000:8a2e:0370:7334)</td></tr>
+  <tr><td>عدد العناوين</td><td>≈ 4.3 مليار</td><td>≈ 340 undecillion (3.4×10^38)</td></tr>
+  <tr><td>Network/Host</td><td>يتغيّر حسب subnet mask</td><td>أول 64 bit للشبكة، والـ64 الثانية للمضيف</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>صيغة عنوان IPv6</b>: ثمانية مجموعات من <b>16-bit</b>، كل مجموعة 4 أرقام hex.</p>
+  <p>Binary → Hex Notation: <code class="k">2001:0db8:0000:0000:0abc:0000:def0:1234</code></p>
+  <p>Canonical (مضغوطة): <code class="k">2001:db8::abc:0:def0:1234</code></p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Global Unicast</b></p>
+   <p>عناوين ذات نطاق عالمي، قابلة للتوجيه على الإنترنت — معادل <span class="en">public IPv4</span>.</p>
+  </div>
+  <div class="card">
+   <p><b>Link Local</b></p>
+   <p>تعمل ضمن subnet واحد فقط — معادل <span class="en">private IPv4</span>. النطاق: <code class="k">fe80::/10</code> (fe80 + 54 بت أصفار + 64 بت interface ID).</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>Multicast</b> في IPv6: أول 8 بت تشير لنطاق multicast، 4 بت تالية لنوع الـmulticast، 4 بت لتحديد النطاق، والـ112 بت الأخيرة تحدد مجموعة الـmulticast.</p>
+ </div>
+
+ <h3>آليات الانتقال بين IPv4 وIPv6</h3>
+ <table>
+  <tr><th>الآلية</th><th>الوصف</th><th>الاستخدام الأمثل</th></tr>
+  <tr><td><b>Dual Stack</b></td><td>تشغيل IPv4 وIPv6 معًا في آن واحد</td><td>الفترات الانتقالية حيث تعمل الشبكتان</td></tr>
+  <tr><td><b>Tunneling</b></td><td>تغليف حزم IPv6 داخل حزم IPv4 لعبور شبكة IPv4</td><td>ربط "جزر IPv6" داخل شبكة IPv4</td></tr>
+  <tr><td><b>NAT64</b></td><td>ترجمة IPv6 إلى IPv4 والعكس</td><td>بيئات تنتقل لـIPv6 لكن تحتاج موارد IPv4</td></tr>
+ </table>
+
+ <div class="tip"><b>ملخص الوحدة 4</b>: IP يربط شبكات متعددة بعناوين فريدة؛ IPv4 = 32 bit/4 octets؛ الـsubnet = segment على طبقة الشبكة (L3)؛ أدوات TCP/IP للفحص والإعداد؛ IPv6 = ثمانية مجموعات 16-bit بصيغة hex.</div>
+</section>
+
+</main>
+
+<div class="modnav"><a href="module3-guide.html">← الوحدة 3</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="quiz.html">الذهاب للاختبار 📝</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 4 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>

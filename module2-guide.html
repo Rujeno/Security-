@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الوحدة 2 — الكيابل والتركيب الفيزيائي — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.osi{display:flex;flex-direction:column;gap:5px;margin:16px 0;counter-reset:none}
+.osi .row{display:grid;grid-template-columns:56px 200px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.osi .num{background:var(--deep);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600}
+.osi .name{padding:10px 14px;font-weight:700;color:var(--teal);display:flex;align-items:center}
+.osi .desc{padding:10px 14px;font-size:14.5px;color:#33475a;border-right:1px dashed var(--line)}
+.osi .host .num{background:var(--signal)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.modgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 46px}
+.modcard{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(13,59,79,.05);transition:.15s}
+.modcard:hover{border-color:var(--signal);transform:translateY(-2px)}
+.modcard .mnum{font-family:'IBM Plex Mono',monospace;color:var(--signal);font-weight:700;font-size:13px}
+.modcard .mtitle{color:var(--deep);font-weight:700;font-size:15px;margin-top:6px}
+.modcard .mdesc{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.6}
+@media(max-width:720px){.modgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.modgrid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:14px;font-weight:600;padding:14px 18px;display:inline-block;border-bottom:3px solid transparent;transition:.15s}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 2</span>
+  <h1>الوحدة 2 — الكيابل والتركيب الفيزيائي</h1>
+  <p>Supporting Cabling and Physical Installations — Ethernet · Copper & Fiber Cabling · Structured Cabling · Physical Install · Cable Troubleshooting</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠 الرئيسية</a><a href="module1-guide.html">الوحدة 1</a><a href="module2-guide.html" class="active">الوحدة 2</a><a href="module3-guide.html">الوحدة 3</a><a href="module4-guide.html">الوحدة 4</a><a href="quiz.html">📝 الاختبار</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#m2-eth">2.1 Ethernet</a>
+ <a href="#m2-copper">2.2 Copper Cables</a>
+ <a href="#m2-wiring">2.3 Wiring</a>
+ <a href="#m2-fiber">2.4 Fiber</a>
+ <a href="#m2-phys">2.5 Physical Install</a>
+ <a href="#m2-cablets">2.6 Cable TS</a>
+</div></nav>
+
+<main>
+
+<section id="m2-eth">
+ <span class="mod-tag">MODULE 2 · LESSON 2.1</span>
+ <h2>Ethernet ومصطلحات نقل البيانات</h2>
+ <p class="sub">Supporting Cabling and Physical Installations</p>
+
+ <div class="card">
+  <p><b>مصطلحات أساسية</b>:</p>
+  <ul>
+   <li><b>Data transmission</b>: نقل البيانات من جهاز لآخر عبر قنوات <span class="en">(channels)</span> سلكية أو لاسلكية.</li>
+   <li><b>Digital signals</b>: إشارات 1 و 0 تُنقل عبر القنوات.</li>
+   <li><b>Transmission media</b>: نحاس <span class="en">(copper)</span>، ألياف بصرية <span class="en">(fiber optic)</span>، أو لاسلكي.</li>
+   <li><b>Data transfer rate</b>: سرعة إرسال البيانات.</li>
+   <li><b>Error detection/correction</b>: آليات كشف أخطاء النقل وتصحيحها.</li>
+  </ul>
+ </div>
+
+ <h3>معايير Ethernet النحاسية — IEEE 802.3</h3>
+ <div class="card"><p>معايير <span class="en">IEEE 802.3</span> تُعرّف الـ<span class="en">Physical layer</span> وطبقة <span class="en">MAC (Media Access Control)</span> في Data Link للإيثرنت السلكي.</p></div>
+ <table>
+  <tr><th>المعيار</th><th>الكيبل</th><th>السرعة</th></tr>
+  <tr><td><span class="en">10Base-T</span></td><td>UTP</td><td>10 Mbps</td></tr>
+  <tr><td><span class="en">100Base-T</span></td><td>Cat5e أو أعلى</td><td>100 Mbps</td></tr>
+  <tr><td><span class="en">1000Base-T</span> (Gigabit)</td><td>Cat6 أو أعلى</td><td>1000 Mbps</td></tr>
+  <tr><td><span class="en">10GBase-T</span> (10 Gigabit)</td><td>Cat6 أو أعلى</td><td>10 Gbps</td></tr>
+ </table>
+
+ <h3>معايير Fiber Ethernet</h3>
+ <table>
+  <tr><th>المعيار</th><th>الكيبل</th><th>السرعة</th></tr>
+  <tr><td><span class="en">100Base-FX</span></td><td>MMF (OM1)</td><td>100 Mbps</td></tr>
+  <tr><td><span class="en">100Base-SX</span></td><td>MMF (OM1, OM2)</td><td>100 Mbps</td></tr>
+  <tr><td><span class="en">1000Base-SX</span></td><td>MMF (OM2, OM3)</td><td>1 Gbps</td></tr>
+  <tr><td><span class="en">1000Base-LX</span></td><td>MMF (OM1–OM3) و SMF (OS1, OS2)</td><td>1 Gbps</td></tr>
+  <tr><td><span class="en">10GBase-SR</span></td><td>MMF (OM2–OM4)</td><td>10 Gbps</td></tr>
+ </table>
+
+ <h3>CSMA/CD — تنظيم الوسيط المشترك</h3>
+ <div class="card">
+  <p><b>Carrier Sense Multiple Access with Collision Detection</b>: بروتوكول ينظّم الاتصال في الشبكات ذات الوسيط المشترك <span class="en">(shared transmission medium)</span>.</p>
+  <div class="flow">
+   <span>Data to transmit</span><i>←</i><span>Check network (Carrier Sense)</span><i>←</i><span>Transmit</span><i>←</i><span>Collision?</span><i>←</i><span>Jam signal + Wait (Backoff)</span><i>←</i><span>Retransmit</span>
+  </div>
+  <ul>
+   <li><b>Carrier Sense</b>: الجهاز يستمع للوسيط قبل الإرسال.</li>
+   <li><b>Multiple Access</b>: عدة أجهزة تشارك نفس الوسيط.</li>
+   <li><b>Collision Detection</b>: لو أرسل جهازان معًا يُكتشف التصادم.</li>
+   <li><b>Resolution</b>: إشارة <span class="en">Jam signal</span> ثم انتظار عشوائي عبر <span class="en">Backoff algorithm</span> قبل إعادة الإرسال.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="m2-copper">
+ <span class="mod-tag">MODULE 2 · LESSON 2.2</span>
+ <h2>الكيابل النحاسية والموصلات</h2>
+ <p class="sub">Copper Cables and Connectors</p>
+
+ <div class="two">
+  <div class="card">
+   <p><b>UTP — Unshielded Twisted Pair</b></p>
+   <ul>
+    <li>من 2 إلى 1800 زوج داخل غلاف بلاستيكي.</li>
+    <li>حماية <b>ضعيفة</b> من التداخل الكهرومغناطيسي <span class="en">(minimal EMI protection)</span>.</li>
+    <li>الأكثر شيوعًا في الـLANs لأنه <b>اقتصادي</b>.</li>
+    <li>فئات: <span class="en">Cat5e (1 Gbps)</span> و <span class="en">Cat6a (10 Gbps)</span>.</li>
+    <li>التركيب: تجنّب الانحناءات الحادة والابتعاد عن مصادر EMI.</li>
+   </ul>
+  </div>
+  <div class="card">
+   <p><b>STP — Shielded Twisted Pair</b></p>
+   <ul>
+    <li>أزواج نحاسية مجدولة + <b>تدريع موصل</b> <span class="en">(conductive shielding)</span>.</li>
+    <li>حماية من <span class="en">EMI</span> وتقليل <span class="en">crosstalk</span>.</li>
+    <li>الاستخدام: المناطق عالية التداخل (مصانع، آلات) ونقل البيانات الحساسة.</li>
+    <li>فئات: Cat5e, 6, 7 — ويحتاج تعامل حذر عند التركيب.</li>
+   </ul>
+  </div>
+ </div>
+
+ <h3>الموصلات: RJ11 vs RJ45</h3>
+ <table>
+  <tr><th>الخاصية</th><th>RJ11</th><th>RJ45</th></tr>
+  <tr><td>التكوين</td><td>6 positions / 4 connectors</td><td>8 positions / 8 connectors</td></tr>
+  <tr><td>الاستخدام</td><td>هاتف ومودم</td><td>شبكات الحاسب</td></tr>
+  <tr><td>السرعة</td><td>24 Mbps</td><td>حتى 10 Gbps over Ethernet</td></tr>
+ </table>
+
+ <h3>تصنيف مقاومة الحريق: Plenum vs Riser</h3>
+ <div class="two">
+  <div class="card">
+   <p><b>Plenum-rated</b></p>
+   <ul><li>يُركّب في فراغات تدوير الهواء <span class="en">(plenum spaces)</span> فوق الأسقف المستعارة.</li><li>مواد مقاومة للحريق ومنخفضة السمّية، معايير سلامة أعلى، و<b>أغلى</b>.</li></ul>
+  </div>
+  <div class="card">
+   <p><b>Riser-rated</b></p>
+   <ul><li>للفراغات <b>الرأسية بين الطوابق</b>.</li><li>مقاوم للحريق ويمنع انتشاره بين الأدوار، و<b>أوفر</b> تكلفة.</li></ul>
+  </div>
+ </div>
+
+ <h3>Coaxial vs Twinaxial</h3>
+ <table>
+  <tr><th>الخاصية</th><th>Coaxial</th><th>Twinaxial</th></tr>
+  <tr><td>التركيب</td><td>موصل مركزي واحد + عزل + درع معدني + غلاف</td><td>موصلان داخليان (twisted pair) + عزل + غلاف</td></tr>
+  <tr><td>الاستخدام</td><td>TV، إنترنت، CCTV، إشارات راديو</td><td>شبكات <span class="en">10 GB Ethernet</span> (داخل الداتا سنتر)</td></tr>
+  <tr><td>النطاق</td><td>مدى ترددات واسع وسرعات عالية</td><td>سرعة عالية جدًا لمسافات <b>قصيرة جدًا</b></td></tr>
+ </table>
+
+ <div class="tip">سيناريو شهير: "بيئة صناعية فيها تداخل كهرومغناطيسي عالٍ + مسافات ≤ 100م + سرعة عالية" → الجواب <b>STP</b> (الـFiber ممتاز ضد EMI لكن STP هو الحل النحاسي الاقتصادي المطابق للسيناريو).</div>
+</section>
+
+<section id="m2-wiring">
+ <span class="mod-tag">MODULE 2 · LESSON 2.3</span>
+ <h2>تنفيذ التمديدات — Structured Cabling</h2>
+ <p class="sub">Wiring Implementation</p>
+
+ <div class="card">
+  <p><b>Structured Cabling System</b>: طريقة قياسية لتمديد الشبكات في المباني المكتبية، عناصرها:</p>
+  <ul>
+   <li><b>Work Area</b>: نقطة اتصال المستخدم.</li>
+   <li><b>Horizontal Cabling</b>: التمديد الأفقي على مستوى الطابق (يربط الـwork areas بغرفة الاتصالات).</li>
+   <li><b>Telecommunications Room / Closet (IDF)</b>: غرفة/خزانة المعدات لكل طابق.</li>
+   <li><b>Backbone Cabling</b>: التمديد <b>الرأسي</b> الذي يربط الطوابق وغرف المعدات.</li>
+   <li><b>Entrance Facilities / Demarc</b>: نقطة دخول خدمة المزوّد وحدّ المسؤولية بينك وبين شركة الاتصالات <span class="en">(LEC)</span>.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>معايير الإنهاء T568A / T568B</b>: ترتيبان قياسيان لتوصيل الأزواج الأربعة (8 pins) في موصل <span class="en">RJ-45</span>. الفرق بينهما تبديل مواقع الزوجين الأخضر والبرتقالي. المهم: استخدمي <b>نفس المعيار</b> على الطرفين للكيبل المستقيم <span class="en">(straight-through)</span>.</p>
+ </div>
+
+ <div class="card">
+  <p><b>Patch Panels</b>: لوحات تسهّل إدارة الكيابل — من الخلف <span class="en">punch down blocks (IDC terminals)</span> لإنهاء الكيابل بشكل آمن ومضغوط، ومن الأمام منافذ <span class="en">RJ45</span> تتيح إعادة تشكيل التوصيلات بسهولة. تدعم T568A وT568B.</p>
+ </div>
+
+ <div class="card">
+  <p><b>خطوات التركيب</b>: Preparation (أدوات + مسار) → Pulling cable (ترقيم/تمرير/تحزيم) → Termination (اتركي <span class="en">service loop</span>، قصّي ورقّمي) → Connection (patch panel + work area) → Testing → Documentation.</p>
+ </div>
+
+ <h3>أدوات الإنهاء — Termination Tools</h3>
+ <table>
+  <tr><th>الأداة</th><th>وظيفتها</th></tr>
+  <tr><td><b>Cable Cutters</b></td><td>قص نظيف للكيبل بدون إتلاف الأسلاك.</td></tr>
+  <tr><td><b>Cable Strippers</b></td><td>إزالة العازل بأمان بدون خدش الأسلاك <span class="en">(without nicking wires)</span>.</td></tr>
+  <tr><td><b>Crimp Tools</b></td><td>تثبيت الموصلات (RJ45) على أطراف الكيبل.</td></tr>
+  <tr><td><b>Punch-Down Tools</b></td><td>إنهاء الأسلاك داخل الـpunch down blocks (في الـpatch panel).</td></tr>
+ </table>
+</section>
+
+<section id="m2-fiber">
+ <span class="mod-tag">MODULE 2 · LESSON 2.4</span>
+ <h2>الألياف البصرية — Fiber Optic</h2>
+ <p class="sub">Fiber Optic Cables and Connectors</p>
+
+ <div class="card">
+  <p><b>التكوين</b>: خيوط رفيعة من الزجاج أو البلاستيك تنقل البيانات بنبضات ضوئية:</p>
+  <ul>
+   <li><b>Core</b>: قلب زجاجي فائق النقاء يمر فيه الضوء.</li>
+   <li><b>Cladding</b>: يعكس الضوء داخل الـcore.</li>
+   <li><b>Buffer</b>: غلاف خارجي واقٍ.</li>
+  </ul>
+  <p><b>المزايا</b>: سرعات حتى <span class="en">800 Gbps</span>، جودة إشارة لمسافات طويلة، و<b>مناعة كاملة ضد EMI</b>.</p>
+ </div>
+
+ <h3>Single Mode vs Multimode</h3>
+ <table>
+  <tr><th>العامل</th><th>Single Mode (SMF)</th><th>Multimode (MMF)</th></tr>
+  <tr><td>القلب (Core)</td><td>صغير — نمط ضوء واحد</td><td>أكبر — عدة أنماط ضوء</td></tr>
+  <tr><td>الإشارة</td><td>انعكاس وتوهين أقل <span class="en">(minimal attenuation)</span></td><td>تشتت وتوهين أكثر <span class="en">(dispersion & attenuation)</span></td></tr>
+  <tr><td>المسافة</td><td><b>مسافات طويلة</b></td><td>مسافات قصيرة</td></tr>
+  <tr><td>الاستخدام</td><td>Long-haul، اتصالات، broadband</td><td>Datacenters، LANs</td></tr>
+ </table>
+
+ <h3>الموصلات: SC · LC · ST</h3>
+ <table>
+  <tr><th>العامل</th><th>SC (Subscriber)</th><th>LC (Lucent)</th><th>ST (Straight Tip)</th></tr>
+  <tr><td>Ferrule</td><td>2.5 mm</td><td><b>1.25 mm</b> (الأصغر)</td><td>2.5 mm</td></tr>
+  <tr><td>التصميم</td><td>Push-pull، متين، فقد إدخال منخفض</td><td>مربع، <span class="en">duplex header</span></td><td><span class="en">Bayonet twist-lock</span>، قديم لكن شائع</td></tr>
+  <tr><td>الاستخدام</td><td>شبكات الاتصالات ونقل البيانات</td><td><b>الـpatch panels عالية الكثافة</b></td><td>LANs وdatacenters</td></tr>
+ </table>
+
+ <div class="card">
+  <p><b>WDM — Wavelength Division Multiplexing</b>: تمرير عدة قنوات بيانات على نفس الليف باستخدام أطوال موجية مختلفة من الضوء:</p>
+  <ul>
+   <li><b>BiDi (Bidirectional WDM)</b>: إرسال واستقبال على <b>نفس الشعيرة</b> بأطوال موجية مزاحة (Tx بـ1310nm / Rx بـ1490nm)، ويُركّب بأزواج متعاكسة. معايير: <span class="en">1000BASE-BX, 10GBASE-BX</span>.</li>
+   <li><b>CWDM (Coarse)</b>: حتى <b>16</b> طول موجي — عادة 4–8 قنوات ثنائية الاتجاه.</li>
+   <li><b>DWDM (Dense)</b>: قنوات أكثر بكثير (<b>20 / 40 / 80 / 160</b>)، يتطلب ليزرات دقيقة لأن التباعد بين القنوات أضيق.</li>
+  </ul>
+ </div>
+</section>
+
+<section id="m2-phys">
+ <span class="mod-tag">MODULE 2 · LESSON 2.5</span>
+ <h2>عوامل التركيب الفيزيائي</h2>
+ <p class="sub">Physical Installation Factors — server rooms & datacenters</p>
+
+ <div class="card">
+  <p><b>Rack Systems</b>: أنظمة رفوف فولاذية للمعدات القياسية داخل مناطق آمنة (غرف السيرفرات، خزائن الاتصالات) مع <span class="en">physical access control</span>. المقاس القياسي <span class="en">EIA 19" / 48.26 cm</span>.</p>
+ </div>
+
+ <div class="card">
+  <p><b>الحرارة والرطوبة</b>:</p>
+  <ul>
+   <li><b>Temperature monitoring</b>: منع ارتفاع الحرارة وضمان تبديد فعّال.</li>
+   <li><b>Humidity control</b>: رطوبة عالية = تكاثف وتآكل <span class="en">(condensation & corrosion)</span>، رطوبة منخفضة = شحنات ستاتيكية <span class="en">(static charge)</span>.</li>
+   <li><b>Flood detection</b>: كشف مخاطر المياه وإيقاف الأنظمة فورًا.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>إدارة الطاقة</b>:</p>
+  <ul>
+   <li><b>PDU (Power Distribution Unit)</b>: توزيع طاقة نظيفة + مراقبة وتحكم عن بُعد.</li>
+   <li><b>UPS (Uninterruptible Power Supply)</b>: استمرارية الطاقة عند الانقطاع (brownouts/blackouts)، ومدة تشغيله تعتمد على الحمل والموديل.</li>
+   <li>حماية من <span class="en">spikes, surges, failures</span>.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>إخماد الحريق — Fire Suppression</b>:</p>
+  <ul>
+   <li><b>Class C extinguishers</b> للحرائق الكهربائية.</li>
+   <li>Sprinklers مائية = خطر انفجار أنابيب وتفعيل عرضي، لذا البدائل: <b>Dry-pipe</b>، <b>Pre-action</b>، <b>Clean agent</b> (غازات نظيفة)، و<b>Halon</b> (أُلغي تدريجيًا — phased out).</li>
+  </ul>
+ </div>
+</section>
+
+<section id="m2-cablets">
+ <span class="mod-tag">MODULE 2 · LESSON 2.6</span>
+ <h2>استكشاف أخطاء الكيابل</h2>
+ <p class="sub">Cable Troubleshooting — أهم درس عملي في الوحدة</p>
+
+ <div class="card">
+  <p><b>مصطلحات القياس</b>:</p>
+  <ul>
+   <li><b>Speed (baud rate)</b>: عدد الرموز المرسلة في الـPhysical layer (Hz)، بينما <b>bit rate / bandwidth</b> بالـbps في Data Link.</li>
+   <li><b>Throughput</b>: متوسط معدل النقل الفعلي عبر الزمن — يتأثر بالترميز والأخطاء والمسافة والتداخل.</li>
+   <li><b>Goodput</b>: الإنتاجية على مستوى الـApplication layer بعد حساب فقد الحزم <span class="en">(packet loss)</span>.</li>
+   <li><b>Latency</b>: زمن وصول الحزمة، يُقاس بـ<span class="en">milliseconds (ms)</span>.</li>
+   <li><b>Distance limitations</b>: نوع الوسيط يحدد المسافة؛ الأداء يتأثر بالتوهين <span class="en">(attenuation, dB loss)</span> والتداخل <span class="en">(SNR)</span>.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p><b>أعراض مشاكل الكيابل</b>: بطء الإنترنت، انقطاعات عشوائية، <span class="en">connection timeouts</span>، بطء التطبيقات، تقطيع الصوت/الفيديو، وعدم استقرار الرابط.</p>
+  <p><b>خطوات الفحص</b>: فحص فيزيائي → التحقق من الـpatch cords واستبدالها بأخرى سليمة معروفة <span class="en">(known good)</span> → اختبار الـtransceivers بأداة <b>loopback</b> → تجربة منفذ switch أو جهاز بديل → فحص التمديدات المهيكلة بالأدوات → التحقق من الـdrivers والـnetwork adapter.</p>
+ </div>
+
+ <h3>أدوات الفحص</h3>
+ <table>
+  <tr><th>الأداة</th><th>وظيفتها</th></tr>
+  <tr><td><b>Cable Tester</b></td><td>تقرير عن الخصائص الفيزيائية والكهربائية: crosstalk, attenuation, noise, resistance.</td></tr>
+  <tr><td><b>Wire Map Tester</b></td><td>كشف الإنهاء الخاطئ: <span class="en">open circuits, shorts, incorrect pin-outs</span> — عبر وحدة أساسية وأخرى بعيدة <span class="en">(base & remote units)</span>.</td></tr>
+  <tr><td><b>Tone Generator + Probe</b></td><td>تتبّع الكيبل داخل الجدران أو تحديده وسط حزمة — يُعرف بـ<span class="en">"Fox and Hound"</span>.</td></tr>
+  <tr><td><b>Loopback Tool</b></td><td>اختبار الـtransceiver/المنفذ.</td></tr>
+ </table>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Attenuation (التوهين)</b>: فقدان قوة الإشارة (يُقاس بـdB).</p>
+   <p>أسبابه: طول الكيبل، رفع الـimpedance، سلك رفيع، عوامل بيئية.<br><b>الحلول</b>: تقصير المسافات، <span class="en">repeaters/extenders</span>، كيابل أعلى جودة، وقياس التوهين عند التركيب.</p>
+  </div>
+  <div class="card">
+   <p><b>Interference (التداخل)</b>: تأثير سلبي من إشارات <span class="en">EMI / RFI</span> وcrosstalk وموصلات معيبة.</p>
+   <p><b>الحلول</b>: التدريع <span class="en">(foil/braided shields)</span>، تنظيم مسارات الكيابل، مواد متينة وstrain relief، واختبار التوافق.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p><b>أنواع الـCrosstalk</b> (تداخل الإشارات بين الأزواج):</p>
+  <ul>
+   <li><b>NEXT (Near End Crosstalk)</b>: عند طرف <b>المرسل</b> — سببه فك الجدل الزائد أو درع معيب.</li>
+   <li><b>ACRN (Attenuation to Crosstalk Ratio, Near end)</b>: مقارنة insertion loss مع NEXT — قيمة عالية = إشارة قوية.</li>
+   <li><b>ACRF (…, Far End)</b>: قياس FEXT عند طرف المستقبل — <b>مستقل عن طول الرابط</b>.</li>
+   <li><b>Power Sum</b>: لكيابل <span class="en">Gigabit / 10GbE</span> — يتأكد أن الكيبل مناسب للإرسال على كل الأزواج معًا.</li>
+   <li><b>Alien Crosstalk</b>: تداخل من <b>كيابل مجاورة</b> بسبب التحزيم الضيق أو الإنهاء السيئ.</li>
+  </ul>
+  <p><b>حلول الـcrosstalk</b>: فحص التلف والتركيب الخاطئ، تجنّب فك الجدل الزائد <span class="en">(excessive untwisting)</span>، تحزيم صحيح، وموصلات/كيابل مناسبة.</p>
+ </div>
+
+ <div class="tip">فرّقي: مشكلة عند نهاية المرسل = <b>NEXT</b> · عند المستقبل = <b>ACRF/FEXT</b> · من كيابل مجاورة = <b>Alien Crosstalk</b> · فقدان قوة الإشارة مع المسافة = <b>Attenuation</b>.</div>
+</section>
+
+</main>
+
+<div class="modnav"><a href="module1-guide.html">← الوحدة 1</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module3-guide.html">الوحدة 3 →</a></div>
+
+<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 2 · أُعد للمذاكرة الشخصية</footer>
+</body>
+</html>
