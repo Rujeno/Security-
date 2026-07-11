@@ -80,6 +80,7 @@ tr:nth-child(even) td{background:var(--soft)}
 
 .tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
 .tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
@@ -91,6 +92,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
 .diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .diagrow .dbox svg{max-width:100%;height:auto}
@@ -120,8 +122,8 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -134,6 +136,16 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  a{color:inherit;text-decoration:none}
  h2{border-right-width:4px}
 }
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+@media(max-width:720px){html[dir="ltr"] .osi .desc{border-left:none;border-top:1px dashed var(--line)}}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -141,12 +153,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 3</span>
-  <h1>الوحدة 3 — الواجهات والسويتشات</h1>
+  <h1 data-ar>الوحدة 3 — الواجهات والسويتشات</h1>
+  <h1 data-en hidden>Module 3 — Interfaces and Switches</h1>
   <p>Configuring Interfaces and Switches — Network Interfaces · Ethernet Switches · Switch Port Configuration · Switch Troubleshooting</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html" class="active">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html" class="active">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m3-nic">3.1 Network Interfaces</a>
@@ -159,34 +172,48 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m3-nic">
  <span class="mod-tag">MODULE 3 · LESSON 3.1</span>
- <h2>واجهات الشبكة — Network Interfaces</h2>
+ <h2 data-ar>واجهات الشبكة — Network Interfaces</h2>
+ <h2 data-en hidden>Network Interfaces</h2>
  <p class="sub">Configuring Interfaces and Switches — NIC, Transceivers, MAC & Ethernet Frame</p>
 
  <div class="card">
-  <p><b>NIC (Network Interface Card)</b>: مكوّن <span class="en">transceiver</span> يربط المضيف بوسيط النقل (سلكي أو لاسلكي).</p>
-  <ul>
+  <p data-ar><b>NIC (Network Interface Card)</b>: مكوّن <span class="en">transceiver</span> يربط المضيف بوسيط النقل (سلكي أو لاسلكي).</p>
+  <p data-en hidden><b>NIC (Network Interface Card)</b>: a <span class="en">transceiver</span> component that connects the host to the transmission medium (wired or wireless).</p>
+  <ul data-ar>
    <li>قد يحتوي على <b>أكثر من منفذ</b> على نفس البطاقة.</li>
    <li>له عنوان <b>MAC</b> فريد.</li>
    <li>يعمل في طبقة <b>Data Link (L2)</b>.</li>
   </ul>
-  <p><b>أعراض مشاكل NIC</b>: فشل اتصال الشبكة، بطء السرعة، اتصال متقطع، رسائل خطأ في Device Manager، رسائل خطأ بإعدادات الشبكة.</p>
+  <ul data-en hidden>
+   <li>May have <b>more than one port</b> on the same card.</li>
+   <li>Has a unique <b>MAC</b> address.</li>
+   <li>Operates at the <b>Data Link (L2)</b> layer.</li>
+  </ul>
+  <p data-ar><b>أعراض مشاكل NIC</b>: فشل اتصال الشبكة، بطء السرعة، اتصال متقطع، رسائل خطأ في Device Manager، رسائل خطأ بإعدادات الشبكة.</p>
+  <p data-en hidden><b>Symptoms of NIC problems</b>: network connection failure, slow speed, intermittent connectivity, error messages in Device Manager, network configuration error messages.</p>
  </div>
 
  <div class="card">
-  <p><b>Modular Transceivers</b>: تُنهي أنواعًا متعددة من الكيابل والموصلات، وتعمل أيضًا في <span class="en">Data Link layer</span>.</p>
+  <p data-ar><b>Modular Transceivers</b>: تُنهي أنواعًا متعددة من الكيابل والموصلات، وتعمل أيضًا في <span class="en">Data Link layer</span>.</p>
+  <p data-en hidden><b>Modular Transceivers</b>: terminate multiple cable and connector types, and also operate at the <span class="en">Data Link layer</span>.</p>
   <div class="two">
    <div>
-    <p><b>مشاكل Mismatched Ports</b></p>
-    <ul><li>لا يوجد رابط (no link)</li><li>انقطاع اتصال متقطع</li></ul>
+    <p data-ar><b>مشاكل Mismatched Ports</b></p>
+    <p data-en hidden><b>Mismatched Ports Problems</b></p>
+    <ul data-ar><li>لا يوجد رابط (no link)</li><li>انقطاع اتصال متقطع</li></ul>
+    <ul data-en hidden><li>No link</li><li>Intermittent disconnects</li></ul>
    </div>
    <div>
-    <p><b>مشاكل Signal Strength</b></p>
-    <ul><li>اتصالات متقطعة</li><li>فقدان حزم (packet loss)</li><li>أداء شبكة ضعيف</li></ul>
+    <p data-ar><b>مشاكل Signal Strength</b></p>
+    <p data-en hidden><b>Signal Strength Problems</b></p>
+    <ul data-ar><li>اتصالات متقطعة</li><li>فقدان حزم (packet loss)</li><li>أداء شبكة ضعيف</li></ul>
+    <ul data-en hidden><li>Intermittent connections</li><li>Packet loss</li><li>Poor network performance</li></ul>
    </div>
   </div>
  </div>
 
- <h3>تركيب إطار الإيثرنت — Ethernet Frame Format</h3>
+ <h3 data-ar>تركيب إطار الإيثرنت — Ethernet Frame Format</h3>
+ <h3 data-en hidden>Ethernet Frame Format</h3>
  <div class="diagram">
   <svg viewBox="0 0 600 70" style="max-width:600px">
    <rect x="0" y="15" width="60" height="40" fill="#0d3b4f"/>
@@ -206,30 +233,46 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
   </div>
  </div>
  <table>
-  <tr><th>الحقل</th><th>الوظيفة</th></tr>
-  <tr><td>Preamble</td><td>سلسلة مزامنة (synchronization sequence)</td></tr>
-  <tr><td>SFD</td><td>يشير لبداية الإطار</td></tr>
-  <tr><td>Destination MAC</td><td>عنوان الجهاز المستقبِل</td></tr>
-  <tr><td>Source MAC</td><td>عنوان الجهاز المرسِل</td></tr>
-  <tr><td>Ether Type</td><td>بروتوكول الـpayload</td></tr>
-  <tr><td>Payload</td><td>البيانات المرسلة فعليًا</td></tr>
-  <tr><td>FCS</td><td>كود التحقق من الأخطاء (error-checking code)</td></tr>
+  <tr data-ar><th>الحقل</th><th>الوظيفة</th></tr>
+  <tr data-en hidden><th>Field</th><th>Function</th></tr>
+  <tr data-ar><td>Preamble</td><td>سلسلة مزامنة (synchronization sequence)</td></tr>
+  <tr data-en hidden><td>Preamble</td><td>A synchronization sequence</td></tr>
+  <tr data-ar><td>SFD</td><td>يشير لبداية الإطار</td></tr>
+  <tr data-en hidden><td>SFD</td><td>Marks the start of the frame</td></tr>
+  <tr data-ar><td>Destination MAC</td><td>عنوان الجهاز المستقبِل</td></tr>
+  <tr data-en hidden><td>Destination MAC</td><td>The receiving device's address</td></tr>
+  <tr data-ar><td>Source MAC</td><td>عنوان الجهاز المرسِل</td></tr>
+  <tr data-en hidden><td>Source MAC</td><td>The sending device's address</td></tr>
+  <tr data-ar><td>Ether Type</td><td>بروتوكول الـpayload</td></tr>
+  <tr data-en hidden><td>Ether Type</td><td>The payload's protocol</td></tr>
+  <tr data-ar><td>Payload</td><td>البيانات المرسلة فعليًا</td></tr>
+  <tr data-en hidden><td>Payload</td><td>The actual data being sent</td></tr>
+  <tr data-ar><td>FCS</td><td>كود التحقق من الأخطاء (error-checking code)</td></tr>
+  <tr data-en hidden><td>FCS</td><td>An error-checking code</td></tr>
  </table>
 
  <div class="card">
-  <p><b>تركيب عنوان MAC</b>: 48-bit، أزواج hex مفصولة بنقطتين أو شرطات — مثال: <code class="k">2D:45:19:87:C8:E2</code></p>
-  <ul>
+  <p data-ar><b>تركيب عنوان MAC</b>: 48-bit، أزواج hex مفصولة بنقطتين أو شرطات — مثال: <code class="k">2D:45:19:87:C8:E2</code></p>
+  <p data-en hidden><b>MAC address format</b>: 48-bit, hex pairs separated by colons or hyphens — example: <code class="k">2D:45:19:87:C8:E2</code></p>
+  <ul data-ar>
    <li><b>OUI (Organizationally Unique Identifier)</b>: يحدد الشركة المصنّعة.</li>
    <li><b>Device ID</b>: بناءً على موديل الجهاز وتاريخ التصنيع.</li>
   </ul>
-  <p><b>عنوان الـBroadcast</b>: عندما يكون عنوان MAC <b>كله بتات 1</b> (يظهر كـ <code class="k">FF:FF:FF:FF:FF:FF</code>)، تستقبل كل الأجهزة على الشبكة الإطار وتعالجه.</p>
+  <ul data-en hidden>
+   <li><b>OUI (Organizationally Unique Identifier)</b>: identifies the manufacturer.</li>
+   <li><b>Device ID</b>: based on the device model and manufacturing date.</li>
+  </ul>
+  <p data-ar><b>عنوان الـBroadcast</b>: عندما يكون عنوان MAC <b>كله بتات 1</b> (يظهر كـ <code class="k">FF:FF:FF:FF:FF:FF</code>)، تستقبل كل الأجهزة على الشبكة الإطار وتعالجه.</p>
+  <p data-en hidden><b>The Broadcast address</b>: when a MAC address is <b>all 1 bits</b> (shown as <code class="k">FF:FF:FF:FF:FF:FF</code>), every device on the network receives and processes the frame.</p>
  </div>
 </section>
 
 <section id="m3-switches">
  <span class="mod-tag">MODULE 3 · LESSON 3.2</span>
- <h2>سويتشات الإيثرنت — Ethernet Switches</h2>
- <p class="sub">Hub vs Bridge vs Switch وأنواع السويتشات</p>
+ <h2 data-ar>سويتشات الإيثرنت — Ethernet Switches</h2>
+ <h2 data-en hidden>Ethernet Switches</h2>
+ <p class="sub" data-ar>Hub vs Bridge vs Switch وأنواع السويتشات</p>
+ <p class="sub" data-en hidden>Hub vs Bridge vs Switch and switch types</p>
 
  <div class="diagrow">
   <div class="dbox">
@@ -249,138 +292,207 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  <div class="two">
   <div class="card">
    <p><b>Hub</b></p>
-   <p>يعمل في <span class="en">Physical layer</span> فقط. يرسل أي إشارة واردة إلى <b>كل المنافذ الأخرى</b> بدون أي ذكاء بالتوجيه.</p>
+   <p data-ar>يعمل في <span class="en">Physical layer</span> فقط. يرسل أي إشارة واردة إلى <b>كل المنافذ الأخرى</b> بدون أي ذكاء بالتوجيه.</p>
+   <p data-en hidden>Operates only at the <span class="en">Physical layer</span>. Sends any incoming signal to <b>every other port</b> with no forwarding intelligence at all.</p>
   </div>
   <div class="card">
    <p><b>Bridge</b></p>
-   <p>يفصل الشبكة إلى <span class="en">physical segments</span>، لكنه يُبقي كل العُقد ضمن <b>نفس الشبكة المنطقية</b>.</p>
+   <p data-ar>يفصل الشبكة إلى <span class="en">physical segments</span>، لكنه يُبقي كل العُقد ضمن <b>نفس الشبكة المنطقية</b>.</p>
+   <p data-en hidden>Splits the network into <span class="en">physical segments</span>, but keeps all nodes within <b>the same logical network</b>.</p>
   </div>
  </div>
  <div class="card">
-  <p><b>Switch</b>: يتعلم عناوين <span class="en">MAC</span> ويرسل الإطار من منفذ واحد فقط <b>لمنفذ الوجهة المحدد</b> فقط — يقلل الازدحام ويحسّن الكفاءة، عكس الـHub الذي يبث للجميع.</p>
+  <p data-ar><b>Switch</b>: يتعلم عناوين <span class="en">MAC</span> ويرسل الإطار من منفذ واحد فقط <b>لمنفذ الوجهة المحدد</b> فقط — يقلل الازدحام ويحسّن الكفاءة، عكس الـHub الذي يبث للجميع.</p>
+  <p data-en hidden><b>Switch</b>: learns <span class="en">MAC</span> addresses and sends the frame out of only <b>the specific destination port</b> — reducing congestion and improving efficiency, unlike a Hub which broadcasts to everyone.</p>
  </div>
 
- <h3>أنواع سويتشات الإيثرنت</h3>
+ <h3 data-ar>أنواع سويتشات الإيثرنت</h3>
+ <h3 data-en hidden>Types of Ethernet Switches</h3>
  <table>
-  <tr><th>التصنيف</th><th>النوع الأول</th><th>النوع الثاني</th></tr>
-  <tr><td>الإدارة</td><td><b>Managed</b>: يمكن إعداده وتخصيصه</td><td><b>Unmanaged</b>: لا خيارات إعداد</td></tr>
-  <tr><td>المنافذ</td><td><b>Modular</b>: أعداد/أنواع منافذ مختلفة قابلة للتهيئة</td><td><b>Fixed</b>: عدد منافذ ثابت</td></tr>
-  <tr><td>التركيب</td><td><b>Desktop</b>: قائم بذاته (free standing)</td><td><b>Rack-mounted</b>: مصمم لخزائن الشبكات</td></tr>
-  <tr><td>الربط</td><td colspan="2"><b>Stackable</b>: يمكن ربط عدة سويتشات معًا وإدارتها كوحدة واحدة</td></tr>
+  <tr data-ar><th>التصنيف</th><th>النوع الأول</th><th>النوع الثاني</th></tr>
+  <tr data-en hidden><th>Category</th><th>First Type</th><th>Second Type</th></tr>
+  <tr data-ar><td>الإدارة</td><td><b>Managed</b>: يمكن إعداده وتخصيصه</td><td><b>Unmanaged</b>: لا خيارات إعداد</td></tr>
+  <tr data-en hidden><td>Management</td><td><b>Managed</b>: can be configured and customized</td><td><b>Unmanaged</b>: no configuration options</td></tr>
+  <tr data-ar><td>المنافذ</td><td><b>Modular</b>: أعداد/أنواع منافذ مختلفة قابلة للتهيئة</td><td><b>Fixed</b>: عدد منافذ ثابت</td></tr>
+  <tr data-en hidden><td>Ports</td><td><b>Modular</b>: configurable port counts/types</td><td><b>Fixed</b>: a fixed number of ports</td></tr>
+  <tr data-ar><td>التركيب</td><td><b>Desktop</b>: قائم بذاته (free standing)</td><td><b>Rack-mounted</b>: مصمم لخزائن الشبكات</td></tr>
+  <tr data-en hidden><td>Mounting</td><td><b>Desktop</b>: free standing</td><td><b>Rack-mounted</b>: designed for network racks</td></tr>
+  <tr data-ar><td>الربط</td><td colspan="2"><b>Stackable</b>: يمكن ربط عدة سويتشات معًا وإدارتها كوحدة واحدة</td></tr>
+  <tr data-en hidden><td>Linking</td><td colspan="2"><b>Stackable</b>: multiple switches can be linked together and managed as a single unit</td></tr>
  </table>
 
- <div class="tip">لخّصيها: <b>Hub</b> = يبث للجميع (L1) · <b>Bridge</b> = يفصل segments لكن نفس الشبكة المنطقية · <b>Switch</b> = يوجّه بذكاء حسب MAC (L2) لمنفذ الوجهة فقط.</div>
+ <div class="tip" data-ar>لخّصيها: <b>Hub</b> = يبث للجميع (L1) · <b>Bridge</b> = يفصل segments لكن نفس الشبكة المنطقية · <b>Switch</b> = يوجّه بذكاء حسب MAC (L2) لمنفذ الوجهة فقط.</div>
+ <div class="tip" data-en hidden>Sum it up: <b>Hub</b> = broadcasts to everyone (L1) · <b>Bridge</b> = splits segments but keeps the same logical network · <b>Switch</b> = intelligently forwards by MAC (L2) to the destination port only.</div>
 </section>
 
 <section id="m3-portcfg">
  <span class="mod-tag">MODULE 3 · LESSON 3.3</span>
- <h2>إعداد منافذ السويتش — Switch Port Configuration</h2>
+ <h2 data-ar>إعداد منافذ السويتش — Switch Port Configuration</h2>
+ <h2 data-en hidden>Switch Port Configuration</h2>
  <p class="sub">Link Aggregation · MTU · STP · PoE</p>
 
  <div class="two">
   <div class="card">
    <p><b>Link Aggregation / NIC Teaming</b></p>
-   <p>دمج رابطين أو أكثر من الكيبلات المنفصلة في <b>قناة منطقية واحدة</b> → توفر <span class="en">redundancy</span> وهي <span class="en">cost effective</span>.</p>
+   <p data-ar>دمج رابطين أو أكثر من الكيبلات المنفصلة في <b>قناة منطقية واحدة</b> → توفر <span class="en">redundancy</span> وهي <span class="en">cost effective</span>.</p>
+   <p data-en hidden>Combining two or more separate cable links into <b>a single logical channel</b> → provides <span class="en">redundancy</span> and is <span class="en">cost effective</span>.</p>
   </div>
   <div class="card">
    <p><b>MTU — Maximum Transmission Unit</b></p>
-   <p>الإطار العادي: <b>1500 bytes</b>. الـ<span class="en">Jumbo frame</span>: يدعم حمولة حتى <b>9216 bytes</b> لتقليل عدد الإطارات، لكنه محدود لأنه يخالف معايير الإيثرنت القياسية.</p>
+   <p data-ar>الإطار العادي: <b>1500 bytes</b>. الـ<span class="en">Jumbo frame</span>: يدعم حمولة حتى <b>9216 bytes</b> لتقليل عدد الإطارات، لكنه محدود لأنه يخالف معايير الإيثرنت القياسية.</p>
+   <p data-en hidden>A normal frame: <b>1500 bytes</b>. A <span class="en">Jumbo frame</span>: supports a payload of up to <b>9216 bytes</b> to reduce the number of frames, but its use is limited because it violates standard Ethernet specifications.</p>
   </div>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>Spanning Tree Protocol (STP)</b></p>
-   <p>بروتوكول <b>Layer 2</b>. يمنع <span class="en">bridge loops</span> ويوفر <span class="en">fault tolerance</span>.</p>
+   <p data-ar>بروتوكول <b>Layer 2</b>. يمنع <span class="en">bridge loops</span> ويوفر <span class="en">fault tolerance</span>.</p>
+   <p data-en hidden>A <b>Layer 2</b> protocol. Prevents <span class="en">bridge loops</span> and provides <span class="en">fault tolerance</span>.</p>
   </div>
   <div class="card">
    <p><b>Power over Ethernet (PoE)</b></p>
-   <p>يسمح لكيبل واحد بنقل <b>البيانات والطاقة</b> معًا للأجهزة المتصلة، ما يبسّط تركيب الشبكة وتوسعتها.</p>
+   <p data-ar>يسمح لكيبل واحد بنقل <b>البيانات والطاقة</b> معًا للأجهزة المتصلة، ما يبسّط تركيب الشبكة وتوسعتها.</p>
+   <p data-en hidden>Allows a single cable to carry <b>both data and power</b> to connected devices, simplifying network installation and expansion.</p>
   </div>
  </div>
 </section>
 
 <section id="m3-ts">
  <span class="mod-tag">MODULE 3 · LESSON 3.4</span>
- <h2>استكشاف أخطاء السويتش — Switch Troubleshooting</h2>
- <p class="sub">أعطال العتاد · مؤشرات المنافذ · أوامر الفحص · أخطاء الواجهة</p>
+ <h2 data-ar>استكشاف أخطاء السويتش — Switch Troubleshooting</h2>
+ <h2 data-en hidden>Switch Troubleshooting</h2>
+ <p class="sub" data-ar>أعطال العتاد · مؤشرات المنافذ · أوامر الفحص · أخطاء الواجهة</p>
+ <p class="sub" data-en hidden>Hardware failures · Port indicators · Show commands · Interface errors</p>
 
- <h3>أعطال العتاد (Hardware Failure Issues)</h3>
+ <h3 data-ar>أعطال العتاد (Hardware Failure Issues)</h3>
+ <h3 data-en hidden>Hardware Failure Issues</h3>
  <table>
-  <tr><th>المشكلة</th><th>خطوات الفحص والمعالجة</th></tr>
-  <tr><td><b>مشاكل الطاقة</b></td><td>التحقق من استقرار مصدر الطاقة، تركيب UPS ومصادر طاقة احتياطية</td></tr>
-  <tr><td><b>Network adapters</b></td><td>فحص المنافذ/الموصلات التالفة، تجربة adapter بديل، تحديث أو إعادة تثبيت الـdrivers</td></tr>
-  <tr><td><b>سويتشات/راوترات/مودمات</b></td><td>فحص بصري للتلف، فحص مؤشرات الحالة، التحقق من الطاقة والكيابل، إعادة التشغيل حسب البروتوكول</td></tr>
+  <tr data-ar><th>المشكلة</th><th>خطوات الفحص والمعالجة</th></tr>
+  <tr data-en hidden><th>Problem</th><th>Inspection and Remediation Steps</th></tr>
+  <tr data-ar><td><b>مشاكل الطاقة</b></td><td>التحقق من استقرار مصدر الطاقة، تركيب UPS ومصادر طاقة احتياطية</td></tr>
+  <tr data-en hidden><td><b>Power problems</b></td><td>Verify the power source is stable, install a UPS and backup power sources</td></tr>
+  <tr data-ar><td><b>Network adapters</b></td><td>فحص المنافذ/الموصلات التالفة، تجربة adapter بديل، تحديث أو إعادة تثبيت الـdrivers</td></tr>
+  <tr data-en hidden><td><b>Network adapters</b></td><td>Inspect for damaged ports/connectors, try a replacement adapter, update or reinstall drivers</td></tr>
+  <tr data-ar><td><b>سويتشات/راوترات/مودمات</b></td><td>فحص بصري للتلف، فحص مؤشرات الحالة، التحقق من الطاقة والكيابل، إعادة التشغيل حسب البروتوكول</td></tr>
+  <tr data-en hidden><td><b>Switches/routers/modems</b></td><td>Visual inspection for damage, check status indicators, verify power and cables, restart following protocol</td></tr>
  </table>
 
- <h3>مؤشرات حالة منفذ السويتش</h3>
+ <h3 data-ar>مؤشرات حالة منفذ السويتش</h3>
+ <h3 data-en hidden>Switch Port Status Indicators</h3>
  <table>
-  <tr><th>المؤشر</th><th>المعنى</th></tr>
-  <tr><td>أخضر ثابت</td><td>الرابط متصل، بدون ترافيك</td></tr>
-  <tr><td>أخضر وامض</td><td>الرابط يعمل طبيعيًا (بترافيك) — معدل الوميض يشير لسرعة الرابط</td></tr>
-  <tr><td>بدون إضاءة</td><td>الرابط لا يعمل، أو المنفذ مُغلق</td></tr>
-  <tr><td>كهرماني ثابت</td><td>المنفذ محظور بواسطة خوارزمية STP</td></tr>
-  <tr><td>كهرماني وامض</td><td>تم اكتشاف عطل</td></tr>
+  <tr data-ar><th>المؤشر</th><th>المعنى</th></tr>
+  <tr data-en hidden><th>Indicator</th><th>Meaning</th></tr>
+  <tr data-ar><td>أخضر ثابت</td><td>الرابط متصل، بدون ترافيك</td></tr>
+  <tr data-en hidden><td>Solid green</td><td>Link is up, no traffic</td></tr>
+  <tr data-ar><td>أخضر وامض</td><td>الرابط يعمل طبيعيًا (بترافيك) — معدل الوميض يشير لسرعة الرابط</td></tr>
+  <tr data-en hidden><td>Blinking green</td><td>Link is working normally (with traffic) — the blink rate indicates link speed</td></tr>
+  <tr data-ar><td>بدون إضاءة</td><td>الرابط لا يعمل، أو المنفذ مُغلق</td></tr>
+  <tr data-en hidden><td>No light</td><td>Link is down, or the port is disabled</td></tr>
+  <tr data-ar><td>كهرماني ثابت</td><td>المنفذ محظور بواسطة خوارزمية STP</td></tr>
+  <tr data-en hidden><td>Solid amber</td><td>Port is blocked by the STP algorithm</td></tr>
+  <tr data-ar><td>كهرماني وامض</td><td>تم اكتشاف عطل</td></tr>
+  <tr data-en hidden><td>Blinking amber</td><td>A fault has been detected</td></tr>
  </table>
 
- <h3>أوامر الفحص (Show Commands)</h3>
+ <h3 data-ar>أوامر الفحص (Show Commands)</h3>
+ <h3 data-en hidden>Show Commands</h3>
  <table>
-  <tr><th>الأمر</th><th>الوظيفة</th></tr>
-  <tr><td><span class="en">show config</span></td><td>الإعداد الحالي للجهاز</td></tr>
-  <tr><td><span class="en">show startup-config</span></td><td>الإعداد الذي سيُستخدم عند إعادة التشغيل القادمة</td></tr>
-  <tr><td><span class="en">show running-config</span></td><td>الإعداد النشط المستخدم حاليًا</td></tr>
-  <tr><td><span class="en">show interface</span></td><td>معلومات تفصيلية عن واجهات الشبكة</td></tr>
+  <tr data-ar><th>الأمر</th><th>الوظيفة</th></tr>
+  <tr data-en hidden><th>Command</th><th>Function</th></tr>
+  <tr><td><span class="en">show config</span></td><td data-ar>الإعداد الحالي للجهاز</td><td data-en hidden>The device's current configuration</td></tr>
+  <tr><td><span class="en">show startup-config</span></td><td data-ar>الإعداد الذي سيُستخدم عند إعادة التشغيل القادمة</td><td data-en hidden>The configuration that will be used at the next restart</td></tr>
+  <tr><td><span class="en">show running-config</span></td><td data-ar>الإعداد النشط المستخدم حاليًا</td><td data-en hidden>The active configuration currently in use</td></tr>
+  <tr><td><span class="en">show interface</span></td><td data-ar>معلومات تفصيلية عن واجهات الشبكة</td><td data-en hidden>Detailed information about network interfaces</td></tr>
  </table>
 
  <div class="card">
-  <p><b>حالات المنفذ (Interface Status)</b>:</p>
-  <ul>
+  <p data-ar><b>حالات المنفذ (Interface Status)</b>:</p>
+  <p data-en hidden><b>Interface Status</b>:</p>
+  <ul data-ar>
    <li><b>Down/down</b>: الطبقتان Physical وData Link غير نشطتين.</li>
    <li><b>Administratively down/down</b>: تعطيل يدوي من المسؤول بأمر shutdown.</li>
    <li><b>Down/error disabled</b>: تعطيل تلقائي بسبب خطأ شبكة أو مخالفة سياسة.</li>
    <li><b>Up/down (suspended)</b>: الطبقة الفيزيائية تعمل لكن Data Link معطلة (إعدادات إدارية أو أخطاء).</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Down/down</b>: both the Physical and Data Link layers are inactive.</li>
+   <li><b>Administratively down/down</b>: manually disabled by the admin with the shutdown command.</li>
+   <li><b>Down/error disabled</b>: automatically disabled due to a network error or policy violation.</li>
+   <li><b>Up/down (suspended)</b>: the Physical layer is up but Data Link is disabled (admin settings or errors).</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>عدادات أخطاء الواجهة (Interface Error Counters)</b>: Link state (حالة اتصال فورية) · Resets (عدد إعادة التشغيل اليدوية/التلقائية) · Discards/drops (أسبابها: أخطاء checksum، تعارض MTU، أحجام غير طبيعية، حمل عالٍ، أخطاء إعداد ACL/VLAN).</p>
+  <p data-ar><b>عدادات أخطاء الواجهة (Interface Error Counters)</b>: Link state (حالة اتصال فورية) · Resets (عدد إعادة التشغيل اليدوية/التلقائية) · Discards/drops (أسبابها: أخطاء checksum، تعارض MTU، أحجام غير طبيعية، حمل عالٍ، أخطاء إعداد ACL/VLAN).</p>
+  <p data-en hidden><b>Interface Error Counters</b>: Link state (real-time connection status) · Resets (number of manual/automatic restarts) · Discards/drops (causes: checksum errors, MTU mismatch, abnormal sizes, high load, ACL/VLAN configuration errors).</p>
  </div>
 
- <h3>أخطاء الواجهة الشائعة</h3>
+ <h3 data-ar>أخطاء الواجهة الشائعة</h3>
+ <h3 data-en hidden>Common Interface Errors</h3>
  <table>
-  <tr><th>الخطأ</th><th>الوصف</th><th>السبب</th></tr>
-  <tr><td><b>CRC Errors</b></td><td>checksum المحسوب لا يطابق المرسَل</td><td>ضجيج، تداخل، أو عطل بالمعدات</td></tr>
-  <tr><td><b>Runt Frame Errors</b></td><td>إطارات أصغر من الحد الأدنى</td><td>تصادمات أو عتاد تالف</td></tr>
-  <tr><td><b>Giant Frame Errors</b></td><td>إطارات تتجاوز الحجم الأقصى المسموح</td><td>سوء إعداد أو خلل بأجهزة الشبكة</td></tr>
+  <tr data-ar><th>الخطأ</th><th>الوصف</th><th>السبب</th></tr>
+  <tr data-en hidden><th>Error</th><th>Description</th><th>Cause</th></tr>
+  <tr data-ar><td><b>CRC Errors</b></td><td>checksum المحسوب لا يطابق المرسَل</td><td>ضجيج، تداخل، أو عطل بالمعدات</td></tr>
+  <tr data-en hidden><td><b>CRC Errors</b></td><td>The computed checksum doesn't match the one sent</td><td>Noise, interference, or faulty equipment</td></tr>
+  <tr data-ar><td><b>Runt Frame Errors</b></td><td>إطارات أصغر من الحد الأدنى</td><td>تصادمات أو عتاد تالف</td></tr>
+  <tr data-en hidden><td><b>Runt Frame Errors</b></td><td>Frames smaller than the minimum size</td><td>Collisions or damaged hardware</td></tr>
+  <tr data-ar><td><b>Giant Frame Errors</b></td><td>إطارات تتجاوز الحجم الأقصى المسموح</td><td>سوء إعداد أو خلل بأجهزة الشبكة</td></tr>
+  <tr data-en hidden><td><b>Giant Frame Errors</b></td><td>Frames exceeding the maximum allowed size</td><td>Misconfiguration or faulty network equipment</td></tr>
  </table>
 
  <div class="two">
   <div class="card">
    <p><b>Network Loops</b></p>
-   <p><b>الأسباب</b>: اتصالات زائدة، طرف الجهاز النهائي.<br><b>الحلول</b>: تهيئة صحيحة للاتصالات الزائدة، تفعيل <span class="en">STP</span>، توعية المستخدمين.</p>
+   <p data-ar><b>الأسباب</b>: اتصالات زائدة، طرف الجهاز النهائي.<br><b>الحلول</b>: تهيئة صحيحة للاتصالات الزائدة، تفعيل <span class="en">STP</span>، توعية المستخدمين.</p>
+   <p data-en hidden><b>Causes</b>: redundant connections, end-device wiring.<br><b>Solutions</b>: proper configuration of redundant links, enabling <span class="en">STP</span>, user awareness.</p>
   </div>
   <div class="card">
    <p><b>Broadcast Storms</b></p>
-   <p><b>الأسباب</b>: مشاكل DHCP، نطاقات بث كبيرة جدًا.<br><b>الحلول</b>: مراقبة حركة DHCP، تقسيم (segment) الشبكة.</p>
+   <p data-ar><b>الأسباب</b>: مشاكل DHCP، نطاقات بث كبيرة جدًا.<br><b>الحلول</b>: مراقبة حركة DHCP، تقسيم (segment) الشبكة.</p>
+   <p data-en hidden><b>Causes</b>: DHCP problems, broadcast domains that are too large.<br><b>Solutions</b>: monitoring DHCP traffic, segmenting the network.</p>
   </div>
  </div>
 
  <div class="card">
-  <p><b>مشاكل PoE</b>:</p>
-  <ul>
+  <p data-ar><b>مشاكل PoE</b>:</p>
+  <p data-en hidden><b>PoE Problems</b>:</p>
+  <ul data-ar>
    <li><b>الكيابل</b>: يُفضَّل Cat5e فأعلى (يُنصح بـCat6A)؛ سماكة الموصل 23AWG أفضل من 24AWG؛ التدريع يساعد بتبديد الحرارة.</li>
    <li><b>توافق المعيار</b>: الأجهزة يجب أن تتفاوض على وضع PoE الصحيح (Alternative A أو B أو Four-pair).</li>
    <li><b>إدارة ميزانية الطاقة</b>: للسويتشات ميزانية طاقة محدودة (300–400W). استخدمي أمر <code class="k">show power inline</code> للمراقبة.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Cabling</b>: Cat5e or higher is preferred (Cat6A recommended); 23AWG conductor gauge is better than 24AWG; shielding helps dissipate heat.</li>
+   <li><b>Standard compatibility</b>: devices must negotiate the correct PoE mode (Alternative A or B, or Four-pair).</li>
+   <li><b>Power budget management</b>: switches have a limited power budget (300–400W). Use <code class="k">show power inline</code> to monitor it.</li>
+  </ul>
  </div>
 
- <div class="tip"><b>ملخص الوحدة 3</b>: NIC يربط المضيف بالشبكة وله MAC فريد؛ Transceiver يهيئ أنواع الكيابل؛ Hub يبث للجميع، Switch يوجّه بذكاء، Bridge يفصل الـsegments مع إبقاء الشبكة المنطقية موحدة؛ STP يمنع الحلقات ويوفر التحمل ضد الأعطال (L2).</div>
+ <div class="tip" data-ar><b>ملخص الوحدة 3</b>: NIC يربط المضيف بالشبكة وله MAC فريد؛ Transceiver يهيئ أنواع الكيابل؛ Hub يبث للجميع، Switch يوجّه بذكاء، Bridge يفصل الـsegments مع إبقاء الشبكة المنطقية موحدة؛ STP يمنع الحلقات ويوفر التحمل ضد الأعطال (L2).</div>
+ <div class="tip" data-en hidden><b>Module 3 summary</b>: a NIC connects the host to the network and has a unique MAC; a Transceiver adapts different cable types; a Hub broadcasts to everyone, a Switch forwards intelligently, a Bridge splits segments while keeping the logical network unified; STP prevents loops and provides fault tolerance (L2).</div>
 </section>
 
 </main>
 
-<div class="modnav"><a href="module2-guide.html">← الوحدة 2</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module4-guide.html">الوحدة 4 →</a></div>
+<div class="modnav"><a href="module2-guide.html"><span data-ar>← الوحدة 2</span><span data-en hidden>← Module 2</span></a><a href="index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="module4-guide.html"><span data-ar>الوحدة 4 →</span><span data-en hidden>Module 4 →</span></a></div>
 
-<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 3 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<footer><span data-ar>ملخص دراسي — CompTIA Network+ N10-009 · Module 3 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Network+ N10-009 · Module 3 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
