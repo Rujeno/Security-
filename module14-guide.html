@@ -120,8 +120,20 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
+html[dir="ltr"] .diagram .cap{direction:ltr}
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
+.svgen{display:none}
+html[dir="ltr"] .svgar{display:none}
+html[dir="ltr"] .svgen{display:inline}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -141,12 +153,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 14</span>
-  <h1>الوحدة 14 — تلخيص مفاهيم السحابة</h1>
+  <h1 data-ar>الوحدة 14 — تلخيص مفاهيم السحابة</h1>
+  <h1 data-en hidden>Module 14 — Summarizing Cloud Concepts</h1>
   <p>Summarizing Cloud Concepts — Datacenter & Storage Networks · Cloud Concepts · Cloud Networking · Modern Network Environments</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html" class="active">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html" class="active">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m14-datacenter">14.1 Datacenter/SAN</a>
@@ -159,31 +172,43 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m14-datacenter">
  <span class="mod-tag">MODULE 14 · LESSON 14.1</span>
- <h2>شبكات مراكز البيانات والتخزين</h2>
+ <h2 data-ar>شبكات مراكز البيانات والتخزين</h2>
+ <h2 data-en hidden>Datacenter and Storage Networks</h2>
  <p class="sub">Summarizing Cloud Concepts — Datacenter and Storage Networks</p>
 
  <div class="card">
-  <p><b>مكونات تصميم شبكة مركز البيانات الحديث</b>: <b>Virtualization</b> (شبكات رشيقة وقابلة للتوسع)، <b>Overlay Networks</b> (ترافيك آمن ومرن بين السيرفرات)، <b>Zero Trust Architecture</b> (مصادقة/تفويض لكل طلب)، وميزات <b>High Availability</b> (شبكة، طاقة، مناخ، تحكم بالوصول).</p>
+  <p data-ar><b>مكونات تصميم شبكة مركز البيانات الحديث</b>: <b>Virtualization</b> (شبكات رشيقة وقابلة للتوسع)، <b>Overlay Networks</b> (ترافيك آمن ومرن بين السيرفرات)، <b>Zero Trust Architecture</b> (مصادقة/تفويض لكل طلب)، وميزات <b>High Availability</b> (شبكة، طاقة، مناخ، تحكم بالوصول).</p>
+  <p data-en hidden><b>Modern datacenter network design components</b>: <b>Virtualization</b> (agile, scalable networks), <b>Overlay Networks</b> (secure, flexible traffic between servers), <b>Zero Trust Architecture</b> (authentication/authorization for every request), and <b>High Availability</b> features (network, power, climate, access control).</p>
  </div>
 
  <div class="two">
   <div class="card">
-   <p><b>North-South Traffic</b></p>
-   <p>وصول العملاء الخارجيين لموارد مركز البيانات.</p>
+   <p data-ar><b>North-South Traffic</b></p>
+   <p data-en hidden><b>North-South Traffic</b></p>
+   <p data-ar>وصول العملاء الخارجيين لموارد مركز البيانات.</p>
+   <p data-en hidden>External clients accessing datacenter resources.</p>
   </div>
   <div class="card">
-   <p><b>East-West Traffic</b></p>
-   <p>تواصل السيرفرات ببعضها داخل مركز البيانات — يحتاج أمانًا متقدمًا وإدارة ترافيك فعّالة.</p>
+   <p data-ar><b>East-West Traffic</b></p>
+   <p data-en hidden><b>East-West Traffic</b></p>
+   <p data-ar>تواصل السيرفرات ببعضها داخل مركز البيانات — يحتاج أمانًا متقدمًا وإدارة ترافيك فعّالة.</p>
+   <p data-en hidden>Servers communicating with each other inside the datacenter — requires advanced security and effective traffic management.</p>
   </div>
  </div>
 
  <div class="card">
-  <p><b>Spine and Leaf Topology</b>: هيكلية ثنائية الطبقة لتحسين تدفق ترافيك مركز البيانات.</p>
-  <ul>
+  <p data-ar><b>Spine and Leaf Topology</b>: هيكلية ثنائية الطبقة لتحسين تدفق ترافيك مركز البيانات.</p>
+  <p data-en hidden><b>Spine and Leaf Topology</b>: a two-tier architecture for optimizing datacenter traffic flow.</p>
+  <ul data-ar>
    <li><b>Spine Layer</b>: العمود الفقري بسويتشات توزيع عليا، متصلة بكل سويتشات الـleaf لكن ليس ببعضها.</li>
    <li><b>Leaf Layer</b>: سويتشات وصول متصلة بكل سويتش spine بهيكلية full mesh — مسارات مباشرة للأجهزة بدون اتصالات بين الـleaf switches نفسها.</li>
   </ul>
-  <p><b>فوائدها</b>: latency متوقعة (قفزة واحدة من أي سيرفر للعمود الفقري)، موازنة حمل وfailover (مسارات متعددة زائدة)، تصميم بلا حلقات (يُلغي الحاجة لـSTP)، قابلية توسع وتكرار (إضافة عقد spine/leaf بسهولة)، واتصال عالي السرعة (سويتشات ToR).</p>
+  <ul data-en hidden>
+   <li><b>Spine Layer</b>: the backbone made of top-tier distribution switches, connected to every leaf switch but not to each other.</li>
+   <li><b>Leaf Layer</b>: access switches connected to every spine switch in a full mesh — direct paths for devices without connections between the leaf switches themselves.</li>
+  </ul>
+  <p data-ar><b>فوائدها</b>: latency متوقعة (قفزة واحدة من أي سيرفر للعمود الفقري)، موازنة حمل وfailover (مسارات متعددة زائدة)، تصميم بلا حلقات (يُلغي الحاجة لـSTP)، قابلية توسع وتكرار (إضافة عقد spine/leaf بسهولة)، واتصال عالي السرعة (سويتشات ToR).</p>
+  <p data-en hidden><b>Benefits</b>: predictable latency (one hop from any server to the backbone), load balancing and failover (redundant multiple paths), a loop-free design (eliminates the need for STP), scalability and redundancy (easily adding spine/leaf nodes), and high-speed connectivity (ToR switches).</p>
  </div>
 
  <div class="diagram">
@@ -200,49 +225,70 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <line x1="275" y1="50" x2="200" y2="108" stroke="#d8e2e7" stroke-width="2"/>
    <line x1="285" y1="50" x2="335" y2="108" stroke="#d8e2e7" stroke-width="2"/>
   </svg>
-  <div class="cap">كل leaf switch متصل بكل spine switch (full mesh) — أي سيرفر يصل لأي سيرفر آخر بقفزة واحدة فقط عبر العمود الفقري.</div>
+  <div class="cap" data-ar>كل leaf switch متصل بكل spine switch (full mesh) — أي سيرفر يصل لأي سيرفر آخر بقفزة واحدة فقط عبر العمود الفقري.</div>
+  <div class="cap" data-en hidden>Every leaf switch connects to every spine switch (full mesh) — any server reaches any other server in just one hop across the backbone.</div>
  </div>
 
  <div class="card">
-  <p><b>SAN (Storage Area Network)</b>: شبكة مخصصة لتوفير وصول لتخزين بيانات موحّد على مستوى الكتلة (block-level)، تفصل موارد التخزين عن الشبكة المحلية.</p>
-  <p><b>مكوناتها</b>: أجهزة تخزين (RAID arrays، مكتبات أشرطة)، <b>SAN Fabric</b> (سويتشات وdirectors تربط السيرفرات بأجهزة التخزين)، و<b>SAN Software</b> (أدوات إدارة وإعداد).</p>
-  <p><b>فوائدها</b>: توفر عالٍ، قابلية توسع، latency منخفض وthroughput عالٍ. حالات الاستخدام: إدارة قواعد البيانات، استمرارية الأعمال، والتخزين السحابي.</p>
+  <p data-ar><b>SAN (Storage Area Network)</b>: شبكة مخصصة لتوفير وصول لتخزين بيانات موحّد على مستوى الكتلة (block-level)، تفصل موارد التخزين عن الشبكة المحلية.</p>
+  <p data-en hidden><b>SAN (Storage Area Network)</b>: a dedicated network providing unified block-level data storage access, separating storage resources from the local network.</p>
+  <p data-ar><b>مكوناتها</b>: أجهزة تخزين (RAID arrays، مكتبات أشرطة)، <b>SAN Fabric</b> (سويتشات وdirectors تربط السيرفرات بأجهزة التخزين)، و<b>SAN Software</b> (أدوات إدارة وإعداد).</p>
+  <p data-en hidden><b>Components</b>: storage devices (RAID arrays, tape libraries), the <b>SAN Fabric</b> (switches and directors linking servers to storage devices), and <b>SAN Software</b> (management and configuration tools).</p>
+  <p data-ar><b>فوائدها</b>: توفر عالٍ، قابلية توسع، latency منخفض وthroughput عالٍ. حالات الاستخدام: إدارة قواعد البيانات، استمرارية الأعمال، والتخزين السحابي.</p>
+  <p data-en hidden><b>Benefits</b>: high availability, scalability, low latency and high throughput. Use cases: database management, business continuity, and cloud storage.</p>
  </div>
 
- <div class="tip"><b>Fibre Channel (FC)</b>: بروتوكول نقل بيانات عالي السرعة، العمود الفقري لشبكات SAN (الإملاء البريطاني "Fibre" يميّزه عن كيابل الألياف البصرية "fiber"). المكونات: <b>Initiators</b> (سيرفرات بـHBA)، <b>Targets</b> (منافذ أجهزة التخزين)، و<b>FC Switches</b>. المزايا: أداء، مرونة، سرعة، وآليات QoS.</div>
+ <div class="tip" data-ar><b>Fibre Channel (FC)</b>: بروتوكول نقل بيانات عالي السرعة، العمود الفقري لشبكات SAN (الإملاء البريطاني "Fibre" يميّزه عن كيابل الألياف البصرية "fiber"). المكونات: <b>Initiators</b> (سيرفرات بـHBA)، <b>Targets</b> (منافذ أجهزة التخزين)، و<b>FC Switches</b>. المزايا: أداء، مرونة، سرعة، وآليات QoS.</div>
+ <div class="tip" data-en hidden><b>Fibre Channel (FC)</b>: a high-speed data transfer protocol, the backbone of SAN networks (the British spelling "Fibre" distinguishes it from fiber optic cabling "fiber"). Components: <b>Initiators</b> (servers with an HBA), <b>Targets</b> (storage device ports), and <b>FC Switches</b>. Advantages: performance, flexibility, speed, and QoS mechanisms.</div>
 </section>
 
 <section id="m14-cloud">
  <span class="mod-tag">MODULE 14 · LESSON 14.2</span>
- <h2>مفاهيم الحوسبة السحابية — Cloud Concepts</h2>
+ <h2 data-ar>مفاهيم الحوسبة السحابية — Cloud Concepts</h2>
+ <h2 data-en hidden>Cloud Concepts</h2>
  <p class="sub">Scalability · Elasticity · Deployment Models · Service Models</p>
 
  <div class="two">
   <div class="card">
-   <p><b>Scalability (قابلية التوسع)</b></p>
-   <p>قدرة النظام السحابي على التعامل مع كمية عمل متزايدة. أنواعها: <b>Horizontal Scaling</b> (توسع أفقي — إضافة/إزالة سيرفرات) و<b>Vertical Scaling</b> (توسع رأسي — ترقية مواصفات سيرفر موجود).</p>
+   <p data-ar><b>Scalability (قابلية التوسع)</b></p>
+   <p data-en hidden><b>Scalability</b></p>
+   <p data-ar>قدرة النظام السحابي على التعامل مع كمية عمل متزايدة. أنواعها: <b>Horizontal Scaling</b> (توسع أفقي — إضافة/إزالة سيرفرات) و<b>Vertical Scaling</b> (توسع رأسي — ترقية مواصفات سيرفر موجود).</p>
+   <p data-en hidden>The cloud system's ability to handle growing workloads. Types: <b>Horizontal Scaling</b> (adding/removing servers) and <b>Vertical Scaling</b> (upgrading an existing server's specs).</p>
   </div>
   <div class="card">
-   <p><b>Elasticity (المرونة)</b></p>
-   <p>قدرة النظام على تعديل وتخصيص موارد الحوسبة <b>تلقائيًا</b> حسب الطلب — تضمن أداءً مثاليًا رغم تذبذب الاستخدام (توسع تلقائي، فعالية تكلفة، استجابة لحظية).</p>
+   <p data-ar><b>Elasticity (المرونة)</b></p>
+   <p data-en hidden><b>Elasticity</b></p>
+   <p data-ar>قدرة النظام على تعديل وتخصيص موارد الحوسبة <b>تلقائيًا</b> حسب الطلب — تضمن أداءً مثاليًا رغم تذبذب الاستخدام (توسع تلقائي، فعالية تكلفة، استجابة لحظية).</p>
+   <p data-en hidden>The system's ability to <b>automatically</b> adjust and allocate compute resources based on demand — ensuring optimal performance despite usage fluctuations (auto-scaling, cost efficiency, real-time responsiveness).</p>
   </div>
  </div>
 
- <h3>نماذج نشر السحابة (Cloud Deployment Models)</h3>
+ <h3 data-ar>نماذج نشر السحابة (Cloud Deployment Models)</h3>
+ <h3 data-en hidden>Cloud Deployment Models</h3>
  <table>
-  <tr><th>النموذج</th><th>الوصف</th><th>المميزات</th><th>العيوب</th></tr>
-  <tr><td><b>Public Cloud</b></td><td>موارد مشتركة عبر الإنترنت من مزوّدي CSP</td><td>فعّال تكلفة، اشتراكات pay-as-you-go</td><td>مخاطر أعلى بالأداء والأمان</td></tr>
-  <tr><td><b>Hosted Private Cloud</b></td><td>حصري لمؤسسة واحدة، يستضيفه طرف ثالث</td><td>أمان وأداء أفضل</td><td>أغلى تكلفة</td></tr>
-  <tr><td><b>Private Cloud</b></td><td>مملوك ومُشغَّل من المؤسسة نفسها</td><td>تحكم أكبر بالخصوصية والأمان</td><td>الأنسب لخدمات تحتاج تحكم وصول صارم</td></tr>
-  <tr><td><b>Hybrid Cloud</b></td><td>مزيج من الحلول العامة والخاصة</td><td>مرونة بالتوسع، توازن أمان/تكلفة</td><td>تعقيد إدارة عدة بيئات</td></tr>
+  <tr data-ar><th>النموذج</th><th>الوصف</th><th>المميزات</th><th>العيوب</th></tr>
+  <tr data-en hidden><th>Model</th><th>Description</th><th>Advantages</th><th>Disadvantages</th></tr>
+  <tr data-ar><td><b>Public Cloud</b></td><td>موارد مشتركة عبر الإنترنت من مزوّدي CSP</td><td>فعّال تكلفة، اشتراكات pay-as-you-go</td><td>مخاطر أعلى بالأداء والأمان</td></tr>
+  <tr data-en hidden><td><b>Public Cloud</b></td><td>Shared resources over the internet from CSP providers</td><td>Cost-effective, pay-as-you-go subscriptions</td><td>Higher performance and security risks</td></tr>
+  <tr data-ar><td><b>Hosted Private Cloud</b></td><td>حصري لمؤسسة واحدة، يستضيفه طرف ثالث</td><td>أمان وأداء أفضل</td><td>أغلى تكلفة</td></tr>
+  <tr data-en hidden><td><b>Hosted Private Cloud</b></td><td>Exclusive to a single organization, hosted by a third party</td><td>Better security and performance</td><td>Higher cost</td></tr>
+  <tr data-ar><td><b>Private Cloud</b></td><td>مملوك ومُشغَّل من المؤسسة نفسها</td><td>تحكم أكبر بالخصوصية والأمان</td><td>الأنسب لخدمات تحتاج تحكم وصول صارم</td></tr>
+  <tr data-en hidden><td><b>Private Cloud</b></td><td>Owned and operated by the organization itself</td><td>Greater control over privacy and security</td><td>Best suited for services requiring strict access control</td></tr>
+  <tr data-ar><td><b>Hybrid Cloud</b></td><td>مزيج من الحلول العامة والخاصة</td><td>مرونة بالتوسع، توازن أمان/تكلفة</td><td>تعقيد إدارة عدة بيئات</td></tr>
+  <tr data-en hidden><td><b>Hybrid Cloud</b></td><td>A mix of public and private solutions</td><td>Scaling flexibility, security/cost balance</td><td>Complexity of managing multiple environments</td></tr>
  </table>
 
- <h3>نماذج خدمة السحابة (Cloud Service Models)</h3>
+ <h3 data-ar>نماذج خدمة السحابة (Cloud Service Models)</h3>
+ <h3 data-en hidden>Cloud Service Models</h3>
  <table>
-  <tr><th>النموذج</th><th>الوصف</th><th>أمثلة</th></tr>
-  <tr><td><b>IaaS</b></td><td>موارد حوسبة افتراضية عبر الإنترنت</td><td>AWS EC2, Azure VMs, OpenStack</td></tr>
-  <tr><td><b>SaaS</b></td><td>تطبيقات برمجية عبر الإنترنت (اشتراك)</td><td>Microsoft 365, Salesforce, Google Workspace</td></tr>
-  <tr><td><b>PaaS</b></td><td>أدوات عتاد وبرمجيات لتطوير التطبيقات</td><td>Oracle Database, Azure SQL, Google App Engine</td></tr>
+  <tr data-ar><th>النموذج</th><th>الوصف</th><th>أمثلة</th></tr>
+  <tr data-en hidden><th>Model</th><th>Description</th><th>Examples</th></tr>
+  <tr data-ar><td><b>IaaS</b></td><td>موارد حوسبة افتراضية عبر الإنترنت</td><td>AWS EC2, Azure VMs, OpenStack</td></tr>
+  <tr data-en hidden><td><b>IaaS</b></td><td>Virtual compute resources over the internet</td><td>AWS EC2, Azure VMs, OpenStack</td></tr>
+  <tr data-ar><td><b>SaaS</b></td><td>تطبيقات برمجية عبر الإنترنت (اشتراك)</td><td>Microsoft 365, Salesforce, Google Workspace</td></tr>
+  <tr data-en hidden><td><b>SaaS</b></td><td>Software applications over the internet (subscription)</td><td>Microsoft 365, Salesforce, Google Workspace</td></tr>
+  <tr data-ar><td><b>PaaS</b></td><td>أدوات عتاد وبرمجيات لتطوير التطبيقات</td><td>Oracle Database, Azure SQL, Google App Engine</td></tr>
+  <tr data-en hidden><td><b>PaaS</b></td><td>Hardware and software tools for developing applications</td><td>Oracle Database, Azure SQL, Google App Engine</td></tr>
  </table>
 
  <div class="diagram">
@@ -259,106 +305,157 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <rect x="115" y="75" width="70" height="32" fill="#12617c"/><rect x="193" y="75" width="70" height="32" fill="#12617c"/><rect x="271" y="75" width="70" height="32" fill="#e8672c"/><rect x="349" y="75" width="70" height="32" fill="#e8672c"/>
    <rect x="115" y="115" width="70" height="32" fill="#12617c"/><rect x="193" y="115" width="70" height="32" fill="#e8672c"/><rect x="271" y="115" width="70" height="32" fill="#e8672c"/><rect x="349" y="115" width="70" height="32" fill="#e8672c"/>
    <rect x="115" y="155" width="70" height="32" fill="#12617c"/><rect x="193" y="155" width="70" height="32" fill="#e8672c"/><rect x="271" y="155" width="70" height="32" fill="#e8672c"/><rect x="349" y="155" width="70" height="32" fill="#e8672c"/>
-   <rect x="10" y="195" width="14" height="14" fill="#12617c"/><text x="28" y="206" font-size="10" fill="#12617c" font-weight="700">أنتِ تديرين</text>
-   <rect x="130" y="195" width="14" height="14" fill="#e8672c"/><text x="148" y="206" font-size="10" fill="#e8672c" font-weight="700">المزوّد يدير</text>
+   <rect x="10" y="195" width="14" height="14" fill="#12617c"/><text x="28" y="206" font-size="10" fill="#12617c" font-weight="700" class="svgar">أنتِ تديرين</text><text x="28" y="206" font-size="10" fill="#12617c" font-weight="700" class="svgen">You manage</text>
+   <rect x="130" y="195" width="14" height="14" fill="#e8672c"/><text x="148" y="206" font-size="10" fill="#e8672c" font-weight="700" class="svgar">المزوّد يدير</text><text x="148" y="206" font-size="10" fill="#e8672c" font-weight="700" class="svgen">Provider manages</text>
   </svg>
-  <div class="cap">كلما انتقلتِ من On-Premises إلى IaaS ثم PaaS ثم SaaS، تنتقل مسؤولية الإدارة تدريجيًا من طرفك إلى مزوّد الخدمة السحابية.</div>
+  <div class="cap" data-ar>كلما انتقلتِ من On-Premises إلى IaaS ثم PaaS ثم SaaS، تنتقل مسؤولية الإدارة تدريجيًا من طرفك إلى مزوّد الخدمة السحابية.</div>
+  <div class="cap" data-en hidden>As you move from On-Premises to IaaS, then PaaS, then SaaS, management responsibility gradually shifts from you to the cloud service provider.</div>
  </div>
 
  <div class="card">
-  <p><b>مزايا نماذج الخدمة السحابية</b>: توسع ومرونة (بدون تغيير عتاد فيزيائي)، فعالية تكلفة (ادفعي فقط لما تستخدمينه)، سرعة وكفاءة (نشر أسرع)، وسهولة الوصول والتعاون (من أي مكان).</p>
+  <p data-ar><b>مزايا نماذج الخدمة السحابية</b>: توسع ومرونة (بدون تغيير عتاد فيزيائي)، فعالية تكلفة (ادفعي فقط لما تستخدمينه)، سرعة وكفاءة (نشر أسرع)، وسهولة الوصول والتعاون (من أي مكان).</p>
+  <p data-en hidden><b>Advantages of cloud service models</b>: scaling and flexibility (without changing physical hardware), cost efficiency (pay only for what you use), speed and efficiency (faster deployment), and easy access and collaboration (from anywhere).</p>
  </div>
 
- <div class="tip"><b>CDN (Content Delivery Network)</b>: حل تخزين مؤقت (caching) للمواقع/التطبيقات عالية الترافيك — يوزّع السيرفرات والملفات قرب المستخدم لوصول أسرع، عبر مراكز بيانات موزّعة جغرافيًا، يحسّن التوفر والأداء وقابلية التوسع، ويتعامل بسهولة مع ارتفاعات الترافيك المفاجئة.</div>
+ <div class="tip" data-ar><b>CDN (Content Delivery Network)</b>: حل تخزين مؤقت (caching) للمواقع/التطبيقات عالية الترافيك — يوزّع السيرفرات والملفات قرب المستخدم لوصول أسرع، عبر مراكز بيانات موزّعة جغرافيًا، يحسّن التوفر والأداء وقابلية التوسع، ويتعامل بسهولة مع ارتفاعات الترافيك المفاجئة.</div>
+ <div class="tip" data-en hidden><b>CDN (Content Delivery Network)</b>: a caching solution for high-traffic sites/applications — distributes servers and files near the user for faster access, through geographically distributed datacenters, improving availability, performance, and scalability, and easily handling sudden traffic spikes.</div>
 </section>
 
 <section id="m14-cloudnet">
  <span class="mod-tag">MODULE 14 · LESSON 14.3</span>
- <h2>الشبكات السحابية — Cloud Networking</h2>
+ <h2 data-ar>الشبكات السحابية — Cloud Networking</h2>
+ <h2 data-en hidden>Cloud Networking</h2>
  <p class="sub">Cloud Instances · VPCs · Gateways · Cloud Firewalls</p>
 
  <table>
-  <tr><th>نوع الـInstance</th><th>الوصف</th></tr>
-  <tr><td><b>Virtual Machines (VMs)</b></td><td>سيرفرات كاملة بعتاد محاكى، تشغّل نظام تشغيل وتطبيقات متعددة — عزل كامل، استهلاك موارد أعلى</td></tr>
-  <tr><td><b>Containers</b></td><td>بيئات معزولة خفيفة لتشغيل التطبيقات، تشارك kernel المضيف — استهلاك أقل، سهلة التوسع والإدارة</td></tr>
-  <tr><td><b>Virtual Appliances</b></td><td>حزم برمجية جاهزة مُهيّأة مسبقًا (جدران نارية، راوترات) — مُحسَّنة لمهمة محددة</td></tr>
+  <tr data-ar><th>نوع الـInstance</th><th>الوصف</th></tr>
+  <tr data-en hidden><th>Instance type</th><th>Description</th></tr>
+  <tr data-ar><td><b>Virtual Machines (VMs)</b></td><td>سيرفرات كاملة بعتاد محاكى، تشغّل نظام تشغيل وتطبيقات متعددة — عزل كامل، استهلاك موارد أعلى</td></tr>
+  <tr data-en hidden><td><b>Virtual Machines (VMs)</b></td><td>Full servers with emulated hardware, running an OS and multiple applications — full isolation, higher resource consumption</td></tr>
+  <tr data-ar><td><b>Containers</b></td><td>بيئات معزولة خفيفة لتشغيل التطبيقات، تشارك kernel المضيف — استهلاك أقل، سهلة التوسع والإدارة</td></tr>
+  <tr data-en hidden><td><b>Containers</b></td><td>Lightweight isolated environments for running applications, sharing the host kernel — lower consumption, easy to scale and manage</td></tr>
+  <tr data-ar><td><b>Virtual Appliances</b></td><td>حزم برمجية جاهزة مُهيّأة مسبقًا (جدران نارية، راوترات) — مُحسَّنة لمهمة محددة</td></tr>
+  <tr data-en hidden><td><b>Virtual Appliances</b></td><td>Pre-configured, ready-made software packages (firewalls, routers) — optimized for a specific task</td></tr>
  </table>
 
  <div class="card">
-  <p><b>VPC (Virtual Private Cloud)</b>: بيئة معزولة داخل سحابة عامة، تتيح تشغيل التطبيقات بأمان.</p>
-  <ul>
+  <p data-ar><b>VPC (Virtual Private Cloud)</b>: بيئة معزولة داخل سحابة عامة، تتيح تشغيل التطبيقات بأمان.</p>
+  <p data-en hidden><b>VPC (Virtual Private Cloud)</b>: an isolated environment within a public cloud, allowing applications to run securely.</p>
+  <ul data-ar>
    <li>كل VPC معزول عن باقي المستأجرين (tenants) بالسحابة.</li>
    <li>المستأجرون يمكنهم تخصيص شبكتهم الافتراضية.</li>
    <li>طبقات أمان متعددة، منها security groups وACLs.</li>
   </ul>
-  <p><b>Public Subnet</b>: يتطلب ربط <span class="en">Internet Gateway</span> وضبطه كمسار افتراضي. <b>Private Subnet</b>: تبقى خاصة بدون مسار افتراضي للإنترنت حتى لو مربوطة بـInternet Gateway.</p>
+  <ul data-en hidden>
+   <li>Every VPC is isolated from other tenants in the cloud.</li>
+   <li>Tenants can customize their own virtual network.</li>
+   <li>Multiple security layers, including security groups and ACLs.</li>
+  </ul>
+  <p data-ar><b>Public Subnet</b>: يتطلب ربط <span class="en">Internet Gateway</span> وضبطه كمسار افتراضي. <b>Private Subnet</b>: تبقى خاصة بدون مسار افتراضي للإنترنت حتى لو مربوطة بـInternet Gateway.</p>
+  <p data-en hidden><b>Public Subnet</b>: requires attaching an <span class="en">Internet Gateway</span> and setting it as the default route. <b>Private Subnet</b>: stays private with no default route to the internet, even if attached to an Internet Gateway.</p>
  </div>
 
  <table>
-  <tr><th>خيار الاتصال</th><th>الخصائص</th></tr>
-  <tr><td><b>VPN</b></td><td>فعّال تكلفة، سهل التطبيق، مناسب للشبكات الموزّعة — تحديات محتملة بالـlatency/bandwidth</td></tr>
-  <tr><td><b>Direct Connect / Colocation</b></td><td>bandwidth عالٍ وlatency منخفض، مثالي للعمليات المركزية، يحتاج بنية فيزيائية داخل/متصلة بمركز بيانات</td></tr>
-  <tr><td><b>Transit Gateways</b></td><td>يبسّط هيكلية الشبكة، يمكّن اتصالات multi-VPC وVPC-to-on-premises، قابلية توسع وسهولة إدارة</td></tr>
+  <tr data-ar><th>خيار الاتصال</th><th>الخصائص</th></tr>
+  <tr data-en hidden><th>Connectivity option</th><th>Characteristics</th></tr>
+  <tr data-ar><td><b>VPN</b></td><td>فعّال تكلفة، سهل التطبيق، مناسب للشبكات الموزّعة — تحديات محتملة بالـlatency/bandwidth</td></tr>
+  <tr data-en hidden><td><b>VPN</b></td><td>Cost-effective, easy to implement, suited for distributed networks — potential latency/bandwidth challenges</td></tr>
+  <tr data-ar><td><b>Direct Connect / Colocation</b></td><td>bandwidth عالٍ وlatency منخفض، مثالي للعمليات المركزية، يحتاج بنية فيزيائية داخل/متصلة بمركز بيانات</td></tr>
+  <tr data-en hidden><td><b>Direct Connect / Colocation</b></td><td>High bandwidth and low latency, ideal for centralized operations, requires physical infrastructure in/connected to a datacenter</td></tr>
+  <tr data-ar><td><b>Transit Gateways</b></td><td>يبسّط هيكلية الشبكة، يمكّن اتصالات multi-VPC وVPC-to-on-premises، قابلية توسع وسهولة إدارة</td></tr>
+  <tr data-en hidden><td><b>Transit Gateways</b></td><td>Simplifies network architecture, enables multi-VPC and VPC-to-on-premises connections, scalability and easy management</td></tr>
  </table>
 
  <div class="card">
-  <p><b>Cloud Firewall Security</b>: حاجز بين موارد السحابة والتهديدات الخارجية، يفرض قواعد للسماح/الحظر — تقسيم للأداء والامتثال، تصفية حسب طبقات OSI:</p>
-  <ul>
+  <p data-ar><b>Cloud Firewall Security</b>: حاجز بين موارد السحابة والتهديدات الخارجية، يفرض قواعد للسماح/الحظر — تقسيم للأداء والامتثال، تصفية حسب طبقات OSI:</p>
+  <p data-en hidden><b>Cloud Firewall Security</b>: a barrier between cloud resources and external threats, enforcing allow/deny rules — segmentation for performance and compliance, filtering by OSI layer:</p>
+  <ul data-ar>
    <li><b>Layer 3</b>: تصفية عناوين IP ومنافذ TCP/UDP.</li>
    <li><b>Layer 4</b>: فحص حالة الاتصالات (stateful inspection).</li>
    <li><b>Layer 7</b>: تحليل رؤوس البروتوكول للتصفية حسب المحتوى.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Layer 3</b>: filters IP addresses and TCP/UDP ports.</li>
+   <li><b>Layer 4</b>: stateful inspection of connections.</li>
+   <li><b>Layer 7</b>: analyzes protocol headers to filter by content.</li>
+  </ul>
  </div>
 
  <table>
-  <tr><th></th><th>Security Groups</th><th>Security Lists</th></tr>
-  <tr><td>المستوى</td><td>مستوى الـinstance</td><td>مستوى الـsubnet</td></tr>
-  <tr><td>نوع التصفية</td><td>Stateful</td><td>Stateless</td></tr>
-  <tr><td>القواعد</td><td>allow فقط (أي ترافيك غير مطابق يُرفض)</td><td>allow وdeny للتحكم الدقيق</td></tr>
-  <tr><td>النطاق</td><td>عدة مجموعات لكل instance</td><td>قائمة واحدة تؤثر على عدة instances بنفس الـsubnet</td></tr>
+  <tr data-ar><th></th><th>Security Groups</th><th>Security Lists</th></tr>
+  <tr data-en hidden><th></th><th>Security Groups</th><th>Security Lists</th></tr>
+  <tr data-ar><td>المستوى</td><td>مستوى الـinstance</td><td>مستوى الـsubnet</td></tr>
+  <tr data-en hidden><td>Level</td><td>Instance level</td><td>Subnet level</td></tr>
+  <tr data-ar><td>نوع التصفية</td><td>Stateful</td><td>Stateless</td></tr>
+  <tr data-en hidden><td>Filtering type</td><td>Stateful</td><td>Stateless</td></tr>
+  <tr data-ar><td>القواعد</td><td>allow فقط (أي ترافيك غير مطابق يُرفض)</td><td>allow وdeny للتحكم الدقيق</td></tr>
+  <tr data-en hidden><td>Rules</td><td>Allow only (any non-matching traffic is denied)</td><td>Allow and deny for fine-grained control</td></tr>
+  <tr data-ar><td>النطاق</td><td>عدة مجموعات لكل instance</td><td>قائمة واحدة تؤثر على عدة instances بنفس الـsubnet</td></tr>
+  <tr data-en hidden><td>Scope</td><td>Multiple groups per instance</td><td>A single list affecting multiple instances in the same subnet</td></tr>
  </table>
 </section>
 
 <section id="m14-modern">
  <span class="mod-tag">MODULE 14 · LESSON 14.4</span>
- <h2>بيئات الشبكات الحديثة — Modern Network Environments</h2>
+ <h2 data-ar>بيئات الشبكات الحديثة — Modern Network Environments</h2>
+ <h2 data-en hidden>Modern Network Environments</h2>
  <p class="sub">IaC · SDN · Overlay Networks · Zero Trust · SASE</p>
 
  <div class="card">
-  <p><b>IaC (Infrastructure as Code)</b>: إدارة البنية التحتية عبر ملفات تعريف قابلة للقراءة آليًا — كود لإدارة وتوفير البنية التحتية تلقائيًا وبأمان، لنشر متسق وسريع وفعّال التكلفة.</p>
-  <p><b>أدوات IaC</b>: <span class="en">Terraform</span> (كود إعلاني لتوفير أي سحابة/بنية)، <span class="en">Ansible</span> (لغة إعلانية للأتمتة)، <span class="en">Chef</span> (recipes/cookbooks)، <span class="en">Puppet</span> (نهج إعلاني)، <span class="en">AWS CloudFormation</span>.</p>
+  <p data-ar><b>IaC (Infrastructure as Code)</b>: إدارة البنية التحتية عبر ملفات تعريف قابلة للقراءة آليًا — كود لإدارة وتوفير البنية التحتية تلقائيًا وبأمان، لنشر متسق وسريع وفعّال التكلفة.</p>
+  <p data-en hidden><b>IaC (Infrastructure as Code)</b>: managing infrastructure via machine-readable definition files — code for automatically and safely managing and provisioning infrastructure, for consistent, fast, cost-effective deployment.</p>
+  <p data-ar><b>أدوات IaC</b>: <span class="en">Terraform</span> (كود إعلاني لتوفير أي سحابة/بنية)، <span class="en">Ansible</span> (لغة إعلانية للأتمتة)، <span class="en">Chef</span> (recipes/cookbooks)، <span class="en">Puppet</span> (نهج إعلاني)، <span class="en">AWS CloudFormation</span>.</p>
+  <p data-en hidden><b>IaC tools</b>: <span class="en">Terraform</span> (declarative code for provisioning any cloud/infrastructure), <span class="en">Ansible</span> (a declarative automation language), <span class="en">Chef</span> (recipes/cookbooks), <span class="en">Puppet</span> (a declarative approach), <span class="en">AWS CloudFormation</span>.</p>
  </div>
 
  <div class="card">
-  <p><b>Source Control</b>: طريقة لإدارة وتتبّع تغييرات الكود بتطوير البرمجيات — أساسي للمشاريع التعاونية وسلامة الكود. المكونات: version control، central repository، branching، وconflict identification.</p>
+  <p data-ar><b>Source Control</b>: طريقة لإدارة وتتبّع تغييرات الكود بتطوير البرمجيات — أساسي للمشاريع التعاونية وسلامة الكود. المكونات: version control، central repository، branching، وconflict identification.</p>
+  <p data-en hidden><b>Source Control</b>: a way to manage and track code changes in software development — essential for collaborative projects and code integrity. Components: version control, a central repository, branching, and conflict identification.</p>
  </div>
 
  <div class="card">
-  <p><b>SDN (Software-Defined Networking)</b>: يبسّط إدارة الشبكة بفصل وظائف التحكم والتوجيه، يسمح بالبرمجة المباشرة للتحكم بالشبكة.</p>
-  <ul>
+  <p data-ar><b>SDN (Software-Defined Networking)</b>: يبسّط إدارة الشبكة بفصل وظائف التحكم والتوجيه، يسمح بالبرمجة المباشرة للتحكم بالشبكة.</p>
+  <p data-en hidden><b>SDN (Software-Defined Networking)</b>: simplifies network management by separating the control and forwarding functions, allowing direct programmability of network control.</p>
+  <ul data-ar>
    <li><b>SDN Controller</b>: "دماغ" الشبكة.</li>
    <li><b>Southbound APIs</b>: التواصل بين الـcontroller والأجهزة.</li>
    <li><b>Northbound APIs</b>: الواجهة بين الـcontroller وتطبيقات الأعمال.</li>
   </ul>
-  <p>حالات استخدام: افتراضية الشبكة، الحوسبة السحابية، إدارة مراكز البيانات، وإنترنت الأشياء.</p>
+  <ul data-en hidden>
+   <li><b>SDN Controller</b>: the network's "brain".</li>
+   <li><b>Southbound APIs</b>: communication between the controller and devices.</li>
+   <li><b>Northbound APIs</b>: the interface between the controller and business applications.</li>
+  </ul>
+  <p data-ar>حالات استخدام: افتراضية الشبكة، الحوسبة السحابية، إدارة مراكز البيانات، وإنترنت الأشياء.</p>
+  <p data-en hidden>Use cases: network virtualization, cloud computing, datacenter management, and the Internet of Things.</p>
  </div>
 
  <div class="card">
-  <p><b>Overlay Network</b>: شبكة افتراضية مبنية فوق شبكة فيزيائية موجودة، تتيح روابط منطقية بين العقد. أمثلة: <b>VPNs</b>، بروتوكولات تغليف مثل <b>VXLAN</b> (لتطبيقات مراكز البيانات) — تسهّل تقسيم الشبكة وعزلها.</p>
-  <p><b>SD-WAN</b>: نهج مبتكر لتصميم WAN المؤسسات — اتصال محسّن بين الفروع ومراكز البيانات والسحابة، تحسين تدفق الترافيك بالأتمتة والإدارة المركزية وأنفاق IPsec آمنة.</p>
+  <p data-ar><b>Overlay Network</b>: شبكة افتراضية مبنية فوق شبكة فيزيائية موجودة، تتيح روابط منطقية بين العقد. أمثلة: <b>VPNs</b>، بروتوكولات تغليف مثل <b>VXLAN</b> (لتطبيقات مراكز البيانات) — تسهّل تقسيم الشبكة وعزلها.</p>
+  <p data-en hidden><b>Overlay Network</b>: a virtual network built on top of an existing physical network, enabling logical links between nodes. Examples: <b>VPNs</b>, encapsulation protocols like <b>VXLAN</b> (for datacenter applications) — facilitating network segmentation and isolation.</p>
+  <p data-ar><b>SD-WAN</b>: نهج مبتكر لتصميم WAN المؤسسات — اتصال محسّن بين الفروع ومراكز البيانات والسحابة، تحسين تدفق الترافيك بالأتمتة والإدارة المركزية وأنفاق IPsec آمنة.</p>
+  <p data-en hidden><b>SD-WAN</b>: an innovative approach to enterprise WAN design — optimized connectivity between branches, datacenters, and the cloud, improving traffic flow through automation, centralized management, and secure IPsec tunnels.</p>
  </div>
 
  <div class="card">
-  <p><b>Zero Trust Architecture — المبادئ الأساسية</b>:</p>
-  <ul>
+  <p data-ar><b>Zero Trust Architecture — المبادئ الأساسية</b>:</p>
+  <p data-en hidden><b>Zero Trust Architecture — Core Principles</b>:</p>
+  <ul data-ar>
    <li><b>Assume No Trust</b>: لا يُوثَق بأي جهة (مستخدم/جهاز) افتراضيًا، سواء داخل الشبكة أو خارجها.</li>
    <li><b>Continuous Verification</b>: مصادقة وتفويض مستمر لكل جلسة/معاملة.</li>
    <li><b>Least Privilege Access</b>: أقل صلاحيات ممكنة لإنجاز المهمة، لتقليل مسارات الهجوم المحتملة.</li>
   </ul>
-  <p><b>التطبيق</b>: مصادقة/تفويض قائم على السياسة مركزيًا، فصل مستويات التحكم والبيانات، ومناطق ثقة ضمنية وتقسيم دقيق (microsegmentation).</p>
+  <ul data-en hidden>
+   <li><b>Assume No Trust</b>: no entity (user/device) is trusted by default, whether inside or outside the network.</li>
+   <li><b>Continuous Verification</b>: continuous authentication and authorization for every session/transaction.</li>
+   <li><b>Least Privilege Access</b>: the fewest permissions possible to accomplish the task, reducing potential attack paths.</li>
+  </ul>
+  <p data-ar><b>التطبيق</b>: مصادقة/تفويض قائم على السياسة مركزيًا، فصل مستويات التحكم والبيانات، ومناطق ثقة ضمنية وتقسيم دقيق (microsegmentation).</p>
+  <p data-en hidden><b>Implementation</b>: centralized policy-based authentication/authorization, separating control and data planes, and implicit trust zones with microsegmentation.</p>
  </div>
 
- <div class="tip"><b>SASE (Secure Access Service Edge)</b>: بنية سحابية تجمع وظائف الشبكة والأمان بانتشار عالمي — تدمج <b>SD-WAN</b> مع <b>SSE (Secure Service Edge)</b>. وظائف SSE تشمل Zero Trust وCASB (Cloud Access Security Broker) الذي يفرض سياسات الأمان، يفحص البرمجيات الضارة، ويراقب النشاط — عبر Forward Proxy، Reverse Proxy، أو API.</div>
+ <div class="tip" data-ar><b>SASE (Secure Access Service Edge)</b>: بنية سحابية تجمع وظائف الشبكة والأمان بانتشار عالمي — تدمج <b>SD-WAN</b> مع <b>SSE (Secure Service Edge)</b>. وظائف SSE تشمل Zero Trust وCASB (Cloud Access Security Broker) الذي يفرض سياسات الأمان، يفحص البرمجيات الضارة، ويراقب النشاط — عبر Forward Proxy، Reverse Proxy، أو API.</div>
+ <div class="tip" data-en hidden><b>SASE (Secure Access Service Edge)</b>: a cloud architecture combining network and security functions with global distribution — merges <b>SD-WAN</b> with <b>SSE (Secure Service Edge)</b>. SSE functions include Zero Trust and a CASB (Cloud Access Security Broker) that enforces security policies, scans for malware, and monitors activity — via a Forward Proxy, Reverse Proxy, or API.</div>
 </section>
 
 
@@ -367,5 +464,22 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <div class="modnav"><a href="module13-guide.html">← الوحدة 13</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="quiz.html">الذهاب للاختبار 📝</a></div>
 
 <footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 14 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
