@@ -80,6 +80,7 @@ tr:nth-child(even) td{background:var(--soft)}
 
 .tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
 .tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
@@ -91,6 +92,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
 .diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .diagrow .dbox svg{max-width:100%;height:auto}
@@ -120,8 +122,8 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -134,6 +136,16 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  a{color:inherit;text-decoration:none}
  h2{border-right-width:4px}
 }
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+@media(max-width:720px){html[dir="ltr"] .osi .desc{border-left:none;border-top:1px dashed var(--line)}}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -141,12 +153,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 7</span>
-  <h1>الوحدة 7 — خدمات التطبيقات</h1>
+  <h1 data-ar>الوحدة 7 — خدمات التطبيقات</h1>
+  <h1 data-en hidden>Module 7 — Application Services</h1>
   <p>Explaining Application Services — TLS/NTP/PTP · Web/File/Database Services · Email/Voice · Disaster Recovery & HA</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html" class="active">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html" class="active">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m7-tls">7.1 TLS/NTP/PTP</a>
@@ -159,15 +172,22 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m7-tls">
  <span class="mod-tag">MODULE 7 · LESSON 7.1</span>
- <h2>أمان التطبيقات ومزامنة الوقت</h2>
+ <h2 data-ar>أمان التطبيقات ومزامنة الوقت</h2>
+ <h2 data-en hidden>Application Security and Time Synchronization</h2>
  <p class="sub">Explaining Application Services — TLS · NTP · PTP</p>
 
  <div class="card">
-  <p><b>TLS (Transport Layer Security)</b> يوفر ثلاث خصائص أساسية:</p>
-  <ul>
+  <p data-ar><b>TLS (Transport Layer Security)</b> يوفر ثلاث خصائص أساسية:</p>
+  <p data-en hidden><b>TLS (Transport Layer Security)</b> provides three core properties:</p>
+  <ul data-ar>
    <li><b>Encryption</b>: تشفير البيانات.</li>
    <li><b>Authentication</b>: تأكيد هوية السيرفر عبر الشهادات (certificates).</li>
    <li><b>Integrity</b>: التأكد أن البيانات لم تتغيّر أثناء النقل.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Encryption</b>: encrypting the data.</li>
+   <li><b>Authentication</b>: confirming the server's identity via certificates.</li>
+   <li><b>Integrity</b>: confirming the data wasn't altered in transit.</li>
   </ul>
  </div>
 
@@ -179,128 +199,187 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  </div>
 
  <div class="card">
-  <p><b>NTP (Network Time Protocol)</b>: يزامن ساعات الأنظمة مع <b>UTC</b> عبر بروتوكول <span class="en">UDP</span> على المنفذ <b>123</b>.</p>
-  <ul>
+  <p data-ar><b>NTP (Network Time Protocol)</b>: يزامن ساعات الأنظمة مع <b>UTC</b> عبر بروتوكول <span class="en">UDP</span> على المنفذ <b>123</b>.</p>
+  <p data-en hidden><b>NTP (Network Time Protocol)</b>: synchronizes system clocks with <b>UTC</b> over <span class="en">UDP</span> on port <b>123</b>.</p>
+  <ul data-ar>
    <li><b>Hierarchy</b>: ينظّم الأجهزة هرميًا حسب بُعدها عن الساعة المرجعية (stratum).</li>
    <li><b>Synchronization</b>: يزامن الأجهزة عبر رسائل مُختَّمة زمنيًا (timestamped) بين الأقران.</li>
    <li><b>Algorithms</b>: يستخدم خوارزميات معقدة لحساب تأخير الشبكة والـjitter.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Hierarchy</b>: organizes devices hierarchically by their distance from the reference clock (stratum).</li>
+   <li><b>Synchronization</b>: synchronizes devices via timestamped messages between peers.</li>
+   <li><b>Algorithms</b>: uses complex algorithms to calculate network delay and jitter.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>PTP (Precision Time Protocol)</b>: دقة زمنية أعلى من NTP، تُستخدم في العمليات الصناعية، شبكات 5G، الأجهزة الطبية، الخدمات المالية، والبث.</p>
-  <ul>
+  <p data-ar><b>PTP (Precision Time Protocol)</b>: دقة زمنية أعلى من NTP، تُستخدم في العمليات الصناعية، شبكات 5G، الأجهزة الطبية، الخدمات المالية، والبث.</p>
+  <p data-en hidden><b>PTP (Precision Time Protocol)</b>: higher time precision than NTP, used in industrial processes, 5G networks, medical devices, financial services, and broadcasting.</p>
+  <ul data-ar>
    <li><b>Grandmaster clock</b>: المصدر الزمني الرئيسي بمجال PTP.</li>
    <li><b>Boundary clock</b> و<b>Ordinary clock</b>: أنواع ساعات أخرى بالتسلسل الهرمي.</li>
    <li>الأدوار: <span class="en">TimeTransmitter, TimeReceiver, Grandmaster, Boundary</span>.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Grandmaster clock</b>: the primary time source within a PTP domain.</li>
+   <li><b>Boundary clock</b> and <b>Ordinary clock</b>: other clock types in the hierarchy.</li>
+   <li>Roles: <span class="en">TimeTransmitter, TimeReceiver, Grandmaster, Boundary</span>.</li>
   </ul>
  </div>
 </section>
 
 <section id="m7-services">
  <span class="mod-tag">MODULE 7 · LESSON 7.2</span>
- <h2>خدمات الويب والملفات وقواعد البيانات</h2>
+ <h2 data-ar>خدمات الويب والملفات وقواعد البيانات</h2>
+ <h2 data-en hidden>Web, File, and Database Services</h2>
  <p class="sub">HTTP/HTTPS · FTP/SFTP · SMB · NAS · RDBMS vs NoSQL</p>
 
  <div class="card">
-  <p><b>HTTP</b>: بروتوكول لجلب الموارد (مستندات HTML، صور، فيديوهات) من الويب — أساس أي تبادل بيانات على الويب.</p>
+  <p data-ar><b>HTTP</b>: بروتوكول لجلب الموارد (مستندات HTML، صور، فيديوهات) من الويب — أساس أي تبادل بيانات على الويب.</p>
+  <p data-en hidden><b>HTTP</b>: a protocol for fetching resources (HTML documents, images, videos) from the web — the foundation of any data exchange on the web.</p>
   <div class="flow">
    <span>User enters URL</span><i>←</i><span>Browser sends HTTP request</span><i>←</i><span>Server interprets & retrieves files</span><i>←</i><span>HTTP Response</span><i>←</i><span>Browser renders webpage</span>
   </div>
  </div>
 
  <table>
-  <tr><th></th><th>HTTP</th><th>HTTPS</th></tr>
-  <tr><td>التشفير</td><td>لا يشفّر البيانات</td><td>يستخدم تشفير TLS (SSL)</td></tr>
-  <tr><td>المنفذ</td><td>Port 80</td><td>Port 443</td></tr>
-  <tr><td>الرابط</td><td><span class="en">http://</span></td><td><span class="en">https://</span></td></tr>
+  <tr data-ar><th></th><th>HTTP</th><th>HTTPS</th></tr>
+  <tr data-en hidden><th></th><th>HTTP</th><th>HTTPS</th></tr>
+  <tr data-ar><td>التشفير</td><td>لا يشفّر البيانات</td><td>يستخدم تشفير TLS (SSL)</td></tr>
+  <tr data-en hidden><td>Encryption</td><td>Does not encrypt data</td><td>Uses TLS (SSL) encryption</td></tr>
+  <tr data-ar><td>المنفذ</td><td>Port 80</td><td>Port 443</td></tr>
+  <tr data-en hidden><td>Port</td><td>Port 80</td><td>Port 443</td></tr>
+  <tr data-ar><td>الرابط</td><td><span class="en">http://</span></td><td><span class="en">https://</span></td></tr>
+  <tr data-en hidden><td>URL</td><td><span class="en">http://</span></td><td><span class="en">https://</span></td></tr>
  </table>
 
  <div class="card">
-  <p><b>FTP (File Transfer Protocol)</b>:</p>
-  <ul>
+  <p data-ar><b>FTP (File Transfer Protocol)</b>:</p>
+  <p data-en hidden><b>FTP (File Transfer Protocol)</b>:</p>
+  <ul data-ar>
    <li><b>Authentication</b>: يطلب بيانات دخول، وبعض السيرفرات تسمح بوصول مجهول (anonymous).</li>
    <li><b>Channels</b>: قناة أوامر (command) للتعليمات والردود، وقناة بيانات (data) لنقل الملفات.</li>
    <li><b>Transfer Modes</b>: <span class="en">Active</span> (السيرفر يتصل بالعميل لنقل البيانات) و<span class="en">Passive</span> (العميل يبدأ اتصالات الأوامر/البيانات لتجنب مشاكل الجدار الناري).</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Authentication</b>: requires credentials, though some servers allow anonymous access.</li>
+   <li><b>Channels</b>: a command channel for instructions and responses, and a data channel for transferring files.</li>
+   <li><b>Transfer Modes</b>: <span class="en">Active</span> (the server connects to the client for data transfer) and <span class="en">Passive</span> (the client initiates the command/data connections to avoid firewall issues).</li>
+  </ul>
  </div>
 
  <table>
-  <tr><th></th><th>FTP</th><th>SFTP</th></tr>
-  <tr><td>التشفير</td><td>بيانات غير مشفرة</td><td>بيانات مشفرة</td></tr>
-  <tr><td>القنوات</td><td>قناتان</td><td>قناة واحدة</td></tr>
-  <tr><td>المنافذ</td><td>Port 20 و21</td><td>Port 22</td></tr>
+  <tr data-ar><th></th><th>FTP</th><th>SFTP</th></tr>
+  <tr data-en hidden><th></th><th>FTP</th><th>SFTP</th></tr>
+  <tr data-ar><td>التشفير</td><td>بيانات غير مشفرة</td><td>بيانات مشفرة</td></tr>
+  <tr data-en hidden><td>Encryption</td><td>Unencrypted data</td><td>Encrypted data</td></tr>
+  <tr data-ar><td>القنوات</td><td>قناتان</td><td>قناة واحدة</td></tr>
+  <tr data-en hidden><td>Channels</td><td>Two channels</td><td>One channel</td></tr>
+  <tr data-ar><td>المنافذ</td><td>Port 20 و21</td><td>Port 22</td></tr>
+  <tr data-en hidden><td>Ports</td><td>Port 20 and 21</td><td>Port 22</td></tr>
  </table>
 
  <div class="two">
   <div class="card">
    <p><b>SMB (Server Message Block)</b></p>
-   <p>يسمح للأجهزة على نفس الشبكة بمشاركة الموارد. يُستخدم في <span class="en">Windows</span>، وفي <span class="en">Linux</span> عبر <span class="en">Samba</span>.</p>
+   <p data-ar>يسمح للأجهزة على نفس الشبكة بمشاركة الموارد. يُستخدم في <span class="en">Windows</span>، وفي <span class="en">Linux</span> عبر <span class="en">Samba</span>.</p>
+   <p data-en hidden>Lets devices on the same network share resources. Used in <span class="en">Windows</span>, and on <span class="en">Linux</span> via <span class="en">Samba</span>.</p>
   </div>
   <div class="card">
    <p><b>NAS (Network Attached Storage)</b></p>
-   <p>يوفّر وصولًا عن بُعد للملفات ووصولًا متزامنًا لعدة أجهزة. مكوناته: معالج، ذاكرة، أقراص صلبة، ونظام تشغيل مخصص (غالبًا لينكس).</p>
+   <p data-ar>يوفّر وصولًا عن بُعد للملفات ووصولًا متزامنًا لعدة أجهزة. مكوناته: معالج، ذاكرة، أقراص صلبة، ونظام تشغيل مخصص (غالبًا لينكس).</p>
+   <p data-en hidden>Provides remote file access and simultaneous access for multiple devices. Its components: a processor, memory, hard drives, and a dedicated OS (usually Linux).</p>
   </div>
  </div>
 
  <table>
-  <tr><th></th><th>RDBMS</th><th>NoSQL</th></tr>
-  <tr><td>هيكل التخزين</td><td>يحتاج schema محددة مسبقًا (جداول مرتبطة بمعرّفات فريدة)</td><td>بدون schema أو schema ديناميكية (key-value, wide columns)</td></tr>
-  <tr><td>التوسع</td><td>Vertically scalable</td><td>Horizontally scalable</td></tr>
-  <tr><td>الأفضلية</td><td>يتعامل مع استعلامات معقدة (SQL)</td><td>بساطة وسرعة لأنواع معيّنة من الاستعلامات، وصول عبر APIs فوق HTTPS</td></tr>
+  <tr data-ar><th></th><th>RDBMS</th><th>NoSQL</th></tr>
+  <tr data-en hidden><th></th><th>RDBMS</th><th>NoSQL</th></tr>
+  <tr data-ar><td>هيكل التخزين</td><td>يحتاج schema محددة مسبقًا (جداول مرتبطة بمعرّفات فريدة)</td><td>بدون schema أو schema ديناميكية (key-value, wide columns)</td></tr>
+  <tr data-en hidden><td>Storage structure</td><td>Needs a predefined schema (tables linked by unique identifiers)</td><td>No schema, or a dynamic schema (key-value, wide columns)</td></tr>
+  <tr data-ar><td>التوسع</td><td>Vertically scalable</td><td>Horizontally scalable</td></tr>
+  <tr data-en hidden><td>Scaling</td><td>Vertically scalable</td><td>Horizontally scalable</td></tr>
+  <tr data-ar><td>الأفضلية</td><td>يتعامل مع استعلامات معقدة (SQL)</td><td>بساطة وسرعة لأنواع معيّنة من الاستعلامات، وصول عبر APIs فوق HTTPS</td></tr>
+  <tr data-en hidden><td>Strength</td><td>Handles complex queries (SQL)</td><td>Simplicity and speed for certain query types, access via APIs over HTTPS</td></tr>
  </table>
 </section>
 
 <section id="m7-email">
  <span class="mod-tag">MODULE 7 · LESSON 7.3</span>
- <h2>خدمات البريد والصوت</h2>
+ <h2 data-ar>خدمات البريد والصوت</h2>
+ <h2 data-en hidden>Email and Voice Services</h2>
  <p class="sub">SMTP · IMAP · VoIP · SIP</p>
 
  <div class="card">
-  <p><b>SMTP (Simple Mail Transfer Protocol)</b>: يُستخدم لإرسال البريد من سيرفر لآخر، يوجّه الرسائل من عميل المرسل لسيرفر بريد المستقبل. يمكن دمجه مع TLS لتشفير البريد أثناء النقل.</p>
-  <p><b>المنافذ</b>: Port 25 (عادي) · Port 465 (implicit TLS) · Port 587 (explicit TLS).</p>
+  <p data-ar><b>SMTP (Simple Mail Transfer Protocol)</b>: يُستخدم لإرسال البريد من سيرفر لآخر، يوجّه الرسائل من عميل المرسل لسيرفر بريد المستقبل. يمكن دمجه مع TLS لتشفير البريد أثناء النقل.</p>
+  <p data-en hidden><b>SMTP (Simple Mail Transfer Protocol)</b>: used to send mail from one server to another, routing messages from the sender's client to the recipient's mail server. Can be combined with TLS to encrypt mail in transit.</p>
+  <p data-ar><b>المنافذ</b>: Port 25 (عادي) · Port 465 (implicit TLS) · Port 587 (explicit TLS).</p>
+  <p data-en hidden><b>Ports</b>: Port 25 (plain) · Port 465 (implicit TLS) · Port 587 (explicit TLS).</p>
  </div>
 
  <div class="card">
-  <p><b>IMAP (Internet Message Access Protocol)</b>: يتيح الوصول لإدارة البريد عن بُعد، ويخزّن الرسائل على السيرفر. وظائفه: الاتصال بسيرفر البريد، المزامنة، قراءة الرسائل، وإدارتها.</p>
+  <p data-ar><b>IMAP (Internet Message Access Protocol)</b>: يتيح الوصول لإدارة البريد عن بُعد، ويخزّن الرسائل على السيرفر. وظائفه: الاتصال بسيرفر البريد، المزامنة، قراءة الرسائل، وإدارتها.</p>
+  <p data-en hidden><b>IMAP (Internet Message Access Protocol)</b>: enables remote mail management access, and stores messages on the server. Its functions: connecting to the mail server, syncing, reading messages, and managing them.</p>
  </div>
 
  <table>
-  <tr><th></th><th>VoIP</th><th>PBX</th><th>VoIP-Enabled PBX</th></tr>
-  <tr><td>الوظيفة</td><td>ينقل مكالمات صوتية عبر شبكات IP، يدعم الصوت والفيديو والوسائط المتعددة</td><td>يربط خطوط الهاتف الداخلية بمنظمة، يدير المكالمات الواردة/الصادرة والبريد الصوتي والتحويل</td><td>يجمع وظائف PBX مع VoIP، يعمل عبر LAN أو WAN، يقلل الاعتماد على البنية الفيزيائية</td></tr>
+  <tr data-ar><th></th><th>VoIP</th><th>PBX</th><th>VoIP-Enabled PBX</th></tr>
+  <tr data-en hidden><th></th><th>VoIP</th><th>PBX</th><th>VoIP-Enabled PBX</th></tr>
+  <tr data-ar><td>الوظيفة</td><td>ينقل مكالمات صوتية عبر شبكات IP، يدعم الصوت والفيديو والوسائط المتعددة</td><td>يربط خطوط الهاتف الداخلية بمنظمة، يدير المكالمات الواردة/الصادرة والبريد الصوتي والتحويل</td><td>يجمع وظائف PBX مع VoIP، يعمل عبر LAN أو WAN، يقلل الاعتماد على البنية الفيزيائية</td></tr>
+  <tr data-en hidden><td>Function</td><td>Carries voice calls over IP networks, supports voice, video, and multimedia</td><td>Connects internal phone lines within an organization, manages inbound/outbound calls, voicemail, and transfers</td><td>Combines PBX functions with VoIP, works over LAN or WAN, reduces dependence on physical infrastructure</td></tr>
  </table>
 
- <h3>بروتوكولات VoIP</h3>
+ <h3 data-ar>بروتوكولات VoIP</h3>
+ <h3 data-en hidden>VoIP Protocols</h3>
  <table>
-  <tr><th>البروتوكول</th><th>الوظيفة</th></tr>
-  <tr><td><b>RTP (Real-Time Protocol)</b></td><td>ينقل الصوت/الفيديو عبر الإنترنت لحظيًا، يستخدم منافذ UDP زوجية (even) لبث الوسائط</td></tr>
-  <tr><td><b>RTCP (Real-Time Transport Control Protocol)</b></td><td>يوفّر إحصائيات ومعلومات تحكم لجلسة RTP، تقرير عن فقدان الحزم والـjitter، منفذ فردي (odd) أعلى من RTP بواحد</td></tr>
-  <tr><td><b>SIP (Session Initiation Protocol)</b></td><td>يبدأ ويدير وينهي جلسات الاتصال اللحظي، يستخدم TCP/UDP منفذ 5060 (بدون تشفير) و5061 (بتشفير TLS)</td></tr>
+  <tr data-ar><th>البروتوكول</th><th>الوظيفة</th></tr>
+  <tr data-en hidden><th>Protocol</th><th>Function</th></tr>
+  <tr data-ar><td><b>RTP (Real-Time Protocol)</b></td><td>ينقل الصوت/الفيديو عبر الإنترنت لحظيًا، يستخدم منافذ UDP زوجية (even) لبث الوسائط</td></tr>
+  <tr data-en hidden><td><b>RTP (Real-Time Protocol)</b></td><td>Carries voice/video over the internet in real time, uses even-numbered UDP ports for media streaming</td></tr>
+  <tr data-ar><td><b>RTCP (Real-Time Transport Control Protocol)</b></td><td>يوفّر إحصائيات ومعلومات تحكم لجلسة RTP، تقرير عن فقدان الحزم والـjitter، منفذ فردي (odd) أعلى من RTP بواحد</td></tr>
+  <tr data-en hidden><td><b>RTCP (Real-Time Transport Control Protocol)</b></td><td>Provides statistics and control information for an RTP session, reports packet loss and jitter, an odd-numbered port one above RTP</td></tr>
+  <tr data-ar><td><b>SIP (Session Initiation Protocol)</b></td><td>يبدأ ويدير وينهي جلسات الاتصال اللحظي، يستخدم TCP/UDP منفذ 5060 (بدون تشفير) و5061 (بتشفير TLS)</td></tr>
+  <tr data-en hidden><td><b>SIP (Session Initiation Protocol)</b></td><td>Starts, manages, and ends real-time communication sessions, uses TCP/UDP port 5060 (unencrypted) and 5061 (TLS-encrypted)</td></tr>
  </table>
 </section>
 
 <section id="m7-dr">
  <span class="mod-tag">MODULE 7 · LESSON 7.4</span>
- <h2>التعافي من الكوارث والتوفر العالي</h2>
+ <h2 data-ar>التعافي من الكوارث والتوفر العالي</h2>
+ <h2 data-en hidden>Disaster Recovery and High Availability</h2>
  <p class="sub">Disaster Recovery and High Availability</p>
 
  <div class="card">
-  <p><b>مفاهيم التعافي من الكوارث</b>:</p>
-  <ul>
+  <p data-ar><b>مفاهيم التعافي من الكوارث</b>:</p>
+  <p data-en hidden><b>Disaster Recovery Concepts</b>:</p>
+  <ul data-ar>
    <li><b>BRP (Disaster Recovery Plan)</b>: إرشادات وإجراءات، تحضير ومنع.</li>
    <li><b>Tabletop Exercises</b>: محاكاة (simulation) وتعلّم بنّاء (constructive learning).</li>
    <li><b>Validation Tests</b>: اختبار وظيفي (functional)، اختبار سيناريو (scenario)، اختبار كامل النطاق (full-scale).</li>
    <li><b>BCP (Business Continuity Plan)</b>: فريق BCP، تحليل أثر الأعمال (BIA)، وخطة التواصل بالأزمات.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>DRP (Disaster Recovery Plan)</b>: guidelines and procedures, preparation and prevention.</li>
+   <li><b>Tabletop Exercises</b>: simulation and constructive learning.</li>
+   <li><b>Validation Tests</b>: functional testing, scenario testing, full-scale testing.</li>
+   <li><b>BCP (Business Continuity Plan)</b>: a BCP team, a Business Impact Analysis (BIA), and a crisis communication plan.</li>
+  </ul>
  </div>
 
  <table>
-  <tr><th>المقياس</th><th>المعنى</th></tr>
-  <tr><td><b>HA (High Availability)</b></td><td>يضمن استمرارية عمل النظام</td></tr>
-  <tr><td><b>MTD (Maximum Tolerable Downtime)</b></td><td>أطول فترة انقطاع بدون تأثير شديد</td></tr>
-  <tr><td><b>RTO (Recovery Time Objective)</b></td><td>الوقت اللازم لاستعادة الخدمات بعد انقطاع</td></tr>
-  <tr><td><b>WRT (Work Recovery Time)</b></td><td>الوقت للتأكد من سلامة النظام/البيانات بعد الاستعادة</td></tr>
-  <tr><td><b>RPO (Recovery Point Objective)</b></td><td>أقصى فقدان بيانات مقبول بعد حادثة</td></tr>
+  <tr data-ar><th>المقياس</th><th>المعنى</th></tr>
+  <tr data-en hidden><th>Metric</th><th>Meaning</th></tr>
+  <tr data-ar><td><b>HA (High Availability)</b></td><td>يضمن استمرارية عمل النظام</td></tr>
+  <tr data-en hidden><td><b>HA (High Availability)</b></td><td>Ensures the system keeps operating</td></tr>
+  <tr data-ar><td><b>MTD (Maximum Tolerable Downtime)</b></td><td>أطول فترة انقطاع بدون تأثير شديد</td></tr>
+  <tr data-en hidden><td><b>MTD (Maximum Tolerable Downtime)</b></td><td>The longest outage possible without severe impact</td></tr>
+  <tr data-ar><td><b>RTO (Recovery Time Objective)</b></td><td>الوقت اللازم لاستعادة الخدمات بعد انقطاع</td></tr>
+  <tr data-en hidden><td><b>RTO (Recovery Time Objective)</b></td><td>The time needed to restore services after an outage</td></tr>
+  <tr data-ar><td><b>WRT (Work Recovery Time)</b></td><td>الوقت للتأكد من سلامة النظام/البيانات بعد الاستعادة</td></tr>
+  <tr data-en hidden><td><b>WRT (Work Recovery Time)</b></td><td>The time to verify the system/data's integrity after recovery</td></tr>
+  <tr data-ar><td><b>RPO (Recovery Point Objective)</b></td><td>أقصى فقدان بيانات مقبول بعد حادثة</td></tr>
+  <tr data-en hidden><td><b>RPO (Recovery Point Objective)</b></td><td>The maximum acceptable data loss after an incident</td></tr>
  </table>
 
  <div class="diagram">
@@ -317,29 +396,37 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <text x="165" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#e8672c">RPO — Data Loss Window</text>
    <text x="335" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#12617c">RTO — Downtime Window</text>
   </svg>
-  <div class="cap">RPO = أقصى بيانات يمكن خسارتها (بين آخر نسخة احتياطية والكارثة) · RTO = أقصى وقت توقف مقبول (بين الكارثة واكتمال الاستعادة).</div>
+  <div class="cap" data-ar>RPO = أقصى بيانات يمكن خسارتها (بين آخر نسخة احتياطية والكارثة) · RTO = أقصى وقت توقف مقبول (بين الكارثة واكتمال الاستعادة).</div>
+  <div class="cap" data-en hidden>RPO = the maximum data that can be lost (between the last backup and the disaster) · RTO = the maximum acceptable downtime (between the disaster and recovery completion).</div>
  </div>
 
  <div class="card">
-  <p><b>مواقع التعافي من الكوارث (Disaster Recovery Sites)</b>: <b>Cold Site</b> (بنية أساسية بدون معدات جاهزة، الأبطأ والأرخص) · <b>Warm Site</b> (معدات جزئية جاهزة) · <b>Hot Site</b> (نسخة كاملة جاهزة للعمل فورًا، الأسرع والأغلى).</p>
+  <p data-ar><b>مواقع التعافي من الكوارث (Disaster Recovery Sites)</b>: <b>Cold Site</b> (بنية أساسية بدون معدات جاهزة، الأبطأ والأرخص) · <b>Warm Site</b> (معدات جزئية جاهزة) · <b>Hot Site</b> (نسخة كاملة جاهزة للعمل فورًا، الأسرع والأغلى).</p>
+  <p data-en hidden><b>Disaster Recovery Sites</b>: a <b>Cold Site</b> (basic infrastructure with no equipment ready, the slowest and cheapest) · a <b>Warm Site</b> (partial equipment ready) · a <b>Hot Site</b> (a full copy ready to operate immediately, the fastest and most expensive).</p>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>Fault Tolerance</b></p>
-   <p>يحافظ على استمرار العمل رغم فشل مكوّن، يعمل بسعة مخفّضة بدل التوقف الكامل، عبر التكرار (replication)، فحص الأخطاء، والـfailover.</p>
+   <p data-ar>يحافظ على استمرار العمل رغم فشل مكوّن، يعمل بسعة مخفّضة بدل التوقف الكامل، عبر التكرار (replication)، فحص الأخطاء، والـfailover.</p>
+   <p data-en hidden>Keeps operations running despite a component failure, running at reduced capacity instead of shutting down completely, via replication, error checking, and failover.</p>
   </div>
   <div class="card">
    <p><b>Redundancy</b></p>
-   <p>يكرر المكونات الأساسية لموثوقية أعلى، يوفّر مسارات/سعة احتياطية، ويمنع انهيار النظام من فشل نقطة واحدة.</p>
+   <p data-ar>يكرر المكونات الأساسية لموثوقية أعلى، يوفّر مسارات/سعة احتياطية، ويمنع انهيار النظام من فشل نقطة واحدة.</p>
+   <p data-en hidden>Duplicates core components for higher reliability, provides backup paths/capacity, and prevents system collapse from a single point of failure.</p>
   </div>
  </div>
 
  <table>
-  <tr><th>المؤشر (KPI)</th><th>المعنى</th></tr>
-  <tr><td><b>MTBF (Mean Time Between Failures)</b></td><td>متوسط الوقت بين أعطال النظام</td></tr>
-  <tr><td><b>MTTF (Mean Time To Failure)</b></td><td>العمر المتوقع قبل فشل نظام غير قابل للإصلاح</td></tr>
-  <tr><td><b>MTTR (Mean Time To Repair)</b></td><td>متوسط الوقت لإصلاح واستعادة نظام معطّل</td></tr>
+  <tr data-ar><th>المؤشر (KPI)</th><th>المعنى</th></tr>
+  <tr data-en hidden><th>Metric (KPI)</th><th>Meaning</th></tr>
+  <tr data-ar><td><b>MTBF (Mean Time Between Failures)</b></td><td>متوسط الوقت بين أعطال النظام</td></tr>
+  <tr data-en hidden><td><b>MTBF (Mean Time Between Failures)</b></td><td>The average time between system failures</td></tr>
+  <tr data-ar><td><b>MTTF (Mean Time To Failure)</b></td><td>العمر المتوقع قبل فشل نظام غير قابل للإصلاح</td></tr>
+  <tr data-en hidden><td><b>MTTF (Mean Time To Failure)</b></td><td>The expected lifespan before a non-repairable system fails</td></tr>
+  <tr data-ar><td><b>MTTR (Mean Time To Repair)</b></td><td>متوسط الوقت لإصلاح واستعادة نظام معطّل</td></tr>
+  <tr data-en hidden><td><b>MTTR (Mean Time To Repair)</b></td><td>The average time to repair and restore a failed system</td></tr>
  </table>
 
  <div class="diagram">
@@ -357,25 +444,45 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <rect x="290" y="120" width="90" height="30" rx="6" fill="#12617c"/><text x="335" y="140" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Server 3</text>
    <defs><marker id="arlb" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#5b7280"/></marker></defs>
   </svg>
-  <div class="cap">Load Balancer يوزّع طلبات العملاء عبر عدة سيرفرات (Round Robin / Least Connections) لمنع إرهاق سيرفر واحد.</div>
+  <div class="cap" data-ar>Load Balancer يوزّع طلبات العملاء عبر عدة سيرفرات (Round Robin / Least Connections) لمنع إرهاق سيرفر واحد.</div>
+  <div class="cap" data-en hidden>A Load Balancer distributes client requests across several servers (Round Robin / Least Connections) to prevent overloading a single server.</div>
  </div>
 
  <div class="card">
-  <p><b>Load Balancers</b>: توزّع ترافيك الشبكة عبر عدة سيرفرات (كـ"شرطي مرور")، تضمن عدم إرهاق سيرفر واحد، تقلل التوقف وتزيد قابلية التوسع. أنواعها: <span class="en">hardware-based</span> أو <span class="en">software-based</span>، وتستخدم خوارزميات مثل <b>Round Robin</b> و<b>Least Connections</b>.</p>
+  <p data-ar><b>Load Balancers</b>: توزّع ترافيك الشبكة عبر عدة سيرفرات (كـ"شرطي مرور")، تضمن عدم إرهاق سيرفر واحد، تقلل التوقف وتزيد قابلية التوسع. أنواعها: <span class="en">hardware-based</span> أو <span class="en">software-based</span>، وتستخدم خوارزميات مثل <b>Round Robin</b> و<b>Least Connections</b>.</p>
+  <p data-en hidden><b>Load Balancers</b>: distribute network traffic across several servers (like a "traffic cop"), ensuring no single server is overloaded, reducing downtime and increasing scalability. Types: <span class="en">hardware-based</span> or <span class="en">software-based</span>, using algorithms like <b>Round Robin</b> and <b>Least Connections</b>.</p>
  </div>
 
  <div class="card">
-  <p><b>High Availability Clusters</b>: أنظمة تضمن تشغيلًا مستمرًا وتقلل التوقف عبر مكونات مكرَّرة وآليات failover — مثالية حيث الاستمرارية حرجة (قواعد البيانات، خدمات الأعمال).</p>
+  <p data-ar><b>High Availability Clusters</b>: أنظمة تضمن تشغيلًا مستمرًا وتقلل التوقف عبر مكونات مكرَّرة وآليات failover — مثالية حيث الاستمرارية حرجة (قواعد البيانات، خدمات الأعمال).</p>
+  <p data-en hidden><b>High Availability Clusters</b>: systems that ensure continuous operation and reduce downtime through duplicated components and failover mechanisms — ideal where continuity is critical (databases, business services).</p>
  </div>
 
- <div class="tip"><b>First Hop Redundancy</b>: يضمن استمرار خدمة الشبكة عبر التبديل التلقائي لبوابة احتياطية إذا فشلت الأساسية — بروتوكولات مثل <b>HSRP</b> و<b>VRRP</b> توفّر failover سريع وتمنع single point of failure عند البوابة.</div>
+ <div class="tip" data-ar><b>First Hop Redundancy</b>: يضمن استمرار خدمة الشبكة عبر التبديل التلقائي لبوابة احتياطية إذا فشلت الأساسية — بروتوكولات مثل <b>HSRP</b> و<b>VRRP</b> توفّر failover سريع وتمنع single point of failure عند البوابة.</div>
+ <div class="tip" data-en hidden><b>First Hop Redundancy</b>: ensures network service continues by automatically switching to a backup gateway if the primary one fails — protocols like <b>HSRP</b> and <b>VRRP</b> provide fast failover and prevent a single point of failure at the gateway.</div>
 </section>
 
 
 </main>
 
-<div class="modnav"><a href="module6-guide.html">← الوحدة 6</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module8-guide.html">الوحدة 8 →</a></div>
+<div class="modnav"><a href="module6-guide.html"><span data-ar>← الوحدة 6</span><span data-en hidden>← Module 6</span></a><a href="index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="module8-guide.html"><span data-ar>الوحدة 8 →</span><span data-en hidden>Module 8 →</span></a></div>
 
-<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 7 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<footer><span data-ar>ملخص دراسي — CompTIA Network+ N10-009 · Module 7 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Network+ N10-009 · Module 7 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>

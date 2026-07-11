@@ -80,6 +80,7 @@ tr:nth-child(even) td{background:var(--soft)}
 
 .tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
 .tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
@@ -91,6 +92,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
 .diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .diagrow .dbox svg{max-width:100%;height:auto}
@@ -120,8 +122,8 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -134,6 +136,16 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  a{color:inherit;text-decoration:none}
  h2{border-right-width:4px}
 }
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+@media(max-width:720px){html[dir="ltr"] .osi .desc{border-left:none;border-top:1px dashed var(--line)}}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -141,12 +153,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 8</span>
-  <h1>الوحدة 8 — دعم إدارة الشبكة</h1>
+  <h1 data-ar>الوحدة 8 — دعم إدارة الشبكة</h1>
+  <h1 data-en hidden>Module 8 — Supporting Network Management</h1>
   <p>Supporting Network Management — Policies & Documentation · Discovery & Monitoring · SNMP · Event Management · Packet Capture · Traffic Monitoring</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html" class="active">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html" class="active">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m8-policies">8.1 Policies & Docs</a>
@@ -161,91 +174,120 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m8-policies">
  <span class="mod-tag">MODULE 8 · LESSON 8.1</span>
- <h2>السياسات التنظيمية والتوثيق</h2>
+ <h2 data-ar>السياسات التنظيمية والتوثيق</h2>
+ <h2 data-en hidden>Organizational Policies and Documentation</h2>
  <p class="sub">Supporting Network Management — Organizational Policies and Documentation</p>
 
  <div class="card">
-  <p><b>أهمية التوثيق</b>: يسهّل استكشاف الأخطاء، يضمن الاتساق، يدعم التوسع والترقيات، ويدعم استمرارية العمل عند تغيّر الموظفين.</p>
-  <p><b>أنواع التوثيق</b>: <span class="en">Configuration management, Backup management, Change management, Asset management, Network management</span>.</p>
+  <p data-ar><b>أهمية التوثيق</b>: يسهّل استكشاف الأخطاء، يضمن الاتساق، يدعم التوسع والترقيات، ويدعم استمرارية العمل عند تغيّر الموظفين.</p>
+  <p data-en hidden><b>Why documentation matters</b>: makes troubleshooting easier, ensures consistency, supports expansion and upgrades, and supports business continuity as staff change.</p>
+  <p data-ar><b>أنواع التوثيق</b>: <span class="en">Configuration management, Backup management, Change management, Asset management, Network management</span>.</p>
+  <p data-en hidden><b>Types of documentation</b>: <span class="en">Configuration management, Backup management, Change management, Asset management, Network management</span>.</p>
  </div>
 
  <div class="card">
-  <p><b>إدارة الإعدادات (Configuration Management)</b>:</p>
+  <p><b data-ar>إدارة الإعدادات (Configuration Management)</b><b data-en hidden>Configuration Management</b>:</p>
   <div class="flow">
    <span>Identify service assets</span><i>←</i><span>Consider a CMS solution</span><i>←</i><span>Determine an identification strategy</span><i>←</i><span>Establish a CI management plan</span><i>←</i><span>Monitor configuration drift</span>
   </div>
  </div>
 
  <div class="card">
-  <p><b>إدارة النسخ الاحتياطي لأجهزة الشبكة</b>: توثيق النسخ الاحتياطية والإجراءات، جدول نسخ منتظم، تدقيق والتحقق من النسخ، الحفاظ على سجل الإصدارات، وضبط تسجيل بيانات الحالة عن بُعد.</p>
+  <p data-ar><b>إدارة النسخ الاحتياطي لأجهزة الشبكة</b>: توثيق النسخ الاحتياطية والإجراءات، جدول نسخ منتظم، تدقيق والتحقق من النسخ، الحفاظ على سجل الإصدارات، وضبط تسجيل بيانات الحالة عن بُعد.</p>
+  <p data-en hidden><b>Backup management for network devices</b>: documenting backups and procedures, a regular backup schedule, auditing and verifying backups, keeping a version history, and configuring remote state logging.</p>
  </div>
 
  <div class="card">
-  <p><b>إدارة التغيير (Change Management)</b>: بروتوكول توثيق شامل، استخدام قوالب موحّدة، تطبيق ضبط الإصدارات وإدارة الصلاحيات، حلقة تغذية راجعة (feedback loop)، ومراجعة/تحديث التوثيق بانتظام.</p>
+  <p data-ar><b>إدارة التغيير (Change Management)</b>: بروتوكول توثيق شامل، استخدام قوالب موحّدة، تطبيق ضبط الإصدارات وإدارة الصلاحيات، حلقة تغذية راجعة (feedback loop)، ومراجعة/تحديث التوثيق بانتظام.</p>
+  <p data-en hidden><b>Change Management</b>: a comprehensive documentation protocol, using standardized templates, applying version control and permission management, a feedback loop, and regularly reviewing/updating documentation.</p>
  </div>
 
  <div class="card">
-  <p><b>إدارة الأصول (Asset Management) — الجرد</b>: تسجيل وصف الأصل، تاريخ الشراء، سجل الخدمة، الحالة، والموقع؛ تحديث التوثيق بانتظام؛ اعتماد أدوات برمجية لإدارة الأصول؛ وتطبيق ضوابط وصول صارمة على توثيق الجرد.</p>
+  <p data-ar><b>إدارة الأصول (Asset Management) — الجرد</b>: تسجيل وصف الأصل، تاريخ الشراء، سجل الخدمة، الحالة، والموقع؛ تحديث التوثيق بانتظام؛ اعتماد أدوات برمجية لإدارة الأصول؛ وتطبيق ضوابط وصول صارمة على توثيق الجرد.</p>
+  <p data-en hidden><b>Asset Management — Inventory</b>: recording an asset's description, purchase date, service history, condition, and location; updating documentation regularly; adopting asset management software; and applying strict access controls to inventory documentation.</p>
  </div>
 
  <table>
-  <tr><th>النوع</th><th>المحتوى</th></tr>
-  <tr><td><b>Physical Network Diagrams</b></td><td>تفاصيل المكونات المادية، معلومات الموقع، وتفاصيل التمديدات</td></tr>
-  <tr><td><b>Logical Network Diagrams</b></td><td>البروتوكولات المستخدمة، التنظيم حسب الوظيفة لا الموقع الفيزيائي، ونقاط الترابط</td></tr>
-  <tr><td><b>IP Address Management</b></td><td>مخطط عنونة متسق، تسجيل عناوين IP، واستخدام أدوات أتمتة</td></tr>
+  <tr data-ar><th>النوع</th><th>المحتوى</th></tr>
+  <tr data-en hidden><th>Type</th><th>Content</th></tr>
+  <tr data-ar><td><b>Physical Network Diagrams</b></td><td>تفاصيل المكونات المادية، معلومات الموقع، وتفاصيل التمديدات</td></tr>
+  <tr data-en hidden><td><b>Physical Network Diagrams</b></td><td>Physical component details, location information, and wiring details</td></tr>
+  <tr data-ar><td><b>Logical Network Diagrams</b></td><td>البروتوكولات المستخدمة، التنظيم حسب الوظيفة لا الموقع الفيزيائي، ونقاط الترابط</td></tr>
+  <tr data-en hidden><td><b>Logical Network Diagrams</b></td><td>Protocols used, organization by function rather than physical location, and interconnection points</td></tr>
+  <tr data-ar><td><b>IP Address Management</b></td><td>مخطط عنونة متسق، تسجيل عناوين IP، واستخدام أدوات أتمتة</td></tr>
+  <tr data-en hidden><td><b>IP Address Management</b></td><td>A consistent addressing scheme, recording IP addresses, and using automation tools</td></tr>
  </table>
 </section>
 
 <section id="m8-discovery">
  <span class="mod-tag">MODULE 8 · LESSON 8.2</span>
- <h2>اكتشاف الأجهزة والمراقبة</h2>
+ <h2 data-ar>اكتشاف الأجهزة والمراقبة</h2>
+ <h2 data-en hidden>Host Discovery and Monitoring</h2>
  <p class="sub">Host Discovery and Monitoring</p>
 
  <div class="card">
-  <p><b>Network Discovery</b>: تحديد أجهزة وخدمات الشبكة، لإدارة الشبكة والتدقيق الأمني. أدوات: <span class="en">Nmap, AngryIP, PRTG</span>.</p>
+  <p data-ar><b>Network Discovery</b>: تحديد أجهزة وخدمات الشبكة، لإدارة الشبكة والتدقيق الأمني. أدوات: <span class="en">Nmap, AngryIP, PRTG</span>.</p>
+  <p data-en hidden><b>Network Discovery</b>: identifying network devices and services, for network management and security auditing. Tools: <span class="en">Nmap, AngryIP, PRTG</span>.</p>
  </div>
 
  <div class="card">
-  <p><b>تقنيات فحص Nmap</b>:</p>
-  <ul>
+  <p data-ar><b>تقنيات فحص Nmap</b>:</p>
+  <p data-en hidden><b>Nmap Scanning Techniques</b>:</p>
+  <ul data-ar>
    <li><b>Basic Scans</b>: الإجراء الافتراضي يرسل ping وحزم TCP ACK للمنافذ 80 و443، إضافة لعمليات مسح ARP وND على الشبكات المحلية.</li>
    <li><b>Host Discovery</b>: خيار <code class="k">-sn</code> يكتشف الأجهزة بدون مسح المنافذ.</li>
    <li><b>Service and OS Detection</b>: يحدد الخدمات ونظام التشغيل العامل على المضيف.</li>
    <li><b>Stealth Scans</b>: لتفادي الاكتشاف وتحديد المضيفين غير المستجيبين.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Basic Scans</b>: the default behavior sends a ping and TCP ACK packets to ports 80 and 443, plus ARP and ND scans on local networks.</li>
+   <li><b>Host Discovery</b>: the <code class="k">-sn</code> option discovers devices without scanning ports.</li>
+   <li><b>Service and OS Detection</b>: identifies the services and operating system running on a host.</li>
+   <li><b>Stealth Scans</b>: for evading detection and identifying unresponsive hosts.</li>
+  </ul>
  </div>
 
  <table>
-  <tr><th></th><th>CDP (Cisco Discovery Protocol)</th><th>LLDP (Link Layer Discovery Protocol)</th></tr>
-  <tr><td>الملكية</td><td>أداة خاصة بـCisco</td><td>بروتوكول قياسي IEEE</td></tr>
-  <tr><td>الوظيفة</td><td>يكتشف كيفية اتصال الأجهزة، نظام التشغيل، وعناوين IP</td><td>نفس الوظيفة، لكن قياسي عبر الموردين</td></tr>
-  <tr><td>النطاق</td><td>معلومات من أجهزة CDP المتصلة مباشرة فقط</td><td>معلومات من كل أجهزة LLDP المتصلة مباشرة</td></tr>
+  <tr data-ar><th></th><th>CDP (Cisco Discovery Protocol)</th><th>LLDP (Link Layer Discovery Protocol)</th></tr>
+  <tr data-en hidden><th></th><th>CDP (Cisco Discovery Protocol)</th><th>LLDP (Link Layer Discovery Protocol)</th></tr>
+  <tr data-ar><td>الملكية</td><td>أداة خاصة بـCisco</td><td>بروتوكول قياسي IEEE</td></tr>
+  <tr data-en hidden><td>Ownership</td><td>A Cisco-proprietary tool</td><td>A standard IEEE protocol</td></tr>
+  <tr data-ar><td>الوظيفة</td><td>يكتشف كيفية اتصال الأجهزة، نظام التشغيل، وعناوين IP</td><td>نفس الوظيفة، لكن قياسي عبر الموردين</td></tr>
+  <tr data-en hidden><td>Function</td><td>Discovers how devices connect, the OS, and IP addresses</td><td>Same function, but standardized across vendors</td></tr>
+  <tr data-ar><td>النطاق</td><td>معلومات من أجهزة CDP المتصلة مباشرة فقط</td><td>معلومات من كل أجهزة LLDP المتصلة مباشرة</td></tr>
+  <tr data-en hidden><td>Scope</td><td>Information from directly connected CDP devices only</td><td>Information from all directly connected LLDP devices</td></tr>
  </table>
 
  <div class="card">
-  <p><b>Performance Monitoring</b>: يتتبع سرعة وكفاءة الشبكة عبر مقاييس (bandwidth, throughput, CPU/memory, storage, latency, response time, error rate)، إنشاء خط أساس (baseline) من القيم التاريخية للمقارنة، وتنبيهات عند تجاوز العتبات (threshold alerts).</p>
+  <p data-ar><b>Performance Monitoring</b>: يتتبع سرعة وكفاءة الشبكة عبر مقاييس (bandwidth, throughput, CPU/memory, storage, latency, response time, error rate)، إنشاء خط أساس (baseline) من القيم التاريخية للمقارنة، وتنبيهات عند تجاوز العتبات (threshold alerts).</p>
+  <p data-en hidden><b>Performance Monitoring</b>: tracks network speed and efficiency via metrics (bandwidth, throughput, CPU/memory, storage, latency, response time, error rate), establishing a baseline from historical values for comparison, and threshold alerts.</p>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>Availability Monitoring</b></p>
-   <p>يتحقق أن أجهزة وخدمات الشبكة تعمل ومتاحة عند الحاجة — اكتشاف مبكر للانقطاع، منع تأثير أوسع، استقرار الشبكة، وتحسين أداء السيرفر.</p>
+   <p data-ar>يتحقق أن أجهزة وخدمات الشبكة تعمل ومتاحة عند الحاجة — اكتشاف مبكر للانقطاع، منع تأثير أوسع، استقرار الشبكة، وتحسين أداء السيرفر.</p>
+   <p data-en hidden>Confirms network devices and services are up and available when needed — early outage detection, preventing wider impact, network stability, and improved server performance.</p>
   </div>
   <div class="card">
    <p><b>Configuration Monitoring</b></p>
-   <p>يتحقق أن كل أجهزة الشبكة بحالة معروفة — مقارنة الإعداد الحالي بـ<b>baseline/golden configuration</b>، إعداد الإنتاج (production)، والإعداد الاحتياطي (backup).</p>
+   <p data-ar>يتحقق أن كل أجهزة الشبكة بحالة معروفة — مقارنة الإعداد الحالي بـ<b>baseline/golden configuration</b>، إعداد الإنتاج (production)، والإعداد الاحتياطي (backup).</p>
+   <p data-en hidden>Confirms every network device is in a known state — comparing the current configuration to a <b>baseline/golden configuration</b>, the production configuration, and the backup configuration.</p>
   </div>
  </div>
 </section>
 
 <section id="m8-snmp">
  <span class="mod-tag">MODULE 8 · LESSON 8.3</span>
- <h2>SNMP — بروتوكول إدارة الشبكة البسيط</h2>
+ <h2 data-ar>SNMP — بروتوكول إدارة الشبكة البسيط</h2>
+ <h2 data-en hidden>SNMP — Simple Network Management Protocol</h2>
  <p class="sub">Simple Network Management Protocol</p>
 
  <div class="card">
-  <p><b>SNMP</b>: يعمل في طبقة <b>Application</b>، ويستخدم منفذي UDP <b>161/162</b>.</p>
-  <p><b>وظائفه</b>: مراقبة أجهزة الشبكة، اكتشاف أعطال الشبكة، وضبط الأجهزة عن بُعد.</p>
+  <p data-ar><b>SNMP</b>: يعمل في طبقة <b>Application</b>، ويستخدم منفذي UDP <b>161/162</b>.</p>
+  <p data-en hidden><b>SNMP</b>: operates at the <b>Application</b> layer, and uses UDP ports <b>161/162</b>.</p>
+  <p data-ar><b>وظائفه</b>: مراقبة أجهزة الشبكة، اكتشاف أعطال الشبكة، وضبط الأجهزة عن بُعد.</p>
+  <p data-en hidden><b>Its functions</b>: monitoring network devices, detecting network faults, and configuring devices remotely.</p>
  </div>
 
  <div class="diagram">
@@ -265,59 +307,80 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
     <marker id="arS2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#e8672c"/></marker>
    </defs>
   </svg>
-  <div class="cap">الـManager يطلب/يضبط بيانات من الـAgent (Get/Set)، بينما الـAgent يبادر بإرسال Trap فور حدوث عطل دون انتظار طلب.</div>
+  <div class="cap" data-ar>الـManager يطلب/يضبط بيانات من الـAgent (Get/Set)، بينما الـAgent يبادر بإرسال Trap فور حدوث عطل دون انتظار طلب.</div>
+  <div class="cap" data-en hidden>The Manager requests/sets data from the Agent (Get/Set), while the Agent proactively sends a Trap the moment a fault occurs, without waiting for a request.</div>
  </div>
 
  <div class="card">
-  <p><b>مكونات SNMP</b>:</p>
-  <ul>
+  <p data-ar><b>مكونات SNMP</b>:</p>
+  <p data-en hidden><b>SNMP Components</b>:</p>
+  <ul data-ar>
    <li><b>SNMP Manager (NMS)</b>: نظام مركزي لمراقبة الشبكة، يُعرف أيضًا بـ<span class="en">Network Management Station</span>.</li>
    <li><b>SNMP Agent</b>: وحدة برمجية على الأجهزة المُدارة (راوترات، سويتشات)، تحتفظ بمعلومات بقاعدة بيانات.</li>
    <li><b>MIB (Management Information Base)</b>: مجموعة هرمية من معلومات الموارد المُدارة، منظّمة بفئات (system, interface, IP...).</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>SNMP Manager (NMS)</b>: a central system for monitoring the network, also known as the <span class="en">Network Management Station</span>.</li>
+   <li><b>SNMP Agent</b>: a software module on managed devices (routers, switches), keeping information in a database.</li>
+   <li><b>MIB (Management Information Base)</b>: a hierarchical set of managed resource information, organized into categories (system, interface, IP...).</li>
+  </ul>
  </div>
 
- <h3>رسائل SNMP</h3>
+ <h3 data-ar>رسائل SNMP</h3>
+ <h3 data-en hidden>SNMP Messages</h3>
  <table>
-  <tr><th>الرسالة</th><th>الوظيفة</th></tr>
-  <tr><td><span class="en">GetRequest</span></td><td>استرجاع بيانات من الـagents</td></tr>
-  <tr><td><span class="en">GetNextRequest</span></td><td>الحصول على قيمة متغيّر تالٍ (لإدخالات الجداول)</td></tr>
-  <tr><td><span class="en">SetRequest</span></td><td>ضبط قيمة عنصر معيّن</td></tr>
-  <tr><td><span class="en">Response</span></td><td>تأكيد نجاح ضبط القيمة</td></tr>
-  <tr><td><span class="en">Trap</span></td><td>يُرسَل من الـagent عند حدوث عطل</td></tr>
-  <tr><td><span class="en">InformRequest</span></td><td>مثل Trap لكن مع تأكيد استلام</td></tr>
+  <tr data-ar><th>الرسالة</th><th>الوظيفة</th></tr>
+  <tr data-en hidden><th>Message</th><th>Function</th></tr>
+  <tr><td><span class="en">GetRequest</span></td><td data-ar>استرجاع بيانات من الـagents</td><td data-en hidden>Retrieves data from agents</td></tr>
+  <tr><td><span class="en">GetNextRequest</span></td><td data-ar>الحصول على قيمة متغيّر تالٍ (لإدخالات الجداول)</td><td data-en hidden>Gets the value of the next variable (for table entries)</td></tr>
+  <tr><td><span class="en">SetRequest</span></td><td data-ar>ضبط قيمة عنصر معيّن</td><td data-en hidden>Sets the value of a specific item</td></tr>
+  <tr><td><span class="en">Response</span></td><td data-ar>تأكيد نجاح ضبط القيمة</td><td data-en hidden>Confirms the value was set successfully</td></tr>
+  <tr><td><span class="en">Trap</span></td><td data-ar>يُرسَل من الـagent عند حدوث عطل</td><td data-en hidden>Sent by the agent when a fault occurs</td></tr>
+  <tr><td><span class="en">InformRequest</span></td><td data-ar>مثل Trap لكن مع تأكيد استلام</td><td data-en hidden>Like a Trap but with a delivery acknowledgment</td></tr>
  </table>
 
  <div class="card">
-  <p><b>أمان SNMP</b>:</p>
-  <ul>
+  <p data-ar><b>أمان SNMP</b>:</p>
+  <p data-en hidden><b>SNMP Security</b>:</p>
+  <ul data-ar>
    <li><b>SNMPv2c</b>: تجنّبي إرسال <span class="en">community strings</span> نصية صريحة عبر الشبكة، استخدمي strings معقدة وليست الافتراضية، وقيّدي العمليات عبر ACLs لعناوين معروفة.</li>
    <li><b>SNMPv3</b>: يوفّر تشفيرًا ومصادقة قوية للمستخدم، باستخدام قوائم أسماء مستخدمين وصلاحيات بدل الـcommunity strings.</li>
    <li>أوضاع المصادقة: <code class="k">authNoPriv</code> (مصادقة بدون تشفير) و<code class="k">authPriv</code> (مصادقة مع تشفير باستخدام بيانات المستخدم).</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>SNMPv2c</b>: avoid sending plaintext <span class="en">community strings</span> over the network, use complex non-default strings, and restrict operations via ACLs to known addresses.</li>
+   <li><b>SNMPv3</b>: provides strong encryption and user authentication, using usernames and permission lists instead of community strings.</li>
+   <li>Authentication modes: <code class="k">authNoPriv</code> (authentication without encryption) and <code class="k">authPriv</code> (authentication with encryption using user credentials).</li>
   </ul>
  </div>
 </section>
 
 <section id="m8-events">
  <span class="mod-tag">MODULE 8 · LESSON 8.4</span>
- <h2>إدارة الأحداث — Event Management</h2>
+ <h2 data-ar>إدارة الأحداث — Event Management</h2>
+ <h2 data-en hidden>Event Management</h2>
  <p class="sub">Network Device Logs · Syslog · SIEM</p>
 
  <div class="card">
-  <p><b>سجلات أجهزة الشبكة</b>: مصادر بيانات لمراقبة الشبكة، استكشاف الأخطاء، والتدقيق الأمني. أنواعها: <b>System Logs</b>، <b>Application Logs</b>، <b>Audit Logs</b>، <b>Performance/Traffic Logs</b>.</p>
-  <p><b>استخدامات السجلات</b>: تحديد مشاكل الشبكة وتحسين الأداء، تتبع الوصول غير المصرح به والانتهاكات (أمان/امتثال)، ومراجعة دورية مع تخزين آمن للسلامة والاستخدام الجنائي.</p>
+  <p data-ar><b>سجلات أجهزة الشبكة</b>: مصادر بيانات لمراقبة الشبكة، استكشاف الأخطاء، والتدقيق الأمني. أنواعها: <b>System Logs</b>، <b>Application Logs</b>، <b>Audit Logs</b>، <b>Performance/Traffic Logs</b>.</p>
+  <p data-en hidden><b>Network device logs</b>: data sources for network monitoring, troubleshooting, and security auditing. Types: <b>System Logs</b>, <b>Application Logs</b>, <b>Audit Logs</b>, <b>Performance/Traffic Logs</b>.</p>
+  <p data-ar><b>استخدامات السجلات</b>: تحديد مشاكل الشبكة وتحسين الأداء، تتبع الوصول غير المصرح به والانتهاكات (أمان/امتثال)، ومراجعة دورية مع تخزين آمن للسلامة والاستخدام الجنائي.</p>
+  <p data-en hidden><b>Uses of logs</b>: identifying network problems and improving performance, tracking unauthorized access and violations (security/compliance), and periodic review with secure storage for integrity and forensic use.</p>
  </div>
 
  <div class="card">
-  <p><b>Log Collectors</b>: تمركز وتبسيط إدارة سجلات الشبكة، عبر تجميع بيانات السجلات في مستودع واحد — الفوائد: إدارة مركزية، كفاءة، وقابلية التوسع.</p>
+  <p data-ar><b>Log Collectors</b>: تمركز وتبسيط إدارة سجلات الشبكة، عبر تجميع بيانات السجلات في مستودع واحد — الفوائد: إدارة مركزية، كفاءة، وقابلية التوسع.</p>
+  <p data-en hidden><b>Log Collectors</b>: centralize and simplify network log management by aggregating log data into a single repository — benefits: central management, efficiency, and scalability.</p>
  </div>
 
  <div class="card">
-  <p><b>Syslog</b>: بروتوكول قياسي لإرسال رسائل السجل، يستخدم منفذ <span class="en">UDP 514</span>، له <span class="en">PRI Code</span> ومرونة عالية — منتشر جدًا ويسهّل التكامل بين الأنظمة.</p>
+  <p data-ar><b>Syslog</b>: بروتوكول قياسي لإرسال رسائل السجل، يستخدم منفذ <span class="en">UDP 514</span>، له <span class="en">PRI Code</span> ومرونة عالية — منتشر جدًا ويسهّل التكامل بين الأنظمة.</p>
+  <p data-en hidden><b>Syslog</b>: a standard protocol for sending log messages, using <span class="en">UDP port 514</span>, with a <span class="en">PRI Code</span> and high flexibility — widely adopted and makes integration between systems easy.</p>
  </div>
 
  <div class="card">
-  <p><b>ترتيب أولوية الأحداث والتنبيهات</b>: تصنيف الأحداث من <b>Emergency (0)</b> إلى <b>Debug (7)</b> حسب الأهمية، والتنبيهات الآلية تُطلَق حسب شدة الحدث/العتبات/الشذوذ — يمنع الغرق بتنبيهات غير حرجة ويحدد أولوية الأحداث الحرجة.</p>
+  <p data-ar><b>ترتيب أولوية الأحداث والتنبيهات</b>: تصنيف الأحداث من <b>Emergency (0)</b> إلى <b>Debug (7)</b> حسب الأهمية، والتنبيهات الآلية تُطلَق حسب شدة الحدث/العتبات/الشذوذ — يمنع الغرق بتنبيهات غير حرجة ويحدد أولوية الأحداث الحرجة.</p>
+  <p data-en hidden><b>Prioritizing events and alerts</b>: classifying events from <b>Emergency (0)</b> to <b>Debug (7)</b> by importance, with automated alerts triggered by event severity/thresholds/anomalies — preventing drowning in non-critical alerts and prioritizing critical events.</p>
  </div>
 
  <div class="diagram">
@@ -331,79 +394,116 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <rect x="298" y="10" width="46" height="30" fill="#3f8a5c"/><text x="321" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">6</text>
    <rect x="346" y="10" width="46" height="30" fill="#1a7f5c"/><text x="369" y="30" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">7</text>
   </svg>
-  <div class="cap">تصاعديًا من الأخطر (يسار): 0 Emergency · 1 Alert · 2 Critical · 3 Error · 4 Warning · 5 Notice · 6 Informational · 7 Debug (الأقل أهمية).</div>
+  <div class="cap" data-ar>تصاعديًا من الأخطر (يسار): 0 Emergency · 1 Alert · 2 Critical · 3 Error · 4 Warning · 5 Notice · 6 Informational · 7 Debug (الأقل أهمية).</div>
+  <div class="cap" data-en hidden>Ascending from the most severe (left): 0 Emergency · 1 Alert · 2 Critical · 3 Error · 4 Warning · 5 Notice · 6 Informational · 7 Debug (least important).</div>
  </div>
 
  <div class="card">
-  <p><b>SIEM (Security Information and Event Management)</b>: يحلل تنبيهات الأمان من التطبيقات وأجهزة الشبكة لحظيًا، يدمج إدارة معلومات الأمان (SIM) وإدارة أحداث الأمان (SEM).</p>
-  <p><b>وظائفه الأساسية</b>: تجميع السجلات (Log Aggregation)، ربط الأحداث (Event Correlation)، والتنبيه (Alerting).</p>
-  <p><b>الفوائد</b>: رؤية لحظية، اكتشاف واستجابة للتهديدات، إدارة الامتثال، تحسين وضع الأمان، وتقليل وقت الاستجابة للحوادث.</p>
+  <p data-ar><b>SIEM (Security Information and Event Management)</b>: يحلل تنبيهات الأمان من التطبيقات وأجهزة الشبكة لحظيًا، يدمج إدارة معلومات الأمان (SIM) وإدارة أحداث الأمان (SEM).</p>
+  <p data-en hidden><b>SIEM (Security Information and Event Management)</b>: analyzes security alerts from applications and network devices in real time, combining Security Information Management (SIM) and Security Event Management (SEM).</p>
+  <p data-ar><b>وظائفه الأساسية</b>: تجميع السجلات (Log Aggregation)، ربط الأحداث (Event Correlation)، والتنبيه (Alerting).</p>
+  <p data-en hidden><b>Its core functions</b>: Log Aggregation, Event Correlation, and Alerting.</p>
+  <p data-ar><b>الفوائد</b>: رؤية لحظية، اكتشاف واستجابة للتهديدات، إدارة الامتثال، تحسين وضع الأمان، وتقليل وقت الاستجابة للحوادث.</p>
+  <p data-en hidden><b>Benefits</b>: real-time visibility, threat detection and response, compliance management, improving the security posture, and reducing incident response time.</p>
  </div>
 </section>
 
 <section id="m8-packet">
  <span class="mod-tag">MODULE 8 · LESSON 8.5</span>
- <h2>التقاط وتحليل الحزم</h2>
+ <h2 data-ar>التقاط وتحليل الحزم</h2>
+ <h2 data-en hidden>Packet Capture and Analysis</h2>
  <p class="sub">Packet Capture and Analysis</p>
 
  <div class="card">
-  <p><b>Packet Capture</b>: تسجيل ترافيك الشبكة للتحليل واستكشاف الأخطاء، باستخدام مكتبة <span class="en">libpcap</span> مع إمكانية فلترة لالتقاط بيانات محددة. مثال أمر: <code class="k">tcpdump -i eth0</code></p>
+  <p data-ar><b>Packet Capture</b>: تسجيل ترافيك الشبكة للتحليل واستكشاف الأخطاء، باستخدام مكتبة <span class="en">libpcap</span> مع إمكانية فلترة لالتقاط بيانات محددة. مثال أمر: <code class="k">tcpdump -i eth0</code></p>
+  <p data-en hidden><b>Packet Capture</b>: recording network traffic for analysis and troubleshooting, using the <span class="en">libpcap</span> library with filtering to capture specific data. Example command: <code class="k">tcpdump -i eth0</code></p>
  </div>
 
  <div class="card">
-  <p><b>أدوات تحليل الحزم</b>: <span class="en">tcpdump</span> · <span class="en">Wireshark</span> · <span class="en">ngrep</span> — تُستخدم لتشخيص المشاكل أو مراقبة صحة الشبكة.</p>
+  <p data-ar><b>أدوات تحليل الحزم</b>: <span class="en">tcpdump</span> · <span class="en">Wireshark</span> · <span class="en">ngrep</span> — تُستخدم لتشخيص المشاكل أو مراقبة صحة الشبكة.</p>
+  <p data-en hidden><b>Packet analysis tools</b>: <span class="en">tcpdump</span> · <span class="en">Wireshark</span> · <span class="en">ngrep</span> — used to diagnose problems or monitor network health.</p>
  </div>
 
  <div class="card">
-  <p><b>تقنيات تحليل الالتقاط</b>:</p>
-  <ul>
+  <p data-ar><b>تقنيات تحليل الالتقاط</b>:</p>
+  <p data-en hidden><b>Capture Analysis Techniques</b>:</p>
+  <ul data-ar>
    <li><b>أهداف التحليل</b>: فهم تدفق الترافيك، تحديد سوء الإعداد، واكتشاف الشذوذ.</li>
    <li><b>ميزات Wireshark</b>: فحص الرأس والحمولة إطارًا بإطار، واستخدام <span class="en">Follow TCP Stream</span> لإعادة تركيب بيانات الجلسة.</li>
    <li><b>أدوات إحصائية</b>: <span class="en">Conversations</span>، <span class="en">Protocol Hierarchy</span>، وتحليل الترافيك.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Analysis goals</b>: understanding traffic flow, identifying misconfiguration, and detecting anomalies.</li>
+   <li><b>Wireshark features</b>: inspecting the header and payload frame-by-frame, and using <span class="en">Follow TCP Stream</span> to reassemble session data.</li>
+   <li><b>Statistical tools</b>: <span class="en">Conversations</span>, <span class="en">Protocol Hierarchy</span>, and traffic analysis.</li>
   </ul>
  </div>
 </section>
 
 <section id="m8-traffic">
  <span class="mod-tag">MODULE 8 · LESSON 8.6</span>
- <h2>مراقبة الترافيك — Traffic Monitoring</h2>
+ <h2 data-ar>مراقبة الترافيك — Traffic Monitoring</h2>
+ <h2 data-en hidden>Traffic Monitoring</h2>
  <p class="sub">Flow Data · Bandwidth Management · Traffic Shaping</p>
 
  <div class="card">
-  <p><b>Traffic Monitoring</b>: مراقبة وتحليل مستمر لتدفق الترافيك عبر الشبكة لضمان الأداء والأمان الأمثل — يحدد اتجاهات حجم الترافيك، يراقب الأداء لاكتشاف الشذوذ، ويساعد بتخطيط السعة وتعديلات تصميم الشبكة.</p>
+  <p data-ar><b>Traffic Monitoring</b>: مراقبة وتحليل مستمر لتدفق الترافيك عبر الشبكة لضمان الأداء والأمان الأمثل — يحدد اتجاهات حجم الترافيك، يراقب الأداء لاكتشاف الشذوذ، ويساعد بتخطيط السعة وتعديلات تصميم الشبكة.</p>
+  <p data-en hidden><b>Traffic Monitoring</b>: continuous monitoring and analysis of traffic flow across the network to ensure optimal performance and security — identifies traffic volume trends, monitors performance to detect anomalies, and helps with capacity planning and network design adjustments.</p>
  </div>
 
  <div class="card">
-  <p><b>مشاكل الأداء الشائعة</b>: فقدان الحزم والتأخير والـjitter (يؤثر على جودة الخدمة QoS)، اختناقات bandwidth تُبطئ نقل البيانات، عتاد شبكة سيء الإعداد، وبنية تحتية قديمة.</p>
+  <p data-ar><b>مشاكل الأداء الشائعة</b>: فقدان الحزم والتأخير والـjitter (يؤثر على جودة الخدمة QoS)، اختناقات bandwidth تُبطئ نقل البيانات، عتاد شبكة سيء الإعداد، وبنية تحتية قديمة.</p>
+  <p data-en hidden><b>Common performance problems</b>: packet loss, delay, and jitter (affecting QoS), bandwidth bottlenecks slowing data transfer, misconfigured network hardware, and outdated infrastructure.</p>
  </div>
 
  <div class="card">
-  <p><b>Flow Data</b>: معلومات مستخرَجة من حزم البيانات تعطي رؤية عن تدفق الترافيك — تشمل عناوين IP المصدر/الوجهة، أحجام الحزم، والطوابع الزمنية. ضرورية لتحليل الأداء واستكشاف الأخطاء، وتُستخدم في تحديد أنماط الترافيك واكتشاف الشذوذ.</p>
+  <p data-ar><b>Flow Data</b>: معلومات مستخرَجة من حزم البيانات تعطي رؤية عن تدفق الترافيك — تشمل عناوين IP المصدر/الوجهة، أحجام الحزم، والطوابع الزمنية. ضرورية لتحليل الأداء واستكشاف الأخطاء، وتُستخدم في تحديد أنماط الترافيك واكتشاف الشذوذ.</p>
+  <p data-en hidden><b>Flow Data</b>: information extracted from data packets that gives visibility into traffic flow — including source/destination IP addresses, packet sizes, and timestamps. Essential for performance analysis and troubleshooting, and used to identify traffic patterns and detect anomalies.</p>
  </div>
 
  <div class="card">
-  <p><b>أدوات اختبار الترافيك</b>: تطبيقات تحاكي ترافيك الشبكة وتختبر أداء المكونات — تحدد اختناقات الشبكة وحدود السعة. تشمل مولّدات الحزم، محاكيات الشبكة، وأدوات قياس الإنتاجية. أمثلة: <span class="en">Wireshark, iperf, NetFlow Analyzer</span>.</p>
+  <p data-ar><b>أدوات اختبار الترافيك</b>: تطبيقات تحاكي ترافيك الشبكة وتختبر أداء المكونات — تحدد اختناقات الشبكة وحدود السعة. تشمل مولّدات الحزم، محاكيات الشبكة، وأدوات قياس الإنتاجية. أمثلة: <span class="en">Wireshark, iperf, NetFlow Analyzer</span>.</p>
+  <p data-en hidden><b>Traffic testing tools</b>: applications that simulate network traffic and test component performance — identifying network bottlenecks and capacity limits. Includes packet generators, network simulators, and throughput measurement tools. Examples: <span class="en">Wireshark, iperf, NetFlow Analyzer</span>.</p>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>Bandwidth Management</b></p>
-   <p>تقنيات للتحكم بتدفق الترافيك لتحسين أو ضمان الأداء — تخصيص bandwidth بأولوية للخدمات الأساسية، منع الازدحام وضمان استخدام عادل، عبر <span class="en">rate limiting</span> و<span class="en">traffic policing</span>.</p>
+   <p data-ar>تقنيات للتحكم بتدفق الترافيك لتحسين أو ضمان الأداء — تخصيص bandwidth بأولوية للخدمات الأساسية، منع الازدحام وضمان استخدام عادل، عبر <span class="en">rate limiting</span> و<span class="en">traffic policing</span>.</p>
+   <p data-en hidden>Techniques for controlling traffic flow to improve or guarantee performance — allocating bandwidth with priority to essential services, preventing congestion and ensuring fair use, via <span class="en">rate limiting</span> and <span class="en">traffic policing</span>.</p>
   </div>
   <div class="card">
    <p><b>Traffic Shaping</b></p>
-   <p>إعطاء أولوية للترافيك لضمان حصول التطبيقات الحرجة على bandwidth المطلوب — بتأخير الحزم لتنظيم التدفق وتقليل الازدحام. أدوات: <b>QoS</b>، <b>DiffServ</b>، و<b>MPLS</b>.</p>
+   <p data-ar>إعطاء أولوية للترافيك لضمان حصول التطبيقات الحرجة على bandwidth المطلوب — بتأخير الحزم لتنظيم التدفق وتقليل الازدحام. أدوات: <b>QoS</b>، <b>DiffServ</b>، و<b>MPLS</b>.</p>
+   <p data-en hidden>Prioritizing traffic to ensure critical applications get the bandwidth they need — by delaying packets to regulate flow and reduce congestion. Tools: <b>QoS</b>, <b>DiffServ</b>, and <b>MPLS</b>.</p>
   </div>
  </div>
 
- <div class="tip"><b>ملخص الوحدة 8</b>: التوثيق والتغيير المُدار يمنع فوضى الشبكة؛ أدوات الاكتشاف (Nmap, CDP/LLDP) تحدد الأجهزة والاتصالات؛ SNMP يراقب ويضبط الأجهزة عن بُعد؛ السجلات وSIEM يجمّعان ويحلّلان الأحداث الأمنية؛ التقاط الحزم ومراقبة الترافيك يشخّصان مشاكل الأداء.</div>
+ <div class="tip" data-ar><b>ملخص الوحدة 8</b>: التوثيق والتغيير المُدار يمنع فوضى الشبكة؛ أدوات الاكتشاف (Nmap, CDP/LLDP) تحدد الأجهزة والاتصالات؛ SNMP يراقب ويضبط الأجهزة عن بُعد؛ السجلات وSIEM يجمّعان ويحلّلان الأحداث الأمنية؛ التقاط الحزم ومراقبة الترافيك يشخّصان مشاكل الأداء.</div>
+ <div class="tip" data-en hidden><b>Module 8 summary</b>: managed documentation and change control prevent network chaos; discovery tools (Nmap, CDP/LLDP) identify devices and connections; SNMP monitors and configures devices remotely; logs and SIEM aggregate and analyze security events; packet capture and traffic monitoring diagnose performance problems.</div>
 </section>
 
 
 </main>
 
-<div class="modnav"><a href="module7-guide.html">← الوحدة 7</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module9-guide.html">الوحدة 9 →</a></div>
+<div class="modnav"><a href="module7-guide.html"><span data-ar>← الوحدة 7</span><span data-en hidden>← Module 7</span></a><a href="index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="module9-guide.html"><span data-ar>الوحدة 9 →</span><span data-en hidden>Module 9 →</span></a></div>
 
-<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 8 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<footer><span data-ar>ملخص دراسي — CompTIA Network+ N10-009 · Module 8 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Network+ N10-009 · Module 8 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
