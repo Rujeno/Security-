@@ -80,6 +80,7 @@ tr:nth-child(even) td{background:var(--soft)}
 
 .tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
 .tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
@@ -91,6 +92,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
 .diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .diagrow .dbox svg{max-width:100%;height:auto}
@@ -120,8 +122,8 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -134,6 +136,17 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  a{color:inherit;text-decoration:none}
  h2{border-right-width:4px}
 }
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+@media(max-width:720px){html[dir="ltr"] .osi .desc{border-left:none;border-top:1px dashed var(--line)}}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+html[dir="ltr"] .modnav a.home{order:1}
+[data-en]{unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -141,15 +154,17 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 1</span>
-  <h1>الوحدة 1 — أساسيات الشبكات</h1>
+  <h1 data-ar>الوحدة 1 — أساسيات الشبكات</h1>
+  <h1 data-en hidden>Module 1 — Networking Fundamentals</h1>
   <p>Explaining Network Topologies — Networking Overview · OSI Model · SOHO Networks · Troubleshooting Methodology</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html" class="active">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html" class="active">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
- <a href="#m1-types">1.1 أنواع الشبكات</a>
+ <a href="#m1-types" data-ar>1.1 أنواع الشبكات</a>
+ <a href="#m1-types" data-en hidden>1.1 Network Types</a>
  <a href="#m1-topo">1.1 Topologies</a>
  <a href="#m1-osi">1.2 OSI Model</a>
  <a href="#m1-soho">1.3 SOHO Router</a>
@@ -161,40 +176,54 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m1-types">
  <span class="mod-tag">MODULE 1 · LESSON 1.1</span>
- <h2>مفهوم الشبكة وأنواعها</h2>
+ <h2 data-ar>مفهوم الشبكة وأنواعها</h2>
+ <h2 data-en hidden>Network Concepts and Types</h2>
  <p class="sub">Networking Overview — Network Types and Characteristics</p>
 
  <div class="card">
-  <p><b>الشبكة (Network)</b>: مجموعة من الأجهزة (computers and devices) متصلة ببعضها عبر <span class="en">transmission medium</span> (وسيط نقل: كيبل نحاسي، ألياف بصرية، أو لاسلكي)، هدفها مشاركة الموارد <span class="en">(shared resources)</span> والتواصل وتبادل المعلومات — تمامًا مثل شبكتك الاجتماعية لكن في بيئة رقمية.</p>
+  <p data-ar><b>الشبكة (Network)</b>: مجموعة من الأجهزة (computers and devices) متصلة ببعضها عبر <span class="en">transmission medium</span> (وسيط نقل: كيبل نحاسي، ألياف بصرية، أو لاسلكي)، هدفها مشاركة الموارد <span class="en">(shared resources)</span> والتواصل وتبادل المعلومات — تمامًا مثل شبكتك الاجتماعية لكن في بيئة رقمية.</p>
+  <p data-en hidden><b>Network</b>: a group of computers and devices connected to each other over a <span class="en">transmission medium</span> (copper cable, fiber optic, or wireless), with the goal of sharing resources and exchanging information — much like your social network, but in a digital environment.</p>
  </div>
 
- <h3>نموذجا التشغيل: Peer-to-Peer vs Client-Server</h3>
+ <h3 data-ar>نموذجا التشغيل: Peer-to-Peer vs Client-Server</h3>
+ <h3 data-en hidden>Operating Models: Peer-to-Peer vs Client-Server</h3>
  <div class="two">
   <div class="card">
    <p><b>Peer-to-Peer (P2P)</b></p>
-   <p>كل جهاز يعمل كـ <span class="en">client</span> و<span class="en">server</span> في نفس الوقت. لا يوجد جهاز مركزي. مناسبة للشبكات الصغيرة، لكن إدارتها وأمانها أصعب مع التوسع.</p>
+   <p data-ar>كل جهاز يعمل كـ <span class="en">client</span> و<span class="en">server</span> في نفس الوقت. لا يوجد جهاز مركزي. مناسبة للشبكات الصغيرة، لكن إدارتها وأمانها أصعب مع التوسع.</p>
+   <p data-en hidden>Every device acts as both a <span class="en">client</span> and a <span class="en">server</span> at the same time. There is no central device. Suitable for small networks, but management and security become harder as it grows.</p>
   </div>
   <div class="card">
    <p><b>Client-Server</b></p>
-   <p>يوجد <span class="en">server</span> مركزي يقدّم الخدمات والموارد (ملفات، طباعة، مصادقة) لأجهزة الـ<span class="en">clients</span>. هذا هو النموذج المعتمد في بيئات الشركات — مثل بيئتك في مدائن مع Google Workspace.</p>
+   <p data-ar>يوجد <span class="en">server</span> مركزي يقدّم الخدمات والموارد (ملفات، طباعة، مصادقة) لأجهزة الـ<span class="en">clients</span>. هذا هو النموذج المعتمد في بيئات الشركات — مثل بيئتك في مدائن مع Google Workspace.</p>
+   <p data-en hidden>A central <span class="en">server</span> provides services and resources (files, printing, authentication) to <span class="en">client</span> devices. This is the model used in enterprise environments — such as a workplace running Google Workspace.</p>
   </div>
  </div>
 
- <h3>الشبكة المحلية LAN وأنواعها</h3>
+ <h3 data-ar>الشبكة المحلية LAN وأنواعها</h3>
+ <h3 data-en hidden>Local Area Networks (LAN) and Their Types</h3>
  <div class="card">
-  <p><b>Local Area Network (LAN)</b>: شبكة محصورة في موقع جغرافي واحد <span class="en">(single geographical location)</span>. أنواعها حسب الحجم:</p>
-  <ul>
+  <p data-ar><b>Local Area Network (LAN)</b>: شبكة محصورة في موقع جغرافي واحد <span class="en">(single geographical location)</span>. أنواعها حسب الحجم:</p>
+  <p data-en hidden><b>Local Area Network (LAN)</b>: a network confined to a single geographical location. Its types by size:</p>
+  <ul data-ar>
    <li><b>SOHO (Small Office / Home Office)</b>: شبكة منزل أو مكتب صغير، غالبًا راوتر واحد متعدد الوظائف.</li>
    <li><b>Enterprise LAN</b>: شبكة شركة بمبنى أو حرم، فيها سيرفرات وسويتشات مُدارة.</li>
    <li><b>Datacenter</b>: شبكة مخصصة لربط السيرفرات وأنظمة التخزين بكثافة عالية.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>SOHO (Small Office / Home Office)</b>: a home or small office network, usually a single multi-function router.</li>
+   <li><b>Enterprise LAN</b>: a company network across a building or campus, with managed servers and switches.</li>
+   <li><b>Datacenter</b>: a network dedicated to connecting servers and storage systems at high density.</li>
   </ul>
  </div>
 </section>
 
 <section id="m1-topo">
  <span class="mod-tag">MODULE 1 · LESSON 1.1</span>
- <h2>هيكليات الشبكة — Network Topologies</h2>
- <p class="sub">الـTopology = مخطط الاتصالات بين أجهزة الشبكة (layout of connections)</p>
+ <h2 data-ar>هيكليات الشبكة — Network Topologies</h2>
+ <h2 data-en hidden>Network Topologies</h2>
+ <p class="sub" data-ar>الـTopology = مخطط الاتصالات بين أجهزة الشبكة (layout of connections)</p>
+ <p class="sub" data-en hidden>Topology = the layout of connections between network devices</p>
 
  <div class="diagrow">
   <div class="dbox">
@@ -212,90 +241,138 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  </div>
 
  <div class="card">
-  <p><b>1) Point-to-Point</b>: عقدتان فقط <span class="en">(two nodes)</span> متصلتان مباشرة بنفس الوسيط. مفاهيم مهمة هنا:</p>
-  <ul>
+  <p data-ar><b>1) Point-to-Point</b>: عقدتان فقط <span class="en">(two nodes)</span> متصلتان مباشرة بنفس الوسيط. مفاهيم مهمة هنا:</p>
+  <p data-en hidden><b>1) Point-to-Point</b>: just two nodes connected directly over the same medium. Important concepts here:</p>
+  <ul data-ar>
    <li><b>Half-duplex</b>: الجهاز لا يستطيع الإرسال والاستقبال في نفس اللحظة (بالتناوب).</li>
    <li><b>Full-duplex</b>: إرسال واستقبال متزامن <span class="en">(simultaneously)</span>.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Half-duplex</b>: the device cannot send and receive at the same instant (it alternates).</li>
+   <li><b>Full-duplex</b>: sending and receiving happen simultaneously.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>2) Star Topology</b> — الشكل الأشهر بالشبكات الحديثة.</p>
-  <p>كل جهاز (عقدة) يتصل بجهاز مركزي وحيد بدل ما يتصل مباشرة بباقي الأجهزة. اسم هذا الجهاز المركزي بشكل عام هو <span class="en">concentrator</span> — يعني ببساطة "الجهاز اللي تتجمع عنده كل اتصالات الشبكة".</p>
+  <p data-ar><b>2) Star Topology</b> — الشكل الأشهر بالشبكات الحديثة.</p>
+  <p data-en hidden><b>2) Star Topology</b> — the most common shape in modern networks.</p>
+  <p data-ar>كل جهاز (عقدة) يتصل بجهاز مركزي وحيد بدل ما يتصل مباشرة بباقي الأجهزة. اسم هذا الجهاز المركزي بشكل عام هو <span class="en">concentrator</span> — يعني ببساطة "الجهاز اللي تتجمع عنده كل اتصالات الشبكة".</p>
+  <p data-en hidden>Every device (node) connects to a single central device instead of connecting directly to every other device. The generic name for this central device is a <span class="en">concentrator</span> — simply put, "the device where all network connections converge."</p>
 
-  <h3 style="margin-top:18px">دور الجهاز المركزي</h3>
+  <h3 style="margin-top:18px" data-ar>دور الجهاز المركزي</h3>
+  <h3 style="margin-top:18px" data-en hidden>The Role of the Central Device</h3>
 
-  <p><b>إذا كان الجهاز المركزي <span class="en">Hub</span></b>: الـHub "غبي" — ما يعرف مين المقصود بالبيانات، فلما يستقبل رسالة من جهاز، يكررها ويرسلها لكل الأجهزة المتصلة به.</p>
-  <p><b>مثال</b>: جهاز 1 يريد إرسال بيانات لجهاز 3 → الـHub يرسل البيانات لأجهزة 2 و3 و4 كلهم، لكن جهاز 3 فقط هو اللي يقبلها (الباقي يتجاهلونها).</p>
-  <p>لهذا يقال إن الشبكة تعمل منطقيًا مثل <span class="en">Bus Topology</span> — رغم أن شكلها الخارجي نجمي، لأن جميع الأجهزة تشترك في البيانات نفسها.</p>
+  <p data-ar><b>إذا كان الجهاز المركزي <span class="en">Hub</span></b>: الـHub "غبي" — ما يعرف مين المقصود بالبيانات، فلما يستقبل رسالة من جهاز، يكررها ويرسلها لكل الأجهزة المتصلة به.</p>
+  <p data-en hidden><b>If the central device is a <span class="en">Hub</span></b>: a Hub is "dumb" — it doesn't know who the data is meant for, so when it receives a message from one device, it repeats it and sends it to every device connected to it.</p>
+  <p data-ar><b>مثال</b>: جهاز 1 يريد إرسال بيانات لجهاز 3 → الـHub يرسل البيانات لأجهزة 2 و3 و4 كلهم، لكن جهاز 3 فقط هو اللي يقبلها (الباقي يتجاهلونها).</p>
+  <p data-en hidden><b>Example</b>: Device 1 wants to send data to Device 3 → the Hub sends the data to Devices 2, 3, and 4 all at once, but only Device 3 accepts it (the rest discard it).</p>
+  <p data-ar>لهذا يقال إن الشبكة تعمل منطقيًا مثل <span class="en">Bus Topology</span> — رغم أن شكلها الخارجي نجمي، لأن جميع الأجهزة تشترك في البيانات نفسها.</p>
+  <p data-en hidden>That's why the network is said to behave logically like a <span class="en">Bus Topology</span> — even though it physically looks like a star, because every device shares the same data.</p>
 
-  <p style="margin-top:14px"><b>إذا كان الجهاز المركزي <span class="en">Switch</span></b>: الـSwitch أذكى؛ يتعلم عناوين الأجهزة، وتحديدًا <b>MAC Address</b>، ثم يرسل البيانات إلى الجهاز المطلوب فقط.</p>
-  <p><b>مثال</b>: جهاز 1 يريد التواصل مع جهاز 3 → الـSwitch يرسل البيانات مباشرة إلى جهاز 3، ولا يرسلها لبقية الأجهزة.</p>
-  <p>لذلك كل جهاز لديه اتصال مستقل مع الـSwitch يسمى <span class="en">Point-to-Point Link</span> — أي اتصال من نقطة إلى نقطة.</p>
+  <p style="margin-top:14px" data-ar><b>إذا كان الجهاز المركزي <span class="en">Switch</span></b>: الـSwitch أذكى؛ يتعلم عناوين الأجهزة، وتحديدًا <b>MAC Address</b>، ثم يرسل البيانات إلى الجهاز المطلوب فقط.</p>
+  <p style="margin-top:14px" data-en hidden><b>If the central device is a <span class="en">Switch</span></b>: a Switch is smarter; it learns device addresses, specifically each <b>MAC Address</b>, then sends the data only to the intended device.</p>
+  <p data-ar><b>مثال</b>: جهاز 1 يريد التواصل مع جهاز 3 → الـSwitch يرسل البيانات مباشرة إلى جهاز 3، ولا يرسلها لبقية الأجهزة.</p>
+  <p data-en hidden><b>Example</b>: Device 1 wants to communicate with Device 3 → the Switch sends the data directly to Device 3, and does not send it to the other devices.</p>
+  <p data-ar>لذلك كل جهاز لديه اتصال مستقل مع الـSwitch يسمى <span class="en">Point-to-Point Link</span> — أي اتصال من نقطة إلى نقطة.</p>
+  <p data-en hidden>So every device has an independent connection to the Switch called a <span class="en">Point-to-Point Link</span> — a connection from one point to another.</p>
 
   <table>
-   <tr><th>الجهاز المركزي</th><th>طريقة إرسال البيانات</th></tr>
-   <tr><td><span class="en">Hub</span></td><td>يرسل البيانات إلى الجميع، ولذلك تعمل الشبكة منطقيًا مثل <span class="en">Bus</span></td></tr>
-   <tr><td><span class="en">Switch</span></td><td>يرسل البيانات إلى الجهاز المقصود فقط عبر <span class="en">Point-to-Point Link</span></td></tr>
+   <tr data-ar><th>الجهاز المركزي</th><th>طريقة إرسال البيانات</th></tr>
+   <tr data-en hidden><th>Central Device</th><th>How Data Is Sent</th></tr>
+   <tr data-ar><td><span class="en">Hub</span></td><td>يرسل البيانات إلى الجميع، ولذلك تعمل الشبكة منطقيًا مثل <span class="en">Bus</span></td></tr>
+   <tr data-en hidden><td><span class="en">Hub</span></td><td>Sends the data to everyone, so the network logically behaves like a <span class="en">Bus</span></td></tr>
+   <tr data-ar><td><span class="en">Switch</span></td><td>يرسل البيانات إلى الجهاز المقصود فقط عبر <span class="en">Point-to-Point Link</span></td></tr>
+   <tr data-en hidden><td><span class="en">Switch</span></td><td>Sends the data only to the intended device via a <span class="en">Point-to-Point Link</span></td></tr>
   </table>
 
-  <p style="margin-top:16px"><b>أهم عيب: <span class="en">Single Point of Failure</span></b> — الجهاز المركزي هو نقطة فشل واحدة لكل الشبكة.</p>
-  <ul>
+  <p style="margin-top:16px" data-ar><b>أهم عيب: <span class="en">Single Point of Failure</span></b> — الجهاز المركزي هو نقطة فشل واحدة لكل الشبكة.</p>
+  <p style="margin-top:16px" data-en hidden><b>The biggest drawback: <span class="en">Single Point of Failure</span></b> — the central device is a single point of failure for the whole network.</p>
+  <ul data-ar>
    <li>إذا تعطل <b>كابل جهاز واحد</b> → يتوقف ذلك الجهاز فقط.</li>
    <li>إذا تعطل <b>الـSwitch أو الـHub</b> نفسه → تتوقف الشبكة كاملة.</li>
   </ul>
+  <ul data-en hidden>
+   <li>If a <b>single device's cable</b> fails → only that device goes down.</li>
+   <li>If the <b>Switch or Hub itself</b> fails → the entire network goes down.</li>
+  </ul>
 
-  <p style="margin-top:14px"><b>شرط المسافة</b>: لكل نوع كابل مسافة قصوى ينقل البيانات خلالها بكفاءة، لذلك يجب أن يكون كل جهاز قريبًا بما يكفي من الجهاز المركزي. إذا كانت المسافة أطول من الحد المسموح، يمكن استخدام <span class="en">Repeater</span> — جهاز يستقبل الإشارة الضعيفة ويعيد تقويتها وإرسالها.</p>
+  <p style="margin-top:14px" data-ar><b>شرط المسافة</b>: لكل نوع كابل مسافة قصوى ينقل البيانات خلالها بكفاءة، لذلك يجب أن يكون كل جهاز قريبًا بما يكفي من الجهاز المركزي. إذا كانت المسافة أطول من الحد المسموح، يمكن استخدام <span class="en">Repeater</span> — جهاز يستقبل الإشارة الضعيفة ويعيد تقويتها وإرسالها.</p>
+  <p style="margin-top:14px" data-en hidden><b>The distance requirement</b>: every cable type has a maximum distance over which it can carry data efficiently, so every device must be close enough to the central device. If the distance is longer than allowed, a <span class="en">Repeater</span> can be used — a device that receives a weakened signal and re-amplifies it before sending it on.</p>
  </div>
 
- <div class="tip">أسهل طريقة تحفظينها: الـ<span class="en">Hub</span> ينادي على الجميع، أما الـ<span class="en">Switch</span> فيعرف عنوان الجهاز المطلوب ويرسل له مباشرة. وسؤال شائع بالاختبار: "ما نقطة الضعف الأساسية في Star Topology؟" ← تعطل الجهاز المركزي يؤدي إلى توقف الشبكة كلها.</div>
+ <div class="tip" data-ar>أسهل طريقة تحفظينها: الـ<span class="en">Hub</span> ينادي على الجميع، أما الـ<span class="en">Switch</span> فيعرف عنوان الجهاز المطلوب ويرسل له مباشرة. وسؤال شائع بالاختبار: "ما نقطة الضعف الأساسية في Star Topology؟" ← تعطل الجهاز المركزي يؤدي إلى توقف الشبكة كلها.</div>
+ <div class="tip" data-en hidden>The easiest way to remember it: a <span class="en">Hub</span> shouts to everyone, while a <span class="en">Switch</span> knows the intended device's address and sends straight to it. A common exam question: "What is the main weakness of a Star Topology?" ← the central device failing brings down the entire network.</div>
 
  <div class="card">
-  <p><b>3) Mesh Topology</b> — بنية شبكة تكون فيها الأجهزة (العقد) مترابطة بأكثر من مسار، بدل الاعتماد على جهاز مركزي واحد فقط.</p>
-  <p>الفكرة الأساسية: إذا تعطل رابط أو جهاز، تستطيع البيانات غالبًا الوصول من طريق آخر.</p>
+  <p data-ar><b>3) Mesh Topology</b> — بنية شبكة تكون فيها الأجهزة (العقد) مترابطة بأكثر من مسار، بدل الاعتماد على جهاز مركزي واحد فقط.</p>
+  <p data-en hidden><b>3) Mesh Topology</b> — a network structure where devices (nodes) are interconnected through more than one path, instead of relying on a single central device.</p>
+  <p data-ar>الفكرة الأساسية: إذا تعطل رابط أو جهاز، تستطيع البيانات غالبًا الوصول من طريق آخر.</p>
+  <p data-en hidden>The core idea: if a link or device fails, the data can usually still get through via another path.</p>
 
-  <h3 style="margin-top:18px"><span class="en">Full Mesh</span> — الشبكة المتشابكة بالكامل</h3>
-  <p>كل عقدة متصلة مباشرة بكل العقد الأخرى. مثال بـ4 أجهزة: A متصلة بـB وC وD، وB متصلة بـA وC وD، وهكذا — أي أن كل جهاز لديه رابط مباشر مع جميع الأجهزة.</p>
-  <p><b>حساب عدد الروابط</b> = <code class="k">n(n−1)/2</code> حيث <b>n</b> عدد العقد:</p>
-  <ul>
+  <h3 style="margin-top:18px"><span class="en">Full Mesh</span> <span data-ar>— الشبكة المتشابكة بالكامل</span><span data-en hidden>— The Fully Interconnected Network</span></h3>
+  <p data-ar>كل عقدة متصلة مباشرة بكل العقد الأخرى. مثال بـ4 أجهزة: A متصلة بـB وC وD، وB متصلة بـA وC وD، وهكذا — أي أن كل جهاز لديه رابط مباشر مع جميع الأجهزة.</p>
+  <p data-en hidden>Every node is connected directly to every other node. Example with 4 devices: A connects to B, C, and D; B connects to A, C, and D; and so on — meaning every device has a direct link to every other device.</p>
+  <p data-ar><b>حساب عدد الروابط</b> = <code class="k">n(n−1)/2</code> حيث <b>n</b> عدد العقد:</p>
+  <p data-en hidden><b>Calculating the number of links</b> = <code class="k">n(n−1)/2</code> where <b>n</b> is the number of nodes:</p>
+  <ul data-ar>
    <li>4 عقد → <code class="k">4×3/2 = 6</code> روابط.</li>
    <li>10 عقد → <code class="k">10×9/2 = 45</code> رابطًا — يكبر العدد بسرعة شديدة مع إضافة أجهزة جديدة.</li>
    <li>نقسم على 2 لأن الرابط بين A وB هو نفسه الرابط بين B وA، فلا نحسبه مرتين.</li>
   </ul>
+  <ul data-en hidden>
+   <li>4 nodes → <code class="k">4×3/2 = 6</code> links.</li>
+   <li>10 nodes → <code class="k">10×9/2 = 45</code> links — the count grows very fast as devices are added.</li>
+   <li>We divide by 2 because the link between A and B is the same link as B and A, so it isn't counted twice.</li>
+  </ul>
 
-  <h3 style="margin-top:18px"><span class="en">Partial Mesh</span> — الشبكة المتشابكة جزئيًا</h3>
-  <p>لا تكون كل عقدة متصلة بجميع العقد الأخرى؛ بعض العقد المهمة لديها عدة اتصالات، بينما العقد الأقل أهمية قد يكون لديها اتصال واحد أو اتصالان فقط.</p>
-  <p><b>مثال</b>: للوصول من A إلى D يوجد أكثر من طريق — إما A→B→D أو A→C→D. إذا تعطل رابط A–B، يمكن استخدام المسار الآخر عبر C.</p>
+  <h3 style="margin-top:18px"><span class="en">Partial Mesh</span> <span data-ar>— الشبكة المتشابكة جزئيًا</span><span data-en hidden>— The Partially Interconnected Network</span></h3>
+  <p data-ar>لا تكون كل عقدة متصلة بجميع العقد الأخرى؛ بعض العقد المهمة لديها عدة اتصالات، بينما العقد الأقل أهمية قد يكون لديها اتصال واحد أو اتصالان فقط.</p>
+  <p data-en hidden>Not every node is connected to every other node; some important nodes have several connections, while less critical nodes may have only one or two.</p>
+  <p data-ar><b>مثال</b>: للوصول من A إلى D يوجد أكثر من طريق — إما A→B→D أو A→C→D. إذا تعطل رابط A–B، يمكن استخدام المسار الآخر عبر C.</p>
+  <p data-en hidden><b>Example</b>: to reach D from A there's more than one route — either A→B→D or A→C→D. If the A–B link fails, the other path through C can be used.</p>
 
-  <h3 style="margin-top:18px">ماذا يعني <span class="en">Forward Packets</span>؟</h3>
-  <p>في شبكات الـMesh، قد لا تكون العقدة الوجهة النهائية للحزمة، لكنها تستقبلها ثم تمررها للعقدة التالية. مثال: A يريد إرسال بيانات إلى D عبر المسار A→B→C→D، فـB يمررها لـC، وC يمررها لـD — هذا يسمى <span class="en">Packet Forwarding</span>.</p>
-  <p>في الشبكات المعتمدة على أجهزة التوجيه، تتعلم العقد المسارات المتاحة عبر بروتوكولات مثل <span class="en">OSPF, IS-IS, BGP</span>، ثم تختار المسار الأنسب حسب التكلفة أو السرعة أو عدد القفزات.</p>
+  <h3 style="margin-top:18px"><span data-ar>ماذا يعني</span><span data-en hidden>What does</span> <span class="en">Forward Packets</span><span data-en hidden> mean?</span><span data-ar>؟</span></h3>
+  <p data-ar>في شبكات الـMesh، قد لا تكون العقدة الوجهة النهائية للحزمة، لكنها تستقبلها ثم تمررها للعقدة التالية. مثال: A يريد إرسال بيانات إلى D عبر المسار A→B→C→D، فـB يمررها لـC، وC يمررها لـD — هذا يسمى <span class="en">Packet Forwarding</span>.</p>
+  <p data-en hidden>In Mesh networks, a node may not be the packet's final destination, but it receives it and passes it on to the next node. Example: A wants to send data to D via the path A→B→C→D, so B forwards it to C, and C forwards it to D — this is called <span class="en">Packet Forwarding</span>.</p>
+  <p data-ar>في الشبكات المعتمدة على أجهزة التوجيه، تتعلم العقد المسارات المتاحة عبر بروتوكولات مثل <span class="en">OSPF, IS-IS, BGP</span>، ثم تختار المسار الأنسب حسب التكلفة أو السرعة أو عدد القفزات.</p>
+  <p data-en hidden>In router-based networks, nodes learn the available paths through protocols such as <span class="en">OSPF, IS-IS, BGP</span>, then pick the best path based on cost, speed, or hop count.</p>
 
-  <h3 style="margin-top:18px">أهم ميزة: <span class="en">Resilience</span></h3>
-  <p>قدرة الشبكة على الاستمرار بالعمل عند حدوث عطل — لأن شبكة Mesh فيها مسارات متعددة، فإذا تعطل كابل أو رابط أو راوتر أو عقدة معينة، يمكن توجيه البيانات عبر مسار بديل (مثال: المسار الأساسي A→B→D يتعطل عند B، فتُستخدم A→C→D بدلًا عنه). لذلك تُعتبر Mesh أكثر اعتمادية من Star Topology التي قد تعتمد على جهاز مركزي واحد.</p>
+  <h3 style="margin-top:18px"><span data-ar>أهم ميزة:</span><span data-en hidden>The key advantage:</span> <span class="en">Resilience</span></h3>
+  <p data-ar>قدرة الشبكة على الاستمرار بالعمل عند حدوث عطل — لأن شبكة Mesh فيها مسارات متعددة، فإذا تعطل كابل أو رابط أو راوتر أو عقدة معينة، يمكن توجيه البيانات عبر مسار بديل (مثال: المسار الأساسي A→B→D يتعطل عند B، فتُستخدم A→C→D بدلًا عنه). لذلك تُعتبر Mesh أكثر اعتمادية من Star Topology التي قد تعتمد على جهاز مركزي واحد.</p>
+  <p data-en hidden>The network's ability to keep working when a failure occurs — because a Mesh network has multiple paths, so if a cable, link, router, or particular node fails, data can be routed over an alternate path (example: the primary path A→B→D fails at B, so A→C→D is used instead). That's why Mesh is considered more reliable than a Star Topology, which may depend on a single central device.</p>
 
-  <p style="margin-top:14px"><b>عيوب Mesh</b>: تحتاج عددًا كبيرًا من الكابلات والمنافذ، تكلفتها مرتفعة، تركيبها وصيانتها أكثر تعقيدًا، وإدارة المسارات تصبح أصعب مع زيادة عدد العقد — لذلك Full Mesh غير عملية غالبًا بالشبكات الكبيرة، ويُستخدم Partial Mesh أكثر لأنه يحقق توازنًا بين الاعتمادية والتكلفة.</p>
+  <p style="margin-top:14px" data-ar><b>عيوب Mesh</b>: تحتاج عددًا كبيرًا من الكابلات والمنافذ، تكلفتها مرتفعة، تركيبها وصيانتها أكثر تعقيدًا، وإدارة المسارات تصبح أصعب مع زيادة عدد العقد — لذلك Full Mesh غير عملية غالبًا بالشبكات الكبيرة، ويُستخدم Partial Mesh أكثر لأنه يحقق توازنًا بين الاعتمادية والتكلفة.</p>
+  <p style="margin-top:14px" data-en hidden><b>Drawbacks of Mesh</b>: it needs a large number of cables and ports, its cost is high, installation and maintenance are more complex, and managing paths gets harder as the number of nodes grows — that's why Full Mesh is often impractical in large networks, and Partial Mesh is used more often because it strikes a balance between reliability and cost.</p>
 
   <table>
-   <tr><th>النوع</th><th>طريقة الاتصال</th><th>الميزة</th><th>العيب</th></tr>
-   <tr><td><span class="en">Full Mesh</span></td><td>كل عقدة متصلة بكل العقد</td><td>أعلى مرونة واعتمادية</td><td>مكلف ومعقد جدًا</td></tr>
-   <tr><td><span class="en">Partial Mesh</span></td><td>بعض العقد فقط لها اتصالات متعددة</td><td>عملي وأقل تكلفة</td><td>مرونته أقل من Full Mesh</td></tr>
+   <tr data-ar><th>النوع</th><th>طريقة الاتصال</th><th>الميزة</th><th>العيب</th></tr>
+   <tr data-en hidden><th>Type</th><th>Connection Method</th><th>Advantage</th><th>Drawback</th></tr>
+   <tr data-ar><td><span class="en">Full Mesh</span></td><td>كل عقدة متصلة بكل العقد</td><td>أعلى مرونة واعتمادية</td><td>مكلف ومعقد جدًا</td></tr>
+   <tr data-en hidden><td><span class="en">Full Mesh</span></td><td>Every node connects to every node</td><td>Highest resilience and reliability</td><td>Very costly and complex</td></tr>
+   <tr data-ar><td><span class="en">Partial Mesh</span></td><td>بعض العقد فقط لها اتصالات متعددة</td><td>عملي وأقل تكلفة</td><td>مرونته أقل من Full Mesh</td></tr>
+   <tr data-en hidden><td><span class="en">Partial Mesh</span></td><td>Only some nodes have multiple connections</td><td>Practical and lower cost</td><td>Less resilient than Full Mesh</td></tr>
   </table>
  </div>
 
- <div class="tip">أسهل طريقة تحفظينها: <b>Full Mesh</b> = الجميع متصل بالجميع، <b>Partial Mesh</b> = بعض الأجهزة متصلة بعدة أجهزة. الميزة الأساسية لكليهما: وجود طرق بديلة (<span class="en">resilience</span>). العيب الأساسي: التكلفة والتعقيد.</div>
+ <div class="tip" data-ar>أسهل طريقة تحفظينها: <b>Full Mesh</b> = الجميع متصل بالجميع، <b>Partial Mesh</b> = بعض الأجهزة متصلة بعدة أجهزة. الميزة الأساسية لكليهما: وجود طرق بديلة (<span class="en">resilience</span>). العيب الأساسي: التكلفة والتعقيد.</div>
+ <div class="tip" data-en hidden>The easiest way to remember it: <b>Full Mesh</b> = everyone is connected to everyone, <b>Partial Mesh</b> = some devices are connected to several others. The main advantage of both: having alternate paths (<span class="en">resilience</span>). The main drawback: cost and complexity.</div>
 
- <div class="tip">إذا شفتِ في السؤال "single point of failure" فكري بـ<b>Star</b>، وإذا "redundant paths / resilience" فكري بـ<b>Mesh</b>، وإذا "two nodes only / duplex" فهي <b>Point-to-Point</b>.</div>
+ <div class="tip" data-ar>إذا شفتِ في السؤال "single point of failure" فكري بـ<b>Star</b>، وإذا "redundant paths / resilience" فكري بـ<b>Mesh</b>، وإذا "two nodes only / duplex" فهي <b>Point-to-Point</b>.</div>
+ <div class="tip" data-en hidden>If you see "single point of failure" in a question, think <b>Star</b>; if you see "redundant paths / resilience," think <b>Mesh</b>; and if it's "two nodes only / duplex," it's <b>Point-to-Point</b>.</div>
 </section>
 
 <section id="m1-osi">
  <span class="mod-tag">MODULE 1 · LESSON 1.2</span>
- <h2>نموذج OSI — الطبقات السبع</h2>
- <p class="sub">OSI Model Concepts — أهم موضوع تأسيسي في الشهادة كلها</p>
+ <h2 data-ar>نموذج OSI — الطبقات السبع</h2>
+ <h2 data-en hidden>The OSI Model — The Seven Layers</h2>
+ <p class="sub" data-ar>OSI Model Concepts — أهم موضوع تأسيسي في الشهادة كلها</p>
+ <p class="sub" data-en hidden>OSI Model Concepts — the single most foundational topic in the entire certification</p>
 
  <div class="card">
-  <p>نموذج مرجعي يقسّم عملية الاتصال الشبكي إلى 7 طبقات. عند <b>المرسل (Sender)</b> تنزل البيانات من الطبقة 7 إلى 1 <span class="en">(encapsulation)</span>، وعند <b>المستقبل (Receiver)</b> تصعد من 1 إلى 7 <span class="en">(de-encapsulation)</span>.</p>
-  <p><b>الجملة التذكيرية (Mnemonic)</b> من الطبقة 1 إلى 7: <span class="en">Please Do Not Throw Sausage Pizza Away</span></p>
+  <p data-ar>نموذج مرجعي يقسّم عملية الاتصال الشبكي إلى 7 طبقات. عند <b>المرسل (Sender)</b> تنزل البيانات من الطبقة 7 إلى 1 <span class="en">(encapsulation)</span>، وعند <b>المستقبل (Receiver)</b> تصعد من 1 إلى 7 <span class="en">(de-encapsulation)</span>.</p>
+  <p data-en hidden>A reference model that splits the network communication process into 7 layers. At the <b>Sender</b>, data travels down from Layer 7 to Layer 1 (<span class="en">encapsulation</span>), and at the <b>Receiver</b>, it travels back up from 1 to 7 (<span class="en">de-encapsulation</span>).</p>
+  <p data-ar><b>الجملة التذكيرية (Mnemonic)</b> من الطبقة 1 إلى 7: <span class="en">Please Do Not Throw Sausage Pizza Away</span></p>
+  <p data-en hidden><b>Mnemonic</b> from Layer 1 to 7: <span class="en">Please Do Not Throw Sausage Pizza Away</span></p>
  </div>
 
  <div class="diagram">
@@ -309,101 +386,140 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <rect x="104" y="82" width="192" height="34" rx="6" fill="#1a7f5c"/>
    <text x="200" y="103" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Data (L5–L7 Payload)</text>
   </svg>
-  <div class="cap">Encapsulation ↓ عند الإرسال تُضاف الرؤوس من الداخل للخارج (7→1) · De-encapsulation ↑ عند الاستقبال تُنزع من الخارج للداخل (1→7)</div>
+  <div class="cap" data-ar>Encapsulation ↓ عند الإرسال تُضاف الرؤوس من الداخل للخارج (7→1) · De-encapsulation ↑ عند الاستقبال تُنزع من الخارج للداخل (1→7)</div>
+  <div class="cap" data-en hidden>Encapsulation ↓ on send, headers are added from the inside out (7→1) · De-encapsulation ↑ on receive, they're stripped from the outside in (1→7)</div>
  </div>
 
  <div class="osi">
-  <div class="row"><div class="num">7</div><div class="name">Application</div><div class="desc">تتفاعل مباشرة مع برامج المستخدم لطلب خدمة الشبكة. أمثلة: <span class="en">SMTP, DNS, FTP</span></div></div>
-  <div class="row"><div class="num">6</div><div class="name">Presentation</div><div class="desc">تجهيز شكل البيانات: <span class="en">Encryption/Decryption, Encoding, Compression, MIME</span></div></div>
-  <div class="row"><div class="num">5</div><div class="name">Session</div><div class="desc">إنشاء وإدارة الجلسات بين التطبيقات. أمثلة: <span class="en">NetBIOS, PAP, ASP, ADSP</span></div></div>
-  <div class="row"><div class="num">4</div><div class="name">Transport</div><div class="desc">تتبع الاتصال بين التطبيقات عبر الـports، تقسيم البيانات <span class="en">(segmentation)</span> وإعادة تجميعها <span class="en">(reassembly)</span>. أجهزة: <span class="en">Multilayer switch, Advanced firewall, IDS</span></div></div>
-  <div class="row"><div class="num">3</div><div class="name">Network</div><div class="desc">نقل الحزم <span class="en">(packets)</span> بين الشبكات باستخدام <span class="en">IP addresses</span>. أجهزة: <span class="en">Router, ACL, Basic firewall</span></div></div>
-  <div class="row"><div class="num">2</div><div class="name">Data Link</div><div class="desc">نقل الـ<span class="en">frames</span> بين العقد على نفس الـsegment باستخدام <span class="en">MAC addresses</span>. أجهزة: <span class="en">Switch, Bridge, NIC, Wireless AP</span></div></div>
-  <div class="row"><div class="num">1</div><div class="name">Physical</div><div class="desc">إرسال الـ<span class="en">bits</span> كإشارات عبر الوسيط. أمثلة: <span class="en">Cables, Hubs, Repeaters, Modem, Transceiver</span></div></div>
+  <div class="row"><div class="num">7</div><div class="name">Application</div><div class="desc" data-ar>تتفاعل مباشرة مع برامج المستخدم لطلب خدمة الشبكة. أمثلة: <span class="en">SMTP, DNS, FTP</span></div><div class="desc" data-en hidden>Interacts directly with user programs to request a network service. Examples: <span class="en">SMTP, DNS, FTP</span></div></div>
+  <div class="row"><div class="num">6</div><div class="name">Presentation</div><div class="desc" data-ar>تجهيز شكل البيانات: <span class="en">Encryption/Decryption, Encoding, Compression, MIME</span></div><div class="desc" data-en hidden>Prepares the data's format: <span class="en">Encryption/Decryption, Encoding, Compression, MIME</span></div></div>
+  <div class="row"><div class="num">5</div><div class="name">Session</div><div class="desc" data-ar>إنشاء وإدارة الجلسات بين التطبيقات. أمثلة: <span class="en">NetBIOS, PAP, ASP, ADSP</span></div><div class="desc" data-en hidden>Establishes and manages sessions between applications. Examples: <span class="en">NetBIOS, PAP, ASP, ADSP</span></div></div>
+  <div class="row"><div class="num">4</div><div class="name">Transport</div><div class="desc" data-ar>تتبع الاتصال بين التطبيقات عبر الـports، تقسيم البيانات <span class="en">(segmentation)</span> وإعادة تجميعها <span class="en">(reassembly)</span>. أجهزة: <span class="en">Multilayer switch, Advanced firewall, IDS</span></div><div class="desc" data-en hidden>Tracks the connection between applications via ports, splitting data (<span class="en">segmentation</span>) and reassembling it (<span class="en">reassembly</span>). Devices: <span class="en">Multilayer switch, Advanced firewall, IDS</span></div></div>
+  <div class="row"><div class="num">3</div><div class="name">Network</div><div class="desc" data-ar>نقل الحزم <span class="en">(packets)</span> بين الشبكات باستخدام <span class="en">IP addresses</span>. أجهزة: <span class="en">Router, ACL, Basic firewall</span></div><div class="desc" data-en hidden>Moves packets between networks using <span class="en">IP addresses</span>. Devices: <span class="en">Router, ACL, Basic firewall</span></div></div>
+  <div class="row"><div class="num">2</div><div class="name">Data Link</div><div class="desc" data-ar>نقل الـ<span class="en">frames</span> بين العقد على نفس الـsegment باستخدام <span class="en">MAC addresses</span>. أجهزة: <span class="en">Switch, Bridge, NIC, Wireless AP</span></div><div class="desc" data-en hidden>Moves <span class="en">frames</span> between nodes on the same segment using <span class="en">MAC addresses</span>. Devices: <span class="en">Switch, Bridge, NIC, Wireless AP</span></div></div>
+  <div class="row"><div class="num">1</div><div class="name">Physical</div><div class="desc" data-ar>إرسال الـ<span class="en">bits</span> كإشارات عبر الوسيط. أمثلة: <span class="en">Cables, Hubs, Repeaters, Modem, Transceiver</span></div><div class="desc" data-en hidden>Sends <span class="en">bits</span> as signals over the medium. Examples: <span class="en">Cables, Hubs, Repeaters, Modem, Transceiver</span></div></div>
  </div>
 
  <div class="card">
-  <p><b>تقسيم المسؤولية</b> (يجي كثير بالاختبار):</p>
-  <ul>
+  <p data-ar><b>تقسيم المسؤولية</b> (يجي كثير بالاختبار):</p>
+  <p data-en hidden><b>Division of responsibility</b> (comes up a lot on the exam):</p>
+  <ul data-ar>
    <li>الطبقات <b>1–3</b> (Physical, Data Link, Network) = <b>Responsibility of the Network</b>.</li>
    <li>الطبقات <b>4–7</b> (Transport → Application) = <b>Responsibility of the Host</b>.</li>
   </ul>
+  <ul data-en hidden>
+   <li>Layers <b>1–3</b> (Physical, Data Link, Network) = <b>Responsibility of the Network</b>.</li>
+   <li>Layers <b>4–7</b> (Transport → Application) = <b>Responsibility of the Host</b>.</li>
+  </ul>
  </div>
 
- <div class="tip">اربطي كل طبقة بوحدة بياناتها: L1 = <span class="en">Bits</span> · L2 = <span class="en">Frames</span> · L3 = <span class="en">Packets</span> · L4 = <span class="en">Segments</span>. واربطي الجهاز بالطبقة: Hub→1، Switch→2، Router→3.</div>
+ <div class="tip" data-ar>اربطي كل طبقة بوحدة بياناتها: L1 = <span class="en">Bits</span> · L2 = <span class="en">Frames</span> · L3 = <span class="en">Packets</span> · L4 = <span class="en">Segments</span>. واربطي الجهاز بالطبقة: Hub→1، Switch→2، Router→3.</div>
+ <div class="tip" data-en hidden>Link each layer to its data unit: L1 = <span class="en">Bits</span> · L2 = <span class="en">Frames</span> · L3 = <span class="en">Packets</span> · L4 = <span class="en">Segments</span>. And link the device to the layer: Hub→1, Switch→2, Router→3.</div>
 </section>
 
 <section id="m1-soho">
  <span class="mod-tag">MODULE 1 · LESSON 1.3</span>
- <h2>SOHO Router — راوتر واحد بكل الطبقات</h2>
- <p class="sub">جهاز واحد يجمع وظائف عدة طبقات من OSI</p>
+ <h2 data-ar>SOHO Router — راوتر واحد بكل الطبقات</h2>
+ <h2 data-en hidden>SOHO Router — One Device, Every Layer</h2>
+ <p class="sub" data-ar>جهاز واحد يجمع وظائف عدة طبقات من OSI</p>
+ <p class="sub" data-en hidden>A single device that combines the functions of several OSI layers</p>
 
  <table>
-  <tr><th>الطبقة</th><th>وظيفة الـSOHO Router فيها</th></tr>
-  <tr><td><b>Physical (L1)</b></td><td>منافذ <span class="en">RJ-45 LAN ports</span> لتوصيل الأجهزة سلكيًا، <span class="en">radio antennas</span> للواي فاي، ومنفذ <span class="en">WAN port</span> للاتصال بمزود الخدمة <span class="en">(ISP)</span>.</td></tr>
-  <tr><td><b>Data Link (L2)</b></td><td>يعمل كـ<span class="en">Ethernet switch</span> + <span class="en">Wireless Access Point</span> (الـAP موصول داخليًا بمنفذ switch). كل جهاز يُعرَّف بـ<span class="en">MAC address</span>، والأجهزة السلكية واللاسلكية كلها على نفس <span class="en">layer 2 local network</span>.</td></tr>
-  <tr><td><b>Network (L3)</b></td><td>يوجّه بين الشبكة الخاصة المحلية والإنترنت العام، يشغّل <b>DHCP server</b> لتوزيع IP على الأجهزة، وواجهة الـWAN تأخذ <span class="en">public IP address</span>.</td></tr>
-  <tr><td><b>Transport / Application (L4–L7)</b></td><td>تقسيم البيانات <span class="en">(segmentation)</span> وإعادة تجميعها، وتمرير طلبات واستجابات <span class="en">Application layer</span>.</td></tr>
+  <tr data-ar><th>الطبقة</th><th>وظيفة الـSOHO Router فيها</th></tr>
+  <tr data-en hidden><th>Layer</th><th>The SOHO Router's Function at This Layer</th></tr>
+  <tr data-ar><td><b>Physical (L1)</b></td><td>منافذ <span class="en">RJ-45 LAN ports</span> لتوصيل الأجهزة سلكيًا، <span class="en">radio antennas</span> للواي فاي، ومنفذ <span class="en">WAN port</span> للاتصال بمزود الخدمة <span class="en">(ISP)</span>.</td></tr>
+  <tr data-en hidden><td><b>Physical (L1)</b></td><td><span class="en">RJ-45 LAN ports</span> for wired devices, <span class="en">radio antennas</span> for Wi-Fi, and a <span class="en">WAN port</span> to connect to the <span class="en">ISP</span>.</td></tr>
+  <tr data-ar><td><b>Data Link (L2)</b></td><td>يعمل كـ<span class="en">Ethernet switch</span> + <span class="en">Wireless Access Point</span> (الـAP موصول داخليًا بمنفذ switch). كل جهاز يُعرَّف بـ<span class="en">MAC address</span>، والأجهزة السلكية واللاسلكية كلها على نفس <span class="en">layer 2 local network</span>.</td></tr>
+  <tr data-en hidden><td><b>Data Link (L2)</b></td><td>Works as an <span class="en">Ethernet switch</span> + <span class="en">Wireless Access Point</span> (the AP is internally wired to a switch port). Every device is identified by a <span class="en">MAC address</span>, and wired and wireless devices are all on the same <span class="en">layer 2 local network</span>.</td></tr>
+  <tr data-ar><td><b>Network (L3)</b></td><td>يوجّه بين الشبكة الخاصة المحلية والإنترنت العام، يشغّل <b>DHCP server</b> لتوزيع IP على الأجهزة، وواجهة الـWAN تأخذ <span class="en">public IP address</span>.</td></tr>
+  <tr data-en hidden><td><b>Network (L3)</b></td><td>Routes between the private local network and the public internet, runs a <b>DHCP server</b> to hand out IPs to devices, and the WAN interface takes a <span class="en">public IP address</span>.</td></tr>
+  <tr data-ar><td><b>Transport / Application (L4–L7)</b></td><td>تقسيم البيانات <span class="en">(segmentation)</span> وإعادة تجميعها، وتمرير طلبات واستجابات <span class="en">Application layer</span>.</td></tr>
+  <tr data-en hidden><td><b>Transport / Application (L4–L7)</b></td><td>Splitting data (<span class="en">segmentation</span>) and reassembling it, and passing <span class="en">Application layer</span> requests and responses.</td></tr>
  </table>
 
  <div class="card">
-  <p><b>اتصال SOHO بالإنترنت</b>: الـ<span class="en">WAN</span> يربط شبكتك بمزود الخدمة عبر بنية مثل <span class="en">PSTN (Public Switched Telephone Network)</span>، والإنترنت نفسه يتكون من <span class="en">high-bandwidth trunks</span> تربط نقاط تبادل الإنترنت <span class="en">IXPs (Internet Exchange Points)</span> حيث تتصل شبكات مزودي الخدمة ببعض.</p>
+  <p data-ar><b>اتصال SOHO بالإنترنت</b>: الـ<span class="en">WAN</span> يربط شبكتك بمزود الخدمة عبر بنية مثل <span class="en">PSTN (Public Switched Telephone Network)</span>، والإنترنت نفسه يتكون من <span class="en">high-bandwidth trunks</span> تربط نقاط تبادل الإنترنت <span class="en">IXPs (Internet Exchange Points)</span> حيث تتصل شبكات مزودي الخدمة ببعض.</p>
+  <p data-en hidden><b>SOHO's connection to the internet</b>: the <span class="en">WAN</span> connects your network to the service provider over infrastructure such as the <span class="en">PSTN (Public Switched Telephone Network)</span>, and the internet itself is made up of <span class="en">high-bandwidth trunks</span> connecting <span class="en">IXPs (Internet Exchange Points)</span>, where ISP networks connect to one another.</p>
  </div>
 </section>
 
 <section id="m1-bin">
  <span class="mod-tag">MODULE 1 · LESSON 1.3</span>
- <h2>الأرقام الثنائية — Binary</h2>
- <p class="sub">أساس فهم IP addressing و Subnetting لاحقًا</p>
+ <h2 data-ar>الأرقام الثنائية — Binary</h2>
+ <h2 data-en hidden>Binary Numbers</h2>
+ <p class="sub" data-ar>أساس فهم IP addressing و Subnetting لاحقًا</p>
+ <p class="sub" data-en hidden>The foundation for understanding IP addressing and Subnetting later</p>
 
  <div class="card">
-  <p>النظام العشري <span class="en">(Base 10)</span> خاناته: آحاد، عشرات، مئات... أما الثنائي <span class="en">(Binary / Base 2)</span> فكل خانة من الـ8 bits لها وزن. اقرئي الجدول التالي من اليسار لليمين (بنفس اتجاه الأرقام الإنجليزية):</p>
+  <p data-ar>النظام العشري <span class="en">(Base 10)</span> خاناته: آحاد، عشرات، مئات... أما الثنائي <span class="en">(Binary / Base 2)</span> فكل خانة من الـ8 bits لها وزن. اقرئي الجدول التالي من اليسار لليمين (بنفس اتجاه الأرقام الإنجليزية):</p>
+  <p data-en hidden>The decimal system <span class="en">(Base 10)</span> has ones, tens, hundreds... while in binary <span class="en">(Base 2)</span>, each of the 8 bits has a weight. Read the table below left-to-right (same direction as English/numeric notation):</p>
   <table style="direction:ltr">
    <tr><th style="text-align:center">128</th><th style="text-align:center">64</th><th style="text-align:center">32</th><th style="text-align:center">16</th><th style="text-align:center">8</th><th style="text-align:center">4</th><th style="text-align:center">2</th><th style="text-align:center">1</th></tr>
   </table>
-  <p>كل خانة لا تقبل إلا: <b>1</b> = استخدمي وزن الخانة، أو <b>0</b> = تجاهلي وزن الخانة — تخيليها مثل 8 مفاتيح تشغيل وإيقاف.</p>
+  <p data-ar>كل خانة لا تقبل إلا: <b>1</b> = استخدمي وزن الخانة، أو <b>0</b> = تجاهلي وزن الخانة — تخيليها مثل 8 مفاتيح تشغيل وإيقاف.</p>
+  <p data-en hidden>Every position only accepts: <b>1</b> = use that position's weight, or <b>0</b> = ignore that position's weight — think of it as 8 on/off switches.</p>
  </div>
 
  <div class="card">
-  <h3 style="margin-top:0">تحويل 205 إلى Binary</h3>
-  <p>نبدأ بأكبر وزن وهو <b>128</b>، ونسأل عند كل خانة: هل أستطيع طرح هذا الوزن من الرقم المتبقي؟</p>
+  <h3 style="margin-top:0" data-ar>تحويل 205 إلى Binary</h3>
+  <h3 style="margin-top:0" data-en hidden>Converting 205 to Binary</h3>
+  <p data-ar>نبدأ بأكبر وزن وهو <b>128</b>، ونسأل عند كل خانة: هل أستطيع طرح هذا الوزن من الرقم المتبقي؟</p>
+  <p data-en hidden>We start with the largest weight, <b>128</b>, and at each position ask: can I subtract this weight from the remaining number?</p>
   <table>
-   <tr><th>الوزن</th><th>هل نحتاجه؟</th><th>الباقي</th><th>الخانة</th></tr>
-   <tr><td>128</td><td>نعم، لأن 205 أكبر من 128</td><td><span class="en">205 − 128 = 77</span></td><td>1</td></tr>
-   <tr><td>64</td><td>نعم، لأن 77 أكبر من 64</td><td><span class="en">77 − 64 = 13</span></td><td>1</td></tr>
-   <tr><td>32</td><td>لا، لأن 13 أصغر من 32</td><td>13</td><td>0</td></tr>
-   <tr><td>16</td><td>لا، لأن 13 أصغر من 16</td><td>13</td><td>0</td></tr>
-   <tr><td>8</td><td>نعم</td><td><span class="en">13 − 8 = 5</span></td><td>1</td></tr>
-   <tr><td>4</td><td>نعم</td><td><span class="en">5 − 4 = 1</span></td><td>1</td></tr>
-   <tr><td>2</td><td>لا</td><td>1</td><td>0</td></tr>
-   <tr><td>1</td><td>نعم</td><td><span class="en">1 − 1 = 0</span></td><td>1</td></tr>
+   <tr data-ar><th>الوزن</th><th>هل نحتاجه؟</th><th>الباقي</th><th>الخانة</th></tr>
+   <tr data-en hidden><th>Weight</th><th>Do we need it?</th><th>Remainder</th><th>Bit</th></tr>
+   <tr data-ar><td>128</td><td>نعم، لأن 205 أكبر من 128</td><td><span class="en">205 − 128 = 77</span></td><td>1</td></tr>
+   <tr data-en hidden><td>128</td><td>Yes, because 205 is greater than 128</td><td><span class="en">205 − 128 = 77</span></td><td>1</td></tr>
+   <tr data-ar><td>64</td><td>نعم، لأن 77 أكبر من 64</td><td><span class="en">77 − 64 = 13</span></td><td>1</td></tr>
+   <tr data-en hidden><td>64</td><td>Yes, because 77 is greater than 64</td><td><span class="en">77 − 64 = 13</span></td><td>1</td></tr>
+   <tr data-ar><td>32</td><td>لا، لأن 13 أصغر من 32</td><td>13</td><td>0</td></tr>
+   <tr data-en hidden><td>32</td><td>No, because 13 is smaller than 32</td><td>13</td><td>0</td></tr>
+   <tr data-ar><td>16</td><td>لا، لأن 13 أصغر من 16</td><td>13</td><td>0</td></tr>
+   <tr data-en hidden><td>16</td><td>No, because 13 is smaller than 16</td><td>13</td><td>0</td></tr>
+   <tr data-ar><td>8</td><td>نعم</td><td><span class="en">13 − 8 = 5</span></td><td>1</td></tr>
+   <tr data-en hidden><td>8</td><td>Yes</td><td><span class="en">13 − 8 = 5</span></td><td>1</td></tr>
+   <tr data-ar><td>4</td><td>نعم</td><td><span class="en">5 − 4 = 1</span></td><td>1</td></tr>
+   <tr data-en hidden><td>4</td><td>Yes</td><td><span class="en">5 − 4 = 1</span></td><td>1</td></tr>
+   <tr data-ar><td>2</td><td>لا</td><td>1</td><td>0</td></tr>
+   <tr data-en hidden><td>2</td><td>No</td><td>1</td><td>0</td></tr>
+   <tr data-ar><td>1</td><td>نعم</td><td><span class="en">1 − 1 = 0</span></td><td>1</td></tr>
+   <tr data-en hidden><td>1</td><td>Yes</td><td><span class="en">1 − 1 = 0</span></td><td>1</td></tr>
   </table>
-  <p style="margin-top:12px">نكتب الخانات بالترتيب (من اليسار لليمين، بنفس ترتيب الأوزان):</p>
+  <p style="margin-top:12px" data-ar>نكتب الخانات بالترتيب (من اليسار لليمين، بنفس ترتيب الأوزان):</p>
+  <p style="margin-top:12px" data-en hidden>We write the bits in order (left to right, same order as the weights):</p>
   <table style="direction:ltr">
    <tr><th style="text-align:center">128</th><th style="text-align:center">64</th><th style="text-align:center">32</th><th style="text-align:center">16</th><th style="text-align:center">8</th><th style="text-align:center">4</th><th style="text-align:center">2</th><th style="text-align:center">1</th></tr>
    <tr><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">1</td></tr>
   </table>
-  <p style="margin-top:12px">إذن: <code class="k">205 = 1100 1101</code> — والتقسيم لمجموعتين مجرد تسهيل للقراءة، وليس رقمين منفصلين.</p>
-  <p><b>كيف نتأكد؟</b> نجمع فقط الأوزان التي فوقها 1: <code class="k">128 + 64 + 8 + 4 + 1 = 205</code></p>
+  <p style="margin-top:12px" data-ar>إذن: <code class="k">205 = 1100 1101</code> — والتقسيم لمجموعتين مجرد تسهيل للقراءة، وليس رقمين منفصلين.</p>
+  <p style="margin-top:12px" data-en hidden>So: <code class="k">205 = 1100 1101</code> — the split into two groups is just for easier reading, not two separate numbers.</p>
+  <p data-ar><b>كيف نتأكد؟</b> نجمع فقط الأوزان التي فوقها 1: <code class="k">128 + 64 + 8 + 4 + 1 = 205</code></p>
+  <p data-en hidden><b>How do we check?</b> Add up only the weights with a 1 above them: <code class="k">128 + 64 + 8 + 4 + 1 = 205</code></p>
  </div>
 
  <div class="card">
-  <h3 style="margin-top:0">تحويل 132 إلى Binary</h3>
-  <p>نبحث عن الأوزان التي مجموعها 132: <code class="k">128 + 4 = 132</code> — إذن نضع 1 تحت 128 و4 فقط:</p>
+  <h3 style="margin-top:0" data-ar>تحويل 132 إلى Binary</h3>
+  <h3 style="margin-top:0" data-en hidden>Converting 132 to Binary</h3>
+  <p data-ar>نبحث عن الأوزان التي مجموعها 132: <code class="k">128 + 4 = 132</code> — إذن نضع 1 تحت 128 و4 فقط:</p>
+  <p data-en hidden>We look for the weights that add up to 132: <code class="k">128 + 4 = 132</code> — so we put a 1 under 128 and 4 only:</p>
   <table style="direction:ltr">
    <tr><th style="text-align:center">128</th><th style="text-align:center">64</th><th style="text-align:center">32</th><th style="text-align:center">16</th><th style="text-align:center">8</th><th style="text-align:center">4</th><th style="text-align:center">2</th><th style="text-align:center">1</th></tr>
    <tr><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">0</td></tr>
   </table>
-  <p style="margin-top:12px">فالنتيجة: <code class="k">132 = 1000 0100</code></p>
+  <p style="margin-top:12px" data-ar>فالنتيجة: <code class="k">132 = 1000 0100</code></p>
+  <p style="margin-top:12px" data-en hidden>So the result is: <code class="k">132 = 1000 0100</code></p>
  </div>
 
- <div class="tip">أسهل قاعدة للحفظ: اقرئي الخانات دائمًا بالترتيب <span class="en">128 64 32 16 8 4 2 1</span> من اليسار لليمين، واسألي عند كل خانة: "هل أستطيع طرح هذا الوزن من الرقم المتبقي؟" — نعم ← اكتبي 1 واطرحيه، لا ← اكتبي 0 وانتقلي للخانة التالية.</div>
+ <div class="tip" data-ar>أسهل قاعدة للحفظ: اقرئي الخانات دائمًا بالترتيب <span class="en">128 64 32 16 8 4 2 1</span> من اليسار لليمين، واسألي عند كل خانة: "هل أستطيع طرح هذا الوزن من الرقم المتبقي؟" — نعم ← اكتبي 1 واطرحيه، لا ← اكتبي 0 وانتقلي للخانة التالية.</div>
+ <div class="tip" data-en hidden>The easiest rule to remember: always read the positions in order <span class="en">128 64 32 16 8 4 2 1</span> left to right, and at each position ask: "Can I subtract this weight from the remaining number?" — Yes ← write 1 and subtract it, No ← write 0 and move to the next position.</div>
 </section>
 
 <section id="m1-ts">
  <span class="mod-tag">MODULE 1 · LESSON 1.4</span>
- <h2>منهجية استكشاف الأخطاء — Troubleshooting Methodology</h2>
- <p class="sub">7 خطوات بالترتيب — احفظيها كتسلسل، الاختبار يسأل عن "الخطوة التالية"</p>
+ <h2 data-ar>منهجية استكشاف الأخطاء — Troubleshooting Methodology</h2>
+ <h2 data-en hidden>Troubleshooting Methodology</h2>
+ <p class="sub" data-ar>7 خطوات بالترتيب — احفظيها كتسلسل، الاختبار يسأل عن "الخطوة التالية"</p>
+ <p class="sub" data-en hidden>7 steps in order — memorize them as a sequence, the exam asks about "the next step"</p>
 
  <div class="flow">
   <span>1. Identify the problem</span><i>←</i>
@@ -416,40 +532,77 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  </div>
 
  <div class="card">
-  <p><b>الخطوة 1 — Identify the problem</b>:</p>
-  <ul>
+  <p data-ar><b>الخطوة 1 — Identify the problem</b>:</p>
+  <p data-en hidden><b>Step 1 — Identify the problem</b>:</p>
+  <ul data-ar>
    <li>جمع المعلومات: <span class="en">system documentation, installation/maintenance logs, vendor support sites</span>.</li>
    <li>سؤال المستخدمين: <span class="en">open questions</span> (لاكتشاف معلومات) و<span class="en">closed questions</span> (إجابة نعم/لا محددة).</li>
    <li>تحديد الأعراض: فحص فعلي، سجلات <span class="en">(logs)</span>، محاولة تكرار المشكلة <span class="en">(duplicate the problem)</span>.</li>
    <li>هل تغيّر شيء؟ <span class="en">Did it ever work? What has changed since it was last working?</span></li>
    <li>التعامل مع كل مشكلة على حدة <span class="en">(approach problems individually)</span>.</li>
   </ul>
+  <ul data-en hidden>
+   <li>Gather information: <span class="en">system documentation, installation/maintenance logs, vendor support sites</span>.</li>
+   <li>Question users: <span class="en">open questions</span> (to uncover information) and <span class="en">closed questions</span> (a specific yes/no answer).</li>
+   <li>Identify the symptoms: physical inspection, <span class="en">logs</span>, attempt to <span class="en">duplicate the problem</span>.</li>
+   <li>Did anything change? <span class="en">Did it ever work? What has changed since it was last working?</span></li>
+   <li><span class="en">Approach problems individually</span>.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>الخطوة 2 — Establish a theory</b>: شكّكي في الأمور البديهية <span class="en">(question the obvious)</span>، وأثبتي عمل كل مكوّن منهجيًا. باستخدام OSI:</p>
-  <ul>
+  <p data-ar><b>الخطوة 2 — Establish a theory</b>: شكّكي في الأمور البديهية <span class="en">(question the obvious)</span>، وأثبتي عمل كل مكوّن منهجيًا. باستخدام OSI:</p>
+  <p data-en hidden><b>Step 2 — Establish a theory</b>: <span class="en">question the obvious</span>, and verify each component's operation systematically. Using OSI:</p>
+  <ul data-ar>
    <li><b>Top-down</b>: من Application نزولًا لـPhysical.</li>
    <li><b>Bottom-up</b>: من Physical صعودًا (الأشيع: تحقّقي من الكيبل أولًا!).</li>
    <li>وأيضًا <b>divide-and-conquer</b> كاستراتيجية ثالثة.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Top-down</b>: starting at Application and working down to Physical.</li>
+   <li><b>Bottom-up</b>: starting at Physical and working up (most common: check the cable first!).</li>
+   <li>And also <b>divide-and-conquer</b> as a third strategy.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>الخطوة 3 — Test the theory</b>: لا تقفزي للاستنتاجات. ومتى <b>نصعّد (Escalation)</b>؟</p>
-  <ul>
+  <p data-ar><b>الخطوة 3 — Test the theory</b>: لا تقفزي للاستنتاجات. ومتى <b>نصعّد (Escalation)</b>؟</p>
+  <p data-en hidden><b>Step 3 — Test the theory</b>: don't jump to conclusions. And when do we <b>escalate</b>?</p>
+  <ul data-ar>
    <li>المشكلة تتجاوز معرفتك أو صلاحيتك.</li>
    <li>الجهاز تحت <span class="en">system warranty</span>.</li>
    <li>نطاق المشكلة كبير جدًا، أو العميل صعب/مسيء.</li>
   </ul>
-  <p><b>الخطوات 5–7</b>: نفّذي الحل (وصعّدي إذا احتجتِ صلاحية أعلى)، تحققي أن النظام يعمل لك وللمستخدم، ثم <b>وثّقي</b> — السجلات مفيدة لأي مشكلة مستقبلية.</p>
+  <ul data-en hidden>
+   <li>The problem is beyond your knowledge or authority.</li>
+   <li>The device is under <span class="en">system warranty</span>.</li>
+   <li>The problem's scope is too large, or the customer is difficult/abusive.</li>
+  </ul>
+  <p data-ar><b>الخطوات 5–7</b>: نفّذي الحل (وصعّدي إذا احتجتِ صلاحية أعلى)، تحققي أن النظام يعمل لك وللمستخدم، ثم <b>وثّقي</b> — السجلات مفيدة لأي مشكلة مستقبلية.</p>
+  <p data-en hidden><b>Steps 5–7</b>: implement the solution (escalating if you need higher privileges), verify the system works for you and the user, then <b>document</b> — logs are useful for any future problem.</p>
  </div>
 </section>
 
 </main>
 
-<div class="modnav"><span></span><a href="index.html" class="home">🏠 الرئيسية</a><a href="module2-guide.html">الوحدة 2 →</a></div>
+<div class="modnav"><span></span><a href="index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="module2-guide.html"><span data-ar>الوحدة 2 →</span><span data-en hidden>Module 2 →</span></a></div>
 
-<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 1 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<footer><span data-ar>ملخص دراسي — CompTIA Network+ N10-009 · Module 1 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Network+ N10-009 · Module 1 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
