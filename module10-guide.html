@@ -120,8 +120,17 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
+html[dir="ltr"] .diagram .cap{direction:ltr}
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -141,12 +150,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 10</span>
-  <h1>الوحدة 10 — تطبيق ميزات أمان الشبكة</h1>
+  <h1 data-ar>الوحدة 10 — تطبيق ميزات أمان الشبكة</h1>
+  <h1 data-en hidden>Module 10 — Applying Network Security Features</h1>
   <p>Applying Network Security Features — Authentication · Authorization & Account Management · Network Hardening · Switch Security · Security Rules</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html" class="active">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html" class="active">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m10-auth">10.1 Authentication</a>
@@ -160,16 +170,24 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m10-auth">
  <span class="mod-tag">MODULE 10 · LESSON 10.1</span>
- <h2>المصادقة — Authentication</h2>
+ <h2 data-ar>المصادقة — Authentication</h2>
+ <h2 data-en hidden>Authentication</h2>
  <p class="sub">Applying Network Security Features — AAA · Authentication Factors · SSO · Kerberos</p>
 
  <div class="card">
-  <p><b>مفاهيم AAA</b> (تشبيه بطاقة صعود الطائرة):</p>
-  <ul>
+  <p data-ar><b>مفاهيم AAA</b> (تشبيه بطاقة صعود الطائرة):</p>
+  <p data-en hidden><b>AAA concepts</b> (boarding-pass analogy):</p>
+  <ul data-ar>
    <li><b>Identity</b>: حساب أو معرّف يمثّل مستخدمًا/جهازًا/عملية بشكل فريد على الشبكة — <i>من يدّعي أنه هو</i>.</li>
    <li><b>Authentication</b>: عامل/عوامل تثبت أن الشخص هو من يدّعي — <i>إثبات الهوية</i>.</li>
    <li><b>Authorization</b>: الحقوق والصلاحيات الممنوحة داخل النظام — <i>أين مسموح له الذهاب وأي مستوى وصول</i>.</li>
    <li><b>Accounting</b>: تتبّع الاستخدام المصرّح/غير المصرّح به للمورد — <i>تسجيل النشاط</i>.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Identity</b>: an account or identifier that uniquely represents a user/device/process on the network — <i>who they claim to be</i>.</li>
+   <li><b>Authentication</b>: the factor(s) that prove the person is who they claim to be — <i>proving identity</i>.</li>
+   <li><b>Authorization</b>: the rights and permissions granted within the system — <i>where they're allowed to go and what access level</i>.</li>
+   <li><b>Accounting</b>: tracking authorized/unauthorized use of a resource — <i>logging activity</i>.</li>
   </ul>
  </div>
 
@@ -184,71 +202,105 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <line x1="360" y1="45" x2="380" y2="45" stroke="#5b7280" stroke-width="2" marker-end="url(#arA)"/>
    <defs><marker id="arA" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#5b7280"/></marker></defs>
   </svg>
-  <div class="cap">أولًا تُحدَّد الهوية (من أنت)، ثم تُثبَت (Authentication)، ثم تُمنح الصلاحيات (Authorization)، وأخيرًا يُسجَّل كل نشاط (Accounting).</div>
+  <div class="cap" data-ar>أولًا تُحدَّد الهوية (من أنت)، ثم تُثبَت (Authentication)، ثم تُمنح الصلاحيات (Authorization)، وأخيرًا يُسجَّل كل نشاط (Accounting).</div>
+  <div class="cap" data-en hidden>First identity is established (who you are), then it's authenticated, then authorization is granted, and finally every activity is logged (accounting).</div>
  </div>
 
- <h3>طرق المصادقة (Authentication Factors)</h3>
+ <h3 data-ar>طرق المصادقة (Authentication Factors)</h3>
+ <h3 data-en hidden>Authentication Factors</h3>
  <table>
-  <tr><th>العامل</th><th>مثال</th></tr>
-  <tr><td><b>Something you know</b></td><td>كلمة مرور (Password)</td></tr>
-  <tr><td><b>Something you have</b></td><td>بطاقة ذكية (Smart card)</td></tr>
-  <tr><td><b>Something you are</b></td><td>بصمة الإصبع (Fingerprint)</td></tr>
-  <tr><td><b>Something you do</b></td><td>نمط المشي (Gait)</td></tr>
-  <tr><td><b>Somewhere you are</b></td><td>السياج الجغرافي (Geofencing)</td></tr>
-  <tr><td><b>Somewhen you are</b></td><td>قيود زمنية (Time restrictions)</td></tr>
+  <tr data-ar><th>العامل</th><th>مثال</th></tr>
+  <tr data-en hidden><th>Factor</th><th>Example</th></tr>
+  <tr data-ar><td><b>Something you know</b></td><td>كلمة مرور (Password)</td></tr>
+  <tr data-en hidden><td><b>Something you know</b></td><td>Password</td></tr>
+  <tr data-ar><td><b>Something you have</b></td><td>بطاقة ذكية (Smart card)</td></tr>
+  <tr data-en hidden><td><b>Something you have</b></td><td>Smart card</td></tr>
+  <tr data-ar><td><b>Something you are</b></td><td>بصمة الإصبع (Fingerprint)</td></tr>
+  <tr data-en hidden><td><b>Something you are</b></td><td>Fingerprint</td></tr>
+  <tr data-ar><td><b>Something you do</b></td><td>نمط المشي (Gait)</td></tr>
+  <tr data-en hidden><td><b>Something you do</b></td><td>Gait</td></tr>
+  <tr data-ar><td><b>Somewhere you are</b></td><td>السياج الجغرافي (Geofencing)</td></tr>
+  <tr data-en hidden><td><b>Somewhere you are</b></td><td>Geofencing</td></tr>
+  <tr data-ar><td><b>Somewhen you are</b></td><td>قيود زمنية (Time restrictions)</td></tr>
+  <tr data-en hidden><td><b>Somewhen you are</b></td><td>Time restrictions</td></tr>
  </table>
 
  <div class="card">
-  <p><b>Single Sign-On (SSO)</b>: تسجيل دخول واحد يمنح وصولًا لعدة تطبيقات/خدمات (مثل حساب Microsoft الواحد للوصول لـTeams, Outlook, OneDrive, SharePoint) بدون تكرار تسجيل الدخول لكل خدمة.</p>
-  <p><b>Kerberos</b>: بروتوكول مصادقة SSO يستخدم نظام <b>tickets</b> (عبر Ticket Granting Service) للتحقق من هوية المستخدم مرة واحدة، ثم استخدام التذاكر للوصول للخدمات المختلفة بدون إعادة إدخال بيانات الدخول.</p>
+  <p data-ar><b>Single Sign-On (SSO)</b>: تسجيل دخول واحد يمنح وصولًا لعدة تطبيقات/خدمات (مثل حساب Microsoft الواحد للوصول لـTeams, Outlook, OneDrive, SharePoint) بدون تكرار تسجيل الدخول لكل خدمة.</p>
+  <p data-en hidden><b>Single Sign-On (SSO)</b>: one login that grants access to multiple applications/services (e.g. a single Microsoft account for Teams, Outlook, OneDrive, SharePoint) without re-logging in for each service.</p>
+  <p data-ar><b>Kerberos</b>: بروتوكول مصادقة SSO يستخدم نظام <b>tickets</b> (عبر Ticket Granting Service) للتحقق من هوية المستخدم مرة واحدة، ثم استخدام التذاكر للوصول للخدمات المختلفة بدون إعادة إدخال بيانات الدخول.</p>
+  <p data-en hidden><b>Kerberos</b>: an SSO authentication protocol that uses a <b>ticket</b> system (via a Ticket Granting Service) to verify the user's identity once, then uses tickets to access different services without re-entering credentials.</p>
  </div>
 </section>
 
 <section id="m10-authz">
  <span class="mod-tag">MODULE 10 · LESSON 10.2</span>
- <h2>التفويض وإدارة الحسابات</h2>
+ <h2 data-ar>التفويض وإدارة الحسابات</h2>
+ <h2 data-en hidden>Authorization and Account Management</h2>
  <p class="sub">Authorization and Account Management — Access Control Models · PAM</p>
 
  <div class="two">
   <div class="card">
-   <p><b>DAC (Discretionary Access Control)</b></p>
-   <p>وصول يتحكم به <b>مالك</b> المورد نفسه — هو من يقرر من يصل لملفاته/موارده.</p>
+   <p data-ar><b>DAC (Discretionary Access Control)</b></p>
+   <p data-en hidden><b>DAC (Discretionary Access Control)</b></p>
+   <p data-ar>وصول يتحكم به <b>مالك</b> المورد نفسه — هو من يقرر من يصل لملفاته/موارده.</p>
+   <p data-en hidden>Access controlled by the <b>owner</b> of the resource itself — they decide who can reach their files/resources.</p>
   </div>
   <div class="card">
-   <p><b>RBAC (Role-Based Access Control)</b></p>
-   <p>الوصول يُمنح حسب <b>الدور الوظيفي</b> للمستخدم داخل المؤسسة، لا بشكل فردي.</p>
+   <p data-ar><b>RBAC (Role-Based Access Control)</b></p>
+   <p data-en hidden><b>RBAC (Role-Based Access Control)</b></p>
+   <p data-ar>الوصول يُمنح حسب <b>الدور الوظيفي</b> للمستخدم داخل المؤسسة، لا بشكل فردي.</p>
+   <p data-en hidden>Access is granted based on the user's <b>job role</b> within the organization, not individually.</p>
   </div>
  </div>
 
  <div class="card">
-  <p><b>مصطلحات إدارة الوصول</b>:</p>
-  <ul>
+  <p data-ar><b>مصطلحات إدارة الوصول</b>:</p>
+  <p data-en hidden><b>Access management terms</b>:</p>
+  <ul data-ar>
    <li><b>Privileged Account</b>: حساب للتغييرات الجوهرية بالنظام.</li>
    <li><b>PAM (Privileged Access Management)</b>: ضوابط لمنع إساءة استخدام الحسابات المميّزة.</li>
    <li><b>Least Privilege</b>: منح المستخدمين الصلاحيات الكافية فقط لأداء عملهم، لا أكثر.</li>
    <li><b>Separation of Duties</b>: تقسيم المهام الحساسة بين عدة أشخاص لمنع سوء الاستخدام.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Privileged Account</b>: an account for making fundamental changes to the system.</li>
+   <li><b>PAM (Privileged Access Management)</b>: controls to prevent misuse of privileged accounts.</li>
+   <li><b>Least Privilege</b>: granting users only the permissions sufficient for their job, no more.</li>
+   <li><b>Separation of Duties</b>: splitting sensitive tasks among several people to prevent misuse.</li>
+  </ul>
  </div>
 
- <div class="tip">مثال تطبيقي: مدير الأنظمة يحتاج وصولًا لإعدادات السيرفرات والأمان، بينما مندوب المبيعات يحتاج فقط لبرنامج المبيعات وقاعدة بيانات العملاء — هذا هو مبدأ <b>Least Privilege</b> عمليًا.</div>
+ <div class="tip" data-ar>مثال تطبيقي: مدير الأنظمة يحتاج وصولًا لإعدادات السيرفرات والأمان، بينما مندوب المبيعات يحتاج فقط لبرنامج المبيعات وقاعدة بيانات العملاء — هذا هو مبدأ <b>Least Privilege</b> عمليًا.</div>
+ <div class="tip" data-en hidden>Practical example: a systems admin needs access to server and security settings, while a sales rep only needs the sales program and customer database — that's <b>Least Privilege</b> in practice.</div>
 </section>
 
 <section id="m10-hardening">
  <span class="mod-tag">MODULE 10 · LESSON 10.3</span>
- <h2>تحصين الشبكة — Network Hardening</h2>
+ <h2 data-ar>تحصين الشبكة — Network Hardening</h2>
+ <h2 data-en hidden>Network Hardening</h2>
  <p class="sub">Defense in Depth Model · Device & Service Hardening</p>
 
  <div class="card">
-  <p><b>نموذج الدفاع متعدد الطبقات (Defense in Depth)</b> — من الداخل للخارج:</p>
+  <p data-ar><b>نموذج الدفاع متعدد الطبقات (Defense in Depth)</b> — من الداخل للخارج:</p>
+  <p data-en hidden><b>Defense in Depth model</b> — from inside out:</p>
   <table>
-   <tr><th>الطبقة</th><th>أمثلة الضوابط</th></tr>
-   <tr><td><b>Data</b></td><td>قوائم التحكم بالوصول (ACLs)</td></tr>
-   <tr><td><b>Application</b></td><td>تحصين التطبيقات، مضاد الفيروسات</td></tr>
-   <tr><td><b>Host</b></td><td>تحصين نظام التشغيل، التحديثات، كلمة مرور BIOS</td></tr>
-   <tr><td><b>Internal Network</b></td><td>Subnets، VLANs، IDS/IPS</td></tr>
-   <tr><td><b>Perimeter</b></td><td>جدران نارية، VPN، IDS/IPS</td></tr>
-   <tr><td><b>Physical Security</b></td><td>حراس، أقفال، أجهزة تتبّع، أسوار</td></tr>
-   <tr><td><b>Policies, Procedures & Awareness</b></td><td>توعية المستخدمين، وثائق أمنية</td></tr>
+   <tr data-ar><th>الطبقة</th><th>أمثلة الضوابط</th></tr>
+   <tr data-en hidden><th>Layer</th><th>Example controls</th></tr>
+   <tr data-ar><td><b>Data</b></td><td>قوائم التحكم بالوصول (ACLs)</td></tr>
+   <tr data-en hidden><td><b>Data</b></td><td>Access Control Lists (ACLs)</td></tr>
+   <tr data-ar><td><b>Application</b></td><td>تحصين التطبيقات، مضاد الفيروسات</td></tr>
+   <tr data-en hidden><td><b>Application</b></td><td>Application hardening, antivirus</td></tr>
+   <tr data-ar><td><b>Host</b></td><td>تحصين نظام التشغيل، التحديثات، كلمة مرور BIOS</td></tr>
+   <tr data-en hidden><td><b>Host</b></td><td>OS hardening, updates, BIOS password</td></tr>
+   <tr data-ar><td><b>Internal Network</b></td><td>Subnets، VLANs، IDS/IPS</td></tr>
+   <tr data-en hidden><td><b>Internal Network</b></td><td>Subnets, VLANs, IDS/IPS</td></tr>
+   <tr data-ar><td><b>Perimeter</b></td><td>جدران نارية، VPN، IDS/IPS</td></tr>
+   <tr data-en hidden><td><b>Perimeter</b></td><td>Firewalls, VPN, IDS/IPS</td></tr>
+   <tr data-ar><td><b>Physical Security</b></td><td>حراس، أقفال، أجهزة تتبّع، أسوار</td></tr>
+   <tr data-en hidden><td><b>Physical Security</b></td><td>Guards, locks, tracking devices, fences</td></tr>
+   <tr data-ar><td><b>Policies, Procedures & Awareness</b></td><td>توعية المستخدمين، وثائق أمنية</td></tr>
+   <tr data-en hidden><td><b>Policies, Procedures & Awareness</b></td><td>User awareness, security documentation</td></tr>
   </table>
  </div>
 
@@ -269,24 +321,29 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <rect x="160" y="160" width="80" height="20" rx="6" fill="#1a7f5c"/>
    <text x="200" y="174" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Data</text>
   </svg>
-  <div class="cap">Defense in Depth: البيانات (الأصل الأهم) في المركز، محاطة بطبقات حماية متتالية — كل طبقة تُبطئ أو توقف مهاجمًا تجاوز الطبقة التي قبلها.</div>
+  <div class="cap" data-ar>Defense in Depth: البيانات (الأصل الأهم) في المركز، محاطة بطبقات حماية متتالية — كل طبقة تُبطئ أو توقف مهاجمًا تجاوز الطبقة التي قبلها.</div>
+  <div class="cap" data-en hidden>Defense in Depth: data (the most important asset) sits at the center, surrounded by successive protective layers — each layer slows or stops an attacker who got past the layer before it.</div>
  </div>
 
- <div class="tip">كل مضيف وجهاز شبكة <b>يجب تحصينه</b> — تحديث النظام، إغلاق المنافذ/الخدمات غير الضرورية، تغيير بيانات الدخول الافتراضية، وتطبيق سياسات كلمات مرور قوية.</div>
+ <div class="tip" data-ar>كل مضيف وجهاز شبكة <b>يجب تحصينه</b> — تحديث النظام، إغلاق المنافذ/الخدمات غير الضرورية، تغيير بيانات الدخول الافتراضية، وتطبيق سياسات كلمات مرور قوية.</div>
+ <div class="tip" data-en hidden>Every host and network device <b>must be hardened</b> — update the system, close unnecessary ports/services, change default credentials, and enforce strong password policies.</div>
 </section>
 
 <section id="m10-switch">
  <span class="mod-tag">MODULE 10 · LESSON 10.4</span>
- <h2>أمان السويتش — Switch Security</h2>
+ <h2 data-ar>أمان السويتش — Switch Security</h2>
+ <h2 data-en hidden>Switch Security</h2>
  <p class="sub">NAC · Port Security</p>
 
  <div class="card">
-  <p><b>مصطلحات أساسية</b>: <b>NAC (Network Access Control)</b>: نظام لمصادقة وتفويض الوصول للشبكة. <b>Switch</b>: يربط ويدير الاتصال على الشبكة. <b>Switch Ports</b>: منافذ مخصصة على السويتش لتوصيل الأجهزة.</p>
+  <p data-ar><b>مصطلحات أساسية</b>: <b>NAC (Network Access Control)</b>: نظام لمصادقة وتفويض الوصول للشبكة. <b>Switch</b>: يربط ويدير الاتصال على الشبكة. <b>Switch Ports</b>: منافذ مخصصة على السويتش لتوصيل الأجهزة.</p>
+  <p data-en hidden><b>Basic terms</b>: <b>NAC (Network Access Control)</b>: a system for authenticating and authorizing access to the network. <b>Switch</b>: connects and manages communication on the network. <b>Switch Ports</b>: dedicated ports on the switch for connecting devices.</p>
  </div>
 
  <div class="card">
-  <p><b>إجراءات أمان المنافذ (Port Security)</b>:</p>
-  <ul>
+  <p data-ar><b>إجراءات أمان المنافذ (Port Security)</b>:</p>
+  <p data-en hidden><b>Port Security measures</b>:</p>
+  <ul data-ar>
    <li>تأمين الوصول الفيزيائي للسويتش.</li>
    <li>تحديث الـfirmware بانتظام.</li>
    <li>تعطيل المنافذ غير المستخدَمة.</li>
@@ -295,42 +352,70 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <li>إعداد <b>DHCP snooping</b> لفحص أصالة ترافيك DHCP.</li>
    <li>تطبيق مصادقة <b>802.1x (EAP)</b>.</li>
   </ul>
+  <ul data-en hidden>
+   <li>Secure physical access to the switch.</li>
+   <li>Update firmware regularly.</li>
+   <li>Disable unused ports.</li>
+   <li>Configure <b>MAC filtering</b> to define allowed devices.</li>
+   <li>Enable <b>Router Advertisement (RA) Guard</b>.</li>
+   <li>Configure <b>DHCP snooping</b> to inspect the authenticity of DHCP traffic.</li>
+   <li>Apply <b>802.1x (EAP)</b> authentication.</li>
+  </ul>
  </div>
 
- <div class="tip">سيناريو: جهاز غير مصرّح به اتصل بغرفة السيرفرات → أمّني الوصول الفيزيائي (خزائن قابلة للقفل) → عطّلي المنافذ غير المستخدَمة → فعّلي MAC filtering → فعّلي DHCP snooping لفحص أصالة ترافيك DHCP.</div>
+ <div class="tip" data-ar>سيناريو: جهاز غير مصرّح به اتصل بغرفة السيرفرات → أمّني الوصول الفيزيائي (خزائن قابلة للقفل) → عطّلي المنافذ غير المستخدَمة → فعّلي MAC filtering → فعّلي DHCP snooping لفحص أصالة ترافيك DHCP.</div>
+ <div class="tip" data-en hidden>Scenario: an unauthorized device connected in the server room → secure physical access (lockable cabinets) → disable unused ports → enable MAC filtering → enable DHCP snooping to check the authenticity of DHCP traffic.</div>
 </section>
 
 <section id="m10-rules">
  <span class="mod-tag">MODULE 10 · LESSON 10.5</span>
- <h2>قواعد أمان الشبكة — Network Security Rules</h2>
+ <h2 data-ar>قواعد أمان الشبكة — Network Security Rules</h2>
+ <h2 data-en hidden>Network Security Rules</h2>
  <p class="sub">Firewalls vs Proxy Servers · Content Filtering</p>
 
  <table>
-  <tr><th></th><th>Firewalls</th><th>Proxy Servers</th></tr>
-  <tr><td>الوظيفة</td><td>يرشّح كل الترافيك ويحظر/يسمح حسب <b>ACL</b></td><td>يفكك ويحلل الحزم للتأكد من الالتزام بالقواعد</td></tr>
-  <tr><td>التطبيق</td><td>يضمن مرور الترافيك المصرَّح به فقط</td><td>يطبّق سياسات الشركة</td></tr>
-  <tr><td>الموقع</td><td>يرشّح الترافيك الداخل/الخارج من segment الشبكة</td><td>يدير ويعيد توجيه الطلبات للتحكم بالوصول للإنترنت</td></tr>
+  <tr data-ar><th></th><th>Firewalls</th><th>Proxy Servers</th></tr>
+  <tr data-en hidden><th></th><th>Firewalls</th><th>Proxy Servers</th></tr>
+  <tr data-ar><td>الوظيفة</td><td>يرشّح كل الترافيك ويحظر/يسمح حسب <b>ACL</b></td><td>يفكك ويحلل الحزم للتأكد من الالتزام بالقواعد</td></tr>
+  <tr data-en hidden><td>Function</td><td>Filters all traffic and blocks/allows based on an <b>ACL</b></td><td>Deconstructs and analyzes packets to confirm compliance with rules</td></tr>
+  <tr data-ar><td>التطبيق</td><td>يضمن مرور الترافيك المصرَّح به فقط</td><td>يطبّق سياسات الشركة</td></tr>
+  <tr data-en hidden><td>Enforcement</td><td>Ensures only authorized traffic passes</td><td>Enforces company policies</td></tr>
+  <tr data-ar><td>الموقع</td><td>يرشّح الترافيك الداخل/الخارج من segment الشبكة</td><td>يدير ويعيد توجيه الطلبات للتحكم بالوصول للإنترنت</td></tr>
+  <tr data-en hidden><td>Location</td><td>Filters traffic in/out of a network segment</td><td>Manages and redirects requests to control internet access</td></tr>
  </table>
 
  <table>
-  <tr><th>معايير تصفية الجدار الناري</th><th>معايير تصفية Proxy Server</th></tr>
-  <tr><td>Protocol</td><td>عناوين URL وأسماء النطاقات</td></tr>
-  <tr><td>عنوان المصدر والوجهة</td><td>كلمات مفتاحية بالمحتوى</td></tr>
-  <tr><td>منفذ المصدر والوجهة</td><td>استخدام الـbandwidth</td></tr>
-  <tr><td>Stateful inspection</td><td>سمعة الموقع (reputation)</td></tr>
+  <tr data-ar><th>معايير تصفية الجدار الناري</th><th>معايير تصفية Proxy Server</th></tr>
+  <tr data-en hidden><th>Firewall filtering criteria</th><th>Proxy Server filtering criteria</th></tr>
+  <tr data-ar><td>Protocol</td><td>عناوين URL وأسماء النطاقات</td></tr>
+  <tr data-en hidden><td>Protocol</td><td>URLs and domain names</td></tr>
+  <tr data-ar><td>عنوان المصدر والوجهة</td><td>كلمات مفتاحية بالمحتوى</td></tr>
+  <tr data-en hidden><td>Source and destination address</td><td>Keywords in content</td></tr>
+  <tr data-ar><td>منفذ المصدر والوجهة</td><td>استخدام الـbandwidth</td></tr>
+  <tr data-en hidden><td>Source and destination port</td><td>Bandwidth usage</td></tr>
+  <tr data-ar><td>Stateful inspection</td><td>سمعة الموقع (reputation)</td></tr>
+  <tr data-en hidden><td>Stateful inspection</td><td>Site reputation</td></tr>
  </table>
 
  <div class="card">
-  <p><b>أخطاء إعداد الجدار الناري الشائعة</b>:</p>
-  <ul>
+  <p data-ar><b>أخطاء إعداد الجدار الناري الشائعة</b>:</p>
+  <p data-en hidden><b>Common firewall configuration mistakes</b>:</p>
+  <ul data-ar>
    <li>ACL متساهلة جدًا (Overly permissive).</li>
    <li>ACL متشددة جدًا (Overly prohibitive).</li>
    <li>عدم تطبيق <b>implicit deny</b> (الرفض الافتراضي لما لم يُسمح صراحة).</li>
    <li>إعدادات تسجيل (logging) غير صحيحة.</li>
   </ul>
+  <ul data-en hidden>
+   <li>Overly permissive ACL.</li>
+   <li>Overly prohibitive ACL.</li>
+   <li>Not applying <b>implicit deny</b> (denying by default anything not explicitly allowed).</li>
+   <li>Incorrect logging settings.</li>
+  </ul>
  </div>
 
- <div class="tip"><b>ملخص الوحدة 10</b>: التحكم بالوصول يضمن وصول المستخدمين/الأجهزة المصرّح لهم فقط؛ الدفاع متعدد الطبقات يحمي السرية والسلامة والتوفر؛ الجدران النارية والـProxy servers ترشّح الترافيك وتدير الطلبات؛ تصفية المحتوى تضبط الترافيك بدقة حسب البروتوكول والعناوين والمحتوى.</div>
+ <div class="tip" data-ar><b>ملخص الوحدة 10</b>: التحكم بالوصول يضمن وصول المستخدمين/الأجهزة المصرّح لهم فقط؛ الدفاع متعدد الطبقات يحمي السرية والسلامة والتوفر؛ الجدران النارية والـProxy servers ترشّح الترافيك وتدير الطلبات؛ تصفية المحتوى تضبط الترافيك بدقة حسب البروتوكول والعناوين والمحتوى.</div>
+ <div class="tip" data-en hidden><b>Module 10 summary</b>: access control ensures only authorized users/devices connect; defense in depth protects confidentiality, integrity, and availability; firewalls and proxy servers filter traffic and manage requests; content filtering fine-tunes traffic by protocol, addresses, and content.</div>
 </section>
 
 
@@ -339,5 +424,22 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <div class="modnav"><a href="module9-guide.html">← الوحدة 9</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module11-guide.html">الوحدة 11 →</a></div>
 
 <footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 10 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
