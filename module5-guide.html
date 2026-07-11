@@ -80,6 +80,7 @@ tr:nth-child(even) td{background:var(--soft)}
 
 .tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
 .tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
@@ -91,6 +92,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
 .diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .diagrow .dbox svg{max-width:100%;height:auto}
@@ -120,8 +122,8 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -134,6 +136,16 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  a{color:inherit;text-decoration:none}
  h2{border-right-width:4px}
 }
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+@media(max-width:720px){html[dir="ltr"] .osi .desc{border-left:none;border-top:1px dashed var(--line)}}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -141,12 +153,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 5</span>
-  <h1>الوحدة 5 — التوجيه والسويتشنج المتقدم</h1>
+  <h1 data-ar>الوحدة 5 — التوجيه والسويتشنج المتقدم</h1>
+  <h1 data-en hidden>Module 5 — Routing and Advanced Switching</h1>
   <p>Configuring Routing and Advanced Switching — Routing Technologies · Dynamic Routing · NAT · Firewalls · Enterprise Topologies · VLANs</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html" class="active">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html" class="active">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m5-routing">5.1 Routing</a>
@@ -162,21 +175,30 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m5-routing">
  <span class="mod-tag">MODULE 5 · LESSON 5.1</span>
- <h2>تقنيات التوجيه — Routing Technologies</h2>
+ <h2 data-ar>تقنيات التوجيه — Routing Technologies</h2>
+ <h2 data-en hidden>Routing Technologies</h2>
  <p class="sub">Configuring Routing and Advanced Switching — Routing Tables & Path Selection</p>
 
  <div class="card">
-  <p><b>إدخال جدول التوجيه (Routing Table Entry)</b> يتحدد بأربع معلومات أساسية:</p>
-  <ul>
+  <p data-ar><b>إدخال جدول التوجيه (Routing Table Entry)</b> يتحدد بأربع معلومات أساسية:</p>
+  <p data-en hidden><b>A Routing Table Entry</b> is defined by four core pieces of information:</p>
+  <ul data-ar>
    <li><b>Protocol</b>: البروتوكول المستخدم لتعلّم المسار (static, RIP, OSPF...).</li>
    <li><b>Destination</b>: الشبكة الوجهة.</li>
    <li><b>Interface</b>: المنفذ الخارج منه الترافيك.</li>
    <li><b>Gateway/Next hop</b>: العنوان التالي في الطريق للوصول للوجهة.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Protocol</b>: the protocol used to learn the route (static, RIP, OSPF...).</li>
+   <li><b>Destination</b>: the destination network.</li>
+   <li><b>Interface</b>: the port the traffic exits from.</li>
+   <li><b>Gateway/Next hop</b>: the next address on the way to the destination.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>أنواع إدخالات جدول التوجيه</b>: <span class="en">Directly connected routes</span> (شبكات متصلة مباشرة) · <span class="en">Remote routes</span> (شبكات بعيدة عبر راوتر آخر) · <span class="en">Host routes</span> (مسار لمضيف واحد محدد) · <span class="en">Default route</span> (المسار الافتراضي لأي وجهة غير معروفة).</p>
+  <p data-ar><b>أنواع إدخالات جدول التوجيه</b>: <span class="en">Directly connected routes</span> (شبكات متصلة مباشرة) · <span class="en">Remote routes</span> (شبكات بعيدة عبر راوتر آخر) · <span class="en">Host routes</span> (مسار لمضيف واحد محدد) · <span class="en">Default route</span> (المسار الافتراضي لأي وجهة غير معروفة).</p>
+  <p data-en hidden><b>Types of routing table entries</b>: <span class="en">Directly connected routes</span> (directly connected networks) · <span class="en">Remote routes</span> (remote networks via another router) · <span class="en">Host routes</span> (a route to one specific host) · <span class="en">Default route</span> (the fallback route for any unknown destination).</p>
  </div>
 
  <div class="flow">
@@ -184,71 +206,92 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  </div>
 
  <div class="card">
-  <p><b>قاعدة وضع الراوتر (Router Placement)</b>:</p>
-  <ul>
+  <p data-ar><b>قاعدة وضع الراوتر (Router Placement)</b>:</p>
+  <p data-en hidden><b>The Router Placement rule</b>:</p>
+  <ul data-ar>
    <li>الأجهزة على نفس الـsubnet/IP network <b>لا يجب</b> أن يفصل بينها راوتر.</li>
    <li>الأجهزة على subnets/IP networks مختلفة <b>يجب</b> أن يفصل بينها راوتر.</li>
   </ul>
+  <ul data-en hidden>
+   <li>Devices on the same subnet/IP network must <b>not</b> be separated by a router.</li>
+   <li>Devices on different subnets/IP networks must be separated by a router.</li>
+  </ul>
  </div>
 
- <h3>أدوات التوجيه</h3>
+ <h3 data-ar>أدوات التوجيه</h3>
+ <h3 data-en hidden>Routing Tools</h3>
  <table>
-  <tr><th>الأداة</th><th>الوظيفة</th></tr>
-  <tr><td><span class="en">show route</span></td><td>يعرض جدول التوجيه</td></tr>
-  <tr><td><span class="en">show arp</span></td><td>يسرد إدخالات جدول ARP الحالية</td></tr>
-  <tr><td><span class="en">route</span></td><td>يعرض جدول التوجيه IP الخاص بمضيف</td></tr>
-  <tr><td><span class="en">traceroute</span></td><td>يتتبع مسار الحزمة حتى الوجهة</td></tr>
+  <tr data-ar><th>الأداة</th><th>الوظيفة</th></tr>
+  <tr data-en hidden><th>Tool</th><th>Function</th></tr>
+  <tr><td><span class="en">show route</span></td><td data-ar>يعرض جدول التوجيه</td><td data-en hidden>Displays the routing table</td></tr>
+  <tr><td><span class="en">show arp</span></td><td data-ar>يسرد إدخالات جدول ARP الحالية</td><td data-en hidden>Lists the current ARP table entries</td></tr>
+  <tr><td><span class="en">route</span></td><td data-ar>يعرض جدول التوجيه IP الخاص بمضيف</td><td data-en hidden>Displays a host's IP routing table</td></tr>
+  <tr><td><span class="en">traceroute</span></td><td data-ar>يتتبع مسار الحزمة حتى الوجهة</td><td data-en hidden>Traces the packet's path to the destination</td></tr>
  </table>
 </section>
 
 <section id="m5-dynamic">
  <span class="mod-tag">MODULE 5 · LESSON 5.2</span>
- <h2>بروتوكولات التوجيه الديناميكي — Dynamic Routing</h2>
+ <h2 data-ar>بروتوكولات التوجيه الديناميكي — Dynamic Routing</h2>
+ <h2 data-en hidden>Dynamic Routing Protocols</h2>
  <p class="sub">Static vs Dynamic Routing · RIP · EIGRP · OSPF · BGP</p>
 
  <table>
-  <tr><th>الخاصية</th><th>Static Routing</th><th>Dynamic Routing</th></tr>
-  <tr><td>الإعداد</td><td>يدوي</td><td>يتكيّف تلقائيًا مع تغيّرات الشبكة</td></tr>
-  <tr><td>المرونة</td><td>غير مرن — يحتاج تدخل يدوي للتحديث</td><td>مرن — يتكيّف لحظيًا</td></tr>
-  <tr><td>التحكم</td><td>تحكم كامل بمسارات التوجيه</td><td>تحكم مباشر أقل بالمسارات</td></tr>
+  <tr data-ar><th>الخاصية</th><th>Static Routing</th><th>Dynamic Routing</th></tr>
+  <tr data-en hidden><th>Property</th><th>Static Routing</th><th>Dynamic Routing</th></tr>
+  <tr data-ar><td>الإعداد</td><td>يدوي</td><td>يتكيّف تلقائيًا مع تغيّرات الشبكة</td></tr>
+  <tr data-en hidden><td>Configuration</td><td>Manual</td><td>Adapts automatically to network changes</td></tr>
+  <tr data-ar><td>المرونة</td><td>غير مرن — يحتاج تدخل يدوي للتحديث</td><td>مرن — يتكيّف لحظيًا</td></tr>
+  <tr data-en hidden><td>Flexibility</td><td>Inflexible — needs manual updates</td><td>Flexible — adapts in real time</td></tr>
+  <tr data-ar><td>التحكم</td><td>تحكم كامل بمسارات التوجيه</td><td>تحكم مباشر أقل بالمسارات</td></tr>
+  <tr data-en hidden><td>Control</td><td>Full control over routing paths</td><td>Less direct control over paths</td></tr>
  </table>
 
  <div class="card">
-  <p><b>بروتوكولات التوجيه الديناميكي (Dynamic Routing Protocols)</b>: خوارزميات تحدّث معلومات المسار تلقائيًا وتضبط المسارات بين عقد الشبكة عبر توزيع معلومات الـtopology.</p>
-  <p><b>المزايا</b>: قابلية التوسع، التكيّف مع تغيّرات الشبكة، وتقليل عبء الإدارة.</p>
-  <p><b>اعتبارات</b>: تحتاج معالجة وذاكرة أكبر، والإعداد الصحيح مهم جدًا للأمان والكفاءة.</p>
+  <p data-ar><b>بروتوكولات التوجيه الديناميكي (Dynamic Routing Protocols)</b>: خوارزميات تحدّث معلومات المسار تلقائيًا وتضبط المسارات بين عقد الشبكة عبر توزيع معلومات الـtopology.</p>
+  <p data-en hidden><b>Dynamic Routing Protocols</b>: algorithms that automatically update route information and adjust paths between network nodes by distributing topology information.</p>
+  <p data-ar><b>المزايا</b>: قابلية التوسع، التكيّف مع تغيّرات الشبكة، وتقليل عبء الإدارة.</p>
+  <p data-en hidden><b>Advantages</b>: scalability, adapting to network changes, and reducing administrative overhead.</p>
+  <p data-ar><b>اعتبارات</b>: تحتاج معالجة وذاكرة أكبر، والإعداد الصحيح مهم جدًا للأمان والكفاءة.</p>
+  <p data-en hidden><b>Considerations</b>: needs more processing power and memory, and correct configuration is critical for security and efficiency.</p>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>RIP (Routing Information Protocol)</b></p>
-   <p>بروتوكول قديم (legacy) يجد أفضل مسار باستخدام <b>hop count</b> كمقياس، بحد أقصى <b>15 hop</b>. غير مناسب للشبكات الكبيرة وبطيء التقارب (convergence).</p>
+   <p data-ar>بروتوكول قديم (legacy) يجد أفضل مسار باستخدام <b>hop count</b> كمقياس، بحد أقصى <b>15 hop</b>. غير مناسب للشبكات الكبيرة وبطيء التقارب (convergence).</p>
+   <p data-en hidden>A legacy protocol that finds the best path using <b>hop count</b> as its metric, with a maximum of <b>15 hops</b>. Not suitable for large networks and slow to converge.</p>
   </div>
   <div class="card">
    <p><b>EIGRP (Enhanced IGRP)</b></p>
-   <p>بروتوكول <span class="en">distance-vector</span> متقدم، يستخدم مقاييس (bandwidth, delay, load, reliability)، يدعم IPv4 وIPv6 معًا. <b>ملكية Cisco</b> وأكثر تعقيدًا بالإعداد.</p>
+   <p data-ar>بروتوكول <span class="en">distance-vector</span> متقدم، يستخدم مقاييس (bandwidth, delay, load, reliability)، يدعم IPv4 وIPv6 معًا. <b>ملكية Cisco</b> وأكثر تعقيدًا بالإعداد.</p>
+   <p data-en hidden>An advanced <span class="en">distance-vector</span> protocol, using metrics (bandwidth, delay, load, reliability), supporting both IPv4 and IPv6. <b>Cisco-proprietary</b> and more complex to configure.</p>
   </div>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>OSPF (Open Shortest Path First)</b></p>
-   <p>بروتوكول <span class="en">link-state</span> يحسب أقصر مسار عبر خوارزمية <b>Shortest Path First</b>، يدعم topologies معقدة، لكنه يحتاج تخطيطًا أدق وbandwidth أكثر من بروتوكولات distance-vector.</p>
+   <p data-ar>بروتوكول <span class="en">link-state</span> يحسب أقصر مسار عبر خوارزمية <b>Shortest Path First</b>، يدعم topologies معقدة، لكنه يحتاج تخطيطًا أدق وbandwidth أكثر من بروتوكولات distance-vector.</p>
+   <p data-en hidden>A <span class="en">link-state</span> protocol that computes the shortest path using the <b>Shortest Path First</b> algorithm, supports complex topologies, but needs more careful planning and more bandwidth than distance-vector protocols.</p>
   </div>
   <div class="card">
    <p><b>BGP (Border Gateway Protocol)</b></p>
-   <p>بروتوكول يمكّن الإنترنت من تبادل معلومات التوجيه بين <span class="en">autonomous systems</span>. قابل للتوسع لحجم الإنترنت، يستخدم <b>path vector</b>، ويدعم <b>CIDR</b>.</p>
+   <p data-ar>بروتوكول يمكّن الإنترنت من تبادل معلومات التوجيه بين <span class="en">autonomous systems</span>. قابل للتوسع لحجم الإنترنت، يستخدم <b>path vector</b>، ويدعم <b>CIDR</b>.</p>
+   <p data-en hidden>The protocol that lets the internet exchange routing information between <span class="en">autonomous systems</span>. Scalable to the size of the internet, uses <b>path vector</b>, and supports <b>CIDR</b>.</p>
   </div>
  </div>
 </section>
 
 <section id="m5-nat">
  <span class="mod-tag">MODULE 5 · LESSON 5.3</span>
- <h2>ترجمة عناوين الشبكة — Network Address Translation</h2>
+ <h2 data-ar>ترجمة عناوين الشبكة — Network Address Translation</h2>
+ <h2 data-en hidden>Network Address Translation</h2>
  <p class="sub">NAT Types · Edge Routers · PAT</p>
 
  <div class="card">
-  <p><b>NAT</b>: يعدّل معلومات عنوان الشبكة في رؤوس الحزم أثناء عبورها، ما يزيد الأمان بإخفاء عناوين IP الداخلية عن الشبكات الخارجية، ويتيح لعدة أجهزة بالشبكة المحلية مشاركة عنوان IP عام واحد، وبالتالي <b>يوفّر عناوين IP العامة</b>.</p>
+  <p data-ar><b>NAT</b>: يعدّل معلومات عنوان الشبكة في رؤوس الحزم أثناء عبورها، ما يزيد الأمان بإخفاء عناوين IP الداخلية عن الشبكات الخارجية، ويتيح لعدة أجهزة بالشبكة المحلية مشاركة عنوان IP عام واحد، وبالتالي <b>يوفّر عناوين IP العامة</b>.</p>
+  <p data-en hidden><b>NAT</b>: modifies network address information in packet headers as they pass through, increasing security by hiding internal IP addresses from external networks, and letting several devices on the local network share a single public IP — thus <b>conserving public IP addresses</b>.</p>
  </div>
 
  <div class="diagram">
@@ -267,89 +310,126 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <text x="425" y="90" text-anchor="middle" font-size="11.5" fill="#ffe38a">203.0.113.5</text>
    <defs><marker id="arr5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5b7280"/></marker></defs>
   </svg>
-  <div class="cap">NAT يترجم عناوين IP الخاصة المتعددة داخل الشبكة المحلية إلى عنوان IP عام واحد عند الخروج للإنترنت.</div>
+  <div class="cap" data-ar>NAT يترجم عناوين IP الخاصة المتعددة داخل الشبكة المحلية إلى عنوان IP عام واحد عند الخروج للإنترنت.</div>
+  <div class="cap" data-en hidden>NAT translates multiple private IP addresses inside the local network into a single public IP address when exiting to the internet.</div>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>Dynamic NAT</b></p>
-   <p>يربط العناوين الداخلية بمجموعة (pool) من العناوين الخارجية ديناميكيًا — يسمح لعدد أكبر من الأجهزة بمشاركة نفس عناوين IP الخارجية.</p>
+   <p data-ar>يربط العناوين الداخلية بمجموعة (pool) من العناوين الخارجية ديناميكيًا — يسمح لعدد أكبر من الأجهزة بمشاركة نفس عناوين IP الخارجية.</p>
+   <p data-en hidden>Maps internal addresses to a pool of external addresses dynamically — letting more devices share the same external IP addresses.</p>
   </div>
   <div class="card">
    <p><b>Static NAT</b></p>
-   <p>يترجم عنوان IP داخلي واحد إلى عنوان IP خارجي واحد ثابت — يسمح باتصالات واردة (inbound) تبدأ من خارج الشبكة.</p>
+   <p data-ar>يترجم عنوان IP داخلي واحد إلى عنوان IP خارجي واحد ثابت — يسمح باتصالات واردة (inbound) تبدأ من خارج الشبكة.</p>
+   <p data-en hidden>Translates one internal IP address to one fixed external IP address — allowing inbound connections that originate from outside the network.</p>
   </div>
  </div>
 
  <div class="card">
-  <p><b>Edge Router</b>: يقع عند حدود الشبكة المتصلة بشبكات خارجية (كالإنترنت)، يدير تدفق البيانات بين الداخل والخارج، يوجّه البيانات لوجهتها، وينفّذ NAT ويطبّق إجراءات الأمان.</p>
-  <ul>
+  <p data-ar><b>Edge Router</b>: يقع عند حدود الشبكة المتصلة بشبكات خارجية (كالإنترنت)، يدير تدفق البيانات بين الداخل والخارج، يوجّه البيانات لوجهتها، وينفّذ NAT ويطبّق إجراءات الأمان.</p>
+  <p data-en hidden><b>Edge Router</b>: sits at the boundary of a network connecting to external networks (like the internet), manages data flow between inside and outside, routes data to its destination, and performs NAT and applies security measures.</p>
+  <ul data-ar>
    <li><b>CE (Customer Edge)</b>: عند حافة شبكة العميل، يربط الشبكة الداخلية بشبكة المزوّد ويعمل كحاجز أمني.</li>
    <li><b>PE (Provider's Edge)</b>: عند حافة شبكة المزوّد، يركّز على حماية سرية بيانات العميل أثناء عبورها شبكة المزوّد.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>CE (Customer Edge)</b>: at the edge of the customer's network, connects the internal network to the provider's network and acts as a security boundary.</li>
+   <li><b>PE (Provider's Edge)</b>: at the edge of the provider's network, focused on protecting the confidentiality of customer data as it crosses the provider's network.</li>
+  </ul>
  </div>
 
- <div class="tip"><b>PAT (Port Address Translation)</b>: شكل من NAT يسمح لعدة أجهزة داخلية بمشاركة عنوان IP عام واحد في نفس الوقت، عبر تمييز كل اتصال برقم منفذ (port) مختلف — الأشيع استخدامًا في راوترات SOHO.</div>
+ <div class="tip" data-ar><b>PAT (Port Address Translation)</b>: شكل من NAT يسمح لعدة أجهزة داخلية بمشاركة عنوان IP عام واحد في نفس الوقت، عبر تمييز كل اتصال برقم منفذ (port) مختلف — الأشيع استخدامًا في راوترات SOHO.</div>
+ <div class="tip" data-en hidden><b>PAT (Port Address Translation)</b>: a form of NAT that lets several internal devices share a single public IP address at the same time, by distinguishing each connection with a different port number — the most common form used in SOHO routers.</div>
 </section>
 
 <section id="m5-firewalls">
  <span class="mod-tag">MODULE 5 · LESSON 5.4</span>
- <h2>الجدران النارية — Firewalls</h2>
+ <h2 data-ar>الجدران النارية — Firewalls</h2>
+ <h2 data-en hidden>Firewalls</h2>
  <p class="sub">Firewall Types · Stateless vs Stateful</p>
 
  <table>
-  <tr><th>النوع</th><th>الوصف</th></tr>
-  <tr><td><b>Hardware</b></td><td>أجهزة قائمة بذاتها (standalone appliances) أو مدمجة داخل الراوترات</td></tr>
-  <tr><td><b>Software</b></td><td>تعمل على نظام التشغيل (OS-based) أو برامج طرف ثالث</td></tr>
-  <tr><td><b>Cloud-based</b></td><td>جدار ناري كخدمة سحابية <span class="en">(Firewall as a Service - FAAS)</span></td></tr>
-  <tr><td><b>UTM (Unified Threat Management)</b></td><td>أجهزة أمنية شاملة تجمع عدة وظائف بجهاز واحد</td></tr>
-  <tr><td><b>NGFW (Next-Generation Firewall)</b></td><td>جدار ناري متقدم بقدرات فحص أعمق</td></tr>
+  <tr data-ar><th>النوع</th><th>الوصف</th></tr>
+  <tr data-en hidden><th>Type</th><th>Description</th></tr>
+  <tr data-ar><td><b>Hardware</b></td><td>أجهزة قائمة بذاتها (standalone appliances) أو مدمجة داخل الراوترات</td></tr>
+  <tr data-en hidden><td><b>Hardware</b></td><td>Standalone appliances or built into routers</td></tr>
+  <tr data-ar><td><b>Software</b></td><td>تعمل على نظام التشغيل (OS-based) أو برامج طرف ثالث</td></tr>
+  <tr data-en hidden><td><b>Software</b></td><td>OS-based or third-party programs</td></tr>
+  <tr data-ar><td><b>Cloud-based</b></td><td>جدار ناري كخدمة سحابية <span class="en">(Firewall as a Service - FAAS)</span></td></tr>
+  <tr data-en hidden><td><b>Cloud-based</b></td><td>A firewall delivered as a cloud service (<span class="en">Firewall as a Service - FAAS</span>)</td></tr>
+  <tr data-ar><td><b>UTM (Unified Threat Management)</b></td><td>أجهزة أمنية شاملة تجمع عدة وظائف بجهاز واحد</td></tr>
+  <tr data-en hidden><td><b>UTM (Unified Threat Management)</b></td><td>Comprehensive security appliances combining several functions in one device</td></tr>
+  <tr data-ar><td><b>NGFW (Next-Generation Firewall)</b></td><td>جدار ناري متقدم بقدرات فحص أعمق</td></tr>
+  <tr data-en hidden><td><b>NGFW (Next-Generation Firewall)</b></td><td>An advanced firewall with deeper inspection capabilities</td></tr>
  </table>
 
  <table>
-  <tr><th>الخاصية</th><th>Stateless (Packet Filtering)</th><th>Stateful (Circuit Level Gateway)</th></tr>
-  <tr><td>آلية الفحص</td><td>يُرشِّح حسب IP وbروتوكول ورقم المنفذ فقط</td><td>يفحص الحزم ويتتبع حالة الاتصالات النشطة</td></tr>
-  <tr><td>طبقة العمل</td><td>Network layer</td><td>Session layer</td></tr>
-  <tr><td>الاستخدام الأنسب</td><td>شبكات صغيرة أو متطلبات أمان أبسط</td><td>شبكات الشركات حيث حماية البيانات الحساسة أمر حرج</td></tr>
+  <tr data-ar><th>الخاصية</th><th>Stateless (Packet Filtering)</th><th>Stateful (Circuit Level Gateway)</th></tr>
+  <tr data-en hidden><th>Property</th><th>Stateless (Packet Filtering)</th><th>Stateful (Circuit Level Gateway)</th></tr>
+  <tr data-ar><td>آلية الفحص</td><td>يُرشِّح حسب IP وbروتوكول ورقم المنفذ فقط</td><td>يفحص الحزم ويتتبع حالة الاتصالات النشطة</td></tr>
+  <tr data-en hidden><td>Inspection method</td><td>Filters only by IP, protocol, and port number</td><td>Inspects packets and tracks the state of active connections</td></tr>
+  <tr data-ar><td>طبقة العمل</td><td>Network layer</td><td>Session layer</td></tr>
+  <tr data-en hidden><td>Operating layer</td><td>Network layer</td><td>Session layer</td></tr>
+  <tr data-ar><td>الاستخدام الأنسب</td><td>شبكات صغيرة أو متطلبات أمان أبسط</td><td>شبكات الشركات حيث حماية البيانات الحساسة أمر حرج</td></tr>
+  <tr data-en hidden><td>Best fit</td><td>Small networks or simpler security requirements</td><td>Enterprise networks where protecting sensitive data is critical</td></tr>
  </table>
 </section>
 
 <section id="m5-enterprise">
  <span class="mod-tag">MODULE 5 · LESSON 5.5</span>
- <h2>هيكليات شبكات المؤسسات — Enterprise Network Topologies</h2>
+ <h2 data-ar>هيكليات شبكات المؤسسات — Enterprise Network Topologies</h2>
+ <h2 data-en hidden>Enterprise Network Topologies</h2>
  <p class="sub">Tree Topology · Hybrid Topologies</p>
 
  <div class="card">
-  <p><b>Tree Topology</b>: هيكلية هرمية تجمع خصائص من الـstar والـbus — عقد مجمّعة في مجموعات نجمية (star groups) متصلة ببعضها عبر backbone خطي.</p>
+  <p data-ar><b>Tree Topology</b>: هيكلية هرمية تجمع خصائص من الـstar والـbus — عقد مجمّعة في مجموعات نجمية (star groups) متصلة ببعضها عبر backbone خطي.</p>
+  <p data-en hidden><b>Tree Topology</b>: a hierarchical structure combining traits of star and bus — nodes grouped into star groups connected to one another over a linear backbone.</p>
  </div>
 
  <div class="card">
-  <p><b>Hybrid Topologies</b>: تُستخدم عندما لا تكفي هيكلية أساسية واحدة (star/mesh/point-to-point)، فتُمزَج عدة هيكليات معًا لتحقيق <b>التكرار (redundancy)</b> و<b>تحمّل الأعطال (fault tolerance)</b>.</p>
-  <ul>
+  <p data-ar><b>Hybrid Topologies</b>: تُستخدم عندما لا تكفي هيكلية أساسية واحدة (star/mesh/point-to-point)، فتُمزَج عدة هيكليات معًا لتحقيق <b>التكرار (redundancy)</b> و<b>تحمّل الأعطال (fault tolerance)</b>.</p>
+  <p data-en hidden><b>Hybrid Topologies</b>: used when a single basic topology (star/mesh/point-to-point) isn't enough, so several topologies are blended together to achieve <b>redundancy</b> and <b>fault tolerance</b>.</p>
+  <ul data-ar>
    <li><b>Hierarchical Star</b>: طبقات متتالية من الـstar topology.</li>
    <li><b>Hierarchical Star-Mesh</b>: دمج الـstar الهرمي مع روابط mesh للتكرار.</li>
    <li><b>Star of Stars</b>: مجموعات star متصلة بنقطة مركزية.</li>
    <li><b>3-Tiered Network Hierarchy</b>: ثلاث طبقات (core, distribution, access) — الأشيع في شبكات المؤسسات الكبيرة.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Hierarchical Star</b>: successive layers of star topology.</li>
+   <li><b>Hierarchical Star-Mesh</b>: combining a hierarchical star with mesh links for redundancy.</li>
+   <li><b>Star of Stars</b>: star groups connected to a central point.</li>
+   <li><b>3-Tiered Network Hierarchy</b>: three layers (core, distribution, access) — the most common in large enterprise networks.</li>
   </ul>
  </div>
 </section>
 
 <section id="m5-vlan">
  <span class="mod-tag">MODULE 5 · LESSON 5.6</span>
- <h2>الشبكات المحلية الافتراضية — Virtual LANs</h2>
+ <h2 data-ar>الشبكات المحلية الافتراضية — Virtual LANs</h2>
+ <h2 data-en hidden>Virtual LANs</h2>
  <p class="sub">VLAN Segmentation · Tagging · VLAN Types · Trunking</p>
 
  <div class="card">
-  <p><b>VLAN</b>: تُنشئ شبكات منفصلة منطقيًا داخل بنية تحتية فيزيائية واحدة.</p>
-  <ul>
+  <p data-ar><b>VLAN</b>: تُنشئ شبكات منفصلة منطقيًا داخل بنية تحتية فيزيائية واحدة.</p>
+  <p data-en hidden><b>VLAN</b>: creates logically separate networks within a single physical infrastructure.</p>
+  <ul data-ar>
    <li><b>Segmentation</b>: تقسّم الشبكة لأجزاء معزولة صغيرة، بدون الحاجة لعتاد منفصل.</li>
    <li><b>Flexibility</b>: تجميع المستخدمين والأجهزة حسب الوظيفة أو القسم أو الفريق، بغض النظر عن الموقع الفيزيائي.</li>
    <li><b>Simplified Administration</b>: يمكن إدارة تغييرات/نقل الشبكة بسهولة دون تعديل التمديدات الفيزيائية.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Segmentation</b>: splits the network into small isolated parts, without needing separate hardware.</li>
+   <li><b>Flexibility</b>: grouping users and devices by function, department, or team, regardless of physical location.</li>
+   <li><b>Simplified Administration</b>: network changes/moves can be managed easily without touching the physical wiring.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>VLAN IDs والعضوية</b>: كل VLAN له معرّف فريد (<b>VLAN ID</b>)، وكل جهاز عضو في VLAN معيّن. الأجهزة تستخدم VLAN IDs لإدارة الترافيك، ويحتاج <b>Inter-VLAN routing</b> للتواصل بين VLANs مختلفة.</p>
+  <p data-ar><b>VLAN IDs والعضوية</b>: كل VLAN له معرّف فريد (<b>VLAN ID</b>)، وكل جهاز عضو في VLAN معيّن. الأجهزة تستخدم VLAN IDs لإدارة الترافيك، ويحتاج <b>Inter-VLAN routing</b> للتواصل بين VLANs مختلفة.</p>
+  <p data-en hidden><b>VLAN IDs and membership</b>: every VLAN has a unique identifier (<b>VLAN ID</b>), and every device is a member of a specific VLAN. Devices use VLAN IDs to manage traffic, and <b>Inter-VLAN routing</b> is needed for different VLANs to communicate.</p>
  </div>
 
  <div class="diagram">
@@ -368,63 +448,97 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <text x="215" y="100" text-anchor="middle" font-size="12" fill="#e8672c" font-weight="700">VLAN 20 (IT)</text>
    <text x="325" y="100" text-anchor="middle" font-size="12" fill="#1a7f5c" font-weight="700">VLAN 30 (Voice)</text>
   </svg>
-  <div class="cap">نفس السويتش الفيزيائي، لكن كل مجموعة منافذ (ports) معزولة منطقيًا في VLAN مختلف — كأنها شبكات منفصلة تمامًا رغم مشاركة نفس العتاد.</div>
+  <div class="cap" data-ar>نفس السويتش الفيزيائي، لكن كل مجموعة منافذ (ports) معزولة منطقيًا في VLAN مختلف — كأنها شبكات منفصلة تمامًا رغم مشاركة نفس العتاد.</div>
+  <div class="cap" data-en hidden>The same physical switch, but each group of ports is logically isolated into a different VLAN — as if they were completely separate networks despite sharing the same hardware.</div>
  </div>
 
  <div class="card">
-  <p><b>Port Tagging</b>: طريقة لتوسيم حزم البيانات بمعرّف VLAN.</p>
-  <ul>
+  <p data-ar><b>Port Tagging</b>: طريقة لتوسيم حزم البيانات بمعرّف VLAN.</p>
+  <p data-en hidden><b>Port Tagging</b>: a way of marking data packets with a VLAN identifier.</p>
+  <ul data-ar>
    <li><b>Tagged ports</b>: مُهيّأة لاستقبال وفهم الحزم التي تحمل معرّف VLAN.</li>
    <li><b>Untagged ports</b>: تستقبل البيانات بدون معرّف VLAN.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Tagged ports</b>: configured to receive and understand packets carrying a VLAN identifier.</li>
+   <li><b>Untagged ports</b>: receive data with no VLAN identifier.</li>
+  </ul>
  </div>
 
- <h3>أنواع VLANs</h3>
+ <h3 data-ar>أنواع VLANs</h3>
+ <h3 data-en hidden>Types of VLANs</h3>
  <table>
-  <tr><th>النوع</th><th>الوصف</th></tr>
-  <tr><td><b>Default VLAN</b></td><td>VLAN بمعرّف <span class="en">ID 1</span>، يجب أن يبقى غير مستخدَم — غيّري المنافذ غير المستخدَمة من ID 1</td></tr>
-  <tr><td><b>Native VLAN</b></td><td>يستقبل كل الإطارات غير الموسومة (untagged)؛ يجب أن يكون منفصلًا عن الـDefault VLAN، ومطابقًا على كل السويتشات</td></tr>
-  <tr><td><b>Voice VLAN</b></td><td>يتعامل مع ترافيك أنظمة VoIP، يضمن جودة اتصال الصوت، ويعطيها أولوية</td></tr>
-  <tr><td><b>Management VLAN</b></td><td>يدير أجهزة وخدمات الشبكة، معزول عن ترافيك المستخدمين وعن Default VLAN</td></tr>
+  <tr data-ar><th>النوع</th><th>الوصف</th></tr>
+  <tr data-en hidden><th>Type</th><th>Description</th></tr>
+  <tr data-ar><td><b>Default VLAN</b></td><td>VLAN بمعرّف <span class="en">ID 1</span>، يجب أن يبقى غير مستخدَم — غيّري المنافذ غير المستخدَمة من ID 1</td></tr>
+  <tr data-en hidden><td><b>Default VLAN</b></td><td>The VLAN with <span class="en">ID 1</span>, which should stay unused — move unused ports off ID 1</td></tr>
+  <tr data-ar><td><b>Native VLAN</b></td><td>يستقبل كل الإطارات غير الموسومة (untagged)؛ يجب أن يكون منفصلًا عن الـDefault VLAN، ومطابقًا على كل السويتشات</td></tr>
+  <tr data-en hidden><td><b>Native VLAN</b></td><td>Receives all untagged frames; must be separate from the Default VLAN, and match across every switch</td></tr>
+  <tr data-ar><td><b>Voice VLAN</b></td><td>يتعامل مع ترافيك أنظمة VoIP، يضمن جودة اتصال الصوت، ويعطيها أولوية</td></tr>
+  <tr data-en hidden><td><b>Voice VLAN</b></td><td>Handles VoIP system traffic, ensures call quality, and gives it priority</td></tr>
+  <tr data-ar><td><b>Management VLAN</b></td><td>يدير أجهزة وخدمات الشبكة، معزول عن ترافيك المستخدمين وعن Default VLAN</td></tr>
+  <tr data-en hidden><td><b>Management VLAN</b></td><td>Manages network devices and services, isolated from user traffic and the Default VLAN</td></tr>
  </table>
 
- <div class="tip"><b>Trunking</b>: يجمع عدة روابط فيزيائية في رابط منطقي واحد ينقل ترافيك عدة VLANs معًا بين السويتشات.</div>
+ <div class="tip" data-ar><b>Trunking</b>: يجمع عدة روابط فيزيائية في رابط منطقي واحد ينقل ترافيك عدة VLANs معًا بين السويتشات.</div>
+ <div class="tip" data-en hidden><b>Trunking</b>: combines several physical links into one logical link that carries multiple VLANs' traffic together between switches.</div>
 </section>
 
 <section id="m5-ts">
  <span class="mod-tag">MODULE 5 · LESSON 5.7</span>
- <h2>استكشاف أخطاء التوجيه والـVLAN</h2>
+ <h2 data-ar>استكشاف أخطاء التوجيه والـVLAN</h2>
+ <h2 data-en hidden>Routing and VLAN Troubleshooting</h2>
  <p class="sub">Routing and VLAN Troubleshooting</p>
 
  <div class="card">
-  <p><b>مشاكل جدول التوجيه</b>: اشتبهي بمشكلة توجيه إذا نجح ping للـdefault gateway لكن فشل مع بعض/كل المضيفين على شبكة بعيدة.</p>
+  <p data-ar><b>مشاكل جدول التوجيه</b>: اشتبهي بمشكلة توجيه إذا نجح ping للـdefault gateway لكن فشل مع بعض/كل المضيفين على شبكة بعيدة.</p>
+  <p data-en hidden><b>Routing table problems</b>: suspect a routing problem if a ping to the default gateway succeeds but fails with some/all hosts on a remote network.</p>
   <div class="flow">
    <span>Verify connectivity</span><i>←</i><span>Review routing table entries</span><i>←</i><span>Check subnet masks</span><i>←</i><span>Examine static & dynamic routes</span><i>←</i><span>Use traceroute</span>
   </div>
  </div>
 
  <div class="card">
-  <p><b>مشاكل الـDefault Route وحلقات التوجيه</b>: إعداد خاطئ لـdefault routes أو توزيعها لراوترات أخرى قد يسبب <b>routing loops</b>.</p>
+  <p data-ar><b>مشاكل الـDefault Route وحلقات التوجيه</b>: إعداد خاطئ لـdefault routes أو توزيعها لراوترات أخرى قد يسبب <b>routing loops</b>.</p>
+  <p data-en hidden><b>Default Route problems and routing loops</b>: misconfigured default routes, or distributing them to other routers, can cause <b>routing loops</b>.</p>
   <div class="flow">
    <span>Verify host configuration</span><i>←</i><span>Ping default gateway</span><i>←</i><span>Check router settings</span><i>←</i><span>Review physical connections</span><i>←</i><span>Identify routing loops</span>
   </div>
  </div>
 
  <div class="card">
-  <p><b>مشاكل تخصيص VLAN</b>: الأجهزة على نفس VLAN تحتاج إعداد IP متطابق (عنوان، subnet mask، gateway، DNS).</p>
+  <p data-ar><b>مشاكل تخصيص VLAN</b>: الأجهزة على نفس VLAN تحتاج إعداد IP متطابق (عنوان، subnet mask، gateway، DNS).</p>
+  <p data-en hidden><b>VLAN assignment problems</b>: devices on the same VLAN need matching IP configuration (address, subnet mask, gateway, DNS).</p>
   <div class="flow">
    <span>Check physical connectivity</span><i>←</i><span>Ping the loopback address</span><i>←</i><span>Ping the default gateway</span><i>←</i><span>Ping a remote host or server</span>
   </div>
  </div>
 
- <div class="tip"><b>ملخص الوحدة 5</b>: جداول التوجيه هي خرائط الراوتر الداخلية لتوجيه الحزم؛ التوجيه الديناميكي يُؤتمت تبادل معلومات المسار بين الراوترات؛ NAT يترجم بين عناوين خاصة وعامة للوصول للإنترنت؛ VLANs تنشئ أجزاء شبكة منطقية داخل شبكة فيزيائية واحدة.</div>
+ <div class="tip" data-ar><b>ملخص الوحدة 5</b>: جداول التوجيه هي خرائط الراوتر الداخلية لتوجيه الحزم؛ التوجيه الديناميكي يُؤتمت تبادل معلومات المسار بين الراوترات؛ NAT يترجم بين عناوين خاصة وعامة للوصول للإنترنت؛ VLANs تنشئ أجزاء شبكة منطقية داخل شبكة فيزيائية واحدة.</div>
+ <div class="tip" data-en hidden><b>Module 5 summary</b>: routing tables are a router's internal map for forwarding packets; dynamic routing automates the exchange of route information between routers; NAT translates between private and public addresses for internet access; VLANs create logical network segments within a single physical network.</div>
 </section>
 
 
 </main>
 
-<div class="modnav"><a href="module4-guide.html">← الوحدة 4</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module6-guide.html">الوحدة 6 →</a></div>
+<div class="modnav"><a href="module4-guide.html"><span data-ar>← الوحدة 4</span><span data-en hidden>← Module 4</span></a><a href="index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="module6-guide.html"><span data-ar>الوحدة 6 →</span><span data-en hidden>Module 6 →</span></a></div>
 
-<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 5 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<footer><span data-ar>ملخص دراسي — CompTIA Network+ N10-009 · Module 5 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Network+ N10-009 · Module 5 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>

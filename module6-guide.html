@@ -80,6 +80,7 @@ tr:nth-child(even) td{background:var(--soft)}
 
 .tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
 .tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
@@ -91,6 +92,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
 .diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .diagrow .dbox svg{max-width:100%;height:auto}
@@ -120,8 +122,8 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -134,6 +136,16 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  a{color:inherit;text-decoration:none}
  h2{border-right-width:4px}
 }
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+@media(max-width:720px){html[dir="ltr"] .osi .desc{border-left:none;border-top:1px dashed var(--line)}}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -141,12 +153,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 6</span>
-  <h1>الوحدة 6 — تطبيق خدمات الشبكة</h1>
+  <h1 data-ar>الوحدة 6 — تطبيق خدمات الشبكة</h1>
+  <h1 data-en hidden>Module 6 — Implementing Network Services</h1>
   <p>Implementing Network Services — Transport Protocols · DHCP · APIPA/SLAAC · DHCP Relay · DNS</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html" class="active">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html" class="active">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m6-transport">6.1 TCP/UDP</a>
@@ -161,15 +174,18 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m6-transport">
  <span class="mod-tag">MODULE 6 · LESSON 6.1</span>
- <h2>بروتوكولات Transport وApplication</h2>
+ <h2 data-ar>بروتوكولات Transport وApplication</h2>
+ <h2 data-en hidden>Transport and Application Protocols</h2>
  <p class="sub">Implementing Network Services — TCP · UDP</p>
 
  <div class="card">
-  <p><b>دور طبقة Transport (L4)</b>: توصيل بيانات التطبيقات <span class="en">multiplexed</span> فوق الاتصال الأساسي والعنونة والتوجيه اللي توفّرها الطبقات 1-3.</p>
+  <p data-ar><b>دور طبقة Transport (L4)</b>: توصيل بيانات التطبيقات <span class="en">multiplexed</span> فوق الاتصال الأساسي والعنونة والتوجيه اللي توفّرها الطبقات 1-3.</p>
+  <p data-en hidden><b>The role of the Transport layer (L4)</b>: delivering <span class="en">multiplexed</span> application data on top of the basic connectivity, addressing, and routing provided by layers 1-3.</p>
  </div>
 
  <div class="card">
-  <p><b>TCP (Transmission Control Protocol)</b>: ينقل البيانات بطريقة <b>موثوقة (reliable)</b> بين الأجهزة. للحفاظ على حالة الاتصال، يحتاج حقول رأس (header fields) كثيرة:</p>
+  <p data-ar><b>TCP (Transmission Control Protocol)</b>: ينقل البيانات بطريقة <b>موثوقة (reliable)</b> بين الأجهزة. للحفاظ على حالة الاتصال، يحتاج حقول رأس (header fields) كثيرة:</p>
+  <p data-en hidden><b>TCP (Transmission Control Protocol)</b>: transfers data <b>reliably</b> between devices. To maintain connection state, it needs many header fields:</p>
   <p><span class="en">Source port, Destination port, Sequence number, Ack number, Data length, Flags, Window, Checksum, Urgent Pointer, Options</span></p>
  </div>
 
@@ -181,19 +197,22 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  </div>
 
  <div class="card">
-  <p><b>UDP (User Datagram Protocol)</b>: ينقل البيانات بطريقة <b>غير مضمونة (non-guaranteed)</b> بدون handshake أو تتبع حالة — أخف وأسرع لكن بدون ضمان وصول. حقول الرأس أبسط: <span class="en">Source port, Destination port, Message length, Checksum</span>.</p>
+  <p data-ar><b>UDP (User Datagram Protocol)</b>: ينقل البيانات بطريقة <b>غير مضمونة (non-guaranteed)</b> بدون handshake أو تتبع حالة — أخف وأسرع لكن بدون ضمان وصول. حقول الرأس أبسط: <span class="en">Source port, Destination port, Message length, Checksum</span>.</p>
+  <p data-en hidden><b>UDP (User Datagram Protocol)</b>: transfers data on a <b>non-guaranteed</b> basis with no handshake or state tracking — lighter and faster, but with no delivery guarantee. The header fields are simpler: <span class="en">Source port, Destination port, Message length, Checksum</span>.</p>
  </div>
 
- <div class="tip">فرّقي: <b>TCP</b> = اتصال موثوق مع handshake وتتبع حالة (مثل الويب والبريد). <b>UDP</b> = إرسال سريع بدون ضمان (مثل البث الحي والـVoIP).</div>
+ <div class="tip" data-ar>فرّقي: <b>TCP</b> = اتصال موثوق مع handshake وتتبع حالة (مثل الويب والبريد). <b>UDP</b> = إرسال سريع بدون ضمان (مثل البث الحي والـVoIP).</div>
+ <div class="tip" data-en hidden>Tell them apart: <b>TCP</b> = a reliable connection with a handshake and state tracking (like the web and email). <b>UDP</b> = fast transmission with no guarantee (like live streaming and VoIP).</div>
 </section>
 
 <section id="m6-dhcp">
  <span class="mod-tag">MODULE 6 · LESSON 6.2</span>
- <h2>DHCP — التوزيع التلقائي لعناوين IP</h2>
+ <h2 data-ar>DHCP — التوزيع التلقائي لعناوين IP</h2>
+ <h2 data-en hidden>DHCP — Automatic IP Address Distribution</h2>
  <p class="sub">DHCP Process · Server Configuration · Reservations & Exclusions</p>
 
  <div class="card">
-  <p><b>عملية DHCP (DORA)</b>:</p>
+  <p><b data-ar>عملية DHCP (DORA)</b><b data-en hidden>The DHCP Process (DORA)</b>:</p>
   <div class="flow">
    <span>DHCP Discover (Client)</span><i>←</i><span>DHCP Offer (Server)</span><i>←</i><span>DHCP Request (Client)</span><i>←</i><span>DHCP Ack (Server)</span>
   </div>
@@ -218,40 +237,50 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
     <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#e8672c"/></marker>
    </defs>
   </svg>
-  <div class="cap">تسلسل DORA: العميل يبث Discover، السيرفر يعرض Offer، العميل يطلب Request، السيرفر يؤكد بـACK.</div>
+  <div class="cap" data-ar>تسلسل DORA: العميل يبث Discover، السيرفر يعرض Offer، العميل يطلب Request، السيرفر يؤكد بـACK.</div>
+  <div class="cap" data-en hidden>The DORA sequence: the client broadcasts Discover, the server responds with Offer, the client sends Request, and the server confirms with ACK.</div>
  </div>
 
  <div class="card">
-  <p><b>إعداد سيرفر DHCP</b>: يجب أن يُعطى <b>عنوان IP ثابت (static)</b>، ويُهيَّأ بنطاق (<span class="en">scope</span>) من عناوين IP/subnet masks لتوزيعها.</p>
+  <p data-ar><b>إعداد سيرفر DHCP</b>: يجب أن يُعطى <b>عنوان IP ثابت (static)</b>، ويُهيَّأ بنطاق (<span class="en">scope</span>) من عناوين IP/subnet masks لتوزيعها.</p>
+  <p data-en hidden><b>DHCP server configuration</b>: it must be given a <b>static IP address</b>, and configured with a <span class="en">scope</span> of IP addresses/subnet masks to distribute.</p>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>DHCP Reservations</b></p>
-   <p>تضمن حصول جهاز معيّن دائمًا على نفس عنوان IP، مرتبطة بعنوان <b>MAC</b> الجهاز — مثالية للأجهزة اللي تحتاج عنوان IP ثابت (طابعات، سيرفرات).</p>
+   <p data-ar>تضمن حصول جهاز معيّن دائمًا على نفس عنوان IP، مرتبطة بعنوان <b>MAC</b> الجهاز — مثالية للأجهزة اللي تحتاج عنوان IP ثابت (طابعات، سيرفرات).</p>
+   <p data-en hidden>Ensures a specific device always gets the same IP address, tied to the device's <b>MAC</b> address — ideal for devices that need a fixed IP (printers, servers).</p>
   </div>
   <div class="card">
    <p><b>DHCP Exclusions</b></p>
-   <p>تمنع توزيع نطاق معيّن من عناوين IP — يُحجز ولا يُوزَّع، مثالية للعناوين المخصصة يدويًا (statically assigned) لأجهزة أخرى.</p>
+   <p data-ar>تمنع توزيع نطاق معيّن من عناوين IP — يُحجز ولا يُوزَّع، مثالية للعناوين المخصصة يدويًا (statically assigned) لأجهزة أخرى.</p>
+   <p data-en hidden>Prevents a specific range of IP addresses from being distributed — reserved but never handed out, ideal for addresses statically assigned to other devices.</p>
   </div>
  </div>
 </section>
 
 <section id="m6-apipa">
  <span class="mod-tag">MODULE 6 · LESSON 6.3</span>
- <h2>APIPA وSLAAC</h2>
+ <h2>APIPA <span data-ar>وSLAAC</span><span data-en hidden>and SLAAC</span></h2>
  <p class="sub">Automatic Private IP Addressing · IPv6 Autoconfiguration</p>
 
  <div class="card">
-  <p><b>APIPA (Automatic Private IP Addressing)</b>: يسمح للأجهزة بتعيين عنوان IP لنفسها ذاتيًا عندما لا يتوفر سيرفر DHCP — للاستخدام على الشبكة المحلية فقط.</p>
-  <ul>
+  <p data-ar><b>APIPA (Automatic Private IP Addressing)</b>: يسمح للأجهزة بتعيين عنوان IP لنفسها ذاتيًا عندما لا يتوفر سيرفر DHCP — للاستخدام على الشبكة المحلية فقط.</p>
+  <p data-en hidden><b>APIPA (Automatic Private IP Addressing)</b>: lets devices assign themselves an IP address when no DHCP server is available — for local network use only.</p>
+  <ul data-ar>
    <li>يعيّن لنفسه عنوانًا بين <code class="k">169.254.0.1</code> و<code class="k">169.254.254.255</code>.</li>
    <li>يستخدم <b>ARP</b> للتأكد أن العنوان فريد وغير مكرر.</li>
+  </ul>
+  <ul data-en hidden>
+   <li>Assigns itself an address between <code class="k">169.254.0.1</code> and <code class="k">169.254.254.255</code>.</li>
+   <li>Uses <b>ARP</b> to confirm the address is unique and not duplicated.</li>
   </ul>
  </div>
 
  <div class="card">
-  <p><b>IPv6 Autoconfiguration</b>: يسمح لأجهزة شبكة IPv6 بضبط عناوينها الخاصة بدون الحاجة لـDHCP. نوعان:</p>
+  <p data-ar><b>IPv6 Autoconfiguration</b>: يسمح لأجهزة شبكة IPv6 بضبط عناوينها الخاصة بدون الحاجة لـDHCP. نوعان:</p>
+  <p data-en hidden><b>IPv6 Autoconfiguration</b>: lets IPv6 network devices configure their own addresses without needing DHCP. Two types:</p>
   <ul>
    <li><b>SLAAC</b> — Stateless Address Autoconfiguration</li>
    <li><b>DHCPv6</b> — Stateful Address Autoconfiguration</li>
@@ -259,49 +288,64 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  </div>
 
  <table>
-  <tr><th></th><th>SLAAC</th><th>DHCPv6</th></tr>
-  <tr><td><b>الوظيفة</b></td><td>إعداد عنوان Link-local، مُعرِّف واجهة EUI-64، اكتشاف تكرار العنوان (DAD)</td><td>طلب/استجابة DHCPv6، تخصيص وإدارة العناوين، مدة الإيجار والتجديد</td></tr>
-  <tr><td><b>المزايا</b></td><td>إعداد شبكة مبسّط، لا حاجة لسيرفر مركزي</td><td>تحكم مركزي، إعدادات شبكة موسّعة</td></tr>
-  <tr><td><b>القيود</b></td><td>لا يوفّر عناوين سيرفر DNS، تبنٍّ محدود ببعض البيئات</td><td>يحتاج إعداد سيرفر مخصص، أعقد من SLAAC</td></tr>
+  <tr data-ar><th></th><th>SLAAC</th><th>DHCPv6</th></tr>
+  <tr data-en hidden><th></th><th>SLAAC</th><th>DHCPv6</th></tr>
+  <tr data-ar><td><b>الوظيفة</b></td><td>إعداد عنوان Link-local، مُعرِّف واجهة EUI-64، اكتشاف تكرار العنوان (DAD)</td><td>طلب/استجابة DHCPv6، تخصيص وإدارة العناوين، مدة الإيجار والتجديد</td></tr>
+  <tr data-en hidden><td><b>Function</b></td><td>Link-local address setup, EUI-64 interface identifier, Duplicate Address Detection (DAD)</td><td>DHCPv6 request/response, address allocation and management, lease duration and renewal</td></tr>
+  <tr data-ar><td><b>المزايا</b></td><td>إعداد شبكة مبسّط، لا حاجة لسيرفر مركزي</td><td>تحكم مركزي، إعدادات شبكة موسّعة</td></tr>
+  <tr data-en hidden><td><b>Advantages</b></td><td>Simplified network setup, no central server needed</td><td>Central control, extended network settings</td></tr>
+  <tr data-ar><td><b>القيود</b></td><td>لا يوفّر عناوين سيرفر DNS، تبنٍّ محدود ببعض البيئات</td><td>يحتاج إعداد سيرفر مخصص، أعقد من SLAAC</td></tr>
+  <tr data-en hidden><td><b>Limitations</b></td><td>Doesn't provide DNS server addresses, limited adoption in some environments</td><td>Needs a dedicated server setup, more complex than SLAAC</td></tr>
  </table>
 </section>
 
 <section id="m6-relay">
  <span class="mod-tag">MODULE 6 · LESSON 6.4</span>
- <h2>DHCP Relay واستكشاف الأخطاء</h2>
+ <h2 data-ar>DHCP Relay واستكشاف الأخطاء</h2>
+ <h2 data-en hidden>DHCP Relay and Troubleshooting</h2>
  <p class="sub">DHCP Relay Agent · IP Helper</p>
 
  <div class="card">
-  <p><b>DHCP Relay Agent</b>: يعمل كجسر شبكي — يستقبل رسائل DHCP broadcast من العملاء ويمررها لسيرفر DHCP، ما يمكّن العملاء من الحصول على عنوان IP من سيرفر DHCP بعيد (على subnet مختلفة).</p>
+  <p data-ar><b>DHCP Relay Agent</b>: يعمل كجسر شبكي — يستقبل رسائل DHCP broadcast من العملاء ويمررها لسيرفر DHCP، ما يمكّن العملاء من الحصول على عنوان IP من سيرفر DHCP بعيد (على subnet مختلفة).</p>
+  <p data-en hidden><b>DHCP Relay Agent</b>: acts as a network bridge — it receives DHCP broadcast messages from clients and forwards them to a DHCP server, letting clients obtain an IP address from a remote DHCP server (on a different subnet).</p>
  </div>
 
  <div class="card">
-  <p><b>IP Helper</b>: ميزة على أجهزة شبكة Cisco تمرر ترافيك DHCP وبث آخر بين subnets مختلفة.</p>
-  <ul>
+  <p data-ar><b>IP Helper</b>: ميزة على أجهزة شبكة Cisco تمرر ترافيك DHCP وبث آخر بين subnets مختلفة.</p>
+  <p data-en hidden><b>IP Helper</b>: a feature on Cisco network devices that forwards DHCP and other broadcast traffic between different subnets.</p>
+  <ul data-ar>
    <li>يترجم البث (broadcast) إلى unicast لعبور حدود الـsubnet.</li>
    <li>يرسل طلبات DHCP من العملاء لسيرفر في subnet مختلفة.</li>
+  </ul>
+  <ul data-en hidden>
+   <li>Translates broadcast traffic into unicast to cross subnet boundaries.</li>
+   <li>Sends clients' DHCP requests to a server on a different subnet.</li>
   </ul>
  </div>
 </section>
 
 <section id="m6-dns">
  <span class="mod-tag">MODULE 6 · LESSON 6.5</span>
- <h2>نظام أسماء النطاقات — DNS</h2>
+ <h2 data-ar>نظام أسماء النطاقات — DNS</h2>
+ <h2 data-en hidden>Domain Name System — DNS</h2>
  <p class="sub">DNS Hierarchy · Resource Records · DNS Security</p>
 
  <div class="two">
   <div class="card">
    <p><b>Host Names</b></p>
-   <p>معرّفات محلية، يعيّنها المسؤول، أسماء سهلة الفهم للبشر، فريدة على الشبكة المحلية فقط.</p>
+   <p data-ar>معرّفات محلية، يعيّنها المسؤول، أسماء سهلة الفهم للبشر، فريدة على الشبكة المحلية فقط.</p>
+   <p data-en hidden>Local identifiers, assigned by the admin, human-friendly names, unique only on the local network.</p>
   </div>
   <div class="card">
    <p><b>Domain Names</b></p>
-   <p>معرّفات عالمية، بنية هرمية، تتجنب التكرار على الإنترنت، ومُسجَّلة عبر <span class="en">registrar</span>.</p>
+   <p data-ar>معرّفات عالمية، بنية هرمية، تتجنب التكرار على الإنترنت، ومُسجَّلة عبر <span class="en">registrar</span>.</p>
+   <p data-en hidden>Global identifiers, hierarchical structure, avoid duplication across the internet, registered through a <span class="en">registrar</span>.</p>
   </div>
  </div>
 
  <div class="card">
-  <p><b>هرمية DNS (DNS Hierarchy)</b>: <b>Root DNS Servers</b> → <b>Top Level Domain</b> (.com, .org, .gov...) → <b>Domain</b> (مثل comptia.org) → <b>Sub-Domain</b> (مثل help.comptia.org).</p>
+  <p data-ar><b>هرمية DNS (DNS Hierarchy)</b>: <b>Root DNS Servers</b> → <b>Top Level Domain</b> (.com, .org, .gov...) → <b>Domain</b> (مثل comptia.org) → <b>Sub-Domain</b> (مثل help.comptia.org).</p>
+  <p data-en hidden><b>The DNS Hierarchy</b>: <b>Root DNS Servers</b> → <b>Top Level Domain</b> (.com, .org, .gov...) → <b>Domain</b> (e.g. comptia.org) → <b>Sub-Domain</b> (e.g. help.comptia.org).</p>
  </div>
 
  <div class="diagram">
@@ -318,65 +362,111 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <line x1="200" y1="160" x2="200" y2="180" stroke="#d8e2e7" stroke-width="2"/>
    <rect x="115" y="180" width="170" height="28" rx="6" fill="#1a7f5c"/><text x="200" y="199" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">help.comptia.org</text>
   </svg>
-  <div class="cap">من الأعلى للأسفل: Root → Top Level Domain → Domain → Sub-Domain — كل مستوى يحل جزءًا من الاسم الكامل.</div>
+  <div class="cap" data-ar>من الأعلى للأسفل: Root → Top Level Domain → Domain → Sub-Domain — كل مستوى يحل جزءًا من الاسم الكامل.</div>
+  <div class="cap" data-en hidden>Top to bottom: Root → Top Level Domain → Domain → Sub-Domain — each level resolves part of the full name.</div>
  </div>
 
- <h3>أنواع السجلات (Resource Records)</h3>
+ <h3 data-ar>أنواع السجلات (Resource Records)</h3>
+ <h3 data-en hidden>Resource Record Types</h3>
  <table>
-  <tr><th>السجل</th><th>الوظيفة</th></tr>
-  <tr><td><b>SOA</b></td><td>يحدد جهة السلطة (authority) لمنطقة DNS، يحتوي معلومات التواصل الإداري ومعدلات التحديث والإصدار</td></tr>
-  <tr><td><b>Host Address (A)</b></td><td>يربط اسم النطاق بعنوان IPv4، ضروري لترجمة الأسماء إلى IP</td></tr>
-  <tr><td><b>Mail Exchange (MX)</b></td><td>يحدد سيرفرات البريد المسؤولة عن نطاق، يرتب أولوية توصيل البريد</td></tr>
-  <tr><td><b>Service (SRV)</b></td><td>يحدد مواقع خدمات معيّنة داخل نطاق، يشمل رقم المنفذ وأولوية الخدمة</td></tr>
-  <tr><td><b>Text (TXT)</b></td><td>يخزّن معلومات نصية لمصادر خارجية، تُستخدم لسجلات SPF وDKIM لتقليل السبام</td></tr>
-  <tr><td><b>Pointer (PTR)</b></td><td>يُستخدم لعمليات البحث العكسي (reverse DNS lookup)، يربط عنوان IP باسم النطاق</td></tr>
+  <tr data-ar><th>السجل</th><th>الوظيفة</th></tr>
+  <tr data-en hidden><th>Record</th><th>Function</th></tr>
+  <tr data-ar><td><b>SOA</b></td><td>يحدد جهة السلطة (authority) لمنطقة DNS، يحتوي معلومات التواصل الإداري ومعدلات التحديث والإصدار</td></tr>
+  <tr data-en hidden><td><b>SOA</b></td><td>Identifies the authority for a DNS zone, contains admin contact info and refresh/serial rates</td></tr>
+  <tr data-ar><td><b>Host Address (A)</b></td><td>يربط اسم النطاق بعنوان IPv4، ضروري لترجمة الأسماء إلى IP</td></tr>
+  <tr data-en hidden><td><b>Host Address (A)</b></td><td>Maps a domain name to an IPv4 address, essential for name-to-IP resolution</td></tr>
+  <tr data-ar><td><b>Mail Exchange (MX)</b></td><td>يحدد سيرفرات البريد المسؤولة عن نطاق، يرتب أولوية توصيل البريد</td></tr>
+  <tr data-en hidden><td><b>Mail Exchange (MX)</b></td><td>Identifies the mail servers responsible for a domain, orders mail delivery priority</td></tr>
+  <tr data-ar><td><b>Service (SRV)</b></td><td>يحدد مواقع خدمات معيّنة داخل نطاق، يشمل رقم المنفذ وأولوية الخدمة</td></tr>
+  <tr data-en hidden><td><b>Service (SRV)</b></td><td>Identifies the location of specific services within a domain, includes port number and service priority</td></tr>
+  <tr data-ar><td><b>Text (TXT)</b></td><td>يخزّن معلومات نصية لمصادر خارجية، تُستخدم لسجلات SPF وDKIM لتقليل السبام</td></tr>
+  <tr data-en hidden><td><b>Text (TXT)</b></td><td>Stores text information for external sources, used for SPF and DKIM records to reduce spam</td></tr>
+  <tr data-ar><td><b>Pointer (PTR)</b></td><td>يُستخدم لعمليات البحث العكسي (reverse DNS lookup)، يربط عنوان IP باسم النطاق</td></tr>
+  <tr data-en hidden><td><b>Pointer (PTR)</b></td><td>Used for reverse DNS lookups, maps an IP address to a domain name</td></tr>
  </table>
 
  <div class="card">
-  <p><b>أنواع سيرفرات DNS</b>:</p>
-  <ul>
+  <p data-ar><b>أنواع سيرفرات DNS</b>:</p>
+  <p data-en hidden><b>Types of DNS Servers</b>:</p>
+  <ul data-ar>
    <li><b>Primary DNS Servers</b>: تترجم أسماء النطاقات لعناوين IP، وتكون أول نقطة اتصال لاستعلامات DNS.</li>
    <li><b>Secondary DNS Servers</b>: توفّر تكرارًا وموازنة حِمل، وتعمل كنسخة احتياطية عند فشل السيرفر الأساسي.</li>
    <li><b>Cache-only DNS Servers</b>: تخزّن نتائج الحل (caching) لتسريع الاستجابة، وتقلل الحمل على السيرفرات الأساسية/الثانوية.</li>
   </ul>
-  <p><b>Internal DNS</b>: يحل أسماء النطاقات الداخلية، تديره فرق IT للشبكة المحلية، يعزز الأمان بعزل الترافيك. <b>External DNS</b>: يحل أسماء نطاقات الإنترنت للمستخدمين، تديره جهات خارجية، يركّز على حل النطاقات العامة.</p>
+  <ul data-en hidden>
+   <li><b>Primary DNS Servers</b>: translate domain names to IP addresses, and are the first point of contact for DNS queries.</li>
+   <li><b>Secondary DNS Servers</b>: provide redundancy and load balancing, and act as a backup if the primary server fails.</li>
+   <li><b>Cache-only DNS Servers</b>: cache resolution results to speed up responses, and reduce load on primary/secondary servers.</li>
+  </ul>
+  <p data-ar><b>Internal DNS</b>: يحل أسماء النطاقات الداخلية، تديره فرق IT للشبكة المحلية، يعزز الأمان بعزل الترافيك. <b>External DNS</b>: يحل أسماء نطاقات الإنترنت للمستخدمين، تديره جهات خارجية، يركّز على حل النطاقات العامة.</p>
+  <p data-en hidden><b>Internal DNS</b>: resolves internal domain names, managed by IT teams for the local network, boosts security by isolating traffic. <b>External DNS</b>: resolves internet domain names for users, managed by external parties, focused on resolving public domains.</p>
  </div>
 
- <h3>أمان DNS</h3>
+ <h3 data-ar>أمان DNS</h3>
+ <h3 data-en hidden>DNS Security</h3>
  <table>
-  <tr><th>التهديد</th><th>الحل</th></tr>
-  <tr><td>DNS spoofing وpoisoning</td><td><b>DNSSEC</b> (DNS Security Extensions)</td></tr>
-  <tr><td>التنصت واعتراض الاتصال</td><td><b>DNS over TLS (DoT)</b></td></tr>
-  <tr><td>هجمات الاعتراض والتلاعب</td><td><b>DNS over HTTPS (DoH)</b></td></tr>
+  <tr data-ar><th>التهديد</th><th>الحل</th></tr>
+  <tr data-en hidden><th>Threat</th><th>Solution</th></tr>
+  <tr data-ar><td>DNS spoofing وpoisoning</td><td><b>DNSSEC</b> (DNS Security Extensions)</td></tr>
+  <tr data-en hidden><td>DNS spoofing and poisoning</td><td><b>DNSSEC</b> (DNS Security Extensions)</td></tr>
+  <tr data-ar><td>التنصت واعتراض الاتصال</td><td><b>DNS over TLS (DoT)</b></td></tr>
+  <tr data-en hidden><td>Eavesdropping and connection interception</td><td><b>DNS over TLS (DoT)</b></td></tr>
+  <tr data-ar><td>هجمات الاعتراض والتلاعب</td><td><b>DNS over HTTPS (DoH)</b></td></tr>
+  <tr data-en hidden><td>Interception and tampering attacks</td><td><b>DNS over HTTPS (DoH)</b></td></tr>
  </table>
 </section>
 
 <section id="m6-dnsts">
  <span class="mod-tag">MODULE 6 · LESSON 6.6</span>
- <h2>استكشاف أخطاء DNS</h2>
+ <h2 data-ar>استكشاف أخطاء DNS</h2>
+ <h2 data-en hidden>DNS Troubleshooting</h2>
  <p class="sub">DNS Troubleshooting</p>
 
  <div class="card">
-  <p><b>أعراض مشاكل DNS</b>: انتهاء المهلة وأخطاء (timeouts/errors)، فشل جزئي بحل الأسماء، مشاكل تحميل الصفحات، تأخّر الوصول للمواقع.</p>
+  <p data-ar><b>أعراض مشاكل DNS</b>: انتهاء المهلة وأخطاء (timeouts/errors)، فشل جزئي بحل الأسماء، مشاكل تحميل الصفحات، تأخّر الوصول للمواقع.</p>
+  <p data-en hidden><b>Symptoms of DNS problems</b>: timeouts/errors, partial name resolution failures, page loading problems, delayed site access.</p>
  </div>
 
  <div class="card">
-  <p><b>طرق حل الأسماء (Name Resolution Methods)</b>:</p>
-  <ul>
+  <p data-ar><b>طرق حل الأسماء (Name Resolution Methods)</b>:</p>
+  <p data-en hidden><b>Name Resolution Methods</b>:</p>
+  <ul data-ar>
    <li>تحقق من <b>local name cache</b> على الجهاز.</li>
    <li>تحقق من ملف <b>HOSTS</b>.</li>
    <li>تحقق من سجلات DNS باستخدام <span class="en">nslookup</span> (ويندوز) أو <span class="en">dig</span> (لينكس).</li>
   </ul>
+  <ul data-en hidden>
+   <li>Check the <b>local name cache</b> on the device.</li>
+   <li>Check the <b>HOSTS</b> file.</li>
+   <li>Check DNS records using <span class="en">nslookup</span> (Windows) or <span class="en">dig</span> (Linux).</li>
+  </ul>
  </div>
 
- <div class="tip"><b>ملخص الوحدة 6</b>: TCP نقل موثوق مع تأكيد استلام؛ DHCP يوزّع IP وsubnet mask وبارامترات اختيارية (gateway/DNS) تلقائيًا؛ Relay Agents تمرّر ترافيك DHCP بين الـsubnets؛ DNS ترجمة هرمية عالمية من أسماء النطاقات لعناوين IP.</div>
+ <div class="tip" data-ar><b>ملخص الوحدة 6</b>: TCP نقل موثوق مع تأكيد استلام؛ DHCP يوزّع IP وsubnet mask وبارامترات اختيارية (gateway/DNS) تلقائيًا؛ Relay Agents تمرّر ترافيك DHCP بين الـsubnets؛ DNS ترجمة هرمية عالمية من أسماء النطاقات لعناوين IP.</div>
+ <div class="tip" data-en hidden><b>Module 6 summary</b>: TCP is a reliable transport with delivery acknowledgment; DHCP automatically distributes IP, subnet mask, and optional parameters (gateway/DNS); Relay Agents forward DHCP traffic between subnets; DNS is a global hierarchical translation from domain names to IP addresses.</div>
 </section>
 
 
 </main>
 
-<div class="modnav"><a href="module5-guide.html">← الوحدة 5</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module7-guide.html">الوحدة 7 →</a></div>
+<div class="modnav"><a href="module5-guide.html"><span data-ar>← الوحدة 5</span><span data-en hidden>← Module 5</span></a><a href="index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="module7-guide.html"><span data-ar>الوحدة 7 →</span><span data-en hidden>Module 7 →</span></a></div>
 
-<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 6 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<footer><span data-ar>ملخص دراسي — CompTIA Network+ N10-009 · Module 6 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Network+ N10-009 · Module 6 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
