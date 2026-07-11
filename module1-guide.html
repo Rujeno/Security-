@@ -349,16 +349,47 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  <p class="sub">أساس فهم IP addressing و Subnetting لاحقًا</p>
 
  <div class="card">
-  <p>النظام العشري <span class="en">(Base 10)</span> خاناته: آحاد، عشرات، مئات... أما الثنائي <span class="en">(Binary / Base 2)</span> فكل خانة من الـ8 bits لها وزن:</p>
-  <table>
-   <tr><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
-   <tr><td colspan="8" style="text-align:center">كل bit إما 1 (نجمع وزنه) أو 0 (نتجاهله)</td></tr>
+  <p>النظام العشري <span class="en">(Base 10)</span> خاناته: آحاد، عشرات، مئات... أما الثنائي <span class="en">(Binary / Base 2)</span> فكل خانة من الـ8 bits لها وزن. اقرئي الجدول التالي من اليسار لليمين (بنفس اتجاه الأرقام الإنجليزية):</p>
+  <table style="direction:ltr">
+   <tr><th style="text-align:center">128</th><th style="text-align:center">64</th><th style="text-align:center">32</th><th style="text-align:center">16</th><th style="text-align:center">8</th><th style="text-align:center">4</th><th style="text-align:center">2</th><th style="text-align:center">1</th></tr>
   </table>
-  <p><b>مثال 1</b> — تحويل 205: نبدأ من الأكبر: 128 ✓ (باقي 77) → 64 ✓ (باقي 13) → 32 ✗ → 16 ✗ → 8 ✓ (باقي 5) → 4 ✓ (باقي 1) → 2 ✗ → 1 ✓<br>
-  النتيجة: <code class="k">205 = 1100 1101</code></p>
-  <p><b>مثال 2</b> — تحويل 132: 128 ✓ (باقي 4) → 4 ✓<br>
-  النتيجة: <code class="k">132 = 1000 0100</code></p>
+  <p>كل خانة لا تقبل إلا: <b>1</b> = استخدمي وزن الخانة، أو <b>0</b> = تجاهلي وزن الخانة — تخيليها مثل 8 مفاتيح تشغيل وإيقاف.</p>
  </div>
+
+ <div class="card">
+  <h3 style="margin-top:0">تحويل 205 إلى Binary</h3>
+  <p>نبدأ بأكبر وزن وهو <b>128</b>، ونسأل عند كل خانة: هل أستطيع طرح هذا الوزن من الرقم المتبقي؟</p>
+  <table>
+   <tr><th>الوزن</th><th>هل نحتاجه؟</th><th>الباقي</th><th>الخانة</th></tr>
+   <tr><td>128</td><td>نعم، لأن 205 أكبر من 128</td><td><span class="en">205 − 128 = 77</span></td><td>1</td></tr>
+   <tr><td>64</td><td>نعم، لأن 77 أكبر من 64</td><td><span class="en">77 − 64 = 13</span></td><td>1</td></tr>
+   <tr><td>32</td><td>لا، لأن 13 أصغر من 32</td><td>13</td><td>0</td></tr>
+   <tr><td>16</td><td>لا، لأن 13 أصغر من 16</td><td>13</td><td>0</td></tr>
+   <tr><td>8</td><td>نعم</td><td><span class="en">13 − 8 = 5</span></td><td>1</td></tr>
+   <tr><td>4</td><td>نعم</td><td><span class="en">5 − 4 = 1</span></td><td>1</td></tr>
+   <tr><td>2</td><td>لا</td><td>1</td><td>0</td></tr>
+   <tr><td>1</td><td>نعم</td><td><span class="en">1 − 1 = 0</span></td><td>1</td></tr>
+  </table>
+  <p style="margin-top:12px">نكتب الخانات بالترتيب (من اليسار لليمين، بنفس ترتيب الأوزان):</p>
+  <table style="direction:ltr">
+   <tr><th style="text-align:center">128</th><th style="text-align:center">64</th><th style="text-align:center">32</th><th style="text-align:center">16</th><th style="text-align:center">8</th><th style="text-align:center">4</th><th style="text-align:center">2</th><th style="text-align:center">1</th></tr>
+   <tr><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">1</td></tr>
+  </table>
+  <p style="margin-top:12px">إذن: <code class="k">205 = 1100 1101</code> — والتقسيم لمجموعتين مجرد تسهيل للقراءة، وليس رقمين منفصلين.</p>
+  <p><b>كيف نتأكد؟</b> نجمع فقط الأوزان التي فوقها 1: <code class="k">128 + 64 + 8 + 4 + 1 = 205</code></p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0">تحويل 132 إلى Binary</h3>
+  <p>نبحث عن الأوزان التي مجموعها 132: <code class="k">128 + 4 = 132</code> — إذن نضع 1 تحت 128 و4 فقط:</p>
+  <table style="direction:ltr">
+   <tr><th style="text-align:center">128</th><th style="text-align:center">64</th><th style="text-align:center">32</th><th style="text-align:center">16</th><th style="text-align:center">8</th><th style="text-align:center">4</th><th style="text-align:center">2</th><th style="text-align:center">1</th></tr>
+   <tr><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center">0</td><td style="text-align:center">1</td><td style="text-align:center">0</td><td style="text-align:center">0</td></tr>
+  </table>
+  <p style="margin-top:12px">فالنتيجة: <code class="k">132 = 1000 0100</code></p>
+ </div>
+
+ <div class="tip">أسهل قاعدة للحفظ: اقرئي الخانات دائمًا بالترتيب <span class="en">128 64 32 16 8 4 2 1</span> من اليسار لليمين، واسألي عند كل خانة: "هل أستطيع طرح هذا الوزن من الرقم المتبقي؟" — نعم ← اكتبي 1 واطرحيه، لا ← اكتبي 0 وانتقلي للخانة التالية.</div>
 </section>
 
 <section id="m1-ts">
