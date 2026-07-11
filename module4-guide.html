@@ -80,6 +80,7 @@ tr:nth-child(even) td{background:var(--soft)}
 
 .tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
 .tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
@@ -91,6 +92,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
 .diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .diagrow .dbox svg{max-width:100%;height:auto}
@@ -120,8 +122,8 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -134,6 +136,17 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  a{color:inherit;text-decoration:none}
  h2{border-right-width:4px}
 }
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] ol{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+@media(max-width:720px){html[dir="ltr"] .osi .desc{border-left:none;border-top:1px dashed var(--line)}}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -141,12 +154,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 4</span>
-  <h1>الوحدة 4 — عنونة الشبكات</h1>
+  <h1 data-ar>الوحدة 4 — عنونة الشبكات</h1>
+  <h1 data-en hidden>Module 4 — Network Addressing</h1>
   <p>Configuring Network Addressing — IP Basics · IPv4 Addressing · Subnetting/CIDR/VLSM · IP Troubleshooting Tools · IPv6 · IP Troubleshooting</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html" class="active">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html" class="active">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m4-basics">4.1 IP Basics</a>
@@ -161,48 +175,71 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m4-basics">
  <span class="mod-tag">MODULE 4 · LESSON 4.1</span>
- <h2>أساسيات بروتوكول الإنترنت — Internet Protocol Basics</h2>
- <p class="sub">Configuring Network Addressing — ARP وأنواع العنونة</p>
+ <h2 data-ar>أساسيات بروتوكول الإنترنت — Internet Protocol Basics</h2>
+ <h2 data-en hidden>Internet Protocol Basics</h2>
+ <p class="sub" data-ar>Configuring Network Addressing — ARP وأنواع العنونة</p>
+ <p class="sub" data-en hidden>Configuring Network Addressing — ARP and Addressing Types</p>
 
  <div class="card">
-  <p><b>ARP (Address Resolution Protocol)</b>: يعمل مثل دليل هاتف — يربط عنوان <span class="en">IP</span> بعنوان <span class="en">MAC</span> المقابل له على الشبكة المحلية، ليتمكن الجهاز من توجيه الإطار للوجهة الصحيحة.</p>
+  <p data-ar><b>ARP (Address Resolution Protocol)</b>: يعمل مثل دليل هاتف — يربط عنوان <span class="en">IP</span> بعنوان <span class="en">MAC</span> المقابل له على الشبكة المحلية، ليتمكن الجهاز من توجيه الإطار للوجهة الصحيحة.</p>
+  <p data-en hidden><b>ARP (Address Resolution Protocol)</b>: works like a phone book — it maps an <span class="en">IP</span> address to its corresponding <span class="en">MAC</span> address on the local network, so the device can forward the frame to the correct destination.</p>
  </div>
 
- <h3>أنواع العنونة (Addressing Types)</h3>
+ <h3 data-ar>أنواع العنونة (Addressing Types)</h3>
+ <h3 data-en hidden>Addressing Types</h3>
  <table>
-  <tr><th>النوع</th><th>الوصف</th></tr>
-  <tr><td><b>Unicast</b></td><td>مُعنوَن فقط لعنوان IP الوجهة — يُرسل للمستقبِل فقط</td></tr>
-  <tr><td><b>Broadcast</b></td><td>مُعنوَن لآخر IP في الشبكة/الـsubnet — يصل لكل المضيفين عليها</td></tr>
-  <tr><td><b>Multicast</b></td><td>مُعنوَن لمجموعة محددة من عناوين المضيفين — يصل لكل أعضاء المجموعة</td></tr>
-  <tr><td><b>Anycast</b></td><td>مُعنوَن لأي جهاز واحد من مجموعة (عادة الأقرب) — لموازنة الحمل والتكرار</td></tr>
+  <tr data-ar><th>النوع</th><th>الوصف</th></tr>
+  <tr data-en hidden><th>Type</th><th>Description</th></tr>
+  <tr data-ar><td><b>Unicast</b></td><td>مُعنوَن فقط لعنوان IP الوجهة — يُرسل للمستقبِل فقط</td></tr>
+  <tr data-en hidden><td><b>Unicast</b></td><td>Addressed only to the destination IP — sent to a single receiver</td></tr>
+  <tr data-ar><td><b>Broadcast</b></td><td>مُعنوَن لآخر IP في الشبكة/الـsubnet — يصل لكل المضيفين عليها</td></tr>
+  <tr data-en hidden><td><b>Broadcast</b></td><td>Addressed to the last IP in the network/subnet — reaches every host on it</td></tr>
+  <tr data-ar><td><b>Multicast</b></td><td>مُعنوَن لمجموعة محددة من عناوين المضيفين — يصل لكل أعضاء المجموعة</td></tr>
+  <tr data-en hidden><td><b>Multicast</b></td><td>Addressed to a specific group of host addresses — reaches every member of the group</td></tr>
+  <tr data-ar><td><b>Anycast</b></td><td>مُعنوَن لأي جهاز واحد من مجموعة (عادة الأقرب) — لموازنة الحمل والتكرار</td></tr>
+  <tr data-en hidden><td><b>Anycast</b></td><td>Addressed to any one device from a group (usually the nearest) — for load balancing and redundancy</td></tr>
  </table>
 
- <div class="tip">فرّقي: Broadcast = <b>الكل</b> على الشبكة · Multicast = <b>مجموعة محددة</b> مشتركة · Anycast = <b>الأقرب</b> من مجموعة · Unicast = <b>واحد فقط</b>.</div>
+ <div class="tip" data-ar>فرّقي: Broadcast = <b>الكل</b> على الشبكة · Multicast = <b>مجموعة محددة</b> مشتركة · Anycast = <b>الأقرب</b> من مجموعة · Unicast = <b>واحد فقط</b>.</div>
+ <div class="tip" data-en hidden>Tell them apart: Broadcast = <b>everyone</b> on the network · Multicast = a specific <b>subscribed group</b> · Anycast = the <b>nearest</b> member of a group · Unicast = <b>one only</b>.</div>
 </section>
 
 <section id="m4-ipv4addr">
  <span class="mod-tag">MODULE 4 · LESSON 4.2</span>
- <h2>عنونة IPv4 — IPv4 Addressing</h2>
- <p class="sub">تركيب العنوان · Network/Host ID · Subnet Mask · Default Gateway</p>
+ <h2 data-ar>عنونة IPv4 — IPv4 Addressing</h2>
+ <h2 data-en hidden>IPv4 Addressing</h2>
+ <p class="sub" data-ar>تركيب العنوان · Network/Host ID · Subnet Mask · Default Gateway</p>
+ <p class="sub" data-en hidden>Address format · Network/Host ID · Subnet Mask · Default Gateway</p>
 
  <div class="card">
-  <p><b>تركيب عنوان IPv4</b>: تمثيل عشري لأربع مجموعات ثنائية <span class="en">(octets)</span>، كل octet <b>8 bits</b> → المجموع <b>32 bit</b>.</p>
-  <p><b>مثال تحويل ثنائي</b>: 11000011 → بالأوزان 128-64-32-16-8-4-2-1: البتات المفعّلة 64+32+1 = <code class="k">97</code></p>
+  <p data-ar><b>تركيب عنوان IPv4</b>: تمثيل عشري لأربع مجموعات ثنائية <span class="en">(octets)</span>، كل octet <b>8 bits</b> → المجموع <b>32 bit</b>.</p>
+  <p data-en hidden><b>IPv4 address format</b>: a decimal representation of four binary groups (<span class="en">octets</span>), each octet <b>8 bits</b> → a total of <b>32 bits</b>.</p>
+  <p data-ar><b>مثال تحويل ثنائي</b>: 11000011 → بالأوزان 128-64-32-16-8-4-2-1: البتات المفعّلة 64+32+1 = <code class="k">97</code></p>
+  <p data-en hidden><b>Binary conversion example</b>: 11000011 → using weights 128-64-32-16-8-4-2-1: the set bits give 64+32+1 = <code class="k">97</code></p>
  </div>
 
  <div class="card">
-  <p><b>تشبيه العمارة السكنية</b>:</p>
-  <ul>
+  <p data-ar><b>تشبيه العمارة السكنية</b>:</p>
+  <p data-en hidden><b>The apartment building analogy</b>:</p>
+  <ul data-ar>
    <li><b>Network ID</b> = رقم <b>المبنى</b> (مشترك بين كل السكان/المضيفين).</li>
    <li><b>Host ID</b> = رقم <b>الشقة</b> (يحدد مضيفًا بعينه داخل الشبكة).</li>
    <li><b>Default Gateway</b> = <b>المدخل الرئيسي</b> للمبنى — طريق الخروج للخارج (خارج الشبكة المحلية).</li>
    <li><b>Broadcast Address</b> = مثل <b>مكبّر صوت</b> يصل لكل السكان.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Network ID</b> = the <b>building</b> number (shared by all residents/hosts).</li>
+   <li><b>Host ID</b> = the <b>apartment</b> number (identifies a specific host within the network).</li>
+   <li><b>Default Gateway</b> = the building's <b>main entrance</b> — the way out to the outside (beyond the local network).</li>
+   <li><b>Broadcast Address</b> = like a <b>loudspeaker</b> that reaches every resident.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>Subnet Mask</b>: يحدد <b>الجزء الخاص بالشبكة</b> من عنوان IP. إذا طابق network ID الشبكةَ المحلية تُرسل الحزمة مباشرة، وإلا تُمرَّر (<span class="en">forwarded</span>) لشبكة أخرى.</p>
-  <p><b>مثال</b>: شبكة <code class="k">192.168.1.x</code> بقناع <code class="k">255.255.255.0</code> → أول 3 octets (24 bit) للشبكة، والoctet الأخير للمضيف.</p>
+  <p data-ar><b>Subnet Mask</b>: يحدد <b>الجزء الخاص بالشبكة</b> من عنوان IP. إذا طابق network ID الشبكةَ المحلية تُرسل الحزمة مباشرة، وإلا تُمرَّر (<span class="en">forwarded</span>) لشبكة أخرى.</p>
+  <p data-en hidden><b>Subnet Mask</b>: identifies <b>the network portion</b> of an IP address. If the network ID matches the local network, the packet is sent directly; otherwise it's <span class="en">forwarded</span> to another network.</p>
+  <p data-ar><b>مثال</b>: شبكة <code class="k">192.168.1.x</code> بقناع <code class="k">255.255.255.0</code> → أول 3 octets (24 bit) للشبكة، والoctet الأخير للمضيف.</p>
+  <p data-en hidden><b>Example</b>: network <code class="k">192.168.1.x</code> with mask <code class="k">255.255.255.0</code> → the first 3 octets (24 bits) are the network, and the last octet is the host.</p>
  </div>
 
  <div class="diagram">
@@ -220,51 +257,76 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <line x1="300" y1="78" x2="390" y2="78" stroke="#e8672c" stroke-width="3"/>
    <text x="345" y="98" text-anchor="middle" fill="#e8672c" font-size="13" font-weight="700">Host ID</text>
   </svg>
-  <div class="cap">مثال /24 — 255.255.255.0: أول 3 octets = عنوان الشبكة (لا يتغيّر بين المضيفين)، والoctet الأخير = عنوان المضيف الفريد.</div>
+  <div class="cap" data-ar>مثال /24 — 255.255.255.0: أول 3 octets = عنوان الشبكة (لا يتغيّر بين المضيفين)، والoctet الأخير = عنوان المضيف الفريد.</div>
+  <div class="cap" data-en hidden>Example /24 — 255.255.255.0: the first 3 octets = the network address (unchanged between hosts), and the last octet = the unique host address.</div>
  </div>
 </section>
 
 <section id="m4-subnetting">
  <span class="mod-tag">MODULE 4 · LESSON 4.3</span>
- <h2>تقسيم الشبكات الفرعية — IPv4 Subnetting</h2>
+ <h2 data-ar>تقسيم الشبكات الفرعية — IPv4 Subnetting</h2>
+ <h2 data-en hidden>IPv4 Subnetting</h2>
  <p class="sub">Public vs Private · Classful/Classless · CIDR · VLSM</p>
 
- <h3>عناوين IP العامة والخاصة</h3>
+ <h3 data-ar>عناوين IP العامة والخاصة</h3>
+ <h3 data-en hidden>Public and Private IP Addresses</h3>
  <table>
-  <tr><th></th><th>Public IP</th><th>Private IP</th></tr>
-  <tr><td>من يُصدرها</td><td>مزودو الخدمة (ISPs)</td><td>الشبكات الخاصة</td></tr>
-  <tr><td>التفرد</td><td>فريدة على الإنترنت بالكامل</td><td>فريدة داخل الشبكة الخاصة فقط</td></tr>
-  <tr><td>الاستخدام</td><td>أجهزة تحتاج وصولًا مباشرًا للإنترنت</td><td>أجهزة لا تُطلب مباشرة من الإنترنت</td></tr>
+  <tr data-ar><th></th><th>Public IP</th><th>Private IP</th></tr>
+  <tr data-en hidden><th></th><th>Public IP</th><th>Private IP</th></tr>
+  <tr data-ar><td>من يُصدرها</td><td>مزودو الخدمة (ISPs)</td><td>الشبكات الخاصة</td></tr>
+  <tr data-en hidden><td>Issued by</td><td>Service providers (ISPs)</td><td>Private networks</td></tr>
+  <tr data-ar><td>التفرد</td><td>فريدة على الإنترنت بالكامل</td><td>فريدة داخل الشبكة الخاصة فقط</td></tr>
+  <tr data-en hidden><td>Uniqueness</td><td>Unique across the entire internet</td><td>Unique only within the private network</td></tr>
+  <tr data-ar><td>الاستخدام</td><td>أجهزة تحتاج وصولًا مباشرًا للإنترنت</td><td>أجهزة لا تُطلب مباشرة من الإنترنت</td></tr>
+  <tr data-en hidden><td>Use</td><td>Devices that need direct internet access</td><td>Devices not directly requested from the internet</td></tr>
  </table>
 
- <h3>مدى عناوين IPv4 الخاصة (Private Ranges)</h3>
+ <h3 data-ar>مدى عناوين IPv4 الخاصة (Private Ranges)</h3>
+ <h3 data-en hidden>Private IPv4 Address Ranges</h3>
  <table>
-  <tr><th>الفئة</th><th>المدى</th></tr>
+  <tr data-ar><th>الفئة</th><th>المدى</th></tr>
+  <tr data-en hidden><th>Class</th><th>Range</th></tr>
   <tr><td>Class A</td><td>10.0.0.0 – 10.255.255.255</td></tr>
   <tr><td>Class B</td><td>172.16.0.0 – 172.31.255.255</td></tr>
   <tr><td>Class C</td><td>192.168.0.0 – 192.168.255.255</td></tr>
  </table>
- <div class="tip">المدى 224.0.0.0–239.255.255.255 (المعروف بـClass D) قد يظهر بجانب الجدول أعلاه في بعض المراجع، لكنه فعليًا نطاق <b>Multicast محجوز</b> وليس عنونة خاصة عادية — لا تخلطي بينهما بالاختبار.</div>
+ <div class="tip" data-ar>المدى 224.0.0.0–239.255.255.255 (المعروف بـClass D) قد يظهر بجانب الجدول أعلاه في بعض المراجع، لكنه فعليًا نطاق <b>Multicast محجوز</b> وليس عنونة خاصة عادية — لا تخلطي بينهما بالاختبار.</div>
+ <div class="tip" data-en hidden>The range 224.0.0.0–239.255.255.255 (known as Class D) may appear alongside the table above in some references, but it's actually a reserved <b>Multicast</b> range, not ordinary private addressing — don't confuse the two on the exam.</div>
 
  <div class="card">
-  <p><b>قواعد تصميم مخطط عنونة IPv4</b>:</p>
-  <ul>
+  <p data-ar><b>قواعد تصميم مخطط عنونة IPv4</b>:</p>
+  <p data-en hidden><b>Rules for designing an IPv4 addressing scheme</b>:</p>
+  <ul data-ar>
    <li>عدد الشبكات/الشبكات الفرعية المطلوبة، وعدد المضيفين بكل subnet.</li>
    <li>الـNetwork ID يجب أن يكون من مدى خاص صالح.</li>
    <li>لا يجوز أن يكون Network ID أو Host ID <b>كله بتات 1</b> (فهذا عنوان broadcast).</li>
    <li>كل Host ID فريد داخل الـsubnet، وكل Network ID فريد على مستوى الشبكة.</li>
   </ul>
+  <ul data-en hidden>
+   <li>The number of networks/subnets needed, and the number of hosts per subnet.</li>
+   <li>The Network ID must come from a valid private range.</li>
+   <li>The Network ID or Host ID cannot be <b>all 1 bits</b> (that's a broadcast address).</li>
+   <li>Every Host ID is unique within the subnet, and every Network ID is unique across the network.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>Classless Addressing (استعارة البتات / Borrowing Bits)</b>: استعارة بتات من جزء الـHost لصالح جزء الـNetwork → <b>يزيد عدد الشبكات الفرعية المتاحة</b> لكن <b>يقلل عدد المضيفين</b> الممكنين بكل subnet.</p>
-  <p><b>مثال</b>: الشبكة <code class="k">192.168.89.0/24</code> (قناع 255.255.255.0) — باستعارة بت واحد فقط:</p>
-  <ul>
+  <p data-ar><b>Classless Addressing (استعارة البتات / Borrowing Bits)</b>: استعارة بتات من جزء الـHost لصالح جزء الـNetwork → <b>يزيد عدد الشبكات الفرعية المتاحة</b> لكن <b>يقلل عدد المضيفين</b> الممكنين بكل subnet.</p>
+  <p data-en hidden><b>Classless Addressing (Borrowing Bits)</b>: borrowing bits from the Host portion in favor of the Network portion → <b>increases the number of available subnets</b> but <b>reduces the number of possible hosts</b> per subnet.</p>
+  <p data-ar><b>مثال</b>: الشبكة <code class="k">192.168.89.0/24</code> (قناع 255.255.255.0) — باستعارة بت واحد فقط:</p>
+  <p data-en hidden><b>Example</b>: the network <code class="k">192.168.89.0/24</code> (mask 255.255.255.0) — borrowing just one bit:</p>
+  <ul data-ar>
    <li>الـNetwork ID الجديد: <code class="k">192.168.89.128</code></li>
    <li>مدى العناوين: <code class="k">192.168.89.1 – 192.168.89.126</code></li>
    <li>القناع الجديد: <code class="k">255.255.255.128</code> أو <code class="k">/25</code></li>
   </ul>
-  <p>وباستعارة بتين: Network ID = <code class="k">192.168.89.192</code>، المدى <code class="k">192.168.89.1–.62</code>، القناع <code class="k">255.255.255.192 (/26)</code>.</p>
+  <ul data-en hidden>
+   <li>The new Network ID: <code class="k">192.168.89.128</code></li>
+   <li>Address range: <code class="k">192.168.89.1 – 192.168.89.126</code></li>
+   <li>The new mask: <code class="k">255.255.255.128</code> or <code class="k">/25</code></li>
+  </ul>
+  <p data-ar>وباستعارة بتين: Network ID = <code class="k">192.168.89.192</code>، المدى <code class="k">192.168.89.1–.62</code>، القناع <code class="k">255.255.255.192 (/26)</code>.</p>
+  <p data-en hidden>And borrowing two bits: Network ID = <code class="k">192.168.89.192</code>, range <code class="k">192.168.89.1–.62</code>, mask <code class="k">255.255.255.192 (/26)</code>.</p>
  </div>
 
  <div class="diagram">
@@ -276,153 +338,224 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <text x="0" y="104" font-size="14" font-weight="700" fill="#0e1b25">/26</text>
    <rect x="60" y="86" width="28" height="28" fill="#12617c"/><rect x="92" y="86" width="28" height="28" fill="#12617c"/><rect x="124" y="86" width="28" height="28" fill="#e8672c"/><rect x="156" y="86" width="28" height="28" fill="#e8672c"/><rect x="188" y="86" width="28" height="28" fill="#e8672c"/><rect x="220" y="86" width="28" height="28" fill="#e8672c"/><rect x="252" y="86" width="28" height="28" fill="#e8672c"/><rect x="284" y="86" width="28" height="28" fill="#e8672c"/>
   </svg>
-  <div class="cap"><span style="display:inline-block;width:10px;height:10px;background:#12617c"></span> بتات مُستعارة لصالح الشبكة (Network) &nbsp; <span style="display:inline-block;width:10px;height:10px;background:#e8672c"></span> بتات المضيف (Host) — الـ8 خانات تمثّل الـoctet الأخير من <span class="en">192.168.89.0</span></div>
+  <div class="cap" data-ar><span style="display:inline-block;width:10px;height:10px;background:#12617c"></span> بتات مُستعارة لصالح الشبكة (Network) &nbsp; <span style="display:inline-block;width:10px;height:10px;background:#e8672c"></span> بتات المضيف (Host) — الـ8 خانات تمثّل الـoctet الأخير من <span class="en">192.168.89.0</span></div>
+  <div class="cap" data-en hidden><span style="display:inline-block;width:10px;height:10px;background:#12617c"></span> Bits borrowed for the Network &nbsp; <span style="display:inline-block;width:10px;height:10px;background:#e8672c"></span> Host bits — the 8 positions represent the last octet of <span class="en">192.168.89.0</span></div>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>CIDR — Classless Inter-Domain Routing</b></p>
-   <p>يخصص مساحة عناوين IP بكفاءة أكبر، عبر دمج العنوان مع لاحقة (suffix) تمثّل جزء الشبكة، ويدعم <span class="en">variable-length subnetting</span>.</p>
+   <p data-ar>يخصص مساحة عناوين IP بكفاءة أكبر، عبر دمج العنوان مع لاحقة (suffix) تمثّل جزء الشبكة، ويدعم <span class="en">variable-length subnetting</span>.</p>
+   <p data-en hidden>Allocates IP address space more efficiently by combining the address with a suffix representing the network portion, and supports <span class="en">variable-length subnetting</span>.</p>
   </div>
   <div class="card">
    <p><b>VLSM — Variable Length Subnetting</b></p>
-   <p>ينشئ subnets <b>بأحجام مختلفة</b> داخل نفس الشبكة لتخصيص أكفأ لعناوين IP، لكنه يتطلب تخطيطًا وإدارة دقيقة.</p>
+   <p data-ar>ينشئ subnets <b>بأحجام مختلفة</b> داخل نفس الشبكة لتخصيص أكفأ لعناوين IP، لكنه يتطلب تخطيطًا وإدارة دقيقة.</p>
+   <p data-en hidden>Creates subnets of <b>different sizes</b> within the same network for more efficient IP address allocation, but requires careful planning and management.</p>
   </div>
  </div>
 </section>
 
 <section id="m4-tools">
  <span class="mod-tag">MODULE 4 · LESSON 4.4</span>
- <h2>أدوات فحص IP — IP Troubleshooting Tools</h2>
+ <h2 data-ar>أدوات فحص IP — IP Troubleshooting Tools</h2>
+ <h2 data-en hidden>IP Troubleshooting Tools</h2>
  <p class="sub">ipconfig · ip/ifconfig · arp · ping</p>
 
  <table>
-  <tr><th>الأمر</th><th>الوظيفة</th></tr>
-  <tr><td><span class="en">ipconfig</span></td><td>عرض IP وsubnet mask وdefault gateway لكل واجهات الشبكة</td></tr>
-  <tr><td><span class="en">ipconfig /all</span></td><td>كامل إعدادات TCP/IP بما فيها DHCP وMAC address</td></tr>
-  <tr><td><span class="en">ipconfig /renew</span></td><td>تجديد عنوان IP المستأجر من DHCP</td></tr>
-  <tr><td><span class="en">ipconfig /release</span></td><td>تحرير عنوان IP المستأجر من DHCP</td></tr>
-  <tr><td><span class="en">ip addr</span> (بديل حديث لـifconfig)</td><td>عرض إعداد واجهات الشبكة</td></tr>
-  <tr><td><span class="en">ip addr show dev eth0</span></td><td>عرض واجهة واحدة فقط</td></tr>
-  <tr><td><span class="en">ip link</span></td><td>حالة الواجهات</td></tr>
-  <tr><td><span class="en">ip link set eth0 up|down</span></td><td>تفعيل أو تعطيل واجهة</td></tr>
-  <tr><td><span class="en">ip addr add|delete</span></td><td>تعديل إعداد عنوان IP</td></tr>
+  <tr data-ar><th>الأمر</th><th>الوظيفة</th></tr>
+  <tr data-en hidden><th>Command</th><th>Function</th></tr>
+  <tr><td><span class="en">ipconfig</span></td><td data-ar>عرض IP وsubnet mask وdefault gateway لكل واجهات الشبكة</td><td data-en hidden>Shows the IP, subnet mask, and default gateway for every network interface</td></tr>
+  <tr><td><span class="en">ipconfig /all</span></td><td data-ar>كامل إعدادات TCP/IP بما فيها DHCP وMAC address</td><td data-en hidden>Full TCP/IP configuration including DHCP and MAC address</td></tr>
+  <tr><td><span class="en">ipconfig /renew</span></td><td data-ar>تجديد عنوان IP المستأجر من DHCP</td><td data-en hidden>Renews the IP address leased from DHCP</td></tr>
+  <tr><td><span class="en">ipconfig /release</span></td><td data-ar>تحرير عنوان IP المستأجر من DHCP</td><td data-en hidden>Releases the IP address leased from DHCP</td></tr>
+  <tr><td><span class="en">ip addr</span> <span data-ar>(بديل حديث لـifconfig)</span><span data-en hidden>(modern replacement for ifconfig)</span></td><td data-ar>عرض إعداد واجهات الشبكة</td><td data-en hidden>Shows network interface configuration</td></tr>
+  <tr><td><span class="en">ip addr show dev eth0</span></td><td data-ar>عرض واجهة واحدة فقط</td><td data-en hidden>Shows a single interface only</td></tr>
+  <tr><td><span class="en">ip link</span></td><td data-ar>حالة الواجهات</td><td data-en hidden>Interface status</td></tr>
+  <tr><td><span class="en">ip link set eth0 up|down</span></td><td data-ar>تفعيل أو تعطيل واجهة</td><td data-en hidden>Enables or disables an interface</td></tr>
+  <tr><td><span class="en">ip addr add|delete</span></td><td data-ar>تعديل إعداد عنوان IP</td><td data-en hidden>Modifies the IP address configuration</td></tr>
  </table>
 
  <div class="two">
   <div class="card">
    <p><b>arp</b></p>
-   <ul>
+   <ul data-ar>
     <li><span class="en">arp -a</span> (أو -g): عرض محتويات ARP cache</li>
     <li><span class="en">arp -s IP MAC</span>: إضافة إدخال يدوي</li>
     <li><span class="en">arp -d</span>: حذف كل الإدخالات</li>
    </ul>
+   <ul data-en hidden>
+    <li><span class="en">arp -a</span> (or -g): shows the ARP cache contents</li>
+    <li><span class="en">arp -s IP MAC</span>: adds a manual entry</li>
+    <li><span class="en">arp -d</span>: deletes all entries</li>
+   </ul>
   </div>
   <div class="card">
    <p><b>ping</b></p>
-   <p>يختبر الاتصال بعنوان IP معيّن: <code class="k">ping IPaddress</code></p>
-   <p>رسائل الخطأ الشائعة: <b>Destination host unreachable</b> و<b>No reply (request timed out)</b>.</p>
+   <p data-ar>يختبر الاتصال بعنوان IP معيّن: <code class="k">ping IPaddress</code></p>
+   <p data-en hidden>Tests connectivity to a given IP address: <code class="k">ping IPaddress</code></p>
+   <p data-ar>رسائل الخطأ الشائعة: <b>Destination host unreachable</b> و<b>No reply (request timed out)</b>.</p>
+   <p data-en hidden>Common error messages: <b>Destination host unreachable</b> and <b>No reply (request timed out)</b>.</p>
   </div>
  </div>
 </section>
 
 <section id="m4-ipv6">
  <span class="mod-tag">MODULE 4 · LESSON 4.5</span>
- <h2>الإصدار السادس من IP — IPv6</h2>
- <p class="sub">مقارنة بـIPv4 · العنونة · آليات الانتقال</p>
+ <h2 data-ar>الإصدار السادس من IP — IPv6</h2>
+ <h2 data-en hidden>IPv6</h2>
+ <p class="sub" data-ar>مقارنة بـIPv4 · العنونة · آليات الانتقال</p>
+ <p class="sub" data-en hidden>Comparison with IPv4 · Addressing · Transition Mechanisms</p>
 
  <table>
-  <tr><th>المقارنة</th><th>IPv4</th><th>IPv6</th></tr>
-  <tr><td>صيغة العنوان</td><td>عشري منقّط (192.168.1.1)</td><td>Hexadecimal (2001:0db8:85a3:0000:0000:8a2e:0370:7334)</td></tr>
-  <tr><td>عدد العناوين</td><td>≈ 4.3 مليار</td><td>≈ 340 undecillion (3.4×10^38)</td></tr>
-  <tr><td>Network/Host</td><td>يتغيّر حسب subnet mask</td><td>أول 64 bit للشبكة، والـ64 الثانية للمضيف</td></tr>
+  <tr data-ar><th>المقارنة</th><th>IPv4</th><th>IPv6</th></tr>
+  <tr data-en hidden><th>Comparison</th><th>IPv4</th><th>IPv6</th></tr>
+  <tr data-ar><td>صيغة العنوان</td><td>عشري منقّط (192.168.1.1)</td><td>Hexadecimal (2001:0db8:85a3:0000:0000:8a2e:0370:7334)</td></tr>
+  <tr data-en hidden><td>Address format</td><td>Dotted decimal (192.168.1.1)</td><td>Hexadecimal (2001:0db8:85a3:0000:0000:8a2e:0370:7334)</td></tr>
+  <tr data-ar><td>عدد العناوين</td><td>≈ 4.3 مليار</td><td>≈ 340 undecillion (3.4×10^38)</td></tr>
+  <tr data-en hidden><td>Address count</td><td>≈ 4.3 billion</td><td>≈ 340 undecillion (3.4×10^38)</td></tr>
+  <tr data-ar><td>Network/Host</td><td>يتغيّر حسب subnet mask</td><td>أول 64 bit للشبكة، والـ64 الثانية للمضيف</td></tr>
+  <tr data-en hidden><td>Network/Host</td><td>Varies by subnet mask</td><td>The first 64 bits are the network, the next 64 are the host</td></tr>
  </table>
 
  <div class="card">
-  <p><b>صيغة عنوان IPv6</b>: ثمانية مجموعات من <b>16-bit</b>، كل مجموعة 4 أرقام hex.</p>
-  <p>Binary → Hex Notation: <code class="k">2001:0db8:0000:0000:0abc:0000:def0:1234</code></p>
-  <p>Canonical (مضغوطة): <code class="k">2001:db8::abc:0:def0:1234</code></p>
+  <p data-ar><b>صيغة عنوان IPv6</b>: ثمانية مجموعات من <b>16-bit</b>، كل مجموعة 4 أرقام hex.</p>
+  <p data-en hidden><b>IPv6 address format</b>: eight groups of <b>16 bits</b>, each group being 4 hex digits.</p>
+  <p data-ar>Binary → Hex Notation: <code class="k">2001:0db8:0000:0000:0abc:0000:def0:1234</code></p>
+  <p data-en hidden>Binary → Hex Notation: <code class="k">2001:0db8:0000:0000:0abc:0000:def0:1234</code></p>
+  <p data-ar>Canonical (مضغوطة): <code class="k">2001:db8::abc:0:def0:1234</code></p>
+  <p data-en hidden>Canonical (compressed): <code class="k">2001:db8::abc:0:def0:1234</code></p>
  </div>
 
  <div class="two">
   <div class="card">
    <p><b>Global Unicast</b></p>
-   <p>عناوين ذات نطاق عالمي، قابلة للتوجيه على الإنترنت — معادل <span class="en">public IPv4</span>.</p>
+   <p data-ar>عناوين ذات نطاق عالمي، قابلة للتوجيه على الإنترنت — معادل <span class="en">public IPv4</span>.</p>
+   <p data-en hidden>Globally scoped addresses, routable on the internet — the equivalent of <span class="en">public IPv4</span>.</p>
   </div>
   <div class="card">
    <p><b>Link Local</b></p>
-   <p>تعمل ضمن subnet واحد فقط — معادل <span class="en">private IPv4</span>. النطاق: <code class="k">fe80::/10</code> (fe80 + 54 بت أصفار + 64 بت interface ID).</p>
+   <p data-ar>تعمل ضمن subnet واحد فقط — معادل <span class="en">private IPv4</span>. النطاق: <code class="k">fe80::/10</code> (fe80 + 54 بت أصفار + 64 بت interface ID).</p>
+   <p data-en hidden>Works only within a single subnet — the equivalent of <span class="en">private IPv4</span>. Range: <code class="k">fe80::/10</code> (fe80 + 54 zero bits + a 64-bit interface ID).</p>
   </div>
  </div>
 
  <div class="card">
-  <p><b>Multicast</b> في IPv6: أول 8 بت تشير لنطاق multicast، 4 بت تالية لنوع الـmulticast، 4 بت لتحديد النطاق، والـ112 بت الأخيرة تحدد مجموعة الـmulticast.</p>
+  <p data-ar><b>Multicast</b> في IPv6: أول 8 بت تشير لنطاق multicast، 4 بت تالية لنوع الـmulticast، 4 بت لتحديد النطاق، والـ112 بت الأخيرة تحدد مجموعة الـmulticast.</p>
+  <p data-en hidden><b>Multicast</b> in IPv6: the first 8 bits indicate the multicast range, the next 4 bits indicate the multicast type, 4 bits specify the scope, and the last 112 bits identify the multicast group.</p>
  </div>
 
- <h3>آليات الانتقال بين IPv4 وIPv6</h3>
+ <h3 data-ar>آليات الانتقال بين IPv4 وIPv6</h3>
+ <h3 data-en hidden>IPv4-to-IPv6 Transition Mechanisms</h3>
  <table>
-  <tr><th>الآلية</th><th>الوصف</th><th>الاستخدام الأمثل</th></tr>
-  <tr><td><b>Dual Stack</b></td><td>تشغيل IPv4 وIPv6 معًا في آن واحد</td><td>الفترات الانتقالية حيث تعمل الشبكتان</td></tr>
-  <tr><td><b>Tunneling</b></td><td>تغليف حزم IPv6 داخل حزم IPv4 لعبور شبكة IPv4</td><td>ربط "جزر IPv6" داخل شبكة IPv4</td></tr>
-  <tr><td><b>NAT64</b></td><td>ترجمة IPv6 إلى IPv4 والعكس</td><td>بيئات تنتقل لـIPv6 لكن تحتاج موارد IPv4</td></tr>
+  <tr data-ar><th>الآلية</th><th>الوصف</th><th>الاستخدام الأمثل</th></tr>
+  <tr data-en hidden><th>Mechanism</th><th>Description</th><th>Best Use Case</th></tr>
+  <tr data-ar><td><b>Dual Stack</b></td><td>تشغيل IPv4 وIPv6 معًا في آن واحد</td><td>الفترات الانتقالية حيث تعمل الشبكتان</td></tr>
+  <tr data-en hidden><td><b>Dual Stack</b></td><td>Running IPv4 and IPv6 together at the same time</td><td>Transition periods where both networks are active</td></tr>
+  <tr data-ar><td><b>Tunneling</b></td><td>تغليف حزم IPv6 داخل حزم IPv4 لعبور شبكة IPv4</td><td>ربط "جزر IPv6" داخل شبكة IPv4</td></tr>
+  <tr data-en hidden><td><b>Tunneling</b></td><td>Encapsulating IPv6 packets inside IPv4 packets to cross an IPv4 network</td><td>Connecting "IPv6 islands" across an IPv4 network</td></tr>
+  <tr data-ar><td><b>NAT64</b></td><td>ترجمة IPv6 إلى IPv4 والعكس</td><td>بيئات تنتقل لـIPv6 لكن تحتاج موارد IPv4</td></tr>
+  <tr data-en hidden><td><b>NAT64</b></td><td>Translates IPv6 to IPv4 and back</td><td>Environments transitioning to IPv6 that still need IPv4 resources</td></tr>
  </table>
 </section>
 
 <section id="m4-ipts">
  <span class="mod-tag">MODULE 4 · LESSON 4.6</span>
- <h2>استكشاف أخطاء IP — IP Troubleshooting</h2>
+ <h2 data-ar>استكشاف أخطاء IP — IP Troubleshooting</h2>
+ <h2 data-en hidden>IP Troubleshooting</h2>
  <p class="sub">IP Configuration Issues · Duplicate IP/MAC · IP Forwarding Issues</p>
 
  <div class="card">
-  <p>استكشاف أخطاء إعداد IP يحدث بطبقة <b>Network</b>. إذا استبعدتِ مشكلة بطبقتي Physical وData Link، الخطوة التالية فحص العنونة والإعداد الأساسي. إذا تعذّر على المضيف اكتشاف الجيران (neighbor discovery)، استخدمي أولًا <code class="k">ipconfig</code> (ويندوز) أو <code class="k">ip</code>/<code class="k">ifconfig</code> (لينكس) للتحقق من إعداد المضيف.</p>
+  <p data-ar>استكشاف أخطاء إعداد IP يحدث بطبقة <b>Network</b>. إذا استبعدتِ مشكلة بطبقتي Physical وData Link، الخطوة التالية فحص العنونة والإعداد الأساسي. إذا تعذّر على المضيف اكتشاف الجيران (neighbor discovery)، استخدمي أولًا <code class="k">ipconfig</code> (ويندوز) أو <code class="k">ip</code>/<code class="k">ifconfig</code> (لينكس) للتحقق من إعداد المضيف.</p>
+  <p data-en hidden>IP configuration troubleshooting happens at the <b>Network</b> layer. Once you've ruled out a Physical and Data Link layer problem, the next step is checking addressing and basic configuration. If a host fails at neighbor discovery, first use <code class="k">ipconfig</code> (Windows) or <code class="k">ip</code>/<code class="k">ifconfig</code> (Linux) to verify the host's configuration.</p>
  </div>
 
  <div class="card">
-  <p><b>عنوان IP خاطئ (Incorrect IP Address)</b>: كل مضيف يجب أن يملك نفس قناع الشبكة (netmask) مثل جيرانه، وعنوان مضيف صالح وفريد ضمن الـsubnet.</p>
-  <p><b>مثال</b>: الشبكة <code class="k">192.168.1.0/24</code> — Host A: <code class="k">192.168.1.10</code>، Host B: <code class="k">192.168.1.11</code> (كلاهما صحيح) — لكن Host C: <code class="k">192.168.0.21</code> بنفس القناع <code class="k">255.255.255.0</code> يقع فعليًا بـ<b>subnet مختلفة</b> (192.168.0.0 وليس 192.168.1.0). ستحاول Host A وB الوصول لـHost C عبر الـdefault gateway، وHost C على الأغلب لن تتمكن من التواصل بالشبكة إطلاقًا.</p>
-  <p><b>مع أقنعة غير افتراضية</b> (مثل <code class="k">/28</code>) يصعب تحديد نطاق المضيفين الصالح بالنظر السريع — لازم تحويل العناوين لثنائي للتأكد. تذكّري: لا عنوان الشبكة (network address) ولا عنوان البث (broadcast address) يصلحان كعنوان مضيف.</p>
+  <p data-ar><b>عنوان IP خاطئ (Incorrect IP Address)</b>: كل مضيف يجب أن يملك نفس قناع الشبكة (netmask) مثل جيرانه، وعنوان مضيف صالح وفريد ضمن الـsubnet.</p>
+  <p data-en hidden><b>Incorrect IP Address</b>: every host must have the same netmask as its neighbors, and a valid, unique host address within the subnet.</p>
+  <p data-ar><b>مثال</b>: الشبكة <code class="k">192.168.1.0/24</code> — Host A: <code class="k">192.168.1.10</code>، Host B: <code class="k">192.168.1.11</code> (كلاهما صحيح) — لكن Host C: <code class="k">192.168.0.21</code> بنفس القناع <code class="k">255.255.255.0</code> يقع فعليًا بـ<b>subnet مختلفة</b> (192.168.0.0 وليس 192.168.1.0). ستحاول Host A وB الوصول لـHost C عبر الـdefault gateway، وHost C على الأغلب لن تتمكن من التواصل بالشبكة إطلاقًا.</p>
+  <p data-en hidden><b>Example</b>: network <code class="k">192.168.1.0/24</code> — Host A: <code class="k">192.168.1.10</code>, Host B: <code class="k">192.168.1.11</code> (both correct) — but Host C: <code class="k">192.168.0.21</code> with the same mask <code class="k">255.255.255.0</code> actually sits on a <b>different subnet</b> (192.168.0.0, not 192.168.1.0). Host A and B will try to reach Host C through the default gateway, and Host C will likely fail to communicate on the network at all.</p>
+  <p data-ar><b>مع أقنعة غير افتراضية</b> (مثل <code class="k">/28</code>) يصعب تحديد نطاق المضيفين الصالح بالنظر السريع — لازم تحويل العناوين لثنائي للتأكد. تذكّري: لا عنوان الشبكة (network address) ولا عنوان البث (broadcast address) يصلحان كعنوان مضيف.</p>
+  <p data-en hidden><b>With non-default masks</b> (like <code class="k">/28</code>) it's hard to determine the valid host range at a glance — you need to convert the addresses to binary to be sure. Remember: neither the network address nor the broadcast address is valid as a host address.</p>
  </div>
 
  <div class="card">
-  <p><b>قناع شبكة خاطئ (Incorrect Subnet Mask)</b> — سيناريوهان:</p>
-  <ul>
+  <p data-ar><b>قناع شبكة خاطئ (Incorrect Subnet Mask)</b> — سيناريوهان:</p>
+  <p data-en hidden><b>Incorrect Subnet Mask</b> — two scenarios:</p>
+  <ul data-ar>
    <li><b>قناع أطول من اللازم</b>: المضيف يظن أنه يحتاج توجيه (route) عبر الـdefault gateway للتواصل مع مضيفين هم فعليًا بنفس الشبكة المحلية — يُحمّل الراوتر بترافيك غير ضروري.</li>
    <li><b>قناع أقصر من اللازم</b>: المضيف يظن أن مضيفًا بعيدًا هو بنفس شبكته المحلية بينما هو فعليًا بشبكة أخرى — يفشل بالتواصل لأنه لا يستخدم الـgateway وهو محتاجه. قد يرسل الراوتر رسائل <b>ICMP redirect</b> للمضيف بهذي الحالة.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>A mask longer than needed</b>: the host thinks it needs to route through the default gateway to reach hosts that are actually on the same local network — loading the router with unnecessary traffic.</li>
+   <li><b>A mask shorter than needed</b>: the host thinks a remote host is on its own local network when it's actually on another network — communication fails because it doesn't use the gateway when it needs to. The router may send the host <b>ICMP redirect</b> messages in this case.</li>
   </ul>
  </div>
 
  <div class="card">
-  <p><b>تكرار عناوين IP وMAC (Duplicate IP/MAC Address Issues)</b>:</p>
-  <ul>
+  <p data-ar><b>تكرار عناوين IP وMAC (Duplicate IP/MAC Address Issues)</b>:</p>
+  <p data-en hidden><b>Duplicate IP/MAC Address Issues</b>:</p>
+  <ul data-ar>
    <li><b>Duplicate IP</b>: قد ينتج عن خطأ بالإعداد اليدوي أو تعارض بنطاق DHCP. <b>Windows</b> يكتشف التكرار ويعطّل العنوان مع تحذير. <b>Linux</b> عادة لا يعطّل الواجهة لكنه قد يسجّل تحذيرًا بالسجلات — يحدث "race condition" يحدد أي مضيف يستقبل الترافيك. للتشخيص: <code class="k">ping</code> ثم <code class="k">arp -a</code> لفحص عناوين MAC، وعلى لينكس أداة <code class="k">arping -D</code> للإبلاغ عن ردود مكرَّرة.</li>
    <li><b>Duplicate MAC</b>: يسبب مشكلة مشابهة — يتنافس الجهازان على الرد على استعلامات ARP، وينقسم التواصل بينهما أو يصل لواحد فقط. نادر الحدوث إلا مع عنونة مُدارة محليًا (locally administered addressing). ⚠️ مشاكل عنونة MAC قد تكون مؤشرًا على هجوم <b>spoofing</b>.</li>
    <li><b>تشخيص مشاكل MAC</b>: أداة <code class="k">arp</code> للتحقق من عناوين MAC المسجّلة لكل مضيف، <code class="k">ipconfig</code> أو <code class="k">ip neigh</code> لفحص عنوان MAC للواجهة، فحص جداول MAC/ARP على السويتشات والراوترات، واستخدام محلّل بروتوكول (protocol analyzer) لفحص ترافيك ARP وتحديد من يحاول انتحال نفس عنوان MAC.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Duplicate IP</b>: can result from a manual configuration error or a DHCP scope conflict. <b>Windows</b> detects the duplicate and disables the address with a warning. <b>Linux</b> usually doesn't disable the interface but may log a warning — a "race condition" occurs that determines which host receives traffic. To diagnose: <code class="k">ping</code> then <code class="k">arp -a</code> to check MAC addresses, and on Linux the <code class="k">arping -D</code> tool to report duplicate replies.</li>
+   <li><b>Duplicate MAC</b>: causes a similar problem — both devices compete to answer ARP queries, and communication either splits between them or reaches only one. Rare except with locally administered addressing. ⚠️ MAC addressing problems can be a sign of a <b>spoofing</b> attack.</li>
+   <li><b>Diagnosing MAC problems</b>: the <code class="k">arp</code> tool to check the MAC address recorded for each host, <code class="k">ipconfig</code> or <code class="k">ip neigh</code> to check an interface's MAC address, checking MAC/ARP tables on switches and routers, and using a protocol analyzer to inspect ARP traffic and identify who is trying to spoof the same MAC address.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>مشاكل توجيه IP (IP Forwarding Issues)</b>: إذا بدا إعداد عنوان المضيف المحلي صحيحًا، أكملي سلسلة اختبارات اتصال بـ<code class="k">ping</code> لتحديد موقع ونطاق العطل المحتمل:</p>
+  <p data-ar><b>مشاكل توجيه IP (IP Forwarding Issues)</b>: إذا بدا إعداد عنوان المضيف المحلي صحيحًا، أكملي سلسلة اختبارات اتصال بـ<code class="k">ping</code> لتحديد موقع ونطاق العطل المحتمل:</p>
+  <p data-en hidden><b>IP Forwarding Issues</b>: if the local host's address configuration looks correct, complete a chain of <code class="k">ping</code> connectivity tests to locate the scope of the likely fault:</p>
   <div class="flow">
    <span>Ping loopback</span><i>←</i><span>Ping host</span><i>←</i><span>Ping gateway</span><i>←</i><span>Ping remote host</span><i>←</i><span>Ping host name</span><i>←</i><span>Establish session</span>
   </div>
-  <ol style="padding-right:22px;margin:8px 0">
+  <ol data-ar style="padding-right:22px;margin:8px 0">
    <li style="margin-bottom:10px"><b>Ping عنوان الـloopback</b> (<code class="k">127.0.0.1</code>): للتأكد أن TCP/IP مثبَّت ومحمَّل بشكل صحيح — إذا فشل، أعيدي تثبيت حزمة بروتوكول الشبكة.</li>
    <li style="margin-bottom:10px"><b>Ping عنوان IP المضيف المحلي</b>: للتأكد أنه أُضيف بشكل صحيح وأن محول الشبكة (network adapter) يعمل — إذا فشل، فقد يكون خطأ إعداد أو عطل بالمحول/الـdriver.</li>
    <li style="margin-bottom:10px"><b>Ping عنوان IP الـdefault gateway</b>: للتأكد أنه يعمل ويمكن التواصل مع مضيف آخر بالشبكة المحلية.</li>
    <li style="margin-bottom:10px"><b>Ping عناوين IP لمضيفين آخرين بنفس الـsubnet</b>: لاختبار مشاكل الإعداد المحلي أو الرابط. إذا تعذّر الـping وكان الخطأ "destination unreachable"، تحققي من عدم وجود عنوان IP أو netmask خاطئ. إذا كانت صحيحة لكن الـping ما زال ينتهي بمهلة، اشتبهي بمشكلة أمنية (مثل إعداد أمان منفذ السويتش) أو مشكلة بطبقة Data Link أو Physical.</li>
    <li style="margin-bottom:10px"><b>Ping عنوان IP لمضيف بعيد</b>: للتأكد من إمكانية التواصل عبر الراوتر. إذا تعذّر الوصول لعنوان بعيد، تحققي من إعداد الـdefault gateway بالمضيف المحلي لاستبعاد مشكلة gateway خاطئ. إذا كان الـgateway صحيحًا ويمكن عمل ping له، ابدئي التحقيق ببنية التوجيه (routing infrastructure).</li>
   </ol>
+  <ol data-en hidden style="margin:8px 0">
+   <li style="margin-bottom:10px"><b>Ping the loopback address</b> (<code class="k">127.0.0.1</code>): to confirm TCP/IP is installed and loaded correctly — if it fails, reinstall the network protocol stack.</li>
+   <li style="margin-bottom:10px"><b>Ping the local host's IP address</b>: to confirm it was added correctly and the network adapter is working — if it fails, there may be a configuration error or an adapter/driver fault.</li>
+   <li style="margin-bottom:10px"><b>Ping the default gateway's IP address</b>: to confirm it's working and another host on the local network can be reached.</li>
+   <li style="margin-bottom:10px"><b>Ping other hosts' IP addresses on the same subnet</b>: to test for local configuration or link problems. If the ping fails with "destination unreachable," check for an incorrect IP address or netmask. If those are correct but the ping still times out, suspect a security issue (like switch port security configuration) or a Data Link/Physical layer problem.</li>
+   <li style="margin-bottom:10px"><b>Ping a remote host's IP address</b>: to confirm communication through the router is possible. If a remote address is unreachable, check the local host's default gateway configuration to rule out an incorrect gateway. If the gateway is correct and pingable, start investigating the routing infrastructure.</li>
+  </ol>
  </div>
 
- <div class="tip">⚠️ انتبهي أن <b>ICMP</b> قد يكون محجوبًا بجدار ناري أو برنامج أمان، خصوصًا عند عمل ping لمضيفين بعيدين. هذا الأسلوب المنهجي مناسب عند عدم القدرة على تشخيص السبب أو عند التحقق من إعداد IP جديد/مُعدَّل — لكن عمليًا، قد تبدئين مباشرة بـping لمضيف بعيد لتحديد المشكلة أو إعادة إنتاجها بسرعة.</div>
+ <div class="tip" data-ar>⚠️ انتبهي أن <b>ICMP</b> قد يكون محجوبًا بجدار ناري أو برنامج أمان، خصوصًا عند عمل ping لمضيفين بعيدين. هذا الأسلوب المنهجي مناسب عند عدم القدرة على تشخيص السبب أو عند التحقق من إعداد IP جديد/مُعدَّل — لكن عمليًا، قد تبدئين مباشرة بـping لمضيف بعيد لتحديد المشكلة أو إعادة إنتاجها بسرعة.</div>
+ <div class="tip" data-en hidden>⚠️ Keep in mind that <b>ICMP</b> may be blocked by a firewall or security software, especially when pinging remote hosts. This systematic approach is useful when you can't diagnose the cause, or when verifying a new/modified IP configuration — but in practice you might start directly by pinging a remote host to identify or quickly reproduce the problem.</div>
 
- <div class="tip"><b>ملخص الوحدة 4</b>: IP يربط شبكات متعددة بعناوين فريدة؛ IPv4 = 32 bit/4 octets؛ الـsubnet = segment على طبقة الشبكة (L3)؛ أدوات TCP/IP للفحص والإعداد؛ IPv6 = ثمانية مجموعات 16-bit بصيغة hex؛ استكشاف الأخطاء يبدأ بفحص الإعداد المحلي ثم تسلسل ping من loopback حتى مضيف بعيد.</div>
+ <div class="tip" data-ar><b>ملخص الوحدة 4</b>: IP يربط شبكات متعددة بعناوين فريدة؛ IPv4 = 32 bit/4 octets؛ الـsubnet = segment على طبقة الشبكة (L3)؛ أدوات TCP/IP للفحص والإعداد؛ IPv6 = ثمانية مجموعات 16-bit بصيغة hex؛ استكشاف الأخطاء يبدأ بفحص الإعداد المحلي ثم تسلسل ping من loopback حتى مضيف بعيد.</div>
+ <div class="tip" data-en hidden><b>Module 4 summary</b>: IP connects multiple networks with unique addresses; IPv4 = 32 bits/4 octets; a subnet = a segment at the Network layer (L3); TCP/IP tools for inspection and configuration; IPv6 = eight 16-bit groups in hex; troubleshooting starts by checking the local configuration, then a ping sequence from loopback to a remote host.</div>
 </section>
 
 </main>
 
-<div class="modnav"><a href="module3-guide.html">← الوحدة 3</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module5-guide.html">الوحدة 5 →</a></div>
+<div class="modnav"><a href="module3-guide.html"><span data-ar>← الوحدة 3</span><span data-en hidden>← Module 3</span></a><a href="index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="module5-guide.html"><span data-ar>الوحدة 5 →</span><span data-en hidden>Module 5 →</span></a></div>
 
-<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 4 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<footer><span data-ar>ملخص دراسي — CompTIA Network+ N10-009 · Module 4 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Network+ N10-009 · Module 4 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>

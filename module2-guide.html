@@ -80,6 +80,7 @@ tr:nth-child(even) td{background:var(--soft)}
 
 .tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
 .tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:720px){.two{grid-template-columns:1fr}.osi .row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}.osi .desc{grid-column:1/3;border-right:none;border-top:1px dashed var(--line)}}
@@ -91,6 +92,7 @@ tr:nth-child(even) td{background:var(--soft)}
 .diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
 .diagrow{direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
 .diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .diagrow .dbox svg{max-width:100%;height:auto}
@@ -120,8 +122,8 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -134,6 +136,16 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  a{color:inherit;text-decoration:none}
  h2{border-right-width:4px}
 }
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+@media(max-width:720px){html[dir="ltr"] .osi .desc{border-left:none;border-top:1px dashed var(--line)}}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 </style>
 </head>
 <body>
@@ -141,12 +153,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 2</span>
-  <h1>الوحدة 2 — الكيابل والتركيب الفيزيائي</h1>
+  <h1 data-ar>الوحدة 2 — الكيابل والتركيب الفيزيائي</h1>
+  <h1 data-en hidden>Module 2 — Cabling and Physical Installations</h1>
   <p>Supporting Cabling and Physical Installations — Ethernet · Copper & Fiber Cabling · Structured Cabling · Physical Install · Cable Troubleshooting</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html" class="active">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html" class="active">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m2-eth">2.1 Ethernet</a>
@@ -161,58 +174,82 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m2-eth">
  <span class="mod-tag">MODULE 2 · LESSON 2.1</span>
- <h2>Ethernet ومصطلحات نقل البيانات</h2>
+ <h2 data-ar>Ethernet ومصطلحات نقل البيانات</h2>
+ <h2 data-en hidden>Ethernet and Data Transmission Terms</h2>
  <p class="sub">Supporting Cabling and Physical Installations</p>
 
  <div class="card">
-  <p><b>مصطلحات أساسية</b>:</p>
-  <ul>
+  <p data-ar><b>مصطلحات أساسية</b>:</p>
+  <p data-en hidden><b>Basic terms</b>:</p>
+  <ul data-ar>
    <li><b>Data transmission</b>: نقل البيانات من جهاز لآخر عبر قنوات <span class="en">(channels)</span> سلكية أو لاسلكية.</li>
    <li><b>Digital signals</b>: إشارات 1 و 0 تُنقل عبر القنوات.</li>
    <li><b>Transmission media</b>: نحاس <span class="en">(copper)</span>، ألياف بصرية <span class="en">(fiber optic)</span>، أو لاسلكي.</li>
    <li><b>Data transfer rate</b>: سرعة إرسال البيانات.</li>
    <li><b>Error detection/correction</b>: آليات كشف أخطاء النقل وتصحيحها.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Data transmission</b>: moving data from one device to another over wired or wireless <span class="en">channels</span>.</li>
+   <li><b>Digital signals</b>: 1s and 0s carried over the channels.</li>
+   <li><b>Transmission media</b>: <span class="en">copper</span>, <span class="en">fiber optic</span>, or wireless.</li>
+   <li><b>Data transfer rate</b>: the speed at which data is sent.</li>
+   <li><b>Error detection/correction</b>: mechanisms for detecting and correcting transmission errors.</li>
+  </ul>
  </div>
 
- <h3>معايير Ethernet النحاسية — IEEE 802.3</h3>
- <div class="card"><p>معايير <span class="en">IEEE 802.3</span> تُعرّف الـ<span class="en">Physical layer</span> وطبقة <span class="en">MAC (Media Access Control)</span> في Data Link للإيثرنت السلكي.</p></div>
+ <h3 data-ar>معايير Ethernet النحاسية — IEEE 802.3</h3>
+ <h3 data-en hidden>Copper Ethernet Standards — IEEE 802.3</h3>
+ <div class="card">
+  <p data-ar>معايير <span class="en">IEEE 802.3</span> تُعرّف الـ<span class="en">Physical layer</span> وطبقة <span class="en">MAC (Media Access Control)</span> في Data Link للإيثرنت السلكي.</p>
+  <p data-en hidden>The <span class="en">IEEE 802.3</span> standards define the <span class="en">Physical layer</span> and the <span class="en">MAC (Media Access Control)</span> sublayer of the Data Link layer for wired Ethernet.</p>
+ </div>
  <table>
-  <tr><th>المعيار</th><th>الكيبل</th><th>السرعة</th></tr>
+  <tr data-ar><th>المعيار</th><th>الكيبل</th><th>السرعة</th></tr>
+  <tr data-en hidden><th>Standard</th><th>Cable</th><th>Speed</th></tr>
   <tr><td><span class="en">10Base-T</span></td><td>UTP</td><td>10 Mbps</td></tr>
-  <tr><td><span class="en">100Base-T</span></td><td>Cat5e أو أعلى</td><td>100 Mbps</td></tr>
-  <tr><td><span class="en">1000Base-T</span> (Gigabit)</td><td>Cat6 أو أعلى</td><td>1000 Mbps</td></tr>
-  <tr><td><span class="en">10GBase-T</span> (10 Gigabit)</td><td>Cat6 أو أعلى</td><td>10 Gbps</td></tr>
+  <tr><td><span class="en">100Base-T</span></td><td data-ar>Cat5e أو أعلى</td><td data-en hidden>Cat5e or higher</td><td>100 Mbps</td></tr>
+  <tr><td><span class="en">1000Base-T</span> (Gigabit)</td><td data-ar>Cat6 أو أعلى</td><td data-en hidden>Cat6 or higher</td><td>1000 Mbps</td></tr>
+  <tr><td><span class="en">10GBase-T</span> (10 Gigabit)</td><td data-ar>Cat6 أو أعلى</td><td data-en hidden>Cat6 or higher</td><td>10 Gbps</td></tr>
  </table>
 
- <h3>معايير Fiber Ethernet</h3>
+ <h3 data-ar>معايير Fiber Ethernet</h3>
+ <h3 data-en hidden>Fiber Ethernet Standards</h3>
  <table>
-  <tr><th>المعيار</th><th>الكيبل</th><th>السرعة</th></tr>
+  <tr data-ar><th>المعيار</th><th>الكيبل</th><th>السرعة</th></tr>
+  <tr data-en hidden><th>Standard</th><th>Cable</th><th>Speed</th></tr>
   <tr><td><span class="en">100Base-FX</span></td><td>MMF (OM1)</td><td>100 Mbps</td></tr>
   <tr><td><span class="en">100Base-SX</span></td><td>MMF (OM1, OM2)</td><td>100 Mbps</td></tr>
   <tr><td><span class="en">1000Base-SX</span></td><td>MMF (OM2, OM3)</td><td>1 Gbps</td></tr>
-  <tr><td><span class="en">1000Base-LX</span></td><td>MMF (OM1–OM3) و SMF (OS1, OS2)</td><td>1 Gbps</td></tr>
+  <tr><td><span class="en">1000Base-LX</span></td><td data-ar>MMF (OM1–OM3) و SMF (OS1, OS2)</td><td data-en hidden>MMF (OM1–OM3) and SMF (OS1, OS2)</td><td>1 Gbps</td></tr>
   <tr><td><span class="en">10GBase-SR</span></td><td>MMF (OM2–OM4)</td><td>10 Gbps</td></tr>
  </table>
 
- <h3>CSMA/CD — تنظيم الوسيط المشترك</h3>
+ <h3>CSMA/CD <span data-ar>— تنظيم الوسيط المشترك</span><span data-en hidden>— Regulating the Shared Medium</span></h3>
  <div class="card">
-  <p><b>Carrier Sense Multiple Access with Collision Detection</b>: بروتوكول ينظّم الاتصال في الشبكات ذات الوسيط المشترك <span class="en">(shared transmission medium)</span>.</p>
+  <p data-ar><b>Carrier Sense Multiple Access with Collision Detection</b>: بروتوكول ينظّم الاتصال في الشبكات ذات الوسيط المشترك <span class="en">(shared transmission medium)</span>.</p>
+  <p data-en hidden><b>Carrier Sense Multiple Access with Collision Detection</b>: a protocol that regulates communication on networks with a <span class="en">shared transmission medium</span>.</p>
   <div class="flow">
    <span>Data to transmit</span><i>←</i><span>Check network (Carrier Sense)</span><i>←</i><span>Transmit</span><i>←</i><span>Collision?</span><i>←</i><span>Jam signal + Wait (Backoff)</span><i>←</i><span>Retransmit</span>
   </div>
-  <ul>
+  <ul data-ar>
    <li><b>Carrier Sense</b>: الجهاز يستمع للوسيط قبل الإرسال.</li>
    <li><b>Multiple Access</b>: عدة أجهزة تشارك نفس الوسيط.</li>
    <li><b>Collision Detection</b>: لو أرسل جهازان معًا يُكتشف التصادم.</li>
    <li><b>Resolution</b>: إشارة <span class="en">Jam signal</span> ثم انتظار عشوائي عبر <span class="en">Backoff algorithm</span> قبل إعادة الإرسال.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Carrier Sense</b>: the device listens to the medium before transmitting.</li>
+   <li><b>Multiple Access</b>: several devices share the same medium.</li>
+   <li><b>Collision Detection</b>: if two devices transmit at once, the collision is detected.</li>
+   <li><b>Resolution</b>: a <span class="en">Jam signal</span>, then a random wait via the <span class="en">Backoff algorithm</span> before retransmitting.</li>
   </ul>
  </div>
 </section>
 
 <section id="m2-copper">
  <span class="mod-tag">MODULE 2 · LESSON 2.2</span>
- <h2>الكيابل النحاسية والموصلات</h2>
+ <h2 data-ar>الكيابل النحاسية والموصلات</h2>
+ <h2 data-en hidden>Copper Cables and Connectors</h2>
  <p class="sub">Copper Cables and Connectors</p>
 
  <div class="diagrow">
@@ -233,107 +270,159 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  <div class="two">
   <div class="card">
    <p><b>UTP — Unshielded Twisted Pair</b></p>
-   <ul>
+   <ul data-ar>
     <li>من 2 إلى 1800 زوج داخل غلاف بلاستيكي.</li>
     <li>حماية <b>ضعيفة</b> من التداخل الكهرومغناطيسي <span class="en">(minimal EMI protection)</span>.</li>
     <li>الأكثر شيوعًا في الـLANs لأنه <b>اقتصادي</b>.</li>
     <li>فئات: <span class="en">Cat5e (1 Gbps)</span> و <span class="en">Cat6a (10 Gbps)</span>.</li>
     <li>التركيب: تجنّب الانحناءات الحادة والابتعاد عن مصادر EMI.</li>
    </ul>
+   <ul data-en hidden>
+    <li>From 2 to 1800 pairs inside a plastic jacket.</li>
+    <li><b>Weak</b> protection against electromagnetic interference (<span class="en">minimal EMI protection</span>).</li>
+    <li>The most common choice in LANs because it's <b>economical</b>.</li>
+    <li>Categories: <span class="en">Cat5e (1 Gbps)</span> and <span class="en">Cat6a (10 Gbps)</span>.</li>
+    <li>Installation: avoid sharp bends and stay away from EMI sources.</li>
+   </ul>
   </div>
   <div class="card">
    <p><b>STP — Shielded Twisted Pair</b></p>
-   <ul>
+   <ul data-ar>
     <li>أزواج نحاسية مجدولة + <b>تدريع موصل</b> <span class="en">(conductive shielding)</span>.</li>
     <li>حماية من <span class="en">EMI</span> وتقليل <span class="en">crosstalk</span>.</li>
     <li>الاستخدام: المناطق عالية التداخل (مصانع، آلات) ونقل البيانات الحساسة.</li>
     <li>فئات: Cat5e, 6, 7 — ويحتاج تعامل حذر عند التركيب.</li>
    </ul>
+   <ul data-en hidden>
+    <li>Twisted copper pairs + <b>conductive shielding</b>.</li>
+    <li>Protects against <span class="en">EMI</span> and reduces <span class="en">crosstalk</span>.</li>
+    <li>Used in high-interference areas (factories, machinery) and for sensitive data transmission.</li>
+    <li>Categories: Cat5e, 6, 7 — needs careful handling during installation.</li>
+   </ul>
   </div>
  </div>
 
- <h3>الموصلات: RJ11 vs RJ45</h3>
+ <h3 data-ar>الموصلات: RJ11 vs RJ45</h3>
+ <h3 data-en hidden>Connectors: RJ11 vs RJ45</h3>
  <table>
-  <tr><th>الخاصية</th><th>RJ11</th><th>RJ45</th></tr>
-  <tr><td>التكوين</td><td>6 positions / 4 connectors</td><td>8 positions / 8 connectors</td></tr>
-  <tr><td>الاستخدام</td><td>هاتف ومودم</td><td>شبكات الحاسب</td></tr>
-  <tr><td>السرعة</td><td>24 Mbps</td><td>حتى 10 Gbps over Ethernet</td></tr>
+  <tr data-ar><th>الخاصية</th><th>RJ11</th><th>RJ45</th></tr>
+  <tr data-en hidden><th>Property</th><th>RJ11</th><th>RJ45</th></tr>
+  <tr data-ar><td>التكوين</td><td>6 positions / 4 connectors</td><td>8 positions / 8 connectors</td></tr>
+  <tr data-en hidden><td>Configuration</td><td>6 positions / 4 connectors</td><td>8 positions / 8 connectors</td></tr>
+  <tr data-ar><td>الاستخدام</td><td>هاتف ومودم</td><td>شبكات الحاسب</td></tr>
+  <tr data-en hidden><td>Use</td><td>Telephone and modem</td><td>Computer networks</td></tr>
+  <tr data-ar><td>السرعة</td><td>24 Mbps</td><td>حتى 10 Gbps over Ethernet</td></tr>
+  <tr data-en hidden><td>Speed</td><td>24 Mbps</td><td>Up to 10 Gbps over Ethernet</td></tr>
  </table>
 
- <h3>تصنيف مقاومة الحريق: Plenum vs Riser</h3>
+ <h3 data-ar>تصنيف مقاومة الحريق: Plenum vs Riser</h3>
+ <h3 data-en hidden>Fire Rating Classification: Plenum vs Riser</h3>
  <div class="two">
   <div class="card">
    <p><b>Plenum-rated</b></p>
-   <ul><li>يُركّب في فراغات تدوير الهواء <span class="en">(plenum spaces)</span> فوق الأسقف المستعارة.</li><li>مواد مقاومة للحريق ومنخفضة السمّية، معايير سلامة أعلى، و<b>أغلى</b>.</li></ul>
+   <ul data-ar><li>يُركّب في فراغات تدوير الهواء <span class="en">(plenum spaces)</span> فوق الأسقف المستعارة.</li><li>مواد مقاومة للحريق ومنخفضة السمّية، معايير سلامة أعلى، و<b>أغلى</b>.</li></ul>
+   <ul data-en hidden><li>Installed in air-handling spaces (<span class="en">plenum spaces</span>) above drop ceilings.</li><li>Fire-resistant, low-toxicity materials, higher safety standards, and <b>more expensive</b>.</li></ul>
   </div>
   <div class="card">
    <p><b>Riser-rated</b></p>
-   <ul><li>للفراغات <b>الرأسية بين الطوابق</b>.</li><li>مقاوم للحريق ويمنع انتشاره بين الأدوار، و<b>أوفر</b> تكلفة.</li></ul>
+   <ul data-ar><li>للفراغات <b>الرأسية بين الطوابق</b>.</li><li>مقاوم للحريق ويمنع انتشاره بين الأدوار، و<b>أوفر</b> تكلفة.</li></ul>
+   <ul data-en hidden><li>For <b>vertical spaces between floors</b>.</li><li>Fire-resistant and prevents fire spreading between floors, and <b>cheaper</b>.</li></ul>
   </div>
  </div>
 
  <h3>Coaxial vs Twinaxial</h3>
  <table>
-  <tr><th>الخاصية</th><th>Coaxial</th><th>Twinaxial</th></tr>
-  <tr><td>التركيب</td><td>موصل مركزي واحد + عزل + درع معدني + غلاف</td><td>موصلان داخليان (twisted pair) + عزل + غلاف</td></tr>
-  <tr><td>الاستخدام</td><td>TV، إنترنت، CCTV، إشارات راديو</td><td>شبكات <span class="en">10 GB Ethernet</span> (داخل الداتا سنتر)</td></tr>
-  <tr><td>النطاق</td><td>مدى ترددات واسع وسرعات عالية</td><td>سرعة عالية جدًا لمسافات <b>قصيرة جدًا</b></td></tr>
+  <tr data-ar><th>الخاصية</th><th>Coaxial</th><th>Twinaxial</th></tr>
+  <tr data-en hidden><th>Property</th><th>Coaxial</th><th>Twinaxial</th></tr>
+  <tr data-ar><td>التركيب</td><td>موصل مركزي واحد + عزل + درع معدني + غلاف</td><td>موصلان داخليان (twisted pair) + عزل + غلاف</td></tr>
+  <tr data-en hidden><td>Construction</td><td>One center conductor + insulation + metal shield + jacket</td><td>Two inner conductors (twisted pair) + insulation + jacket</td></tr>
+  <tr data-ar><td>الاستخدام</td><td>TV، إنترنت، CCTV، إشارات راديو</td><td>شبكات <span class="en">10 GB Ethernet</span> (داخل الداتا سنتر)</td></tr>
+  <tr data-en hidden><td>Use</td><td>TV, internet, CCTV, radio signals</td><td><span class="en">10 GB Ethernet</span> networks (inside the data center)</td></tr>
+  <tr data-ar><td>النطاق</td><td>مدى ترددات واسع وسرعات عالية</td><td>سرعة عالية جدًا لمسافات <b>قصيرة جدًا</b></td></tr>
+  <tr data-en hidden><td>Range</td><td>Wide frequency range and high speeds</td><td>Very high speed over <b>very short</b> distances</td></tr>
  </table>
 
- <div class="tip">سيناريو شهير: "بيئة صناعية فيها تداخل كهرومغناطيسي عالٍ + مسافات ≤ 100م + سرعة عالية" → الجواب <b>STP</b> (الـFiber ممتاز ضد EMI لكن STP هو الحل النحاسي الاقتصادي المطابق للسيناريو).</div>
+ <div class="tip" data-ar>سيناريو شهير: "بيئة صناعية فيها تداخل كهرومغناطيسي عالٍ + مسافات ≤ 100م + سرعة عالية" → الجواب <b>STP</b> (الـFiber ممتاز ضد EMI لكن STP هو الحل النحاسي الاقتصادي المطابق للسيناريو).</div>
+ <div class="tip" data-en hidden>Common scenario: "an industrial environment with high electromagnetic interference + distances ≤ 100m + high speed" → the answer is <b>STP</b> (Fiber is excellent against EMI, but STP is the economical copper solution that matches the scenario).</div>
 </section>
 
 <section id="m2-wiring">
  <span class="mod-tag">MODULE 2 · LESSON 2.3</span>
- <h2>تنفيذ التمديدات — Structured Cabling</h2>
+ <h2 data-ar>تنفيذ التمديدات — Structured Cabling</h2>
+ <h2 data-en hidden>Wiring Implementation — Structured Cabling</h2>
  <p class="sub">Wiring Implementation</p>
 
  <div class="card">
-  <p><b>Structured Cabling System</b>: طريقة قياسية لتمديد الشبكات في المباني المكتبية، عناصرها:</p>
-  <ul>
+  <p data-ar><b>Structured Cabling System</b>: طريقة قياسية لتمديد الشبكات في المباني المكتبية، عناصرها:</p>
+  <p data-en hidden><b>Structured Cabling System</b>: a standardized method for wiring networks in office buildings. Its elements:</p>
+  <ul data-ar>
    <li><b>Work Area</b>: نقطة اتصال المستخدم.</li>
    <li><b>Horizontal Cabling</b>: التمديد الأفقي على مستوى الطابق (يربط الـwork areas بغرفة الاتصالات).</li>
    <li><b>Telecommunications Room / Closet (IDF)</b>: غرفة/خزانة المعدات لكل طابق.</li>
    <li><b>Backbone Cabling</b>: التمديد <b>الرأسي</b> الذي يربط الطوابق وغرف المعدات.</li>
    <li><b>Entrance Facilities / Demarc</b>: نقطة دخول خدمة المزوّد وحدّ المسؤولية بينك وبين شركة الاتصالات <span class="en">(LEC)</span>.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Work Area</b>: the user's connection point.</li>
+   <li><b>Horizontal Cabling</b>: the horizontal wiring at floor level (connects work areas to the telecom room).</li>
+   <li><b>Telecommunications Room / Closet (IDF)</b>: the equipment room/closet for each floor.</li>
+   <li><b>Backbone Cabling</b>: the <b>vertical</b> wiring that connects floors and equipment rooms.</li>
+   <li><b>Entrance Facilities / Demarc</b>: the provider's service entry point and the boundary of responsibility between you and the telecom carrier (<span class="en">LEC</span>).</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>معايير الإنهاء T568A / T568B</b>: ترتيبان قياسيان لتوصيل الأزواج الأربعة (8 pins) في موصل <span class="en">RJ-45</span>. الفرق بينهما تبديل مواقع الزوجين الأخضر والبرتقالي. المهم: استخدمي <b>نفس المعيار</b> على الطرفين للكيبل المستقيم <span class="en">(straight-through)</span>.</p>
+  <p data-ar><b>معايير الإنهاء T568A / T568B</b>: ترتيبان قياسيان لتوصيل الأزواج الأربعة (8 pins) في موصل <span class="en">RJ-45</span>. الفرق بينهما تبديل مواقع الزوجين الأخضر والبرتقالي. المهم: استخدمي <b>نفس المعيار</b> على الطرفين للكيبل المستقيم <span class="en">(straight-through)</span>.</p>
+  <p data-en hidden><b>T568A / T568B termination standards</b>: two standard pinouts for wiring the four pairs (8 pins) into an <span class="en">RJ-45</span> connector. The difference between them is swapping the positions of the green and orange pairs. The key point: use the <b>same standard</b> on both ends for a <span class="en">straight-through</span> cable.</p>
  </div>
 
  <div class="card">
-  <p><b>Patch Panels</b>: لوحات تسهّل إدارة الكيابل — من الخلف <span class="en">punch down blocks (IDC terminals)</span> لإنهاء الكيابل بشكل آمن ومضغوط، ومن الأمام منافذ <span class="en">RJ45</span> تتيح إعادة تشكيل التوصيلات بسهولة. تدعم T568A وT568B.</p>
+  <p data-ar><b>Patch Panels</b>: لوحات تسهّل إدارة الكيابل — من الخلف <span class="en">punch down blocks (IDC terminals)</span> لإنهاء الكيابل بشكل آمن ومضغوط، ومن الأمام منافذ <span class="en">RJ45</span> تتيح إعادة تشكيل التوصيلات بسهولة. تدعم T568A وT568B.</p>
+  <p data-en hidden><b>Patch Panels</b>: panels that make cable management easier — the back has <span class="en">punch down blocks (IDC terminals)</span> for secure, compact cable termination, and the front has <span class="en">RJ45</span> ports that let you rearrange connections easily. They support both T568A and T568B.</p>
  </div>
 
  <div class="card">
-  <p><b>خطوات التركيب</b>: Preparation (أدوات + مسار) → Pulling cable (ترقيم/تمرير/تحزيم) → Termination (اتركي <span class="en">service loop</span>، قصّي ورقّمي) → Connection (patch panel + work area) → Testing → Documentation.</p>
+  <p data-ar><b>خطوات التركيب</b>: Preparation (أدوات + مسار) → Pulling cable (ترقيم/تمرير/تحزيم) → Termination (اتركي <span class="en">service loop</span>، قصّي ورقّمي) → Connection (patch panel + work area) → Testing → Documentation.</p>
+  <p data-en hidden><b>Installation steps</b>: Preparation (tools + route) → Pulling cable (labeling/routing/bundling) → Termination (leave a <span class="en">service loop</span>, trim and label) → Connection (patch panel + work area) → Testing → Documentation.</p>
  </div>
 
- <h3>أدوات الإنهاء — Termination Tools</h3>
+ <h3 data-ar>أدوات الإنهاء — Termination Tools</h3>
+ <h3 data-en hidden>Termination Tools</h3>
  <table>
-  <tr><th>الأداة</th><th>وظيفتها</th></tr>
-  <tr><td><b>Cable Cutters</b></td><td>قص نظيف للكيبل بدون إتلاف الأسلاك.</td></tr>
-  <tr><td><b>Cable Strippers</b></td><td>إزالة العازل بأمان بدون خدش الأسلاك <span class="en">(without nicking wires)</span>.</td></tr>
-  <tr><td><b>Crimp Tools</b></td><td>تثبيت الموصلات (RJ45) على أطراف الكيبل.</td></tr>
-  <tr><td><b>Punch-Down Tools</b></td><td>إنهاء الأسلاك داخل الـpunch down blocks (في الـpatch panel).</td></tr>
+  <tr data-ar><th>الأداة</th><th>وظيفتها</th></tr>
+  <tr data-en hidden><th>Tool</th><th>Function</th></tr>
+  <tr data-ar><td><b>Cable Cutters</b></td><td>قص نظيف للكيبل بدون إتلاف الأسلاك.</td></tr>
+  <tr data-en hidden><td><b>Cable Cutters</b></td><td>A clean cut of the cable without damaging the wires.</td></tr>
+  <tr data-ar><td><b>Cable Strippers</b></td><td>إزالة العازل بأمان بدون خدش الأسلاك <span class="en">(without nicking wires)</span>.</td></tr>
+  <tr data-en hidden><td><b>Cable Strippers</b></td><td>Safely removes the jacket <span class="en">without nicking wires</span>.</td></tr>
+  <tr data-ar><td><b>Crimp Tools</b></td><td>تثبيت الموصلات (RJ45) على أطراف الكيبل.</td></tr>
+  <tr data-en hidden><td><b>Crimp Tools</b></td><td>Attaches connectors (RJ45) to the cable ends.</td></tr>
+  <tr data-ar><td><b>Punch-Down Tools</b></td><td>إنهاء الأسلاك داخل الـpunch down blocks (في الـpatch panel).</td></tr>
+  <tr data-en hidden><td><b>Punch-Down Tools</b></td><td>Terminates wires into punch down blocks (on the patch panel).</td></tr>
  </table>
 </section>
 
 <section id="m2-fiber">
  <span class="mod-tag">MODULE 2 · LESSON 2.4</span>
- <h2>الألياف البصرية — Fiber Optic</h2>
+ <h2 data-ar>الألياف البصرية — Fiber Optic</h2>
+ <h2 data-en hidden>Fiber Optic Cables and Connectors</h2>
  <p class="sub">Fiber Optic Cables and Connectors</p>
 
  <div class="card">
-  <p><b>التكوين</b>: خيوط رفيعة من الزجاج أو البلاستيك تنقل البيانات بنبضات ضوئية:</p>
-  <ul>
+  <p data-ar><b>التكوين</b>: خيوط رفيعة من الزجاج أو البلاستيك تنقل البيانات بنبضات ضوئية:</p>
+  <p data-en hidden><b>Construction</b>: thin strands of glass or plastic that carry data as pulses of light:</p>
+  <ul data-ar>
    <li><b>Core</b>: قلب زجاجي فائق النقاء يمر فيه الضوء.</li>
    <li><b>Cladding</b>: يعكس الضوء داخل الـcore.</li>
    <li><b>Buffer</b>: غلاف خارجي واقٍ.</li>
   </ul>
-  <p><b>المزايا</b>: سرعات حتى <span class="en">800 Gbps</span>، جودة إشارة لمسافات طويلة، و<b>مناعة كاملة ضد EMI</b>.</p>
+  <ul data-en hidden>
+   <li><b>Core</b>: an ultra-pure glass core that light travels through.</li>
+   <li><b>Cladding</b>: reflects light back into the core.</li>
+   <li><b>Buffer</b>: an outer protective jacket.</li>
+  </ul>
+  <p data-ar><b>المزايا</b>: سرعات حتى <span class="en">800 Gbps</span>، جودة إشارة لمسافات طويلة، و<b>مناعة كاملة ضد EMI</b>.</p>
+  <p data-en hidden><b>Advantages</b>: speeds up to <span class="en">800 Gbps</span>, signal quality over long distances, and <b>complete immunity to EMI</b>.</p>
  </div>
 
  <div class="diagram">
@@ -342,132 +431,216 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <circle cx="100" cy="100" r="55" fill="#12617c"/>
    <circle cx="100" cy="100" r="20" fill="#ffe38a"/>
   </svg>
-  <div class="cap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffe38a"></span> Core (يمر فيه الضوء) &nbsp; <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#12617c"></span> Cladding (يعكس الضوء) &nbsp; <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#0d3b4f"></span> Buffer (غلاف واقٍ)</div>
+  <div class="cap" data-ar><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffe38a"></span> Core (يمر فيه الضوء) &nbsp; <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#12617c"></span> Cladding (يعكس الضوء) &nbsp; <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#0d3b4f"></span> Buffer (غلاف واقٍ)</div>
+  <div class="cap" data-en hidden><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ffe38a"></span> Core (light travels through it) &nbsp; <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#12617c"></span> Cladding (reflects the light) &nbsp; <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#0d3b4f"></span> Buffer (protective jacket)</div>
  </div>
 
  <h3>Single Mode vs Multimode</h3>
  <table>
-  <tr><th>العامل</th><th>Single Mode (SMF)</th><th>Multimode (MMF)</th></tr>
-  <tr><td>القلب (Core)</td><td>صغير — نمط ضوء واحد</td><td>أكبر — عدة أنماط ضوء</td></tr>
-  <tr><td>الإشارة</td><td>انعكاس وتوهين أقل <span class="en">(minimal attenuation)</span></td><td>تشتت وتوهين أكثر <span class="en">(dispersion & attenuation)</span></td></tr>
-  <tr><td>المسافة</td><td><b>مسافات طويلة</b></td><td>مسافات قصيرة</td></tr>
-  <tr><td>الاستخدام</td><td>Long-haul، اتصالات، broadband</td><td>Datacenters، LANs</td></tr>
+  <tr data-ar><th>العامل</th><th>Single Mode (SMF)</th><th>Multimode (MMF)</th></tr>
+  <tr data-en hidden><th>Factor</th><th>Single Mode (SMF)</th><th>Multimode (MMF)</th></tr>
+  <tr data-ar><td>القلب (Core)</td><td>صغير — نمط ضوء واحد</td><td>أكبر — عدة أنماط ضوء</td></tr>
+  <tr data-en hidden><td>Core</td><td>Small — a single light mode</td><td>Larger — several light modes</td></tr>
+  <tr data-ar><td>الإشارة</td><td>انعكاس وتوهين أقل <span class="en">(minimal attenuation)</span></td><td>تشتت وتوهين أكثر <span class="en">(dispersion &amp; attenuation)</span></td></tr>
+  <tr data-en hidden><td>Signal</td><td>Less reflection and <span class="en">minimal attenuation</span></td><td>More <span class="en">dispersion &amp; attenuation</span></td></tr>
+  <tr data-ar><td>المسافة</td><td><b>مسافات طويلة</b></td><td>مسافات قصيرة</td></tr>
+  <tr data-en hidden><td>Distance</td><td><b>Long distances</b></td><td>Short distances</td></tr>
+  <tr data-ar><td>الاستخدام</td><td>Long-haul، اتصالات، broadband</td><td>Datacenters، LANs</td></tr>
+  <tr data-en hidden><td>Use</td><td>Long-haul, telecom, broadband</td><td>Datacenters, LANs</td></tr>
  </table>
 
- <h3>الموصلات: SC · LC · ST</h3>
+ <h3 data-ar>الموصلات: SC · LC · ST</h3>
+ <h3 data-en hidden>Connectors: SC · LC · ST</h3>
  <table>
-  <tr><th>العامل</th><th>SC (Subscriber)</th><th>LC (Lucent)</th><th>ST (Straight Tip)</th></tr>
-  <tr><td>Ferrule</td><td>2.5 mm</td><td><b>1.25 mm</b> (الأصغر)</td><td>2.5 mm</td></tr>
-  <tr><td>التصميم</td><td>Push-pull، متين، فقد إدخال منخفض</td><td>مربع، <span class="en">duplex header</span></td><td><span class="en">Bayonet twist-lock</span>، قديم لكن شائع</td></tr>
-  <tr><td>الاستخدام</td><td>شبكات الاتصالات ونقل البيانات</td><td><b>الـpatch panels عالية الكثافة</b></td><td>LANs وdatacenters</td></tr>
+  <tr data-ar><th>العامل</th><th>SC (Subscriber)</th><th>LC (Lucent)</th><th>ST (Straight Tip)</th></tr>
+  <tr data-en hidden><th>Factor</th><th>SC (Subscriber)</th><th>LC (Lucent)</th><th>ST (Straight Tip)</th></tr>
+  <tr data-ar><td>Ferrule</td><td>2.5 mm</td><td><b>1.25 mm</b> (الأصغر)</td><td>2.5 mm</td></tr>
+  <tr data-en hidden><td>Ferrule</td><td>2.5 mm</td><td><b>1.25 mm</b> (the smallest)</td><td>2.5 mm</td></tr>
+  <tr data-ar><td>التصميم</td><td>Push-pull، متين، فقد إدخال منخفض</td><td>مربع، <span class="en">duplex header</span></td><td><span class="en">Bayonet twist-lock</span>، قديم لكن شائع</td></tr>
+  <tr data-en hidden><td>Design</td><td>Push-pull, sturdy, low insertion loss</td><td>Square, <span class="en">duplex header</span></td><td><span class="en">Bayonet twist-lock</span>, older but common</td></tr>
+  <tr data-ar><td>الاستخدام</td><td>شبكات الاتصالات ونقل البيانات</td><td><b>الـpatch panels عالية الكثافة</b></td><td>LANs وdatacenters</td></tr>
+  <tr data-en hidden><td>Use</td><td>Telecom and data networks</td><td><b>High-density patch panels</b></td><td>LANs and datacenters</td></tr>
  </table>
 
  <div class="card">
-  <p><b>WDM — Wavelength Division Multiplexing</b>: تمرير عدة قنوات بيانات على نفس الليف باستخدام أطوال موجية مختلفة من الضوء:</p>
-  <ul>
+  <p data-ar><b>WDM — Wavelength Division Multiplexing</b>: تمرير عدة قنوات بيانات على نفس الليف باستخدام أطوال موجية مختلفة من الضوء:</p>
+  <p data-en hidden><b>WDM — Wavelength Division Multiplexing</b>: carrying multiple data channels over the same fiber using different wavelengths of light:</p>
+  <ul data-ar>
    <li><b>BiDi (Bidirectional WDM)</b>: إرسال واستقبال على <b>نفس الشعيرة</b> بأطوال موجية مزاحة (Tx بـ1310nm / Rx بـ1490nm)، ويُركّب بأزواج متعاكسة. معايير: <span class="en">1000BASE-BX, 10GBASE-BX</span>.</li>
    <li><b>CWDM (Coarse)</b>: حتى <b>16</b> طول موجي — عادة 4–8 قنوات ثنائية الاتجاه.</li>
    <li><b>DWDM (Dense)</b>: قنوات أكثر بكثير (<b>20 / 40 / 80 / 160</b>)، يتطلب ليزرات دقيقة لأن التباعد بين القنوات أضيق.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>BiDi (Bidirectional WDM)</b>: sending and receiving over the <b>same strand</b> using offset wavelengths (Tx at 1310nm / Rx at 1490nm), installed in opposing pairs. Standards: <span class="en">1000BASE-BX, 10GBASE-BX</span>.</li>
+   <li><b>CWDM (Coarse)</b>: up to <b>16</b> wavelengths — typically 4–8 bidirectional channels.</li>
+   <li><b>DWDM (Dense)</b>: far more channels (<b>20 / 40 / 80 / 160</b>), requiring precise lasers because the spacing between channels is narrower.</li>
   </ul>
  </div>
 </section>
 
 <section id="m2-phys">
  <span class="mod-tag">MODULE 2 · LESSON 2.5</span>
- <h2>عوامل التركيب الفيزيائي</h2>
+ <h2 data-ar>عوامل التركيب الفيزيائي</h2>
+ <h2 data-en hidden>Physical Installation Factors</h2>
  <p class="sub">Physical Installation Factors — server rooms & datacenters</p>
 
  <div class="card">
-  <p><b>Rack Systems</b>: أنظمة رفوف فولاذية للمعدات القياسية داخل مناطق آمنة (غرف السيرفرات، خزائن الاتصالات) مع <span class="en">physical access control</span>. المقاس القياسي <span class="en">EIA 19" / 48.26 cm</span>.</p>
+  <p data-ar><b>Rack Systems</b>: أنظمة رفوف فولاذية للمعدات القياسية داخل مناطق آمنة (غرف السيرفرات، خزائن الاتصالات) مع <span class="en">physical access control</span>. المقاس القياسي <span class="en">EIA 19" / 48.26 cm</span>.</p>
+  <p data-en hidden><b>Rack Systems</b>: standardized steel equipment racks inside secure areas (server rooms, telecom closets) with <span class="en">physical access control</span>. The standard size is <span class="en">EIA 19" / 48.26 cm</span>.</p>
  </div>
 
  <div class="card">
-  <p><b>الحرارة والرطوبة</b>:</p>
-  <ul>
+  <p data-ar><b>الحرارة والرطوبة</b>:</p>
+  <p data-en hidden><b>Temperature and Humidity</b>:</p>
+  <ul data-ar>
    <li><b>Temperature monitoring</b>: منع ارتفاع الحرارة وضمان تبديد فعّال.</li>
    <li><b>Humidity control</b>: رطوبة عالية = تكاثف وتآكل <span class="en">(condensation & corrosion)</span>، رطوبة منخفضة = شحنات ستاتيكية <span class="en">(static charge)</span>.</li>
    <li><b>Flood detection</b>: كشف مخاطر المياه وإيقاف الأنظمة فورًا.</li>
   </ul>
- </div>
-
- <div class="card">
-  <p><b>إدارة الطاقة</b>:</p>
-  <ul>
-   <li><b>PDU (Power Distribution Unit)</b>: توزيع طاقة نظيفة + مراقبة وتحكم عن بُعد.</li>
-   <li><b>UPS (Uninterruptible Power Supply)</b>: استمرارية الطاقة عند الانقطاع (brownouts/blackouts)، ومدة تشغيله تعتمد على الحمل والموديل.</li>
-   <li>حماية من <span class="en">spikes, surges, failures</span>.</li>
+  <ul data-en hidden>
+   <li><b>Temperature monitoring</b>: preventing overheating and ensuring effective heat dissipation.</li>
+   <li><b>Humidity control</b>: high humidity = <span class="en">condensation &amp; corrosion</span>, low humidity = <span class="en">static charge</span>.</li>
+   <li><b>Flood detection</b>: detecting water hazards and shutting down systems immediately.</li>
   </ul>
  </div>
 
  <div class="card">
-  <p><b>إخماد الحريق — Fire Suppression</b>:</p>
-  <ul>
+  <p data-ar><b>إدارة الطاقة</b>:</p>
+  <p data-en hidden><b>Power Management</b>:</p>
+  <ul data-ar>
+   <li><b>PDU (Power Distribution Unit)</b>: توزيع طاقة نظيفة + مراقبة وتحكم عن بُعد.</li>
+   <li><b>UPS (Uninterruptible Power Supply)</b>: استمرارية الطاقة عند الانقطاع (brownouts/blackouts)، ومدة تشغيله تعتمد على الحمل والموديل.</li>
+   <li>حماية من <span class="en">spikes, surges, failures</span>.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>PDU (Power Distribution Unit)</b>: clean power distribution + remote monitoring and control.</li>
+   <li><b>UPS (Uninterruptible Power Supply)</b>: power continuity during outages (brownouts/blackouts), with runtime depending on load and model.</li>
+   <li>Protection from <span class="en">spikes, surges, failures</span>.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p data-ar><b>إخماد الحريق — Fire Suppression</b>:</p>
+  <p data-en hidden><b>Fire Suppression</b>:</p>
+  <ul data-ar>
    <li><b>Class C extinguishers</b> للحرائق الكهربائية.</li>
    <li>Sprinklers مائية = خطر انفجار أنابيب وتفعيل عرضي، لذا البدائل: <b>Dry-pipe</b>، <b>Pre-action</b>، <b>Clean agent</b> (غازات نظيفة)، و<b>Halon</b> (أُلغي تدريجيًا — phased out).</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Class C extinguishers</b> for electrical fires.</li>
+   <li>Water sprinklers = risk of pipe bursts and accidental activation, so the alternatives are: <b>Dry-pipe</b>, <b>Pre-action</b>, <b>Clean agent</b> (clean gases), and <b>Halon</b> (being phased out).</li>
   </ul>
  </div>
 </section>
 
 <section id="m2-cablets">
  <span class="mod-tag">MODULE 2 · LESSON 2.6</span>
- <h2>استكشاف أخطاء الكيابل</h2>
- <p class="sub">Cable Troubleshooting — أهم درس عملي في الوحدة</p>
+ <h2 data-ar>استكشاف أخطاء الكيابل</h2>
+ <h2 data-en hidden>Cable Troubleshooting</h2>
+ <p class="sub" data-ar>Cable Troubleshooting — أهم درس عملي في الوحدة</p>
+ <p class="sub" data-en hidden>Cable Troubleshooting — the most practical lesson in this module</p>
 
  <div class="card">
-  <p><b>مصطلحات القياس</b>:</p>
-  <ul>
+  <p data-ar><b>مصطلحات القياس</b>:</p>
+  <p data-en hidden><b>Measurement terms</b>:</p>
+  <ul data-ar>
    <li><b>Speed (baud rate)</b>: عدد الرموز المرسلة في الـPhysical layer (Hz)، بينما <b>bit rate / bandwidth</b> بالـbps في Data Link.</li>
    <li><b>Throughput</b>: متوسط معدل النقل الفعلي عبر الزمن — يتأثر بالترميز والأخطاء والمسافة والتداخل.</li>
    <li><b>Goodput</b>: الإنتاجية على مستوى الـApplication layer بعد حساب فقد الحزم <span class="en">(packet loss)</span>.</li>
    <li><b>Latency</b>: زمن وصول الحزمة، يُقاس بـ<span class="en">milliseconds (ms)</span>.</li>
    <li><b>Distance limitations</b>: نوع الوسيط يحدد المسافة؛ الأداء يتأثر بالتوهين <span class="en">(attenuation, dB loss)</span> والتداخل <span class="en">(SNR)</span>.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Speed (baud rate)</b>: the number of symbols sent at the Physical layer (Hz), while <b>bit rate / bandwidth</b> is in bps at the Data Link layer.</li>
+   <li><b>Throughput</b>: the average actual transfer rate over time — affected by encoding, errors, distance, and interference.</li>
+   <li><b>Goodput</b>: throughput at the Application layer after accounting for <span class="en">packet loss</span>.</li>
+   <li><b>Latency</b>: how long a packet takes to arrive, measured in <span class="en">milliseconds (ms)</span>.</li>
+   <li><b>Distance limitations</b>: the medium type determines the distance; performance is affected by <span class="en">attenuation (dB loss)</span> and <span class="en">interference (SNR)</span>.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>أعراض مشاكل الكيابل</b>: بطء الإنترنت، انقطاعات عشوائية، <span class="en">connection timeouts</span>، بطء التطبيقات، تقطيع الصوت/الفيديو، وعدم استقرار الرابط.</p>
-  <p><b>خطوات الفحص</b>: فحص فيزيائي → التحقق من الـpatch cords واستبدالها بأخرى سليمة معروفة <span class="en">(known good)</span> → اختبار الـtransceivers بأداة <b>loopback</b> → تجربة منفذ switch أو جهاز بديل → فحص التمديدات المهيكلة بالأدوات → التحقق من الـdrivers والـnetwork adapter.</p>
+  <p data-ar><b>أعراض مشاكل الكيابل</b>: بطء الإنترنت، انقطاعات عشوائية، <span class="en">connection timeouts</span>، بطء التطبيقات، تقطيع الصوت/الفيديو، وعدم استقرار الرابط.</p>
+  <p data-en hidden><b>Symptoms of cable problems</b>: slow internet, random dropouts, <span class="en">connection timeouts</span>, slow applications, choppy audio/video, and an unstable link.</p>
+  <p data-ar><b>خطوات الفحص</b>: فحص فيزيائي → التحقق من الـpatch cords واستبدالها بأخرى سليمة معروفة <span class="en">(known good)</span> → اختبار الـtransceivers بأداة <b>loopback</b> → تجربة منفذ switch أو جهاز بديل → فحص التمديدات المهيكلة بالأدوات → التحقق من الـdrivers والـnetwork adapter.</p>
+  <p data-en hidden><b>Inspection steps</b>: physical inspection → check patch cords and swap in <span class="en">known good</span> ones → test transceivers with a <b>loopback</b> tool → try a different switch port or device → inspect structured cabling with tools → check drivers and the network adapter.</p>
  </div>
 
- <h3>أدوات الفحص</h3>
+ <h3 data-ar>أدوات الفحص</h3>
+ <h3 data-en hidden>Testing Tools</h3>
  <table>
-  <tr><th>الأداة</th><th>وظيفتها</th></tr>
-  <tr><td><b>Cable Tester</b></td><td>تقرير عن الخصائص الفيزيائية والكهربائية: crosstalk, attenuation, noise, resistance.</td></tr>
-  <tr><td><b>Wire Map Tester</b></td><td>كشف الإنهاء الخاطئ: <span class="en">open circuits, shorts, incorrect pin-outs</span> — عبر وحدة أساسية وأخرى بعيدة <span class="en">(base & remote units)</span>.</td></tr>
-  <tr><td><b>Tone Generator + Probe</b></td><td>تتبّع الكيبل داخل الجدران أو تحديده وسط حزمة — يُعرف بـ<span class="en">"Fox and Hound"</span>.</td></tr>
-  <tr><td><b>Loopback Tool</b></td><td>اختبار الـtransceiver/المنفذ.</td></tr>
+  <tr data-ar><th>الأداة</th><th>وظيفتها</th></tr>
+  <tr data-en hidden><th>Tool</th><th>Function</th></tr>
+  <tr data-ar><td><b>Cable Tester</b></td><td>تقرير عن الخصائص الفيزيائية والكهربائية: crosstalk, attenuation, noise, resistance.</td></tr>
+  <tr data-en hidden><td><b>Cable Tester</b></td><td>Reports physical and electrical characteristics: crosstalk, attenuation, noise, resistance.</td></tr>
+  <tr data-ar><td><b>Wire Map Tester</b></td><td>كشف الإنهاء الخاطئ: <span class="en">open circuits, shorts, incorrect pin-outs</span> — عبر وحدة أساسية وأخرى بعيدة <span class="en">(base & remote units)</span>.</td></tr>
+  <tr data-en hidden><td><b>Wire Map Tester</b></td><td>Detects faulty termination: <span class="en">open circuits, shorts, incorrect pin-outs</span> — using a <span class="en">base &amp; remote unit</span>.</td></tr>
+  <tr data-ar><td><b>Tone Generator + Probe</b></td><td>تتبّع الكيبل داخل الجدران أو تحديده وسط حزمة — يُعرف بـ<span class="en">"Fox and Hound"</span>.</td></tr>
+  <tr data-en hidden><td><b>Tone Generator + Probe</b></td><td>Traces a cable inside walls or identifies it within a bundle — known as <span class="en">"Fox and Hound"</span>.</td></tr>
+  <tr data-ar><td><b>Loopback Tool</b></td><td>اختبار الـtransceiver/المنفذ.</td></tr>
+  <tr data-en hidden><td><b>Loopback Tool</b></td><td>Tests a transceiver/port.</td></tr>
  </table>
 
  <div class="two">
   <div class="card">
-   <p><b>Attenuation (التوهين)</b>: فقدان قوة الإشارة (يُقاس بـdB).</p>
-   <p>أسبابه: طول الكيبل، رفع الـimpedance، سلك رفيع، عوامل بيئية.<br><b>الحلول</b>: تقصير المسافات، <span class="en">repeaters/extenders</span>، كيابل أعلى جودة، وقياس التوهين عند التركيب.</p>
+   <p data-ar><b>Attenuation (التوهين)</b>: فقدان قوة الإشارة (يُقاس بـdB).</p>
+   <p data-en hidden><b>Attenuation</b>: loss of signal strength (measured in dB).</p>
+   <p data-ar>أسبابه: طول الكيبل، رفع الـimpedance، سلك رفيع، عوامل بيئية.<br><b>الحلول</b>: تقصير المسافات، <span class="en">repeaters/extenders</span>، كيابل أعلى جودة، وقياس التوهين عند التركيب.</p>
+   <p data-en hidden>Causes: cable length, increased impedance, thin wire, environmental factors.<br><b>Solutions</b>: shortening distances, <span class="en">repeaters/extenders</span>, higher-quality cables, and measuring attenuation at install time.</p>
   </div>
   <div class="card">
-   <p><b>Interference (التداخل)</b>: تأثير سلبي من إشارات <span class="en">EMI / RFI</span> وcrosstalk وموصلات معيبة.</p>
-   <p><b>الحلول</b>: التدريع <span class="en">(foil/braided shields)</span>، تنظيم مسارات الكيابل، مواد متينة وstrain relief، واختبار التوافق.</p>
+   <p data-ar><b>Interference (التداخل)</b>: تأثير سلبي من إشارات <span class="en">EMI / RFI</span> وcrosstalk وموصلات معيبة.</p>
+   <p data-en hidden><b>Interference</b>: negative effects from <span class="en">EMI / RFI</span> signals, crosstalk, and faulty connectors.</p>
+   <p data-ar><b>الحلول</b>: التدريع <span class="en">(foil/braided shields)</span>، تنظيم مسارات الكيابل، مواد متينة وstrain relief، واختبار التوافق.</p>
+   <p data-en hidden><b>Solutions</b>: shielding (<span class="en">foil/braided shields</span>), organizing cable routes, sturdy materials with strain relief, and compatibility testing.</p>
   </div>
  </div>
 
  <div class="card">
-  <p><b>أنواع الـCrosstalk</b> (تداخل الإشارات بين الأزواج):</p>
-  <ul>
+  <p data-ar><b>أنواع الـCrosstalk</b> (تداخل الإشارات بين الأزواج):</p>
+  <p data-en hidden><b>Types of Crosstalk</b> (signal interference between pairs):</p>
+  <ul data-ar>
    <li><b>NEXT (Near End Crosstalk)</b>: عند طرف <b>المرسل</b> — سببه فك الجدل الزائد أو درع معيب.</li>
    <li><b>ACRN (Attenuation to Crosstalk Ratio, Near end)</b>: مقارنة insertion loss مع NEXT — قيمة عالية = إشارة قوية.</li>
    <li><b>ACRF (…, Far End)</b>: قياس FEXT عند طرف المستقبل — <b>مستقل عن طول الرابط</b>.</li>
    <li><b>Power Sum</b>: لكيابل <span class="en">Gigabit / 10GbE</span> — يتأكد أن الكيبل مناسب للإرسال على كل الأزواج معًا.</li>
    <li><b>Alien Crosstalk</b>: تداخل من <b>كيابل مجاورة</b> بسبب التحزيم الضيق أو الإنهاء السيئ.</li>
   </ul>
-  <p><b>حلول الـcrosstalk</b>: فحص التلف والتركيب الخاطئ، تجنّب فك الجدل الزائد <span class="en">(excessive untwisting)</span>، تحزيم صحيح، وموصلات/كيابل مناسبة.</p>
+  <ul data-en hidden>
+   <li><b>NEXT (Near End Crosstalk)</b>: at the <b>transmitting</b> end — caused by excessive untwisting or a faulty shield.</li>
+   <li><b>ACRN (Attenuation to Crosstalk Ratio, Near end)</b>: compares insertion loss to NEXT — a high value = a strong signal.</li>
+   <li><b>ACRF (…, Far End)</b>: measures FEXT at the receiving end — <b>independent of link length</b>.</li>
+   <li><b>Power Sum</b>: for <span class="en">Gigabit / 10GbE</span> cables — confirms the cable can handle transmission on all pairs at once.</li>
+   <li><b>Alien Crosstalk</b>: interference from <b>neighboring cables</b> caused by tight bundling or poor termination.</li>
+  </ul>
+  <p data-ar><b>حلول الـcrosstalk</b>: فحص التلف والتركيب الخاطئ، تجنّب فك الجدل الزائد <span class="en">(excessive untwisting)</span>، تحزيم صحيح، وموصلات/كيابل مناسبة.</p>
+  <p data-en hidden><b>Crosstalk solutions</b>: check for damage and incorrect installation, avoid <span class="en">excessive untwisting</span>, proper bundling, and suitable connectors/cables.</p>
  </div>
 
- <div class="tip">فرّقي: مشكلة عند نهاية المرسل = <b>NEXT</b> · عند المستقبل = <b>ACRF/FEXT</b> · من كيابل مجاورة = <b>Alien Crosstalk</b> · فقدان قوة الإشارة مع المسافة = <b>Attenuation</b>.</div>
+ <div class="tip" data-ar>فرّقي: مشكلة عند نهاية المرسل = <b>NEXT</b> · عند المستقبل = <b>ACRF/FEXT</b> · من كيابل مجاورة = <b>Alien Crosstalk</b> · فقدان قوة الإشارة مع المسافة = <b>Attenuation</b>.</div>
+ <div class="tip" data-en hidden>Tell them apart: a problem at the transmitting end = <b>NEXT</b> · at the receiving end = <b>ACRF/FEXT</b> · from a neighboring cable = <b>Alien Crosstalk</b> · signal strength loss over distance = <b>Attenuation</b>.</div>
 </section>
 
 </main>
 
-<div class="modnav"><a href="module1-guide.html">← الوحدة 1</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module3-guide.html">الوحدة 3 →</a></div>
+<div class="modnav"><a href="module1-guide.html"><span data-ar>← الوحدة 1</span><span data-en hidden>← Module 1</span></a><a href="index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="module3-guide.html"><span data-ar>الوحدة 3 →</span><span data-en hidden>Module 3 →</span></a></div>
 
-<footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 2 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<footer><span data-ar>ملخص دراسي — CompTIA Network+ N10-009 · Module 2 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Network+ N10-009 · Module 2 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
