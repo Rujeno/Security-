@@ -120,8 +120,20 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
+html[dir="ltr"] .diagram .cap{direction:ltr}
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
+.svgen{display:none}
+html[dir="ltr"] .svgar{display:none}
+html[dir="ltr"] .svgen{display:inline}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -141,12 +153,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 13</span>
-  <h1>الوحدة 13 — مقارنة طرق الوصول عن بُعد</h1>
+  <h1 data-ar>الوحدة 13 — مقارنة طرق الوصول عن بُعد</h1>
+  <h1 data-en hidden>Module 13 — Comparing Remote Access Methods</h1>
   <p>Comparing Remote Access Methods — WAN & Internet Connectivity · VPN Protocols · Remote Management</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html" class="active">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html" class="active">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m13-wan">13.1 WAN & Internet</a>
@@ -158,150 +171,213 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m13-wan">
  <span class="mod-tag">MODULE 13 · LESSON 13.1</span>
- <h2>الشبكات الواسعة والاتصال بالإنترنت</h2>
+ <h2 data-ar>الشبكات الواسعة والاتصال بالإنترنت</h2>
+ <h2 data-en hidden>WAN and Internet Connectivity</h2>
  <p class="sub">Comparing Remote Access Methods — WAN and Internet Connectivity</p>
 
  <div class="card">
-  <p><b>WAN مقابل LAN</b>: الـ<b>WAN</b> ينقل البيانات لمسافات كبيرة، غالبًا عبر شبكات عامة. الـ<b>LAN</b> يغطي مناطق أصغر ومحلية. <b>Enterprise WAN</b>: شبكة لمؤسسة واحدة تمتد لمناطق جغرافية واسعة، تستخدم بنية اتصالات عامة.</p>
+  <p data-ar><b>WAN مقابل LAN</b>: الـ<b>WAN</b> ينقل البيانات لمسافات كبيرة، غالبًا عبر شبكات عامة. الـ<b>LAN</b> يغطي مناطق أصغر ومحلية. <b>Enterprise WAN</b>: شبكة لمؤسسة واحدة تمتد لمناطق جغرافية واسعة، تستخدم بنية اتصالات عامة.</p>
+  <p data-en hidden><b>WAN versus LAN</b>: a <b>WAN</b> carries data over large distances, often across public networks. A <b>LAN</b> covers smaller, local areas. <b>Enterprise WAN</b>: a single organization's network spanning wide geographic areas, using public connectivity infrastructure.</p>
  </div>
 
  <div class="card">
-  <p><b>WAN وطبقات OSI</b>:</p>
-  <ul>
+  <p data-ar><b>WAN وطبقات OSI</b>:</p>
+  <p data-en hidden><b>WAN and the OSI layers</b>:</p>
+  <ul data-ar>
    <li><b>Physical Layer</b>: يحدد الوسائط والواجهات، يستخدم مودمات لاتصالات الكيبل النحاسي (تناظرية ورقمية).</li>
    <li><b>Data Link Layer</b>: بروتوكولات أبسط من إيثرنت الـLAN، لكن الإيثرنت يُستخدم بشكل متزايد بالـWAN لكفاءة الاتصال الطرف-لطرف.</li>
    <li><b>Network Layer</b>: يستخدم <b>IP</b> للعنونة، يربط مواقع العميل والمزوّد عبر راوترات <b>CE وPE</b>، ويخصص عناوين IPv4/IPv6 عامة للتعريف العالمي.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Physical Layer</b>: defines the media and interfaces, using modems for copper-cable connections (analog and digital).</li>
+   <li><b>Data Link Layer</b>: simpler protocols than LAN Ethernet, though Ethernet is increasingly used over WAN for efficient end-to-end connectivity.</li>
+   <li><b>Network Layer</b>: uses <b>IP</b> for addressing, links customer and provider sites via <b>CE and PE</b> routers, and assigns public IPv4/IPv6 addresses for global identification.</li>
+  </ul>
  </div>
 
- <h3>أنواع اتصال الإنترنت</h3>
+ <h3 data-ar>أنواع اتصال الإنترنت</h3>
+ <h3 data-en hidden>Types of Internet Connectivity</h3>
  <table>
-  <tr><th>النوع</th><th>السرعة</th><th>الخصائص</th></tr>
-  <tr><td><b>T1 Leased Line</b></td><td>حتى 1.544 Mbps</td><td>موثوقية عالية، bandwidth مخصص، تعدد إرسال بتقسيم زمني (TDM)، مثالي للأعمال التي تحتاج اتصالًا ثابتًا، تركيب احترافي وتكلفة شهرية أعلى</td></tr>
-  <tr><td><b>DSL</b></td><td>ADSL2+ حتى ~24 Mbps</td><td>متاح على نطاق واسع عبر خطوط الهاتف الموجودة، يدعم ADSL (لا متماثل) وSDSL (متماثل)، الأداء يقل مع بُعد المسافة عن المزوّد</td></tr>
-  <tr><td><b>Cable Internet</b></td><td>حتى 38 Mbps (أو أعلى حسب DOCSIS)</td><td>تقنية Hybrid Fiber Coax (HFC)، bandwidth مشترك قد يقل بأوقات الذروة</td></tr>
+  <tr data-ar><th>النوع</th><th>السرعة</th><th>الخصائص</th></tr>
+  <tr data-en hidden><th>Type</th><th>Speed</th><th>Characteristics</th></tr>
+  <tr data-ar><td><b>T1 Leased Line</b></td><td>حتى 1.544 Mbps</td><td>موثوقية عالية، bandwidth مخصص، تعدد إرسال بتقسيم زمني (TDM)، مثالي للأعمال التي تحتاج اتصالًا ثابتًا، تركيب احترافي وتكلفة شهرية أعلى</td></tr>
+  <tr data-en hidden><td><b>T1 Leased Line</b></td><td>Up to 1.544 Mbps</td><td>High reliability, dedicated bandwidth, Time-Division Multiplexing (TDM), ideal for businesses needing a stable connection, professional installation and higher monthly cost</td></tr>
+  <tr data-ar><td><b>DSL</b></td><td>ADSL2+ حتى ~24 Mbps</td><td>متاح على نطاق واسع عبر خطوط الهاتف الموجودة، يدعم ADSL (لا متماثل) وSDSL (متماثل)، الأداء يقل مع بُعد المسافة عن المزوّد</td></tr>
+  <tr data-en hidden><td><b>DSL</b></td><td>ADSL2+ up to ~24 Mbps</td><td>Widely available over existing phone lines, supports ADSL (asymmetric) and SDSL (symmetric), performance drops with distance from the provider</td></tr>
+  <tr data-ar><td><b>Cable Internet</b></td><td>حتى 38 Mbps (أو أعلى حسب DOCSIS)</td><td>تقنية Hybrid Fiber Coax (HFC)، bandwidth مشترك قد يقل بأوقات الذروة</td></tr>
+  <tr data-en hidden><td><b>Cable Internet</b></td><td>Up to 38 Mbps (or higher depending on DOCSIS)</td><td>Hybrid Fiber Coax (HFC) technology, shared bandwidth that may drop during peak hours</td></tr>
  </table>
 
  <div class="two">
   <div class="card">
-   <p><b>FTTC (Fiber to the Curb)</b></p>
-   <p>ألياف بصرية حتى الأرصفة القريبة من المباني، ثم كيبل نحاسي/coax للمرحلة الأخيرة — سرعة وموثوقية أعلى من النحاس التقليدي، لكن أقل قليلًا من FTTP.</p>
+   <p data-ar><b>FTTC (Fiber to the Curb)</b></p>
+   <p data-en hidden><b>FTTC (Fiber to the Curb)</b></p>
+   <p data-ar>ألياف بصرية حتى الأرصفة القريبة من المباني، ثم كيبل نحاسي/coax للمرحلة الأخيرة — سرعة وموثوقية أعلى من النحاس التقليدي، لكن أقل قليلًا من FTTP.</p>
+   <p data-en hidden>Fiber optic cable up to curbs near buildings, then copper/coax cable for the last stretch — higher speed and reliability than traditional copper, but slightly lower than FTTP.</p>
   </div>
   <div class="card">
-   <p><b>FTTP (Fiber to the Premises)</b></p>
-   <p>ألياف بصرية حتى المبنى مباشرة — أعلى سرعة ممكنة، بنية مستقبلية قابلة للتوسع، لكن تكلفة تركيب أعلى وقد لا تتوفر بكل المناطق.</p>
+   <p data-ar><b>FTTP (Fiber to the Premises)</b></p>
+   <p data-en hidden><b>FTTP (Fiber to the Premises)</b></p>
+   <p data-ar>ألياف بصرية حتى المبنى مباشرة — أعلى سرعة ممكنة، بنية مستقبلية قابلة للتوسع، لكن تكلفة تركيب أعلى وقد لا تتوفر بكل المناطق.</p>
+   <p data-en hidden>Fiber optic cable directly to the building — the highest possible speed, a future-proof scalable infrastructure, but higher installation cost and may not be available everywhere.</p>
   </div>
  </div>
 </section>
 
 <section id="m13-vpn">
  <span class="mod-tag">MODULE 13 · LESSON 13.2</span>
- <h2>مقارنة طرق الوصول عن بُعد — VPN</h2>
+ <h2 data-ar>مقارنة طرق الوصول عن بُعد — VPN</h2>
+ <h2 data-en hidden>Comparing Remote Access Methods — VPN</h2>
  <p class="sub">Tunneling Protocols · IPSec · Client-to-Site & Site-to-Site VPN</p>
 
  <div class="card">
-  <p><b>سياسة الوصول عن بُعد</b>: وصول مصرّح به فقط مع تحقق قوي من الهوية، استخدام VPNs وتشفير البيانات أثناء النقل، تأمين الأجهزة البعيدة (تحديثات، مضاد فيروسات)، وصول قائم على الدور، سجلات وصول مفصّلة، وتحديثات أمنية دورية لأجهزة RAS.</p>
+  <p data-ar><b>سياسة الوصول عن بُعد</b>: وصول مصرّح به فقط مع تحقق قوي من الهوية، استخدام VPNs وتشفير البيانات أثناء النقل، تأمين الأجهزة البعيدة (تحديثات، مضاد فيروسات)، وصول قائم على الدور، سجلات وصول مفصّلة، وتحديثات أمنية دورية لأجهزة RAS.</p>
+  <p data-en hidden><b>Remote access policy</b>: only authorized access with strong identity verification, using VPNs and encrypting data in transit, securing remote devices (updates, antivirus), role-based access, detailed access logs, and regular security updates for RAS devices.</p>
  </div>
 
  <div class="card">
-  <p><b>بروتوكولات النفق (Tunneling Protocols)</b>: تمرّر بيانات خاصة بأمان عبر شبكات عامة، عبر تغليف الحزم داخل حزم أخرى، لإنشاء أنفاق آمنة تضمن وصولًا حصريًا بين المرسل والمستقبل.</p>
+  <p data-ar><b>بروتوكولات النفق (Tunneling Protocols)</b>: تمرّر بيانات خاصة بأمان عبر شبكات عامة، عبر تغليف الحزم داخل حزم أخرى، لإنشاء أنفاق آمنة تضمن وصولًا حصريًا بين المرسل والمستقبل.</p>
+  <p data-en hidden><b>Tunneling Protocols</b>: safely pass private data across public networks by encapsulating packets inside other packets, creating secure tunnels that ensure exclusive access between sender and receiver.</p>
  </div>
 
  <table>
-  <tr><th>البروتوكول</th><th>طبقة OSI</th><th>الخصائص</th></tr>
-  <tr><td><b>PPP</b></td><td>Data Link</td><td>للخطوط الرقمية، يفتقر لأمان مدمج</td></tr>
-  <tr><td><b>GRE</b></td><td>Network</td><td>تغليف بروتوكولات متعددة</td></tr>
-  <tr><td><b>IPSec</b></td><td>Network</td><td>تأمين IP عبر المصادقة والتشفير</td></tr>
-  <tr><td><b>TLS/DTLS</b></td><td>Session</td><td>أمان بعبء إضافي أعلى، تُستخدم بـVPN للاتصال المشفّر والموثّق عن بُعد</td></tr>
+  <tr data-ar><th>البروتوكول</th><th>طبقة OSI</th><th>الخصائص</th></tr>
+  <tr data-en hidden><th>Protocol</th><th>OSI layer</th><th>Characteristics</th></tr>
+  <tr data-ar><td><b>PPP</b></td><td>Data Link</td><td>للخطوط الرقمية، يفتقر لأمان مدمج</td></tr>
+  <tr data-en hidden><td><b>PPP</b></td><td>Data Link</td><td>For digital lines, lacks built-in security</td></tr>
+  <tr data-ar><td><b>GRE</b></td><td>Network</td><td>تغليف بروتوكولات متعددة</td></tr>
+  <tr data-en hidden><td><b>GRE</b></td><td>Network</td><td>Encapsulates multiple protocols</td></tr>
+  <tr data-ar><td><b>IPSec</b></td><td>Network</td><td>تأمين IP عبر المصادقة والتشفير</td></tr>
+  <tr data-en hidden><td><b>IPSec</b></td><td>Network</td><td>Secures IP through authentication and encryption</td></tr>
+  <tr data-ar><td><b>TLS/DTLS</b></td><td>Session</td><td>أمان بعبء إضافي أعلى، تُستخدم بـVPN للاتصال المشفّر والموثّق عن بُعد</td></tr>
+  <tr data-en hidden><td><b>TLS/DTLS</b></td><td>Session</td><td>Security with higher overhead, used in VPNs for encrypted, authenticated remote connections</td></tr>
  </table>
 
  <div class="card">
-  <p><b>أوضاع IPSec</b>:</p>
-  <ul>
+  <p data-ar><b>أوضاع IPSec</b>:</p>
+  <p data-en hidden><b>IPSec modes</b>:</p>
+  <ul data-ar>
    <li><b>Transport Mode</b>: يُستخدم غالبًا داخل شبكة خاصة، يشفّر <b>الحمولة (payload)</b> فقط. <b>AH</b> يوفّر سلامة رأس IP، و<b>ESP</b> يشفّر الحمولة للسرية.</li>
    <li><b>Tunnel Mode</b>: مثالي لشبكات VPN وتأمين الاتصالات عبر شبكات عامة — يشفّر <b>الحزمة كاملة</b> بما فيها الرأس، ويُغلّفها داخل حزمة IP جديدة.</li>
   </ul>
-  <p><b>خطوات إعداد IPSec</b>: اختيار Transport أو Tunnel حسب متطلبات الشبكة → تحديد AH و/أو ESP → إدارة مفاتيح تلقائية عبر IKE أو يدوية → تعريف سياسات التعامل مع الترافيك → اختبار الإعداد دوريًا.</p>
+  <ul data-en hidden>
+   <li><b>Transport Mode</b>: typically used within a private network, encrypts only the <b>payload</b>. <b>AH</b> provides IP header integrity, and <b>ESP</b> encrypts the payload for confidentiality.</li>
+   <li><b>Tunnel Mode</b>: ideal for VPNs and securing connections over public networks — encrypts the <b>entire packet</b> including the header, and encapsulates it inside a new IP packet.</li>
+  </ul>
+  <p data-ar><b>خطوات إعداد IPSec</b>: اختيار Transport أو Tunnel حسب متطلبات الشبكة → تحديد AH و/أو ESP → إدارة مفاتيح تلقائية عبر IKE أو يدوية → تعريف سياسات التعامل مع الترافيك → اختبار الإعداد دوريًا.</p>
+  <p data-en hidden><b>IPSec setup steps</b>: choose Transport or Tunnel based on network requirements → select AH and/or ESP → automatic key management via IKE or manual → define traffic-handling policies → test the configuration periodically.</p>
  </div>
 
  <div class="card">
-  <p><b>IKE (Internet Key Exchange)</b>: بروتوكول IPSec للتواصل الآمن عبر الإنترنت، أساسي لبنية VPN موثوقة — يتفاوض وينشئ <b>SAs</b>، مصادقة متبادلة، وتبادل مفاتيح تشفير.</p>
-  <ul>
+  <p data-ar><b>IKE (Internet Key Exchange)</b>: بروتوكول IPSec للتواصل الآمن عبر الإنترنت، أساسي لبنية VPN موثوقة — يتفاوض وينشئ <b>SAs</b>، مصادقة متبادلة، وتبادل مفاتيح تشفير.</p>
+  <p data-en hidden><b>IKE (Internet Key Exchange)</b>: an IPSec protocol for secure communication over the internet, essential for a trustworthy VPN infrastructure — negotiates and establishes <b>SAs</b>, mutual authentication, and encryption key exchange.</p>
+  <ul data-ar>
    <li><b>IKEv1</b>: VPN موقع-لموقع ومضيف-لمضيف، قناة موثقة آمنة.</li>
    <li><b>IKEv2</b>: يدعم <b>EAP</b> للمصادقة، إعداد أبسط، اجتياز NAT أفضل، <b>MOBIKE</b> للاتصال المتنقل — المفضّل لحلول VPN الحديثة.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>IKEv1</b>: site-to-site and host-to-host VPN, a secure authenticated channel.</li>
+   <li><b>IKEv2</b>: supports <b>EAP</b> authentication, simpler setup, better NAT traversal, <b>MOBIKE</b> for mobile connectivity — preferred for modern VPN solutions.</li>
   </ul>
  </div>
 
  <div class="two">
   <div class="card">
-   <p><b>Client-to-Site VPN</b></p>
-   <p>عملاء أفراد يتصلون بشبكة الشركة عبر الإنترنت العام. المكونات: <b>VPN Client</b> (البرنامج/الجهاز المبادِر) و<b>VPN Gateway</b> (راوتر مفعَّل بـVPN عند حافة الشبكة) — مثالي للعمل عن بُعد.</p>
+   <p data-ar><b>Client-to-Site VPN</b></p>
+   <p data-en hidden><b>Client-to-Site VPN</b></p>
+   <p data-ar>عملاء أفراد يتصلون بشبكة الشركة عبر الإنترنت العام. المكونات: <b>VPN Client</b> (البرنامج/الجهاز المبادِر) و<b>VPN Gateway</b> (راوتر مفعَّل بـVPN عند حافة الشبكة) — مثالي للعمل عن بُعد.</p>
+   <p data-en hidden>Individual clients connecting to the company network over the public internet. Components: a <b>VPN Client</b> (the initiating software/device) and a <b>VPN Gateway</b> (a VPN-enabled router at the network edge) — ideal for remote work.</p>
   </div>
   <div class="card">
-   <p><b>Site-to-Site VPN</b></p>
-   <p>اتصال دائم بين شبكتين — أمان عالٍ، إدارة مبسّطة (بدون إعداد كل جهاز فرديًا)، وقابلية توسع. حالات استخدام: ربط الفروع، الدمج والاستحواذ، شبكات IIoT، والتكامل السحابي.</p>
+   <p data-ar><b>Site-to-Site VPN</b></p>
+   <p data-en hidden><b>Site-to-Site VPN</b></p>
+   <p data-ar>اتصال دائم بين شبكتين — أمان عالٍ، إدارة مبسّطة (بدون إعداد كل جهاز فرديًا)، وقابلية توسع. حالات استخدام: ربط الفروع، الدمج والاستحواذ، شبكات IIoT، والتكامل السحابي.</p>
+   <p data-en hidden>A permanent connection between two networks — high security, simplified management (no need to configure each device individually), and scalability. Use cases: linking branches, mergers and acquisitions, IIoT networks, and cloud integration.</p>
   </div>
  </div>
 
  <div class="diagrow" style="grid-template-columns:1fr 1fr">
   <div class="dbox">
    <svg viewBox="0 0 260 110"><circle cx="30" cy="55" r="20" fill="#0d3b4f"/><text x="30" y="59" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">User</text><line x1="50" y1="55" x2="130" y2="55" stroke="#5b7280" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arV)"/><text x="90" y="45" text-anchor="middle" font-size="9" fill="#5b7280">Internet</text><rect x="130" y="35" width="60" height="40" rx="6" fill="#e8672c"/><text x="160" y="58" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">VPN GW</text><line x1="190" y1="55" x2="220" y2="55" stroke="#5b7280" stroke-width="2" marker-end="url(#arV)"/><rect x="220" y="35" width="35" height="40" rx="6" fill="#1a7f5c"/><text x="237" y="58" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">LAN</text><defs><marker id="arV" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#5b7280"/></marker></defs></svg>
-   <div class="cap">Client-to-Site: مستخدم فردي يتصل عبر نفق مشفّر لشبكة الشركة</div>
+   <div class="cap" data-ar>Client-to-Site: مستخدم فردي يتصل عبر نفق مشفّر لشبكة الشركة</div>
+   <div class="cap" data-en hidden>Client-to-Site: an individual user connects via an encrypted tunnel to the company network</div>
   </div>
   <div class="dbox">
    <svg viewBox="0 0 260 110"><rect x="10" y="35" width="70" height="40" rx="6" fill="#12617c"/><text x="45" y="58" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">Branch</text><line x1="80" y1="55" x2="180" y2="55" stroke="#e8672c" stroke-width="2.5" stroke-dasharray="6 3" marker-end="url(#arV2)" marker-start="url(#arV2s)"/><text x="130" y="45" text-anchor="middle" font-size="9" fill="#e8672c">Encrypted Tunnel</text><rect x="180" y="35" width="70" height="40" rx="6" fill="#12617c"/><text x="215" y="58" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">HQ</text><defs><marker id="arV2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#e8672c"/></marker><marker id="arV2s" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto"><path d="M8,0L0,4L8,8z" fill="#e8672c"/></marker></defs></svg>
-   <div class="cap">Site-to-Site: نفق دائم يربط شبكتين كاملتين ببعض</div>
+   <div class="cap" data-ar>Site-to-Site: نفق دائم يربط شبكتين كاملتين ببعض</div>
+   <div class="cap" data-en hidden>Site-to-Site: a permanent tunnel linking two entire networks together</div>
   </div>
  </div>
 
  <div class="card">
-  <p><b>بروتوكولات VPN</b>: <b>SSL/TLS VPN</b> (نفق آمن بشهادات، مثل SSTP) و<b>L2TP/IPSec</b> (أمان قوي منتشر). بروتوكول <b>PPTP</b> مُهجَّر (deprecated) لثغراته الأمنية.</p>
-  <p><b>Split Tunnel</b> مقابل <b>Full Tunnel</b>: توازن بين الوصول المباشر للإنترنت والحاجة الأمنية — Split يمرر فقط ترافيك الشركة عبر النفق، Full يمرر كل الترافيك.</p>
+  <p data-ar><b>بروتوكولات VPN</b>: <b>SSL/TLS VPN</b> (نفق آمن بشهادات، مثل SSTP) و<b>L2TP/IPSec</b> (أمان قوي منتشر). بروتوكول <b>PPTP</b> مُهجَّر (deprecated) لثغراته الأمنية.</p>
+  <p data-en hidden><b>VPN protocols</b>: <b>SSL/TLS VPN</b> (a secure tunnel using certificates, e.g. SSTP) and <b>L2TP/IPSec</b> (strong, widely deployed security). The <b>PPTP</b> protocol is deprecated due to its security flaws.</p>
+  <p data-ar><b>Split Tunnel</b> مقابل <b>Full Tunnel</b>: توازن بين الوصول المباشر للإنترنت والحاجة الأمنية — Split يمرر فقط ترافيك الشركة عبر النفق، Full يمرر كل الترافيك.</p>
+  <p data-en hidden><b>Split Tunnel</b> versus <b>Full Tunnel</b>: balances direct internet access against security needs — Split routes only company traffic through the tunnel, Full routes all traffic.</p>
  </div>
 
- <div class="tip"><b>Clientless VPN</b>: وصول لموارد الشبكة عبر المتصفح، بدون الحاجة لبرنامج VPN مخصص، باستخدام HTML5 وWebSockets — يبسّط الوصول، يعزل الجلسة داخل المتصفح، وفعّال من ناحية التكلفة. أمثلة: Microsoft RDS، Citrix، Apache Guacamole.</div>
+ <div class="tip" data-ar><b>Clientless VPN</b>: وصول لموارد الشبكة عبر المتصفح، بدون الحاجة لبرنامج VPN مخصص، باستخدام HTML5 وWebSockets — يبسّط الوصول، يعزل الجلسة داخل المتصفح، وفعّال من ناحية التكلفة. أمثلة: Microsoft RDS، Citrix، Apache Guacamole.</div>
+ <div class="tip" data-en hidden><b>Clientless VPN</b>: access to network resources through a browser, without needing dedicated VPN software, using HTML5 and WebSockets — simplifies access, isolates the session within the browser, and is cost-effective. Examples: Microsoft RDS, Citrix, Apache Guacamole.</div>
 </section>
 
 <section id="m13-remote">
  <span class="mod-tag">MODULE 13 · LESSON 13.3</span>
- <h2>الإدارة عن بُعد — Remote Management</h2>
+ <h2 data-ar>الإدارة عن بُعد — Remote Management</h2>
+ <h2 data-en hidden>Remote Management</h2>
  <p class="sub">SSH · Telnet · RDP · Console/OOB · Jump Boxes</p>
 
  <div class="card">
-  <p><b>Remote Host Access</b>: يتيح التحكم عن بُعد بالحواسيب وأجهزة الشبكة — إعداد الأجهزة، إدارة السيرفرات/المستخدمين، عبر واجهة رسومية (GUI) أو طرفية (terminal).</p>
+  <p data-ar><b>Remote Host Access</b>: يتيح التحكم عن بُعد بالحواسيب وأجهزة الشبكة — إعداد الأجهزة، إدارة السيرفرات/المستخدمين، عبر واجهة رسومية (GUI) أو طرفية (terminal).</p>
+  <p data-en hidden><b>Remote Host Access</b>: enables remote control of computers and network devices — device configuration, server/user management, through a graphical interface (GUI) or a terminal.</p>
  </div>
 
  <div class="card">
-  <p><b>SSH (Secure Shell)</b>: بروتوكول اتصال آمن مشفّر بالكامل — للوصول عن بُعد للسيرفرات وأجهزة الشبكة، نقل ملفات آمن، جلسات طرفية، وتنفيذ أوامر.</p>
+  <p data-ar><b>SSH (Secure Shell)</b>: بروتوكول اتصال آمن مشفّر بالكامل — للوصول عن بُعد للسيرفرات وأجهزة الشبكة، نقل ملفات آمن، جلسات طرفية، وتنفيذ أوامر.</p>
+  <p data-en hidden><b>SSH (Secure Shell)</b>: a fully encrypted secure connection protocol — for remote access to servers and network devices, secure file transfer, terminal sessions, and command execution.</p>
   <table>
-   <tr><th>الأمر</th><th>الوظيفة</th></tr>
-   <tr><td><span class="en">ssh</span></td><td>يتصل بسيرفر بعيد لبدء جلسة shell آمنة</td></tr>
-   <tr><td><span class="en">ssh-keygen</span></td><td>يولّد زوج مفاتيح SSH (خاص/عام)</td></tr>
-   <tr><td><span class="en">ssh-copy-id</span></td><td>ينسخ مفتاحًا عامًا لملف authorized_keys على السيرفر البعيد</td></tr>
-   <tr><td><span class="en">ssh-add</span></td><td>يضيف مفاتيح خاصة لوكيل المصادقة</td></tr>
-   <tr><td><span class="en">scp</span></td><td>ينسخ ملفات بأمان بين المضيفين</td></tr>
-   <tr><td><span class="en">sftp</span></td><td>نقل ملفات آمن عبر SSH</td></tr>
-   <tr><td><span class="en">ssh-agent</span></td><td>يحتفظ بالمفاتيح الخاصة لمصادقة المفتاح العام</td></tr>
-   <tr><td><span class="en">sshd</span></td><td>خدمة SSH Daemon تستمع لاتصالات SSH الواردة</td></tr>
+   <tr data-ar><th>الأمر</th><th>الوظيفة</th></tr>
+   <tr data-en hidden><th>Command</th><th>Function</th></tr>
+   <tr data-ar><td><span class="en">ssh</span></td><td>يتصل بسيرفر بعيد لبدء جلسة shell آمنة</td></tr>
+   <tr data-en hidden><td><span class="en">ssh</span></td><td>Connects to a remote server to start a secure shell session</td></tr>
+   <tr data-ar><td><span class="en">ssh-keygen</span></td><td>يولّد زوج مفاتيح SSH (خاص/عام)</td></tr>
+   <tr data-en hidden><td><span class="en">ssh-keygen</span></td><td>Generates an SSH key pair (private/public)</td></tr>
+   <tr data-ar><td><span class="en">ssh-copy-id</span></td><td>ينسخ مفتاحًا عامًا لملف authorized_keys على السيرفر البعيد</td></tr>
+   <tr data-en hidden><td><span class="en">ssh-copy-id</span></td><td>Copies a public key to the authorized_keys file on the remote server</td></tr>
+   <tr data-ar><td><span class="en">ssh-add</span></td><td>يضيف مفاتيح خاصة لوكيل المصادقة</td></tr>
+   <tr data-en hidden><td><span class="en">ssh-add</span></td><td>Adds private keys to the authentication agent</td></tr>
+   <tr data-ar><td><span class="en">scp</span></td><td>ينسخ ملفات بأمان بين المضيفين</td></tr>
+   <tr data-en hidden><td><span class="en">scp</span></td><td>Securely copies files between hosts</td></tr>
+   <tr data-ar><td><span class="en">sftp</span></td><td>نقل ملفات آمن عبر SSH</td></tr>
+   <tr data-en hidden><td><span class="en">sftp</span></td><td>Secure file transfer over SSH</td></tr>
+   <tr data-ar><td><span class="en">ssh-agent</span></td><td>يحتفظ بالمفاتيح الخاصة لمصادقة المفتاح العام</td></tr>
+   <tr data-en hidden><td><span class="en">ssh-agent</span></td><td>Holds private keys for public key authentication</td></tr>
+   <tr data-ar><td><span class="en">sshd</span></td><td>خدمة SSH Daemon تستمع لاتصالات SSH الواردة</td></tr>
+   <tr data-en hidden><td><span class="en">sshd</span></td><td>The SSH Daemon service listening for incoming SSH connections</td></tr>
   </table>
  </div>
 
  <div class="card">
-  <p><b>Telnet</b>: محاكاة طرفية للوصول لنظام بعيد، يستمع افتراضيًا على المنفذ <b>TCP 23</b>. اتصالاته (بما فيها كلمات المرور) <b>غير مشفرة</b> — عرضة للتنصت وإعادة التشغيل. أفضل الممارسات: تجنّبيه للمهام الحساسة، عطّليه واحجبي المنفذ 23، واستخدمي SSH بدلًا منه.</p>
+  <p data-ar><b>Telnet</b>: محاكاة طرفية للوصول لنظام بعيد، يستمع افتراضيًا على المنفذ <b>TCP 23</b>. اتصالاته (بما فيها كلمات المرور) <b>غير مشفرة</b> — عرضة للتنصت وإعادة التشغيل. أفضل الممارسات: تجنّبيه للمهام الحساسة، عطّليه واحجبي المنفذ 23، واستخدمي SSH بدلًا منه.</p>
+  <p data-en hidden><b>Telnet</b>: terminal emulation for accessing a remote system, listening by default on <b>TCP port 23</b>. Its connections (including passwords) are <b>unencrypted</b> — vulnerable to eavesdropping and replay. Best practices: avoid it for sensitive tasks, disable it and block port 23, and use SSH instead.</p>
  </div>
 
  <div class="card">
-  <p><b>RDP (Remote Desktop Protocol)</b>: بروتوكول مايكروسوفت للتحكم بسطح المكتب عن بُعد، منفذ <b>TCP 3389</b>، يدعم واجهة رسومية، مؤمّن بتشفير و<b>NLA (Network Level Authentication)</b>. أفضل الممارسات: تجنّب استخدامه من أجهزة منخفضة الثقة، استخدام <b>SAW</b> للاتصالات الإدارية. بدائل: TeamViewer، VNC، Citrix.</p>
+  <p data-ar><b>RDP (Remote Desktop Protocol)</b>: بروتوكول مايكروسوفت للتحكم بسطح المكتب عن بُعد، منفذ <b>TCP 3389</b>، يدعم واجهة رسومية، مؤمّن بتشفير و<b>NLA (Network Level Authentication)</b>. أفضل الممارسات: تجنّب استخدامه من أجهزة منخفضة الثقة، استخدام <b>SAW</b> للاتصالات الإدارية. بدائل: TeamViewer، VNC، Citrix.</p>
+  <p data-en hidden><b>RDP (Remote Desktop Protocol)</b>: Microsoft's protocol for remote desktop control, port <b>TCP 3389</b>, supports a graphical interface, secured with encryption and <b>NLA (Network Level Authentication)</b>. Best practices: avoid using it from low-trust devices, use a <b>SAW</b> for administrative connections. Alternatives: TeamViewer, VNC, Citrix.</p>
  </div>
 
  <div class="two">
   <div class="card">
-   <p><b>Console Connections</b></p>
-   <p>اتصال مباشر لإعداد/استكشاف أخطاء أجهزة الشبكة، عبر كيبل console (rollover) متصل بجهاز به برنامج محاكي طرفية — لإعداد الأجهزة عند تعذّر الوصول عبر الشبكة.</p>
+   <p data-ar><b>Console Connections</b></p>
+   <p data-en hidden><b>Console Connections</b></p>
+   <p data-ar>اتصال مباشر لإعداد/استكشاف أخطاء أجهزة الشبكة، عبر كيبل console (rollover) متصل بجهاز به برنامج محاكي طرفية — لإعداد الأجهزة عند تعذّر الوصول عبر الشبكة.</p>
+   <p data-en hidden>A direct connection for configuring/troubleshooting network devices, via a console (rollover) cable connected to a device running terminal emulation software — for configuring devices when network access isn't possible.</p>
   </div>
   <div class="card">
-   <p><b>OOB (Out-of-Band) Management</b></p>
-   <p>قناة مخصصة لإدارة الجهاز بمعزل عن ترافيك البيانات — وصول آمن وموثوق للوظائف الإدارية خصوصًا أثناء انقطاع الشبكة. أمثلة: منفذ AUX، منفذ إدارة IP منفصل.</p>
+   <p data-ar><b>OOB (Out-of-Band) Management</b></p>
+   <p data-en hidden><b>OOB (Out-of-Band) Management</b></p>
+   <p data-ar>قناة مخصصة لإدارة الجهاز بمعزل عن ترافيك البيانات — وصول آمن وموثوق للوظائف الإدارية خصوصًا أثناء انقطاع الشبكة. أمثلة: منفذ AUX، منفذ إدارة IP منفصل.</p>
+   <p data-en hidden>A dedicated channel for device management, isolated from data traffic — secure, reliable access to administrative functions, especially during network outages. Examples: an AUX port, a separate IP management port.</p>
   </div>
  </div>
 
@@ -317,17 +393,21 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <line x1="200" y1="95" x2="275" y2="82" stroke="#5b7280" stroke-width="2" marker-end="url(#arJ)"/>
    <line x1="200" y1="103" x2="275" y2="132" stroke="#5b7280" stroke-width="2" marker-end="url(#arJ)"/>
    <line x1="35" y1="73" x2="290" y2="15" stroke="#c0392b" stroke-width="1.8" stroke-dasharray="5 4"/>
-   <text x="150" y="15" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c0392b">✕ ممنوع اتصال مباشر</text>
+   <text x="150" y="15" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c0392b" class="svgar">✕ ممنوع اتصال مباشر</text>
+   <text x="150" y="15" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c0392b" class="svgen">✕ direct connection forbidden</text>
    <defs><marker id="arJ" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#5b7280"/></marker></defs>
   </svg>
-  <div class="cap">كل الوصول الإداري يمر عبر الـJump Box فقط — السيرفرات مُعدَّة لرفض أي اتصال مباشر من خارج الـJump Box.</div>
+  <div class="cap" data-ar>كل الوصول الإداري يمر عبر الـJump Box فقط — السيرفرات مُعدَّة لرفض أي اتصال مباشر من خارج الـJump Box.</div>
+  <div class="cap" data-en hidden>All administrative access passes through the Jump Box only — servers are configured to reject any direct connection from outside the Jump Box.</div>
  </div>
 
  <div class="card">
-  <p><b>Jump Box</b>: نقطة وصول آمنة لإدارة سيرفرات/أجهزة داخل subnet محمي أو شبكة سحابية — تعمل كمدخل وحيد يقلل سطح الهجوم. يتصل المسؤولون بالـJump Box عبر SSH/RDP، ومنها فقط يمكن الوصول لواجهات الإدارة — سيرفرات التطبيقات مُعدَّة لقبول اتصالات من الـJump Box فقط.</p>
+  <p data-ar><b>Jump Box</b>: نقطة وصول آمنة لإدارة سيرفرات/أجهزة داخل subnet محمي أو شبكة سحابية — تعمل كمدخل وحيد يقلل سطح الهجوم. يتصل المسؤولون بالـJump Box عبر SSH/RDP، ومنها فقط يمكن الوصول لواجهات الإدارة — سيرفرات التطبيقات مُعدَّة لقبول اتصالات من الـJump Box فقط.</p>
+  <p data-en hidden><b>Jump Box</b>: a secure access point for managing servers/devices within a protected subnet or cloud network — acts as a single gateway that reduces the attack surface. Admins connect to the Jump Box via SSH/RDP, and only from there can they reach management interfaces — application servers are configured to accept connections from the Jump Box only.</p>
  </div>
 
- <div class="tip"><b>API Connection Methods</b>: أتمتة عبر سكريبتات بدل الإعداد اليدوي — ممارسات أمنية: مصادقة قوية، تجنّب حساب root للأتمتة، مفاتيح سرية للوصول البرمجي، <b>HTTPS</b> للتواصل، ومبدأ <b>Least Privilege</b> لحسابات الأتمتة.</div>
+ <div class="tip" data-ar><b>API Connection Methods</b>: أتمتة عبر سكريبتات بدل الإعداد اليدوي — ممارسات أمنية: مصادقة قوية، تجنّب حساب root للأتمتة، مفاتيح سرية للوصول البرمجي، <b>HTTPS</b> للتواصل، ومبدأ <b>Least Privilege</b> لحسابات الأتمتة.</div>
+ <div class="tip" data-en hidden><b>API Connection Methods</b>: automation via scripts instead of manual configuration — security practices: strong authentication, avoiding the root account for automation, secret keys for programmatic access, <b>HTTPS</b> for communication, and the <b>Least Privilege</b> principle for automation accounts.</div>
 </section>
 
 
@@ -336,5 +416,22 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <div class="modnav"><a href="module12-guide.html">← الوحدة 12</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module14-guide.html">الوحدة 14 →</a></div>
 
 <footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 13 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
