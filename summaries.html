@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخصات الوحدات 1–14 — CompTIA Network+ N10-009</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.85;font-size:16px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:48px 24px 40px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:16px}
+header h1{font-size:clamp(24px,4vw,36px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:10px;max-width:720px;font-size:14.5px}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:13.5px;font-weight:600;padding:14px 14px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+
+nav{position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:13.5px;font-weight:700;padding:6px 13px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+
+main{max-width:960px;margin:0 auto;padding:36px 20px 80px}
+
+.topbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:32px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.topbar p{color:var(--muted);font-size:14px;max-width:560px}
+.bigprint{background:var(--signal);color:#fff;border:none;border-radius:999px;padding:12px 22px;font-family:inherit;font-size:14.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.bigprint:hover{filter:brightness(1.07)}
+
+section{margin-bottom:34px;scroll-margin-top:60px}
+.secbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px}
+.printone{background:none;border:1.5px solid var(--line);color:var(--teal);border-radius:999px;padding:5px 14px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+.printone:hover{border-color:var(--teal);background:var(--soft)}
+h2{font-size:24px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin:10px 0 6px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:14px}
+h3{font-size:16.5px;font-weight:700;color:var(--teal);margin:16px 0 8px}
+
+.sumbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.sumbox h3:first-child{margin-top:0}
+ul{padding-right:22px;margin:6px 0}
+li{margin-bottom:6px;font-size:14.5px}
+b{font-weight:700;color:var(--deep)}
+code{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.88em;color:var(--deep)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:14px 18px;margin-top:14px;font-size:14px}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:13px}
+
+.fullLink{display:inline-block;margin-top:10px;text-decoration:none;color:var(--signal);font-weight:700;font-size:13.5px}
+.fullLink:hover{text-decoration:underline}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:10px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+
+@media print{
+ .switcher,nav,.modnav,.no-print{display:none !important}
+ @page{size:A4;margin:14mm}
+ body{background:#fff;font-size:12px;line-height:1.55}
+ header{background:#0d3b4f !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:22px 20px}
+ header::after{display:none}
+ main{padding:16px 0 20px;max-width:100%}
+ section{margin-bottom:16px;break-inside:avoid-page}
+ .sumbox,.tip{break-inside:avoid}
+ a{color:inherit;text-decoration:none}
+ h2{border-right-width:4px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Network+ N10-009 · SUMMARIES</span>
+  <h1>ملخصات الوحدات 1 إلى 14</h1>
+  <p>خلاصة مركّزة لكل وحدة — للمراجعة السريعة قبل الاختبار أو الطباعة على ورق A4. لكل وحدة ملخصها المستقل، وهذه الصفحة أيضًا ملخص شامل لكل الوحدات مجتمعة.</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="summaries.html" class="active">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a></div></div>
+
+<nav><div class="nwrap">
+ <a href="#s-m1">1</a><a href="#s-m2">2</a><a href="#s-m3">3</a><a href="#s-m4">4</a><a href="#s-m5">5</a><a href="#s-m6">6</a><a href="#s-m7">7</a><a href="#s-m8">8</a><a href="#s-m9">9</a><a href="#s-m10">10</a><a href="#s-m11">11</a><a href="#s-m12">12</a><a href="#s-m13">13</a><a href="#s-m14">14</a>
+</div></nav>
+
+<main>
+
+<div class="topbar no-print">
+ <p>زر واحد يطبع/يحفظ <b>كل الملخصات</b> كملف PDF بمقاس A4 — من نافذة الطباعة اختاري "Save as PDF". كل وحدة فيها زر مستقل لطباعتها وحدها فقط.</p>
+ <button class="bigprint" onclick="window.print()">🖨️ تنزيل كل الملخصات PDF (A4)</button>
+</div>
+
+<section id="s-m1">
+ <div class="secbar"><span class="mod-tag">MODULE 1</span><button class="printone no-print" onclick="printOnly('s-m1')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 1 — أساسيات الشبكات</h2>
+ <p class="sub">Explaining Network Topologies — Networking Overview · OSI Model · SOHO Networks · Troubleshooting Methodology</p>
+ <div class="sumbox">
+<h3>مفهوم الشبكة وأنواعها</h3>
+<ul>
+<li><b>الشبكة (Network)</b>: أجهزة متصلة عبر <span class="en">transmission medium</span> (نحاس، ألياف، لاسلكي) لمشاركة الموارد والتواصل.</li>
+<li><span class="en">Peer-to-Peer</span>: كل جهاز client وserver معًا، بلا مركز — مناسب للشبكات الصغيرة فقط.</li>
+<li><span class="en">Client-Server</span>: server مركزي يقدّم الخدمات — النموذج المعتمد في الشركات.</li>
+<li><b>LAN</b> حسب الحجم: <span class="en">SOHO</span> (منزل/مكتب صغير) · <span class="en">Enterprise LAN</span> (مبنى/حرم) · <span class="en">Datacenter</span> (سيرفرات بكثافة عالية).</li>
+</ul>
+<h3>هيكليات الشبكة — Topologies</h3>
+<ul>
+<li><b>Point-to-Point</b>: عقدتان فقط؛ <span class="en">Half-duplex</span> (تناوب) مقابل <span class="en">Full-duplex</span> (متزامن).</li>
+<li><b>Star</b>: كل عقدة تتصل بـ<span class="en">concentrator</span> مركزي (Hub يكرر للجميع / Switch يوجّه انتقائيًا)؛ العيب: <span class="en">single point of failure</span>.</li>
+<li><b>Mesh</b>: <span class="en">Full mesh</span> = روابط <code>n(n−1)/2</code>، <span class="en">Partial mesh</span> أكثر عملية؛ الميزة مرونة عالية <span class="en">(resilience)</span> عند فشل روابط.</li>
+</ul>
+<h3>نموذج OSI — الطبقات السبع</h3>
+<ul>
+<li>7 طبقات: عند الإرسال <span class="en">encapsulation</span> (7→1)، عند الاستقبال <span class="en">de-encapsulation</span> (1→7). Mnemonic: <span class="en">Please Do Not Throw Sausage Pizza Away</span>.</li>
+<li>وحدات البيانات: L1=<span class="en">Bits</span>، L2=<span class="en">Frames</span>، L3=<span class="en">Packets</span>، L4=<span class="en">Segments</span>.</li>
+<li>الأجهزة: Hub→L1، Switch/Bridge/NIC/AP→L2، Router/ACL→L3، Multilayer switch/Firewall/IDS→L4.</li>
+<li>تقسيم المسؤولية: L1–3 = <b>Network</b>، L4–7 = <b>Host</b>.</li>
+</ul>
+<h3>SOHO Router</h3>
+<ul>
+<li>L1: منافذ <span class="en">RJ-45</span>، هوائيات واي فاي، منفذ <span class="en">WAN</span> لـ<span class="en">ISP</span>.</li>
+<li>L2: يعمل كـ<span class="en">Ethernet switch</span> + <span class="en">Wireless AP</span> على نفس الشبكة المحلية.</li>
+<li>L3: يشغّل <b>DHCP server</b> ويوجّه بين الشبكة المحلية والإنترنت؛ واجهة WAN تأخذ <span class="en">public IP</span>.</li>
+</ul>
+<h3>الأرقام الثنائية — Binary</h3>
+<ul>
+<li>8 bits لكل octet بالأوزان: 128-64-32-16-8-4-2-1.</li>
+<li>مثال: <code>205 = 1100 1101</code>، <code>132 = 1000 0100</code>.</li>
+</ul>
+<h3>منهجية استكشاف الأخطاء — 7 خطوات</h3>
+<ul>
+<li>1) Identify the problem: جمع معلومات، أسئلة مفتوحة/مغلقة، تكرار المشكلة، ماذا تغيّر.</li>
+<li>2) Establish theory: <span class="en">Top-down</span>، <span class="en">Bottom-up</span> (تحقق من الكيبل أولًا)، أو <span class="en">divide-and-conquer</span>.</li>
+<li>3) Test theory — صعّدي <span class="en">(Escalate)</span> إذا تجاوزت المشكلة صلاحيتك أو الجهاز تحت ضمان.</li>
+<li>4–7) خطة عمل → تنفيذ → تحقق من الحل → توثيق النتائج.</li>
+</ul>
+<div class="tip">اربطي كل طبقة OSI بوحدة بياناتها وجهازها (Hub=L1/Bits، Switch=L2/Frames، Router=L3/Packets) — وتذكري: "single point of failure" = Star، "resilience/redundant paths" = Mesh.</div>
+ </div>
+ <a class="fullLink" href="module1-guide.html">↩ الشرح الكامل — الوحدة 1</a>
+</section>
+
+<section id="s-m2">
+ <div class="secbar"><span class="mod-tag">MODULE 2</span><button class="printone no-print" onclick="printOnly('s-m2')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 2 — الكيابل والتركيب الفيزيائي</h2>
+ <p class="sub">Supporting Cabling and Physical Installations — Ethernet · Copper &amp; Fiber Cabling · Structured Cabling · Physical Install · Cable Troubleshooting</p>
+ <div class="sumbox">
+<h3>Ethernet ومصطلحات نقل البيانات</h3>
+<ul>
+<li><span class="en">IEEE 802.3</span>: معايير Ethernet النحاسية — <span class="en">10Base-T</span> (10 Mbps, UTP)، <span class="en">1000Base-T</span> (Gigabit, Cat6)، <span class="en">10GBase-T</span> (10 Gbps).</li>
+<li>معايير Fiber: <span class="en">100Base-FX/SX</span> (MMF, 100 Mbps)، <span class="en">1000Base-SX/LX</span> (1 Gbps)، <span class="en">10GBase-SR</span> (10 Gbps).</li>
+<li><span class="en">CSMA/CD</span>: الاستماع قبل الإرسال على وسيط مشترك؛ عند التصادم: <span class="en">Jam signal</span> + انتظار عشوائي ثم إعادة إرسال.</li>
+</ul>
+<h3>الكيابل النحاسية والموصلات</h3>
+<ul>
+<li><b>UTP</b>: بلا تدريع، حماية EMI ضعيفة، اقتصادي — <b>STP</b>: تدريع موصل يقلل EMI وcrosstalk.</li>
+<li><span class="en">RJ11</span> (هاتف، 6P4C) مقابل <span class="en">RJ45</span> (شبكات، 8P8C، حتى 10 Gbps).</li>
+<li><b>Plenum</b> (مقاوم حريق، فوق الأسقف) مقابل <b>Riser</b> (رأسي بين الطوابق، أرخص).</li>
+<li><b>Coaxial</b> (TV/CCTV) مقابل <b>Twinaxial</b> (10GB Ethernet، مسافات قصيرة جدًا).</li>
+</ul>
+<h3>تنفيذ التمديدات — Structured Cabling</h3>
+<ul>
+<li><span class="en">Work Area</span> → <span class="en">Horizontal Cabling</span> → <span class="en">Telecommunications Room (IDF)</span> → <span class="en">Backbone Cabling</span> → <span class="en">Demarc</span>.</li>
+<li><span class="en">T568A/T568B</span>: استخدمي نفس المعيار بالطرفين للكيبل المستقيم.</li>
+<li><b>Patch Panels</b>: خلف = <span class="en">punch down (IDC)</span>، أمام = منافذ RJ45.</li>
+</ul>
+<h3>الألياف البصرية — Fiber Optic</h3>
+<ul>
+<li>التكوين: <span class="en">Core</span> → <span class="en">Cladding</span> → <span class="en">Buffer</span>؛ سرعات حتى 800 Gbps ومناعة كاملة ضد EMI.</li>
+<li><b>Single Mode</b>: core صغير، توهين أقل، مسافات طويلة. <b>Multimode</b>: core أكبر، مسافات قصيرة.</li>
+<li>موصلات: <span class="en">SC</span> (2.5mm)، <span class="en">LC</span> (1.25mm، الأصغر)، <span class="en">ST</span> (bayonet).</li>
+<li><span class="en">WDM</span>: <span class="en">BiDi</span> · <span class="en">CWDM</span> (حتى 16 قناة) · <span class="en">DWDM</span> (20/40/80/160 قناة).</li>
+</ul>
+<h3>عوامل التركيب الفيزيائي</h3>
+<ul>
+<li><b>Rack</b>: مقاس <span class="en">EIA 19"</span>؛ مراقبة حرارة/رطوبة لمنع التكاثف والتآكل.</li>
+<li><b>PDU</b>: توزيع طاقة نظيفة؛ <b>UPS</b>: استمرارية عند الانقطاع.</li>
+<li>إخماد الحريق: <span class="en">Class C</span> للحرائق الكهربائية.</li>
+</ul>
+<h3>استكشاف أخطاء الكيابل</h3>
+<ul>
+<li><span class="en">Throughput</span> (فعلي) مقابل <span class="en">Goodput</span> (Application)؛ <span class="en">Attenuation</span> = فقدان قوة الإشارة بالـdB.</li>
+<li>أدوات: <b>Cable Tester</b>، <b>Wire Map Tester</b>، <b>Tone Generator+Probe</b>، <b>Loopback Tool</b>.</li>
+<li>Crosstalk: <b>NEXT</b> عند طرف المرسل، <b>FEXT</b> عند المستقبل، <b>Alien Crosstalk</b> من كيابل مجاورة.</li>
+</ul>
+<div class="tip">فرّقي بسرعة: نهاية المرسل = NEXT، عند المستقبل = FEXT، من كيابل مجاورة = Alien Crosstalk، وفقدان الإشارة مع المسافة = Attenuation.</div>
+ </div>
+ <a class="fullLink" href="module2-guide.html">↩ الشرح الكامل — الوحدة 2</a>
+</section>
+
+<section id="s-m3">
+ <div class="secbar"><span class="mod-tag">MODULE 3</span><button class="printone no-print" onclick="printOnly('s-m3')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 3 — الواجهات والسويتشات</h2>
+ <p class="sub">Configuring Interfaces and Switches — Network Interfaces · Ethernet Switches · Switch Port Configuration · Switch Troubleshooting</p>
+ <div class="sumbox">
+<h3>واجهات الشبكة — Network Interfaces</h3>
+<ul>
+<li><b>NIC</b>: <span class="en">transceiver</span> يربط المضيف بالوسيط، له MAC فريد، يعمل بـ<b>Data Link (L2)</b>.</li>
+<li><b>MAC Address</b>: 48-bit hex = <span class="en">OUI</span> (الشركة المصنّعة) + <span class="en">Device ID</span>؛ Broadcast = <code>FF:FF:FF:FF:FF:FF</code>.</li>
+<li><b>Ethernet Frame</b>: Preamble/SFD → Destination MAC → Source MAC → EtherType → Payload → FCS.</li>
+</ul>
+<h3>سويتشات الإيثرنت</h3>
+<ul>
+<li><b>Hub</b> (L1): يبث لكل المنافذ بدون ذكاء توجيه.</li>
+<li><b>Bridge</b>: يفصل segments فيزيائية لكن يبقي الأجهزة بنفس الشبكة المنطقية.</li>
+<li><b>Switch</b> (L2): يتعلم MAC ويوجّه لمنفذ الوجهة فقط.</li>
+</ul>
+<h3>إعداد منافذ السويتش</h3>
+<ul>
+<li><b>Link Aggregation/NIC Teaming</b>: دمج عدة روابط بقناة منطقية واحدة → redundancy.</li>
+<li><b>MTU</b>: الإطار العادي 1500 بايت؛ <span class="en">Jumbo frame</span> حتى 9216 بايت.</li>
+<li><b>STP</b>: يمنع <span class="en">bridge loops</span> ويوفر fault tolerance؛ <b>PoE</b>: بيانات وطاقة بكيبل واحد.</li>
+</ul>
+<h3>استكشاف أخطاء السويتش</h3>
+<ul>
+<li>مؤشرات المنفذ: أخضر ثابت=متصل، أخضر وامض=ترافيك، بلا إضاءة=معطل، كهرماني=محظور/عطل.</li>
+<li>حالات المنفذ: <span class="en">Down/down</span>، <span class="en">Administratively down</span> (يدوي)، <span class="en">error disabled</span> (تلقائي).</li>
+<li>أخطاء شائعة: <b>CRC</b>، <b>Runt</b> (إطار صغير جدًا)، <b>Giant</b> (إطار كبير جدًا).</li>
+<li><span class="en">Network Loops</span> → يحلها STP؛ <span class="en">Broadcast Storms</span> → مراقبة DHCP وتقسيم الشبكة.</li>
+</ul>
+<div class="tip">Hub يبث للجميع (L1) · Bridge يفصل segments لكن نفس الشبكة المنطقية · Switch يوجّه بذكاء حسب MAC (L2)؛ STP هو الحل المعياري لمنع حلقات الشبكة.</div>
+ </div>
+ <a class="fullLink" href="module3-guide.html">↩ الشرح الكامل — الوحدة 3</a>
+</section>
+
+<section id="s-m4">
+ <div class="secbar"><span class="mod-tag">MODULE 4</span><button class="printone no-print" onclick="printOnly('s-m4')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 4 — عنونة الشبكات</h2>
+ <p class="sub">Configuring Network Addressing — IP Basics · IPv4 Addressing · Subnetting/CIDR/VLSM · IP Troubleshooting Tools · IPv6 · IP Troubleshooting</p>
+ <div class="sumbox">
+<h3>أساسيات بروتوكول الإنترنت</h3>
+<ul>
+<li><b>ARP</b>: يربط عنوان IP بعنوان MAC المقابل على الشبكة المحلية.</li>
+<li><b>Unicast</b>: لوجهة واحدة. <b>Broadcast</b>: لكل المضيفين. <b>Multicast</b>: لمجموعة محددة. <b>Anycast</b>: لأقرب عضو من مجموعة.</li>
+</ul>
+<h3>عنونة IPv4 والتقسيم الفرعي</h3>
+<ul>
+<li>عنوان IPv4 = 4 <span class="en">octets</span> × 8 bits = 32 bit؛ <b>Network ID</b> مقابل <b>Host ID</b>.</li>
+<li><b>Subnet Mask</b> يحدد جزء الشبكة — مثال <code>192.168.1.x /255.255.255.0</code>: أول 24 bit للشبكة.</li>
+<li>مدى Private: Class A <code>10.0.0.0/8</code>، Class B <code>172.16.0.0/12</code>، Class C <code>192.168.0.0/16</code>.</li>
+<li><b>Borrowing bits</b>: استعارة بت من Host تزيد الشبكات الفرعية وتقلل المضيفين، مثال <code>/24→/25→/26</code>.</li>
+<li><b>CIDR</b>: تخصيص عناوين بلاحقة suffix؛ <b>VLSM</b>: subnets بأحجام مختلفة بنفس الشبكة.</li>
+</ul>
+<h3>أدوات فحص IP</h3>
+<ul>
+<li><span class="en">ipconfig /all, /renew, /release</span> (ويندوز) مقابل <span class="en">ip addr, ip link</span> (لينكس).</li>
+<li><span class="en">arp -a</span> (عرض cache)، <span class="en">arp -s</span> (إضافة)، <span class="en">arp -d</span> (حذف).</li>
+</ul>
+<h3>IPv6</h3>
+<ul>
+<li>hex (8 مجموعات × 16-bit)؛ أول 64 bit للشبكة، الـ64 الأخرى للمضيف.</li>
+<li><b>Global Unicast</b> (public) مقابل <b>Link Local</b> <code>fe80::/10</code> (private).</li>
+<li>انتقال: <b>Dual Stack</b>، <b>Tunneling</b>، <b>NAT64</b>.</li>
+</ul>
+<h3>استكشاف أخطاء IP</h3>
+<ul>
+<li><b>Duplicate IP</b>: Windows يعطّل العنوان تلقائيًا؛ تشخيص بـ<span class="en">ping + arp -a</span>.</li>
+<li><b>Duplicate MAC</b>: قد يشير لهجوم <span class="en">spoofing</span>.</li>
+<li>تسلسل ping: <span class="en">loopback (127.0.0.1)</span> → host المحلي → gateway → مضيف بعيد → hostname.</li>
+</ul>
+<div class="tip">تسلسل تشخيص IP الأهم: ping loopback ← host المحلي ← default gateway ← مضيف بعيد — وICMP قد يكون محجوبًا بجدار ناري فلا يعني الفشل عطلًا حقيقيًا.</div>
+ </div>
+ <a class="fullLink" href="module4-guide.html">↩ الشرح الكامل — الوحدة 4</a>
+</section>
+
+<section id="s-m5">
+ <div class="secbar"><span class="mod-tag">MODULE 5</span><button class="printone no-print" onclick="printOnly('s-m5')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 5 — التوجيه والسويتشنج المتقدم</h2>
+ <p class="sub">Configuring Routing and Advanced Switching — Routing Technologies · Dynamic Routing · NAT · Firewalls · Enterprise Topologies · VLANs</p>
+ <div class="sumbox">
+<h3>تقنيات التوجيه</h3>
+<ul>
+<li>جدول التوجيه: <span class="en">Protocol, Destination, Interface, Gateway/Next hop</span>.</li>
+<li>أنواع المسارات: <span class="en">Directly connected</span>، <span class="en">Remote</span>، <span class="en">Host</span>، <span class="en">Default route</span>.</li>
+</ul>
+<h3>بروتوكولات التوجيه الديناميكي</h3>
+<ul>
+<li><span class="en">RIP</span>: hop count بحد أقصى 15، تقارب بطيء.</li>
+<li><span class="en">EIGRP</span>: ملكية Cisco، distance-vector متقدم، يدعم IPv4/IPv6.</li>
+<li><span class="en">OSPF</span>: link-state، خوارزمية Shortest Path First.</li>
+<li><span class="en">BGP</span>: يربط autonomous systems على الإنترنت، path vector، يدعم CIDR.</li>
+</ul>
+<h3>NAT والجدران النارية</h3>
+<ul>
+<li><span class="en">Dynamic NAT</span>: pool عناوين خارجية؛ <span class="en">Static NAT</span>: عنوان ثابت يسمح باتصال وارد؛ <span class="en">PAT</span>: عنوان عام واحد لعدة أجهزة عبر أرقام المنافذ.</li>
+<li><span class="en">Stateless (Packet Filtering)</span>: يرشّح IP/بروتوكول/منفذ فقط — <span class="en">Stateful</span>: يتتبع حالة الاتصالات، أنسب للشركات.</li>
+</ul>
+<h3>هيكليات المؤسسات والـVLANs</h3>
+<ul>
+<li><span class="en">3-Tiered Hierarchy</span>: core/distribution/access لتحقيق redundancy وfault tolerance.</li>
+<li><span class="en">VLAN</span>: شبكات معزولة منطقيًا فوق عتاد فيزيائي واحد؛ تحتاج <span class="en">Inter-VLAN routing</span> للتواصل بينها.</li>
+<li><span class="en">Native VLAN</span> (يستقبل untagged) · <span class="en">Voice VLAN</span> · <span class="en">Management VLAN</span>؛ <span class="en">Trunking</span> ينقل عدة VLANs بين السويتشات.</li>
+</ul>
+<div class="tip">جداول التوجيه = خرائط الراوتر الداخلية؛ NAT يترجم بين عناوين خاصة وعامة؛ VLANs تُنشئ أجزاء منطقية داخل شبكة فيزيائية واحدة.</div>
+ </div>
+ <a class="fullLink" href="module5-guide.html">↩ الشرح الكامل — الوحدة 5</a>
+</section>
+
+<section id="s-m6">
+ <div class="secbar"><span class="mod-tag">MODULE 6</span><button class="printone no-print" onclick="printOnly('s-m6')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 6 — تطبيق خدمات الشبكة</h2>
+ <p class="sub">Implementing Network Services — Transport Protocols · DHCP · APIPA/SLAAC · DHCP Relay · DNS</p>
+ <div class="sumbox">
+<h3>بروتوكولات Transport</h3>
+<ul>
+<li><span class="en">TCP</span>: نقل موثوق؛ <span class="en">Three-Way Handshake</span>: SYN → SYN+ACK → ACK.</li>
+<li><span class="en">UDP</span>: غير مضمون، بلا handshake، أخف وأسرع.</li>
+</ul>
+<h3>DHCP</h3>
+<ul>
+<li>عملية <b>DORA</b>: <span class="en">Discover → Offer → Request → Ack</span>.</li>
+<li><span class="en">Reservations</span>: IP ثابت مربوط بـMAC. <span class="en">Exclusions</span>: نطاق محجوز لا يوزَّع.</li>
+</ul>
+<h3>APIPA وSLAAC</h3>
+<ul>
+<li><span class="en">APIPA</span>: تعيين ذاتي عند غياب DHCP، ضمن <code>169.254.0.1–169.254.254.255</code>.</li>
+<li><span class="en">SLAAC</span> (Stateless، لا يوفر DNS) مقابل <span class="en">DHCPv6</span> (Stateful، تحكم مركزي).</li>
+<li><span class="en">DHCP Relay Agent / IP Helper</span>: يمرر طلبات DHCP عبر حدود الـsubnet.</li>
+</ul>
+<h3>DNS</h3>
+<ul>
+<li>هرمية: <b>Root</b> → <b>TLD</b> → <b>Domain</b> → <b>Sub-Domain</b>.</li>
+<li>سجلات: <b>A</b> (اسم↔IPv4)، <b>MX</b> (بريد)، <b>SRV</b>، <b>TXT</b> (SPF/DKIM)، <b>PTR</b> (بحث عكسي).</li>
+<li>أمان DNS: <b>DNSSEC</b>، <b>DoT</b>، <b>DoH</b>.</li>
+</ul>
+<div class="tip">DHCP يوزّع IP/subnet/gateway/DNS تلقائيًا عبر DORA؛ DNS ترجمة هرمية عالمية من أسماء لعناوين IP؛ تحقّق أخطاء DNS بالترتيب: local cache → HOSTS → nslookup/dig.</div>
+ </div>
+ <a class="fullLink" href="module6-guide.html">↩ الشرح الكامل — الوحدة 6</a>
+</section>
+
+<section id="s-m7">
+ <div class="secbar"><span class="mod-tag">MODULE 7</span><button class="printone no-print" onclick="printOnly('s-m7')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 7 — خدمات التطبيقات</h2>
+ <p class="sub">Explaining Application Services — TLS/NTP/PTP · Web/File/Database Services · Email/Voice · Disaster Recovery &amp; HA</p>
+ <div class="sumbox">
+<h3>أمان التطبيقات ومزامنة الوقت</h3>
+<ul>
+<li><span class="en">TLS Handshake</span>: Client Hello → Server Hello → Key Exchange → Session Key.</li>
+<li><span class="en">NTP</span>: منفذ UDP 123، هرمية stratum؛ <span class="en">PTP</span>: دقة أعلى (صناعي/5G).</li>
+</ul>
+<h3>خدمات الويب والملفات وقواعد البيانات</h3>
+<ul>
+<li><span class="en">HTTP</span> (Port 80) مقابل <span class="en">HTTPS</span> (Port 443، تشفير TLS).</li>
+<li><span class="en">FTP</span> (Port 20/21، بلا تشفير) مقابل <span class="en">SFTP</span> (Port 22، مشفّر).</li>
+<li><span class="en">RDBMS</span> (schema محددة، vertically scalable) مقابل <span class="en">NoSQL</span> (بلا schema، horizontally scalable).</li>
+</ul>
+<h3>خدمات البريد والصوت</h3>
+<ul>
+<li><span class="en">SMTP</span>: منافذ 25/465/587. <span class="en">IMAP</span>: إدارة/مزامنة البريد.</li>
+<li><span class="en">VoIP</span>: <span class="en">RTP</span> (وسائط) + <span class="en">RTCP</span> (إحصائيات)؛ <span class="en">SIP</span> (منفذ 5060/5061 TLS).</li>
+</ul>
+<h3>التعافي من الكوارث والتوفر العالي</h3>
+<ul>
+<li><b>RPO</b>: أقصى فقدان بيانات مقبول (قبل الكارثة) — <b>RTO</b>: زمن استعادة الخدمة (بعد الكارثة).</li>
+<li>مواقع التعافي: <span class="en">Cold</span> → <span class="en">Warm</span> → <span class="en">Hot Site</span> (أسرع/أغلى).</li>
+<li><b>MTBF/MTTR</b>: متوسط الوقت بين الأعطال / للإصلاح؛ <span class="en">Load Balancers</span> وHA Clusters تقلل التوقف.</li>
+</ul>
+<div class="tip">First Hop Redundancy (HSRP/VRRP) يبدّل تلقائيًا لبوابة احتياطية عند فشل الأساسية لمنع single point of failure.</div>
+ </div>
+ <a class="fullLink" href="module7-guide.html">↩ الشرح الكامل — الوحدة 7</a>
+</section>
+
+<section id="s-m8">
+ <div class="secbar"><span class="mod-tag">MODULE 8</span><button class="printone no-print" onclick="printOnly('s-m8')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 8 — دعم إدارة الشبكة</h2>
+ <p class="sub">Supporting Network Management — Policies &amp; Documentation · Discovery &amp; Monitoring · SNMP · Event Management · Packet Capture · Traffic Monitoring</p>
+ <div class="sumbox">
+<h3>التوثيق وإدارة التغيير</h3>
+<ul>
+<li>أنواع التوثيق: <span class="en">Configuration, Backup, Change, Asset, Network management</span>.</li>
+<li><b>Change Management</b>: قوالب موحدة، <span class="en">version control</span>، مراجعة دورية.</li>
+</ul>
+<h3>اكتشاف الأجهزة والمراقبة</h3>
+<ul>
+<li>أدوات: <span class="en">Nmap, AngryIP, PRTG</span>؛ <b>CDP</b> (Cisco فقط) مقابل <b>LLDP</b> (معيار عام).</li>
+<li><b>Performance Monitoring</b>: خط أساس (baseline) وتنبيهات عند تجاوز العتبات.</li>
+</ul>
+<h3>SNMP</h3>
+<ul>
+<li>منفذا UDP <b>161/162</b>؛ مكونات: <b>Manager (NMS)</b>، <b>Agent</b>، <b>MIB</b>.</li>
+<li><b>SNMPv2c</b> ضعيف (نصي) مقابل <b>SNMPv3</b> (تشفير ومصادقة قوية).</li>
+</ul>
+<h3>إدارة الأحداث</h3>
+<ul>
+<li><b>Syslog</b>: منفذ UDP 514، مستويات شدة من 0 Emergency إلى 7 Debug.</li>
+<li><b>SIEM</b> = SIM + SEM: تجميع سجلات وربط أحداث وتنبيه لحظي.</li>
+</ul>
+<h3>التقاط الحزم ومراقبة الترافيك</h3>
+<ul>
+<li>أدوات: <span class="en">tcpdump, Wireshark, ngrep</span>؛ <span class="en">Follow TCP Stream</span> لإعادة تركيب الجلسة.</li>
+<li><b>Flow Data</b>: IP مصدر/وجهة، حجم الحزم، الطوابع الزمنية؛ <b>Traffic Shaping (QoS)</b> لأولوية التطبيقات الحرجة.</li>
+</ul>
+<div class="tip">Nmap وCDP/LLDP يحددان الأجهزة؛ SNMP يراقب/يضبط عن بُعد؛ السجلات وSIEM يحللان الأحداث الأمنية؛ التقاط الحزم يشخّص مشاكل الأداء.</div>
+ </div>
+ <a class="fullLink" href="module8-guide.html">↩ الشرح الكامل — الوحدة 8</a>
+</section>
+
+<section id="s-m9">
+ <div class="secbar"><span class="mod-tag">MODULE 9</span><button class="printone no-print" onclick="printOnly('s-m9')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 9 — مفاهيم أمان الشبكة</h2>
+ <p class="sub">Explaining Network Security Concepts — CIA Triad · Threats &amp; Attacks · Spoofing · Rogue Systems · Social Engineering</p>
+ <div class="sumbox">
+<h3>مفاهيم الأمان</h3>
+<ul>
+<li><b>CIA Triad</b>: <b>Confidentiality</b>، <b>Integrity</b>، <b>Availability</b>.</li>
+<li>الثغرات: <b>Zero-Day</b> (الأخطر، تُستغل قبل التحديث)؛ حالات البيانات: at Rest، in Transit، in Use.</li>
+</ul>
+<h3>تهديدات وهجمات الشبكة</h3>
+<ul>
+<li><b>DoS/DDoS</b>: ICMP Flood, SYN Flood, DNS Amplification — عبر <b>Botnets</b>.</li>
+<li><b>Malware</b>: Viruses/Worms, Trojan, PUP/PUA؛ <b>Fileless Malware</b> يقيم بالذاكرة وصعب الاكتشاف.</li>
+</ul>
+<h3>Spoofing وRogue Systems</h3>
+<ul>
+<li><b>On-Path Attacks (MITM)</b>: اعتراض/تعديل اتصال دون اكتشاف (session hijacking, DNS spoofing).</li>
+<li><b>MAC Flooding</b>: إغراق جدول CAM؛ <b>VLAN Hopping</b>: عبر Switch Spoofing أو Double Tagging.</li>
+<li><b>Rogue DHCP Server</b>: يوزّع إعدادات خاطئة ويهيّئ لهجمات on-path.</li>
+</ul>
+<h3>الهندسة الاجتماعية</h3>
+<ul>
+<li>تستغل الثغرات البشرية: Shoulder Surfing، Dumpster Diving، Tailgating، Phishing.</li>
+<li><b>Dictionary Attack</b> (كلمات قاموس) مقابل <b>Brute Force</b> (كل التركيبات).</li>
+</ul>
+<div class="tip">Honeypots وHoneynets تُستخدم لاستدراج المهاجمين واكتشافهم مبكرًا؛ وعي المستخدمين هو خط الدفاع الأول.</div>
+ </div>
+ <a class="fullLink" href="module9-guide.html">↩ الشرح الكامل — الوحدة 9</a>
+</section>
+
+<section id="s-m10">
+ <div class="secbar"><span class="mod-tag">MODULE 10</span><button class="printone no-print" onclick="printOnly('s-m10')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 10 — تطبيق ميزات أمان الشبكة</h2>
+ <p class="sub">Applying Network Security Features — Authentication · Authorization &amp; Account Management · Network Hardening · Switch Security · Security Rules</p>
+ <div class="sumbox">
+<h3>المصادقة</h3>
+<ul>
+<li><b>AAA</b>: Identity ← Authentication ← Authorization ← Accounting.</li>
+<li><b>SSO</b>/<b>Kerberos</b>: دخول واحد عبر tickets بدل تكرار بيانات الدخول.</li>
+</ul>
+<h3>التفويض وإدارة الحسابات</h3>
+<ul>
+<li><b>DAC</b> (مالك المورد يتحكم) مقابل <b>RBAC</b> (حسب الدور الوظيفي).</li>
+<li><b>Least Privilege</b> و<b>Separation of Duties</b>؛ الحسابات المميزة تحتاج <b>PAM</b>.</li>
+</ul>
+<h3>تحصين الشبكة</h3>
+<ul>
+<li><b>Defense in Depth</b>: Data ← Application ← Host ← Internal Network ← Perimeter ← Physical ← Policies.</li>
+<li>تحديث النظام، إغلاق المنافذ غير الضرورية، تغيير بيانات الدخول الافتراضية.</li>
+</ul>
+<h3>أمان السويتش وقواعد الأمان</h3>
+<ul>
+<li><b>NAC</b>، <b>MAC Filtering</b>، <b>DHCP Snooping</b>، مصادقة <b>802.1x (EAP)</b>.</li>
+<li><b>Firewalls</b> (ACL + stateful inspection) و<b>Proxy Servers</b> لتصفية المحتوى؛ تجنّب غياب <b>implicit deny</b>.</li>
+</ul>
+<div class="tip">AAA + DAC/RBAC + Least Privilege يضمن وصول المصرّح لهم فقط؛ Defense in Depth يحمي CIA عبر طبقات متعددة.</div>
+ </div>
+ <a class="fullLink" href="module10-guide.html">↩ الشرح الكامل — الوحدة 10</a>
+</section>
+
+<section id="s-m11">
+ <div class="secbar"><span class="mod-tag">MODULE 11</span><button class="printone no-print" onclick="printOnly('s-m11')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 11 — دعم تصميم أمان الشبكة</h2>
+ <p class="sub">Supporting Network Security Design — Zone-Based Security · Internet of Things · Physical Security</p>
+ <div class="sumbox">
+<h3>الأمان القائم على المناطق</h3>
+<ul>
+<li>أربع مناطق: <span class="en">Private Security</span>، <span class="en">Private Client</span>، <span class="en">Guest</span>، <span class="en">Public Server</span>.</li>
+<li><b>Screened Subnet / Perimeter Network</b>: منطقة عازلة بين External Router وInternal Router تستضيف سيرفرات عامة.</li>
+<li><b>IDS</b> يراقب وينبّه فقط، بينما <b>IPS</b> يوقف الهجوم فورًا.</li>
+</ul>
+<h3>إنترنت الأشياء</h3>
+<ul>
+<li><b>ICS</b> يدير أتمتة العمليات الصناعية؛ <b>SCADA</b> يركّز على جمع البيانات والتحكم اللحظي.</li>
+<li><b>NB-IoT</b> (LTE منخفض الطاقة) مقابل <b>LTE-M</b> (حتى 1 Mbps).</li>
+<li>الحل الأمني الأهم: <b>Segmentation</b> لأجهزة IoT ضعيفة الحماية.</li>
+</ul>
+<h3>الأمان الفيزيائي</h3>
+<ul>
+<li>Electronic Locks، Badge Reader، Biometric Locks، Secure Cabinets.</li>
+<li>كاميرات: Fixed (نقاط دخول) مقابل PTZ (تغطية واسعة وتتبع).</li>
+</ul>
+<div class="tip">Geofencing: حد افتراضي جغرافي عبر GPS/IPS للمصادقة الواعية بالسياق، يُدار غالبًا عبر MDM.</div>
+ </div>
+ <a class="fullLink" href="module11-guide.html">↩ الشرح الكامل — الوحدة 11</a>
+</section>
+
+<section id="s-m12">
+ <div class="secbar"><span class="mod-tag">MODULE 12</span><button class="printone no-print" onclick="printOnly('s-m12')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 12 — إعداد الشبكات اللاسلكية</h2>
+ <p class="sub">Configuring Wireless Networks — Wireless Standards · Enterprise Design · Wireless Security · Wireless Troubleshooting</p>
+ <div class="sumbox">
+<h3>معايير الشبكات اللاسلكية</h3>
+<ul>
+<li><span class="en">802.11</span>: MAC يستخدم <b>CSMA/CA</b>؛ 802.11ac/Wi-Fi 5 (5GHz فقط، Gigabit).</li>
+<li><b>MU-MIMO</b>: إرسال لعدة محطات بآن واحد؛ <b>Band Steering</b>: توجيه لنطاق أقل ازدحامًا.</li>
+</ul>
+<h3>تصميم شبكات المؤسسات</h3>
+<ul>
+<li><b>BSSID</b> = نقطة وصول واحدة؛ <b>ESSID</b> = اسم شبكة يجمع عدة BSS.</li>
+<li><b>RSSI</b> بـ<span class="en">dBm</span> (الأقرب لـ0 أفضل، أقل من -80dBm = فقدان حزم).</li>
+<li><b>Wireless Controllers</b>: إدارة مركزية للـAPs وتعيين VLANs تلقائيًا.</li>
+</ul>
+<h3>أمان الشبكات اللاسلكية</h3>
+<ul>
+<li><b>WPA2</b> (AES) مقابل <b>WPA3</b> (تشفير فردي لكل جهاز، Forward Secrecy).</li>
+<li><b>Rogue AP / Evil Twin</b>: نقطة وصول مزيّفة بنفس SSID لاعتراض البيانات.</li>
+<li><b>Deauthentication Attack</b>: استغلال إطارات إدارة غير مشفرة لفصل الأجهزة.</li>
+</ul>
+<h3>استكشاف أخطاء لاسلكية</h3>
+<ul>
+<li>القنوات المثلى بـ2.4GHz: <span class="en">1, 6, 11</span> (غير متداخلة).</li>
+<li><b>Sticky Clients</b> (لا تنتقل لـAP أفضل) و<b>Flapping Clients</b> (تنتقل بكثرة).</li>
+</ul>
+<div class="tip">منهجية استكشاف أخطاء لاسلكية: تحديد المتطلبات → مسح ميداني بـWi-Fi Analyzer → تحديد مدى الـAP → اختبار واقعي.</div>
+ </div>
+ <a class="fullLink" href="module12-guide.html">↩ الشرح الكامل — الوحدة 12</a>
+</section>
+
+<section id="s-m13">
+ <div class="secbar"><span class="mod-tag">MODULE 13</span><button class="printone no-print" onclick="printOnly('s-m13')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 13 — مقارنة طرق الوصول عن بُعد</h2>
+ <p class="sub">Comparing Remote Access Methods — WAN &amp; Internet Connectivity · VPN Protocols · Remote Management</p>
+ <div class="sumbox">
+<h3>الشبكات الواسعة والاتصال بالإنترنت</h3>
+<ul>
+<li><b>T1</b> (1.544 Mbps، TDM) · <b>DSL</b> (حتى ~24 Mbps) · <b>Cable</b> (HFC).</li>
+<li><b>FTTC</b> (ألياف للرصيف) مقابل <b>FTTP</b> (ألياف حتى المبنى، أعلى سرعة).</li>
+</ul>
+<h3>بروتوكولات VPN</h3>
+<ul>
+<li><b>IPSec</b>: <span class="en">Transport Mode</span> (يشفّر الحمولة فقط) مقابل <span class="en">Tunnel Mode</span> (يشفّر الحزمة كاملة).</li>
+<li><b>IKEv2</b> يدعم EAP وNAT وMOBIKE، مفضّل عن IKEv1.</li>
+<li><b>Client-to-Site VPN</b> (عميل فردي) مقابل <b>Site-to-Site VPN</b> (اتصال دائم بين شبكتين).</li>
+<li><b>Split Tunnel</b> (ترافيك الشركة فقط) مقابل <b>Full Tunnel</b> (كل الترافيك).</li>
+</ul>
+<h3>الإدارة عن بُعد</h3>
+<ul>
+<li><b>SSH</b> (مشفّر بالكامل) — يُفضَّل دائمًا على <b>Telnet</b> (TCP 23، غير مشفّر).</li>
+<li><b>RDP</b> (TCP 3389، مؤمّن بـNLA)؛ <b>Jump Box</b>: نقطة وصول إدارية وحيدة تقلل سطح الهجوم.</li>
+<li><b>OOB Management</b>: قناة إدارية معزولة عن ترافيك البيانات (مثل منفذ AUX).</li>
+</ul>
+<div class="tip">Telnet = منفذ 23 وغير مشفّر (خطر أمني)، بينما SSH هو البديل الآمن الموصى به دائمًا.</div>
+ </div>
+ <a class="fullLink" href="module13-guide.html">↩ الشرح الكامل — الوحدة 13</a>
+</section>
+
+<section id="s-m14">
+ <div class="secbar"><span class="mod-tag">MODULE 14</span><button class="printone no-print" onclick="printOnly('s-m14')">🖨️ طباعة هذه الوحدة</button></div>
+ <h2>الوحدة 14 — تلخيص مفاهيم السحابة</h2>
+ <p class="sub">Summarizing Cloud Concepts — Datacenter &amp; Storage Networks · Cloud Concepts · Cloud Networking · Modern Network Environments</p>
+ <div class="sumbox">
+<h3>شبكات مراكز البيانات والتخزين</h3>
+<ul>
+<li><b>North-South Traffic</b> (عملاء خارجيون) مقابل <b>East-West Traffic</b> (بين السيرفرات).</li>
+<li><b>Spine and Leaf Topology</b>: كل leaf متصل بكل spine؛ latency بقفزة واحدة، يُلغي الحاجة لـSTP.</li>
+<li><b>SAN</b>: تخزين على مستوى الكتلة عبر <span class="en">Fibre Channel</span>.</li>
+</ul>
+<h3>مفاهيم الحوسبة السحابية</h3>
+<ul>
+<li><b>Scalability</b> (يدوي) مقابل <b>Elasticity</b> (تلقائي حسب الطلب).</li>
+<li>نماذج الخدمة: <b>IaaS</b> (موارد افتراضية) · <b>PaaS</b> (أدوات تطوير) · <b>SaaS</b> (تطبيقات جاهزة).</li>
+</ul>
+<h3>الشبكات السحابية</h3>
+<ul>
+<li><b>VMs</b> (عزل كامل) مقابل <b>Containers</b> (تشارك الـkernel، أخف).</li>
+<li><b>VPC</b>: Public Subnet تحتاج Internet Gateway، Private Subnet بدون مسار افتراضي للإنترنت.</li>
+<li><b>Security Groups</b> (instance، stateful) مقابل <b>Security Lists</b> (subnet، stateless).</li>
+</ul>
+<h3>بيئات الشبكات الحديثة</h3>
+<ul>
+<li><b>SDN</b>: يفصل التحكم عن التوجيه — Southbound APIs (للأجهزة)، Northbound APIs (للتطبيقات).</li>
+<li><b>Zero Trust</b>: لا ثقة افتراضية + تحقق مستمر + أقل صلاحية ممكنة (microsegmentation).</li>
+</ul>
+<div class="tip">SASE = دمج SD-WAN مع SSE (يشمل Zero Trust وCASB) في بنية سحابية موحدة للشبكة والأمان.</div>
+ </div>
+ <a class="fullLink" href="module14-guide.html">↩ الشرح الكامل — الوحدة 14</a>
+</section>
+
+</main>
+
+<div class="modnav"><span></span><a href="index.html" class="home">🏠 الرئيسية</a><a href="quiz-summary.html">ملخص الأسئلة للطباعة →</a></div>
+
+<footer>ملخصات دراسية مركّزة — CompTIA Network+ N10-009 · الوحدات 1–14 · جاهزة للطباعة على A4</footer>
+
+<script>
+function printOnly(id){
+ document.querySelectorAll('main > section').forEach(function(s){
+  s.dataset.prevDisplay = s.style.display;
+  if(s.id !== id) s.style.display = 'none';
+ });
+ window.print();
+}
+window.addEventListener('afterprint', function(){
+ document.querySelectorAll('main > section').forEach(function(s){
+  s.style.display = s.dataset.prevDisplay || '';
+ });
+});
+</script>
+</body>
+</html>
