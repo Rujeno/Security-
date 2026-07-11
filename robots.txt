@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rujeno.github.io/Security-/sitemap.xml
