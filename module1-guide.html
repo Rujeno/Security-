@@ -212,13 +212,35 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
  </div>
 
  <div class="card">
-  <p><b>2) Star Topology</b>: كل عقدة تتصل بجهاز مركزي يسمى <span class="en">concentrator</span> عبر وسيط مخصص لها.</p>
+  <p><b>2) Star Topology</b> — الشكل الأشهر بالشبكات الحديثة.</p>
+  <p>كل جهاز (عقدة) يتصل بجهاز مركزي وحيد بدل ما يتصل مباشرة بباقي الأجهزة. اسم هذا الجهاز المركزي بشكل عام هو <span class="en">concentrator</span> — يعني ببساطة "الجهاز اللي تتجمع عنده كل اتصالات الشبكة".</p>
+
+  <h3 style="margin-top:18px">دور الجهاز المركزي</h3>
+
+  <p><b>إذا كان الجهاز المركزي <span class="en">Hub</span></b>: الـHub "غبي" — ما يعرف مين المقصود بالبيانات، فلما يستقبل رسالة من جهاز، يكررها ويرسلها لكل الأجهزة المتصلة به.</p>
+  <p><b>مثال</b>: جهاز 1 يريد إرسال بيانات لجهاز 3 → الـHub يرسل البيانات لأجهزة 2 و3 و4 كلهم، لكن جهاز 3 فقط هو اللي يقبلها (الباقي يتجاهلونها).</p>
+  <p>لهذا يقال إن الشبكة تعمل منطقيًا مثل <span class="en">Bus Topology</span> — رغم أن شكلها الخارجي نجمي، لأن جميع الأجهزة تشترك في البيانات نفسها.</p>
+
+  <p style="margin-top:14px"><b>إذا كان الجهاز المركزي <span class="en">Switch</span></b>: الـSwitch أذكى؛ يتعلم عناوين الأجهزة، وتحديدًا <b>MAC Address</b>، ثم يرسل البيانات إلى الجهاز المطلوب فقط.</p>
+  <p><b>مثال</b>: جهاز 1 يريد التواصل مع جهاز 3 → الـSwitch يرسل البيانات مباشرة إلى جهاز 3، ولا يرسلها لبقية الأجهزة.</p>
+  <p>لذلك كل جهاز لديه اتصال مستقل مع الـSwitch يسمى <span class="en">Point-to-Point Link</span> — أي اتصال من نقطة إلى نقطة.</p>
+
+  <table>
+   <tr><th>الجهاز المركزي</th><th>طريقة إرسال البيانات</th></tr>
+   <tr><td><span class="en">Hub</span></td><td>يرسل البيانات إلى الجميع، ولذلك تعمل الشبكة منطقيًا مثل <span class="en">Bus</span></td></tr>
+   <tr><td><span class="en">Switch</span></td><td>يرسل البيانات إلى الجهاز المقصود فقط عبر <span class="en">Point-to-Point Link</span></td></tr>
+  </table>
+
+  <p style="margin-top:16px"><b>أهم عيب: <span class="en">Single Point of Failure</span></b> — الجهاز المركزي هو نقطة فشل واحدة لكل الشبكة.</p>
   <ul>
-   <li>لو كان الـconcentrator يكرر الإشارة للجميع = يعمل كـ<span class="en">Ethernet hub</span> (logical bus).</li>
-   <li>الأشيع: يتتبع عناوين الأجهزة ويوجّه الاتصال بشكل انتقائي = <b>Switch</b> (ينشئ point-to-point links).</li>
-   <li><b>العيب الأهم للاختبار</b>: الـconcentrator هو <span class="en">single point of failure</span>، وكل عقدة يجب أن تكون ضمن مسافة النقل القصوى للوسيط أو تستخدم <span class="en">repeater</span>.</li>
+   <li>إذا تعطل <b>كابل جهاز واحد</b> → يتوقف ذلك الجهاز فقط.</li>
+   <li>إذا تعطل <b>الـSwitch أو الـHub</b> نفسه → تتوقف الشبكة كاملة.</li>
   </ul>
+
+  <p style="margin-top:14px"><b>شرط المسافة</b>: لكل نوع كابل مسافة قصوى ينقل البيانات خلالها بكفاءة، لذلك يجب أن يكون كل جهاز قريبًا بما يكفي من الجهاز المركزي. إذا كانت المسافة أطول من الحد المسموح، يمكن استخدام <span class="en">Repeater</span> — جهاز يستقبل الإشارة الضعيفة ويعيد تقويتها وإرسالها.</p>
  </div>
+
+ <div class="tip">أسهل طريقة تحفظينها: الـ<span class="en">Hub</span> ينادي على الجميع، أما الـ<span class="en">Switch</span> فيعرف عنوان الجهاز المطلوب ويرسل له مباشرة. وسؤال شائع بالاختبار: "ما نقطة الضعف الأساسية في Star Topology؟" ← تعطل الجهاز المركزي يؤدي إلى توقف الشبكة كلها.</div>
 
  <div class="card">
   <p><b>3) Mesh Topology</b>:</p>
