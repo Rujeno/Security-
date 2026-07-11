@@ -120,8 +120,17 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
+html[dir="ltr"] .diagram .cap{direction:ltr}
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -141,12 +150,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 11</span>
-  <h1>الوحدة 11 — دعم تصميم أمان الشبكة</h1>
+  <h1 data-ar>الوحدة 11 — دعم تصميم أمان الشبكة</h1>
+  <h1 data-en hidden>Module 11 — Supporting Network Security Design</h1>
   <p>Supporting Network Security Design — Zone-Based Security · Internet of Things · Physical Security</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html" class="active">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html" class="active">11</a><a href="module12-guide.html">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m11-zones">11.1 Zone-Based Security</a>
@@ -158,31 +168,45 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m11-zones">
  <span class="mod-tag">MODULE 11 · LESSON 11.1</span>
- <h2>الأمان القائم على المناطق — Zone-Based Security</h2>
+ <h2 data-ar>الأمان القائم على المناطق — Zone-Based Security</h2>
+ <h2 data-en hidden>Zone-Based Security</h2>
  <p class="sub">Supporting Network Security Design — Security Zones · Perimeter Networks · IDS/IPS</p>
 
  <div class="card">
-  <p><b>Zone-Based Security</b>: نموذج أمان يقسّم الشبكة لمناطق أمنية، كل منطقة لها متطلبات أمان محددة — يضمن تدفق ترافيك آمن بين المناطق، يتحكم بالوصول، ويقلل المخاطر.</p>
+  <p data-ar><b>Zone-Based Security</b>: نموذج أمان يقسّم الشبكة لمناطق أمنية، كل منطقة لها متطلبات أمان محددة — يضمن تدفق ترافيك آمن بين المناطق، يتحكم بالوصول، ويقلل المخاطر.</p>
+  <p data-en hidden><b>Zone-Based Security</b>: a security model that divides the network into security zones, each with specific security requirements — it ensures safe traffic flow between zones, controls access, and reduces risk.</p>
  </div>
 
  <table>
-  <tr><th>المنطقة</th><th>الوصف</th></tr>
-  <tr><td><b>Private Security Networks</b></td><td>تحتوي موارد حساسة (سيرفرات داخلية، قواعد بيانات، أنظمة حرجة) — وصول محكم جدًا</td></tr>
-  <tr><td><b>Private Client Networks</b></td><td>مخصصة للمستخدمين والأجهزة الداخلية (محطات عمل، لابتوبات)</td></tr>
-  <tr><td><b>Guest Network</b></td><td>للزوار الخارجيين أو الوصول المؤقت — صلاحيات محدودة ومعزولة عن الموارد الحرجة</td></tr>
-  <tr><td><b>Public Server Network</b></td><td>تستضيف سيرفرات متاحة للعموم (مثل سيرفرات الويب) — منفصلة عن الشبكات الداخلية لمنع الهجوم المباشر</td></tr>
+  <tr data-ar><th>المنطقة</th><th>الوصف</th></tr>
+  <tr data-en hidden><th>Zone</th><th>Description</th></tr>
+  <tr data-ar><td><b>Private Security Networks</b></td><td>تحتوي موارد حساسة (سيرفرات داخلية، قواعد بيانات، أنظمة حرجة) — وصول محكم جدًا</td></tr>
+  <tr data-en hidden><td><b>Private Security Networks</b></td><td>Holds sensitive resources (internal servers, databases, critical systems) — very tightly controlled access</td></tr>
+  <tr data-ar><td><b>Private Client Networks</b></td><td>مخصصة للمستخدمين والأجهزة الداخلية (محطات عمل، لابتوبات)</td></tr>
+  <tr data-en hidden><td><b>Private Client Networks</b></td><td>Dedicated to internal users and devices (workstations, laptops)</td></tr>
+  <tr data-ar><td><b>Guest Network</b></td><td>للزوار الخارجيين أو الوصول المؤقت — صلاحيات محدودة ومعزولة عن الموارد الحرجة</td></tr>
+  <tr data-en hidden><td><b>Guest Network</b></td><td>For external visitors or temporary access — limited permissions, isolated from critical resources</td></tr>
+  <tr data-ar><td><b>Public Server Network</b></td><td>تستضيف سيرفرات متاحة للعموم (مثل سيرفرات الويب) — منفصلة عن الشبكات الداخلية لمنع الهجوم المباشر</td></tr>
+  <tr data-en hidden><td><b>Public Server Network</b></td><td>Hosts servers available to the public (like web servers) — separated from internal networks to prevent direct attacks</td></tr>
  </table>
 
  <div class="card">
-  <p><b>Perimeter Network</b>: منطقة عازلة آمنة بين الشبكة الداخلية والإنترنت غير الموثوق — تراقب وترشّح الترافيك بين الداخل والخارج، تستضيف سيرفرات عامة (ويب، بريد)، وتحتضن أجهزة أمنية (جدران نارية، IDS) لفصل البيانات الحساسة عن الواجهة العامة.</p>
+  <p data-ar><b>Perimeter Network</b>: منطقة عازلة آمنة بين الشبكة الداخلية والإنترنت غير الموثوق — تراقب وترشّح الترافيك بين الداخل والخارج، تستضيف سيرفرات عامة (ويب، بريد)، وتحتضن أجهزة أمنية (جدران نارية، IDS) لفصل البيانات الحساسة عن الواجهة العامة.</p>
+  <p data-en hidden><b>Perimeter Network</b>: a secure buffer zone between the internal network and the untrusted internet — it monitors and filters traffic between inside and outside, hosts public servers (web, mail), and houses security devices (firewalls, IDS) to separate sensitive data from the public-facing interface.</p>
  </div>
 
  <div class="card">
-  <p><b>Screened Subnet</b>: بنية جدار ناري تُعرِّف ثلاث subnets منفصلة:</p>
-  <ul>
+  <p data-ar><b>Screened Subnet</b>: بنية جدار ناري تُعرِّف ثلاث subnets منفصلة:</p>
+  <p data-en hidden><b>Screened Subnet</b>: a firewall architecture that defines three separate subnets:</p>
+  <ul data-ar>
    <li><b>External Router</b>: يفصل الشبكة الخارجية عن شبكة الـperimeter.</li>
    <li><b>Perimeter Network</b>: تستضيف سيرفرات يمكن الوصول لها من الداخل والخارج.</li>
    <li><b>Internal Router</b>: يفصل شبكة الـperimeter عن الشبكة الداخلية.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>External Router</b>: separates the external network from the perimeter network.</li>
+   <li><b>Perimeter Network</b>: hosts servers reachable from both inside and outside.</li>
+   <li><b>Internal Router</b>: separates the perimeter network from the internal network.</li>
   </ul>
  </div>
 
@@ -199,86 +223,127 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
    <rect x="451" y="35" width="105" height="60" rx="8" fill="#1a7f5c"/><text x="503" y="60" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Internal</text><text x="503" y="76" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Network</text>
    <defs><marker id="arZ" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0L8,4L0,8z" fill="#5b7280"/></marker></defs>
   </svg>
-  <div class="cap">Screened Subnet: راوتران يفصلان ثلاث مناطق — الإنترنت غير الموثوق، منطقة الـPerimeter (DMZ) للسيرفرات العامة، والشبكة الداخلية الحساسة.</div>
+  <div class="cap" data-ar>Screened Subnet: راوتران يفصلان ثلاث مناطق — الإنترنت غير الموثوق، منطقة الـPerimeter (DMZ) للسيرفرات العامة، والشبكة الداخلية الحساسة.</div>
+  <div class="cap" data-en hidden>Screened Subnet: two routers separating three zones — the untrusted internet, the Perimeter (DMZ) zone for public servers, and the sensitive internal network.</div>
  </div>
 
  <table>
-  <tr><th></th><th>IDS (Intrusion Detection System)</th><th>IPS (Intrusion Prevention System)</th></tr>
-  <tr><td>الوظيفة</td><td>يراقب ويكتشف أنماط الهجوم المعروفة وينبّه المسؤولين</td><td>يوقف الهجمات فورًا عند اكتشافها</td></tr>
-  <tr><td>تدفق الترافيك</td><td>يستمر حتى أثناء الهجوم</td><td>يتوقف حتى التحقيق واتخاذ القرار</td></tr>
-  <tr><td>الأفضلية</td><td>إعداد سريع، لكن قد يتأخر الاستجابة</td><td>مثالي للأصول الحرجة، لكن قد يؤثر على الترافيك الشرعي</td></tr>
+  <tr data-ar><th></th><th>IDS (Intrusion Detection System)</th><th>IPS (Intrusion Prevention System)</th></tr>
+  <tr data-en hidden><th></th><th>IDS (Intrusion Detection System)</th><th>IPS (Intrusion Prevention System)</th></tr>
+  <tr data-ar><td>الوظيفة</td><td>يراقب ويكتشف أنماط الهجوم المعروفة وينبّه المسؤولين</td><td>يوقف الهجمات فورًا عند اكتشافها</td></tr>
+  <tr data-en hidden><td>Function</td><td>Monitors and detects known attack patterns and alerts administrators</td><td>Stops attacks immediately upon detection</td></tr>
+  <tr data-ar><td>تدفق الترافيك</td><td>يستمر حتى أثناء الهجوم</td><td>يتوقف حتى التحقيق واتخاذ القرار</td></tr>
+  <tr data-en hidden><td>Traffic flow</td><td>Continues even during an attack</td><td>Stops until investigation and a decision are made</td></tr>
+  <tr data-ar><td>الأفضلية</td><td>إعداد سريع، لكن قد يتأخر الاستجابة</td><td>مثالي للأصول الحرجة، لكن قد يؤثر على الترافيك الشرعي</td></tr>
+  <tr data-en hidden><td>Trade-off</td><td>Fast to set up, but response may be delayed</td><td>Ideal for critical assets, but may affect legitimate traffic</td></tr>
  </table>
 </section>
 
 <section id="m11-iot">
  <span class="mod-tag">MODULE 11 · LESSON 11.2</span>
- <h2>إنترنت الأشياء — Internet of Things</h2>
+ <h2 data-ar>إنترنت الأشياء — Internet of Things</h2>
+ <h2 data-en hidden>Internet of Things</h2>
  <p class="sub">IoT Devices · Industrial Embedded Systems · IoT Security</p>
 
  <div class="card">
-  <p><b>أنواع أجهزة IoT</b>: أجهزة استهلاكية (للراحة الشخصية)، أجهزة صناعية (تراقب/تتحكم بالعمليات الصناعية)، أجهزة رعاية صحية (رعاية شخصية بالوقت المناسب)، أجهزة زراعية (بيانات لحظية لتحسين المحصول)، وأجهزة المدن الذكية (إدارة الموارد العامة بكفاءة).</p>
+  <p data-ar><b>أنواع أجهزة IoT</b>: أجهزة استهلاكية (للراحة الشخصية)، أجهزة صناعية (تراقب/تتحكم بالعمليات الصناعية)، أجهزة رعاية صحية (رعاية شخصية بالوقت المناسب)، أجهزة زراعية (بيانات لحظية لتحسين المحصول)، وأجهزة المدن الذكية (إدارة الموارد العامة بكفاءة).</p>
+  <p data-en hidden><b>Types of IoT devices</b>: consumer devices (personal convenience), industrial devices (monitor/control industrial processes), healthcare devices (timely personal care), agricultural devices (real-time data to improve crop yield), and smart city devices (efficient management of public resources).</p>
  </div>
 
  <div class="card">
-  <p><b>الأنظمة الصناعية المدمجة (Industrial Embedded Systems)</b>: أنظمة حوسبة متخصصة مزروعة داخل أجهزة/أنظمة أكبر لأداء وظائف محددة.</p>
-  <ul>
+  <p data-ar><b>الأنظمة الصناعية المدمجة (Industrial Embedded Systems)</b>: أنظمة حوسبة متخصصة مزروعة داخل أجهزة/أنظمة أكبر لأداء وظائف محددة.</p>
+  <p data-en hidden><b>Industrial Embedded Systems</b>: specialized computing systems embedded within larger devices/systems to perform specific functions.</p>
+  <ul data-ar>
    <li><b>ICS (Industrial Control Systems)</b>: تدير وتتحكم بالعمليات الصناعية وأتمتة عمليات المصانع.</li>
    <li><b>SCADA</b>: يركّز على جمع البيانات والتحكم اللحظي، يراقب ويتحكم بالمعدات والظروف.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>ICS (Industrial Control Systems)</b>: manage and control industrial processes and factory automation.</li>
+   <li><b>SCADA</b>: focuses on real-time data collection and control, monitoring and controlling equipment and conditions.</li>
   </ul>
  </div>
 
  <div class="card">
-  <p><b>معايير شبكات IoT</b>:</p>
-  <ul>
+  <p data-ar><b>معايير شبكات IoT</b>:</p>
+  <p data-en hidden><b>IoT network standards</b>:</p>
+  <ul data-ar>
    <li><b>OT Networks</b>: للبيئات الصناعية، مُحسَّنة لنقل بيانات لحظي، تستخدم بروتوكولات تسلسلية أو Ethernet صناعي.</li>
    <li><b>NB-IoT</b>: نسخة LTE منخفضة الطاقة، مناسبة لإرسال حزم بيانات صغيرة ببيئات صعبة.</li>
    <li><b>LTE-M</b>: يدعم bandwidth أعلى (حتى 1 Mbps) لتطبيقات IoT كثيفة البيانات.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>OT Networks</b>: for industrial environments, optimized for real-time data transfer, using serial protocols or industrial Ethernet.</li>
+   <li><b>NB-IoT</b>: a low-power LTE variant, suited for sending small data packets in harsh environments.</li>
+   <li><b>LTE-M</b>: supports higher bandwidth (up to 1 Mbps) for data-intensive IoT applications.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>أمان شبكة IoT</b>: يحمي الشبكة الرابطة بين أجهزة IoT والأنظمة الخلفية على الإنترنت. التحديات: زيادة سطح الهجوم، أجهزة بحماية ضعيفة. المكافحة: <b>Segmentation</b> (تقسيم الشبكة)، تدقيق منتظم، وتدريب الموظفين.</p>
+  <p data-ar><b>أمان شبكة IoT</b>: يحمي الشبكة الرابطة بين أجهزة IoT والأنظمة الخلفية على الإنترنت. التحديات: زيادة سطح الهجوم، أجهزة بحماية ضعيفة. المكافحة: <b>Segmentation</b> (تقسيم الشبكة)، تدقيق منتظم، وتدريب الموظفين.</p>
+  <p data-en hidden><b>IoT network security</b>: protects the network linking IoT devices to backend systems on the internet. Challenges: an increased attack surface, weakly protected devices. Countermeasures: <b>Segmentation</b>, regular audits, and staff training.</p>
  </div>
 
  <table>
-  <tr><th>الفئة</th><th>الخطر</th><th>الحل</th></tr>
-  <tr><td><b>Consumer-Grade Devices</b></td><td>ثغرات (إعدادات افتراضية ضعيفة، سوء إدارة التحديثات)</td><td>تأمين وتحديث واجهات الإدارة</td></tr>
-  <tr><td><b>Smart Buildings</b></td><td>اختراق آليات الدخول ومكونات التحكم بالمناخ/الإضاءة</td><td>إدارة الإعدادات وعزل الشبكة</td></tr>
-  <tr><td><b>ICS/SCADA</b></td><td>ثغرات باستغلال ربط شبكات OT/IT</td><td>عزل ترافيك الإدارة ومراقبة الروابط بين الشبكات</td></tr>
+  <tr data-ar><th>الفئة</th><th>الخطر</th><th>الحل</th></tr>
+  <tr data-en hidden><th>Category</th><th>Risk</th><th>Solution</th></tr>
+  <tr data-ar><td><b>Consumer-Grade Devices</b></td><td>ثغرات (إعدادات افتراضية ضعيفة، سوء إدارة التحديثات)</td><td>تأمين وتحديث واجهات الإدارة</td></tr>
+  <tr data-en hidden><td><b>Consumer-Grade Devices</b></td><td>Vulnerabilities (weak default settings, poor update management)</td><td>Secure and update management interfaces</td></tr>
+  <tr data-ar><td><b>Smart Buildings</b></td><td>اختراق آليات الدخول ومكونات التحكم بالمناخ/الإضاءة</td><td>إدارة الإعدادات وعزل الشبكة</td></tr>
+  <tr data-en hidden><td><b>Smart Buildings</b></td><td>Breaching entry mechanisms and climate/lighting control components</td><td>Configuration management and network isolation</td></tr>
+  <tr data-ar><td><b>ICS/SCADA</b></td><td>ثغرات باستغلال ربط شبكات OT/IT</td><td>عزل ترافيك الإدارة ومراقبة الروابط بين الشبكات</td></tr>
+  <tr data-en hidden><td><b>ICS/SCADA</b></td><td>Vulnerabilities exploiting the OT/IT network link</td><td>Isolate management traffic and monitor inter-network links</td></tr>
  </table>
 </section>
 
 <section id="m11-physical">
  <span class="mod-tag">MODULE 11 · LESSON 11.3</span>
- <h2>الأمان الفيزيائي — Physical Security</h2>
+ <h2 data-ar>الأمان الفيزيائي — Physical Security</h2>
+ <h2 data-en hidden>Physical Security</h2>
  <p class="sub">Locks & Entry Systems · Camera Surveillance · Geofencing</p>
 
  <div class="card">
-  <p><b>أهمية الأمان الفيزيائي</b>: خط الدفاع الأول لحماية موارد الشبكة — إهماله قد يؤدي لسرقة بيانات، ضرر بالعتاد، وتخريب.</p>
-  <p><b>استراتيجيات التخفيف</b>: أنظمة تحكم بالوصول، أنظمة مراقبة، ضوابط بيئية، وتدقيق منتظم.</p>
+  <p data-ar><b>أهمية الأمان الفيزيائي</b>: خط الدفاع الأول لحماية موارد الشبكة — إهماله قد يؤدي لسرقة بيانات، ضرر بالعتاد، وتخريب.</p>
+  <p data-en hidden><b>Importance of physical security</b>: the first line of defense protecting network resources — neglecting it can lead to data theft, hardware damage, and sabotage.</p>
+  <p data-ar><b>استراتيجيات التخفيف</b>: أنظمة تحكم بالوصول، أنظمة مراقبة، ضوابط بيئية، وتدقيق منتظم.</p>
+  <p data-en hidden><b>Mitigation strategies</b>: access control systems, surveillance systems, environmental controls, and regular audits.</p>
  </div>
 
  <div class="card">
-  <p><b>الأقفال وأنظمة الدخول الآمن</b>:</p>
-  <ul>
+  <p data-ar><b>الأقفال وأنظمة الدخول الآمن</b>:</p>
+  <p data-en hidden><b>Locks and secure entry systems</b>:</p>
+  <ul data-ar>
    <li><b>Electronic Locks</b>: تأمين المداخل إلكترونيًا.</li>
    <li><b>Badge Reader</b>: تحديد وتفويض الوصول عبر بطاقات ذكية.</li>
    <li><b>Biometric Locks</b>: مصادقة باستخدام السمات الفيزيائية.</li>
    <li><b>Secure Cabinets/Enclosures</b>: حماية أصول تقنية المعلومات من الوصول غير المصرّح.</li>
    <li><b>Colocation Cages</b>: وصول منفصل بمراكز بيانات مشتركة.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Electronic Locks</b>: secure entrances electronically.</li>
+   <li><b>Badge Reader</b>: identifies and authorizes access via smart cards.</li>
+   <li><b>Biometric Locks</b>: authenticate using physical traits.</li>
+   <li><b>Secure Cabinets/Enclosures</b>: protect IT assets from unauthorized access.</li>
+   <li><b>Colocation Cages</b>: separate access within shared data centers.</li>
+  </ul>
  </div>
 
  <div class="card">
-  <p><b>أنظمة المراقبة بالكاميرا</b>:</p>
-  <ul>
+  <p data-ar><b>أنظمة المراقبة بالكاميرا</b>:</p>
+  <p data-en hidden><b>Camera surveillance systems</b>:</p>
+  <ul data-ar>
    <li><b>Fixed Cameras</b>: تسجّل كل من يمر بنقاط دخول محددة.</li>
    <li><b>PTZ (Pan-Tilt-Zoom)</b>: تغطية مناطق واسعة، تقريب وتتبّع الحركة.</li>
    <li><b>CCTV</b>: تتصل عادة عبر كيبل coaxial لـmultiplexer، وتتكامل مع شبكات IP، وكاميرات IP الصغيرة تدعم <b>PoE</b>.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Fixed Cameras</b>: record everyone passing specific entry points.</li>
+   <li><b>PTZ (Pan-Tilt-Zoom)</b>: covers wide areas, zooming in and tracking movement.</li>
+   <li><b>CCTV</b>: usually connects via coaxial cable to a multiplexer, integrates with IP networks, and small IP cameras support <b>PoE</b>.</li>
+  </ul>
  </div>
 
- <div class="tip"><b>Geofencing</b>: حد افتراضي بجغرافيا العالم الحقيقي، يحدد موقع الجهاز عبر <b>GPS</b> أو <b>IPS (Indoor Positioning System)</b>، ويُستخدم للتحكم بوظائف الجهاز (كتعطيل الكاميرا خارج منطقة معينة) والمصادقة الواعية بالسياق — يُدار غالبًا عبر برامج <b>MDM (Mobile Device Management)</b>.</div>
+ <div class="tip" data-ar><b>Geofencing</b>: حد افتراضي بجغرافيا العالم الحقيقي، يحدد موقع الجهاز عبر <b>GPS</b> أو <b>IPS (Indoor Positioning System)</b>، ويُستخدم للتحكم بوظائف الجهاز (كتعطيل الكاميرا خارج منطقة معينة) والمصادقة الواعية بالسياق — يُدار غالبًا عبر برامج <b>MDM (Mobile Device Management)</b>.</div>
+ <div class="tip" data-en hidden><b>Geofencing</b>: a virtual boundary on real-world geography, locating a device via <b>GPS</b> or an <b>IPS (Indoor Positioning System)</b>, used to control device functions (like disabling the camera outside a certain area) and context-aware authentication — usually managed through <b>MDM (Mobile Device Management)</b> software.</div>
 </section>
 
 
@@ -287,5 +352,22 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <div class="modnav"><a href="module10-guide.html">← الوحدة 10</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module12-guide.html">الوحدة 12 →</a></div>
 
 <footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 11 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>

@@ -120,8 +120,17 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 .modnav a:hover{border-color:var(--teal);background:var(--soft)}
 .modnav a.home{color:var(--signal);border-color:transparent}
 
-.printbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
-.printbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
+html[dir="ltr"] .diagram .cap{direction:ltr}
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .osi .desc{border-right:none;border-left:1px dashed var(--line)}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+[data-en]{unicode-bidi:isolate}
 @media print{
  .switcher,nav,.modnav,.no-print{display:none !important}
  @page{size:A4;margin:14mm}
@@ -141,12 +150,13 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <header>
  <div class="hwrap">
   <span class="eyebrow">CompTIA Network+ N10-009 · MODULE 12</span>
-  <h1>الوحدة 12 — إعداد الشبكات اللاسلكية</h1>
+  <h1 data-ar>الوحدة 12 — إعداد الشبكات اللاسلكية</h1>
+  <h1 data-en hidden>Module 12 — Configuring Wireless Networks</h1>
   <p>Configuring Wireless Networks — Wireless Standards · Enterprise Design · Wireless Security · Wireless Troubleshooting</p>
  </div>
 </header>
 
-<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html" class="active">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+<div class="switcher"><div class="swrap"><a href="index.html">🏠</a><a href="module1-guide.html">1</a><a href="module2-guide.html">2</a><a href="module3-guide.html">3</a><a href="module4-guide.html">4</a><a href="module5-guide.html">5</a><a href="module6-guide.html">6</a><a href="module7-guide.html">7</a><a href="module8-guide.html">8</a><a href="module9-guide.html">9</a><a href="module10-guide.html">10</a><a href="module11-guide.html">11</a><a href="module12-guide.html" class="active">12</a><a href="module13-guide.html">13</a><a href="module14-guide.html">14</a><a href="all-modules-print.html">📚</a><a href="summaries.html">📄</a><a href="quiz-summary.html">🧾</a><a href="quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
 
 <nav><div class="nwrap">
  <a href="#m12-standards">12.1 Standards</a>
@@ -159,137 +169,193 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 
 <section id="m12-standards">
  <span class="mod-tag">MODULE 12 · LESSON 12.1</span>
- <h2>مفاهيم ومعايير الشبكات اللاسلكية</h2>
+ <h2 data-ar>مفاهيم ومعايير الشبكات اللاسلكية</h2>
+ <h2 data-en hidden>Wireless Networking Concepts and Standards</h2>
  <p class="sub">Configuring Wireless Networks — 802.11 Standards</p>
 
  <div class="card">
-  <p><b>802.11 (Wi-Fi)</b>: معايير وضعتها <b>IEEE</b> تحدد كيفية تواصل الموجات الراديوية عبر المسافات، وتضمن التوافق بين الأجهزة اللاسلكية.</p>
-  <ul>
+  <p data-ar><b>802.11 (Wi-Fi)</b>: معايير وضعتها <b>IEEE</b> تحدد كيفية تواصل الموجات الراديوية عبر المسافات، وتضمن التوافق بين الأجهزة اللاسلكية.</p>
+  <p data-en hidden><b>802.11 (Wi-Fi)</b>: standards set by <b>IEEE</b> defining how radio waves communicate over distances, ensuring compatibility between wireless devices.</p>
+  <ul data-ar>
    <li><b>Physical Layer</b>: يُرمِّز البيانات لإشارات راديوية بأساليب تضمين مختلفة.</li>
    <li><b>MAC</b>: يستخدم <b>CSMA/CA</b> لإرسال فعّال وتقليل التصادمات.</li>
    <li><b>Topology</b>: نجمة منطقية (star) حول <b>Access Point (AP)</b>.</li>
    <li><b>Wi-Fi Alliance</b>: يمنح شهادات توافق للمنتجات مع المعايير.</li>
   </ul>
+  <ul data-en hidden>
+   <li><b>Physical Layer</b>: encodes data into radio signals using different modulation methods.</li>
+   <li><b>MAC</b>: uses <b>CSMA/CA</b> for efficient transmission and fewer collisions.</li>
+   <li><b>Topology</b>: a logical star around an <b>Access Point (AP)</b>.</li>
+   <li><b>Wi-Fi Alliance</b>: grants compatibility certifications for products meeting the standards.</li>
+  </ul>
  </div>
 
  <table>
-  <tr><th>المعيار</th><th>التردد</th><th>السرعة الاسمية</th><th>ملاحظات</th></tr>
-  <tr><td><b>802.11a</b></td><td>5 GHz</td><td>حتى 54 Mbps</td><td>يستخدم OFDM، مدى أقصر لكن تداخل أقل</td></tr>
-  <tr><td><b>802.11b</b></td><td>2.4 GHz</td><td>حتى 11 Mbps</td><td>يستخدم DSSS/CCK</td></tr>
-  <tr><td><b>802.11g</b></td><td>2.4 GHz</td><td>حتى 54 Mbps</td><td>متوافق خلفيًا مع 802.11b، يستخدم OFDM</td></tr>
-  <tr><td><b>802.11n</b></td><td>2.4 و5 GHz</td><td>حتى 600 Mbps</td><td>يدعم MIMO وChannel Bonding (قنوات 40 MHz)</td></tr>
-  <tr><td><b>Wi-Fi 5 (802.11ac)</b></td><td>5 GHz فقط</td><td>سرعات Gigabit</td></tr>
+  <tr data-ar><th>المعيار</th><th>التردد</th><th>السرعة الاسمية</th><th>ملاحظات</th></tr>
+  <tr data-en hidden><th>Standard</th><th>Frequency</th><th>Nominal speed</th><th>Notes</th></tr>
+  <tr data-ar><td><b>802.11a</b></td><td>5 GHz</td><td>حتى 54 Mbps</td><td>يستخدم OFDM، مدى أقصر لكن تداخل أقل</td></tr>
+  <tr data-en hidden><td><b>802.11a</b></td><td>5 GHz</td><td>Up to 54 Mbps</td><td>Uses OFDM, shorter range but less interference</td></tr>
+  <tr data-ar><td><b>802.11b</b></td><td>2.4 GHz</td><td>حتى 11 Mbps</td><td>يستخدم DSSS/CCK</td></tr>
+  <tr data-en hidden><td><b>802.11b</b></td><td>2.4 GHz</td><td>Up to 11 Mbps</td><td>Uses DSSS/CCK</td></tr>
+  <tr data-ar><td><b>802.11g</b></td><td>2.4 GHz</td><td>حتى 54 Mbps</td><td>متوافق خلفيًا مع 802.11b، يستخدم OFDM</td></tr>
+  <tr data-en hidden><td><b>802.11g</b></td><td>2.4 GHz</td><td>Up to 54 Mbps</td><td>Backward compatible with 802.11b, uses OFDM</td></tr>
+  <tr data-ar><td><b>802.11n</b></td><td>2.4 و5 GHz</td><td>حتى 600 Mbps</td><td>يدعم MIMO وChannel Bonding (قنوات 40 MHz)</td></tr>
+  <tr data-en hidden><td><b>802.11n</b></td><td>2.4 and 5 GHz</td><td>Up to 600 Mbps</td><td>Supports MIMO and Channel Bonding (40 MHz channels)</td></tr>
+  <tr data-ar><td><b>Wi-Fi 5 (802.11ac)</b></td><td>5 GHz فقط</td><td>سرعات Gigabit</td></tr>
+  <tr data-en hidden><td><b>Wi-Fi 5 (802.11ac)</b></td><td>5 GHz only</td><td>Gigabit speeds</td></tr>
  </table>
 
  <div class="card">
-  <p><b>MU-MIMO</b>: يسمح لهوائيات متعددة بالـAP بإرسال بيانات لعدة محطات (stations) في آن واحد — يحسّن كفاءة الشبكة وسرعتها للأجهزة المتعددة (مدعوم بـWi-Fi 5 وWi-Fi 6، حتى 8 محطات).</p>
-  <p><b>Band Steering</b>: يستخدم التحكم بالـbeacon لتوجيه الأجهزة نحو نطاقي 5/6 GHz بدل 2.4 GHz المزدحم — يحسّن كفاءة الشبكة ويحفظ 2.4 GHz للأجهزة التي لا تدعم النطاقات الأعلى.</p>
+  <p data-ar><b>MU-MIMO</b>: يسمح لهوائيات متعددة بالـAP بإرسال بيانات لعدة محطات (stations) في آن واحد — يحسّن كفاءة الشبكة وسرعتها للأجهزة المتعددة (مدعوم بـWi-Fi 5 وWi-Fi 6، حتى 8 محطات).</p>
+  <p data-en hidden><b>MU-MIMO</b>: lets multiple antennas on the AP send data to several stations simultaneously — improves network efficiency and speed for multiple devices (supported by Wi-Fi 5 and Wi-Fi 6, up to 8 stations).</p>
+  <p data-ar><b>Band Steering</b>: يستخدم التحكم بالـbeacon لتوجيه الأجهزة نحو نطاقي 5/6 GHz بدل 2.4 GHz المزدحم — يحسّن كفاءة الشبكة ويحفظ 2.4 GHz للأجهزة التي لا تدعم النطاقات الأعلى.</p>
+  <p data-en hidden><b>Band Steering</b>: uses beacon control to direct devices toward the 5/6 GHz bands instead of the crowded 2.4 GHz — improves network efficiency and reserves 2.4 GHz for devices that don't support higher bands.</p>
  </div>
 
  <table>
-  <tr><th></th><th>2G/3G</th><th>4G (LTE)</th><th>5G</th></tr>
-  <tr><td>أقصى سرعة</td><td>حتى 2 Mbps</td><td>حتى 300 Mbps (LTE-A)</td><td>حتى 20 Gbps</td></tr>
-  <tr><td>الاستخدام</td><td>مكالمات صوتية، إنترنت أساسي</td><td>بث، ألعاب، فيديو HD</td><td>بث 4K/8K، AR/VR، مدن ذكية</td></tr>
+  <tr data-ar><th></th><th>2G/3G</th><th>4G (LTE)</th><th>5G</th></tr>
+  <tr data-en hidden><th></th><th>2G/3G</th><th>4G (LTE)</th><th>5G</th></tr>
+  <tr data-ar><td>أقصى سرعة</td><td>حتى 2 Mbps</td><td>حتى 300 Mbps (LTE-A)</td><td>حتى 20 Gbps</td></tr>
+  <tr data-en hidden><td>Max speed</td><td>Up to 2 Mbps</td><td>Up to 300 Mbps (LTE-A)</td><td>Up to 20 Gbps</td></tr>
+  <tr data-ar><td>الاستخدام</td><td>مكالمات صوتية، إنترنت أساسي</td><td>بث، ألعاب، فيديو HD</td><td>بث 4K/8K، AR/VR، مدن ذكية</td></tr>
+  <tr data-en hidden><td>Use</td><td>Voice calls, basic internet</td><td>Streaming, gaming, HD video</td><td>4K/8K streaming, AR/VR, smart cities</td></tr>
  </table>
 
- <div class="tip"><b>الإنترنت عبر الأقمار الصناعية</b>: <b>Geostationary</b> (مدار عالٍ، تغطية واسعة، latency عالٍ) مقابل <b>LEO (Low Earth Orbital)</b> (bandwidth عالٍ وlatency منخفض، يحتاج تتبعًا ديناميكيًا).</div>
+ <div class="tip" data-ar><b>الإنترنت عبر الأقمار الصناعية</b>: <b>Geostationary</b> (مدار عالٍ، تغطية واسعة، latency عالٍ) مقابل <b>LEO (Low Earth Orbital)</b> (bandwidth عالٍ وlatency منخفض، يحتاج تتبعًا ديناميكيًا).</div>
+ <div class="tip" data-en hidden><b>Satellite internet</b>: <b>Geostationary</b> (high orbit, wide coverage, high latency) versus <b>LEO (Low Earth Orbital)</b> (high bandwidth and low latency, needs dynamic tracking).</div>
 </section>
 
 <section id="m12-enterprise">
  <span class="mod-tag">MODULE 12 · LESSON 12.2</span>
- <h2>تصميم شبكات لاسلكية للمؤسسات</h2>
+ <h2 data-ar>تصميم شبكات لاسلكية للمؤسسات</h2>
+ <h2 data-en hidden>Enterprise Wireless Network Design</h2>
  <p class="sub">WLAN · BSSID/ESSID · Roaming · Wireless Controllers · Antennas</p>
 
  <div class="card">
-  <p><b>WLAN</b>: أجهزة تتواصل عبر إشارة لاسلكية، تستخدم <b>SSID</b> للاتصال. في <b>Infrastructure Mode</b>، الـ<b>AP</b> يتوسط الاتصالات، يشكّل نجمة منطقية، ويدعم عدة BSS بنطاقات مختلفة بمعرّفات SSID فريدة أو مشتركة.</p>
+  <p data-ar><b>WLAN</b>: أجهزة تتواصل عبر إشارة لاسلكية، تستخدم <b>SSID</b> للاتصال. في <b>Infrastructure Mode</b>، الـ<b>AP</b> يتوسط الاتصالات، يشكّل نجمة منطقية، ويدعم عدة BSS بنطاقات مختلفة بمعرّفات SSID فريدة أو مشتركة.</p>
+  <p data-en hidden><b>WLAN</b>: devices communicating over a wireless signal, using an <b>SSID</b> to connect. In <b>Infrastructure Mode</b>, the <b>AP</b> mediates connections, forms a logical star, and supports multiple BSS on different bands with unique or shared SSIDs.</p>
  </div>
 
  <div class="two">
   <div class="card">
-   <p><b>BSSID</b></p>
-   <p>معرّف فريد لنقطة وصول واحدة داخل WLAN — "عنوان" لإدارة الشبكة بكفاءة.</p>
+   <p data-ar><b>BSSID</b></p>
+   <p data-en hidden><b>BSSID</b></p>
+   <p data-ar>معرّف فريد لنقطة وصول واحدة داخل WLAN — "عنوان" لإدارة الشبكة بكفاءة.</p>
+   <p data-en hidden>A unique identifier for a single access point within a WLAN — an "address" for efficiently managing the network.</p>
   </div>
   <div class="card">
-   <p><b>ESSID</b></p>
-   <p>اسم الشبكة لعدة BSS ضمن شبكة WLAN أكبر — يدعم تجوال العميل عبر القنوات/النطاقات.</p>
+   <p data-ar><b>ESSID</b></p>
+   <p data-en hidden><b>ESSID</b></p>
+   <p data-ar>اسم الشبكة لعدة BSS ضمن شبكة WLAN أكبر — يدعم تجوال العميل عبر القنوات/النطاقات.</p>
+   <p data-en hidden>The network name for multiple BSS within a larger WLAN — supports client roaming across channels/bands.</p>
   </div>
  </div>
 
  <table>
-  <tr><th>العامل</th><th>التفاصيل</th></tr>
-  <tr><td>مدى Wi-Fi</td><td>داخلي ~30م، خارجي 2-3 أضعاف الداخلي؛ 2.4 GHz أفضل من 5 GHz للمدى</td></tr>
-  <tr><td>قوة الإشارة (RSSI)</td><td>تُقاس بـ<span class="en">dBm</span>؛ الأقرب لـ0 dBm أفضل (مثال: -30 dBm ممتاز، أقل من -80 dBm = فقدان حزم)</td></tr>
-  <tr><td>SNR</td><td>قيم أعلى = إشارة أوضح</td></tr>
+  <tr data-ar><th>العامل</th><th>التفاصيل</th></tr>
+  <tr data-en hidden><th>Factor</th><th>Details</th></tr>
+  <tr data-ar><td>مدى Wi-Fi</td><td>داخلي ~30م، خارجي 2-3 أضعاف الداخلي؛ 2.4 GHz أفضل من 5 GHz للمدى</td></tr>
+  <tr data-en hidden><td>Wi-Fi range</td><td>Indoor ~30m, outdoor 2-3x the indoor range; 2.4 GHz is better than 5 GHz for range</td></tr>
+  <tr data-ar><td>قوة الإشارة (RSSI)</td><td>تُقاس بـ<span class="en">dBm</span>؛ الأقرب لـ0 dBm أفضل (مثال: -30 dBm ممتاز، أقل من -80 dBm = فقدان حزم)</td></tr>
+  <tr data-en hidden><td>Signal strength (RSSI)</td><td>Measured in <span class="en">dBm</span>; closer to 0 dBm is better (e.g. -30 dBm is excellent, below -80 dBm = packet loss)</td></tr>
+  <tr data-ar><td>SNR</td><td>قيم أعلى = إشارة أوضح</td></tr>
+  <tr data-en hidden><td>SNR</td><td>Higher values = clearer signal</td></tr>
  </table>
 
  <div class="card">
-  <p><b>Wireless Survey (RF Site Survey)</b>: تخطيط الشبكة اللاسلكية لتغطية وbandwidth وجودة خدمة مثالية — يحدد أفضل مكان لنقاط الوصول ومصادر التداخل المحتملة، عبر فحص ميداني وقياس قوة الإشارة وتحليل البيانات.</p>
-  <p><b>Heat Maps</b>: تمثيل بصري بالألوان لشدة الإشارة بمنطقة ما — يحدد نقاط النشاط الكثيف ومناطق تحتاج تقوية الإشارة.</p>
+  <p data-ar><b>Wireless Survey (RF Site Survey)</b>: تخطيط الشبكة اللاسلكية لتغطية وbandwidth وجودة خدمة مثالية — يحدد أفضل مكان لنقاط الوصول ومصادر التداخل المحتملة، عبر فحص ميداني وقياس قوة الإشارة وتحليل البيانات.</p>
+  <p data-en hidden><b>Wireless Survey (RF Site Survey)</b>: planning the wireless network for optimal coverage, bandwidth, and service quality — identifies the best placement for access points and potential interference sources, through on-site inspection, signal strength measurement, and data analysis.</p>
+  <p data-ar><b>Heat Maps</b>: تمثيل بصري بالألوان لشدة الإشارة بمنطقة ما — يحدد نقاط النشاط الكثيف ومناطق تحتاج تقوية الإشارة.</p>
+  <p data-en hidden><b>Heat Maps</b>: a color-coded visual representation of signal intensity across an area — identifies high-activity spots and areas needing a stronger signal.</p>
  </div>
 
  <div class="card">
-  <p><b>Wireless Roaming</b>: اتصال سلس للجهاز عبر عدة APs بدون انقطاع. <b>ESA (Extended Service Area)</b>: شبكة APs بنفس ESSID وإعدادات الأمان — الأجهزة تعيد الارتباط بـAP جديد حسب قوة الإشارة، وقد تحتاج إعادة مصادقة.</p>
+  <p data-ar><b>Wireless Roaming</b>: اتصال سلس للجهاز عبر عدة APs بدون انقطاع. <b>ESA (Extended Service Area)</b>: شبكة APs بنفس ESSID وإعدادات الأمان — الأجهزة تعيد الارتباط بـAP جديد حسب قوة الإشارة، وقد تحتاج إعادة مصادقة.</p>
+  <p data-en hidden><b>Wireless Roaming</b>: seamless device connectivity across multiple APs without interruption. <b>ESA (Extended Service Area)</b>: a network of APs with the same ESSID and security settings — devices re-associate with a new AP based on signal strength, and may need to re-authenticate.</p>
  </div>
 
  <div class="two">
   <div class="card">
-   <p><b>SSID Broadcast</b></p>
-   <p>يُعلن عن وجود الشبكة لتسهيل الاتصال — يمكن تعطيله (suppress) لتعزيز الأمان.</p>
+   <p data-ar><b>SSID Broadcast</b></p>
+   <p data-en hidden><b>SSID Broadcast</b></p>
+   <p data-ar>يُعلن عن وجود الشبكة لتسهيل الاتصال — يمكن تعطيله (suppress) لتعزيز الأمان.</p>
+   <p data-en hidden>Announces the network's existence to ease connection — can be suppressed to enhance security.</p>
   </div>
   <div class="card">
-   <p><b>Beacon Frames</b></p>
-   <p>إطارات خاصة تحمل معلومات الشبكة الأساسية (SSID/ESSID, BSSID, بروتوكولات الأمان) — فاصل البث قابل للتعديل.</p>
+   <p data-ar><b>Beacon Frames</b></p>
+   <p data-en hidden><b>Beacon Frames</b></p>
+   <p data-ar>إطارات خاصة تحمل معلومات الشبكة الأساسية (SSID/ESSID, BSSID, بروتوكولات الأمان) — فاصل البث قابل للتعديل.</p>
+   <p data-en hidden>Special frames carrying basic network info (SSID/ESSID, BSSID, security protocols) — the broadcast interval is adjustable.</p>
   </div>
  </div>
 
  <div class="card">
-  <p><b>WDS (Wireless Distribution System)</b>: ينشئ شبكة لاسلكية حيث التمديد غير عملي — يتطلب تطابق SSID/القناة/إعدادات الأمان بين نقاط الوصول، محطة أساسية سلكية ومحطات بعيدة لاسلكية.</p>
-  <p><b>Wireless Controllers</b>: تدير وتراقب عدة APs مركزيًا (حتى 1,500 AP و20,000 عميل)، تبسّط الإعداد، تمنع أخطاء الأجهزة الفردية، وتُعيّن العملاء لـVLANs منفصلة تلقائيًا.</p>
+  <p data-ar><b>WDS (Wireless Distribution System)</b>: ينشئ شبكة لاسلكية حيث التمديد غير عملي — يتطلب تطابق SSID/القناة/إعدادات الأمان بين نقاط الوصول، محطة أساسية سلكية ومحطات بعيدة لاسلكية.</p>
+  <p data-en hidden><b>WDS (Wireless Distribution System)</b>: creates a wireless network where cabling is impractical — requires matching SSID/channel/security settings between access points, a wired root station and wireless remote stations.</p>
+  <p data-ar><b>Wireless Controllers</b>: تدير وتراقب عدة APs مركزيًا (حتى 1,500 AP و20,000 عميل)، تبسّط الإعداد، تمنع أخطاء الأجهزة الفردية، وتُعيّن العملاء لـVLANs منفصلة تلقائيًا.</p>
+  <p data-en hidden><b>Wireless Controllers</b>: manage and monitor multiple APs centrally (up to 1,500 APs and 20,000 clients), simplify configuration, prevent individual device errors, and automatically assign clients to separate VLANs.</p>
  </div>
 
  <table>
-  <tr><th>نوع الهوائي</th><th>الوصف</th></tr>
-  <tr><td><b>Omnidirectional</b></td><td>يشعّ ويستقبل بكل الاتجاهات بالتساوي — تغطية واسعة (مناسب للتركيب بالسقف)</td></tr>
-  <tr><td><b>Unidirectional</b></td><td>يركّز الإشارة باتجاه محدد — اتصالات نقطة لنقطة، يحتاج محاذاة دقيقة</td></tr>
-  <tr><td><b>Dual-Polarized</b></td><td>يرسل ويستقبل بعدة اتجاهات — يدعم الأجهزة المتحركة بجودة إشارة ثابتة</td></tr>
+  <tr data-ar><th>نوع الهوائي</th><th>الوصف</th></tr>
+  <tr data-en hidden><th>Antenna type</th><th>Description</th></tr>
+  <tr data-ar><td><b>Omnidirectional</b></td><td>يشعّ ويستقبل بكل الاتجاهات بالتساوي — تغطية واسعة (مناسب للتركيب بالسقف)</td></tr>
+  <tr data-en hidden><td><b>Omnidirectional</b></td><td>Radiates and receives equally in all directions — wide coverage (suited to ceiling mounting)</td></tr>
+  <tr data-ar><td><b>Unidirectional</b></td><td>يركّز الإشارة باتجاه محدد — اتصالات نقطة لنقطة، يحتاج محاذاة دقيقة</td></tr>
+  <tr data-en hidden><td><b>Unidirectional</b></td><td>Focuses the signal in a specific direction — point-to-point links, needs precise alignment</td></tr>
+  <tr data-ar><td><b>Dual-Polarized</b></td><td>يرسل ويستقبل بعدة اتجاهات — يدعم الأجهزة المتحركة بجودة إشارة ثابتة</td></tr>
+  <tr data-en hidden><td><b>Dual-Polarized</b></td><td>Transmits and receives in multiple orientations — supports mobile devices with consistent signal quality</td></tr>
  </table>
 
- <div class="tip">مقارنة سريعة: <b>Ad Hoc (IBSS)</b> = peer-to-peer بدون AP · <b>Mesh (WMN)</b> = عقد تكتشف بعضها وتوجّه عبر HWMP، قابلة للتوسع لIoT · <b>Point to Point</b> = ربط موقعين بدون كيبل بهوائيات موجّهة (dish/Yagi).</div>
+ <div class="tip" data-ar>مقارنة سريعة: <b>Ad Hoc (IBSS)</b> = peer-to-peer بدون AP · <b>Mesh (WMN)</b> = عقد تكتشف بعضها وتوجّه عبر HWMP، قابلة للتوسع لIoT · <b>Point to Point</b> = ربط موقعين بدون كيبل بهوائيات موجّهة (dish/Yagi).</div>
+ <div class="tip" data-en hidden>Quick comparison: <b>Ad Hoc (IBSS)</b> = peer-to-peer with no AP · <b>Mesh (WMN)</b> = nodes discover each other and route via HWMP, scalable for IoT · <b>Point to Point</b> = linking two sites without cabling using directional antennas (dish/Yagi).</div>
 </section>
 
 <section id="m12-security">
  <span class="mod-tag">MODULE 12 · LESSON 12.3</span>
- <h2>أمان الشبكات اللاسلكية — Wireless Security</h2>
+ <h2 data-ar>أمان الشبكات اللاسلكية — Wireless Security</h2>
+ <h2 data-en hidden>Wireless Security</h2>
  <p class="sub">WPA2/WPA3 · Guest Networks · Rogue APs · Deauthentication</p>
 
  <table>
-  <tr><th></th><th>WPA2</th><th>WPA3</th></tr>
-  <tr><td>الإصدار</td><td>2004، تحسين كبير عن WEP/WPA</td><td>2018، لمعالجة قيود WPA2</td></tr>
-  <tr><td>التشفير</td><td>مفتاح مشترك لكل الأجهزة، يستخدم <b>AES</b></td><td>تشفير بيانات فردي لكل جهاز</td></tr>
-  <tr><td>حماية كلمة المرور</td><td>عرضة لهجمات معينة</td><td>يصعّب كسر كلمة المرور جدًا (يحتاج تفاعل مباشر لكل محاولة)</td></tr>
-  <tr><td>Forward Secrecy</td><td>غير مدعوم</td><td>مدعوم — تسريب كلمة المرور لاحقًا لا يفكّ بيانات سابقة ملتقطة</td></tr>
+  <tr data-ar><th></th><th>WPA2</th><th>WPA3</th></tr>
+  <tr data-en hidden><th></th><th>WPA2</th><th>WPA3</th></tr>
+  <tr data-ar><td>الإصدار</td><td>2004، تحسين كبير عن WEP/WPA</td><td>2018، لمعالجة قيود WPA2</td></tr>
+  <tr data-en hidden><td>Version</td><td>2004, a major improvement over WEP/WPA</td><td>2018, addressing WPA2's limitations</td></tr>
+  <tr data-ar><td>التشفير</td><td>مفتاح مشترك لكل الأجهزة، يستخدم <b>AES</b></td><td>تشفير بيانات فردي لكل جهاز</td></tr>
+  <tr data-en hidden><td>Encryption</td><td>A shared key for all devices, uses <b>AES</b></td><td>Individual data encryption per device</td></tr>
+  <tr data-ar><td>حماية كلمة المرور</td><td>عرضة لهجمات معينة</td><td>يصعّب كسر كلمة المرور جدًا (يحتاج تفاعل مباشر لكل محاولة)</td></tr>
+  <tr data-en hidden><td>Password protection</td><td>Vulnerable to certain attacks</td><td>Makes cracking the password very difficult (requires direct interaction for each attempt)</td></tr>
+  <tr data-ar><td>Forward Secrecy</td><td>غير مدعوم</td><td>مدعوم — تسريب كلمة المرور لاحقًا لا يفكّ بيانات سابقة ملتقطة</td></tr>
+  <tr data-en hidden><td>Forward Secrecy</td><td>Not supported</td><td>Supported — leaking the password later doesn't decrypt previously captured data</td></tr>
  </table>
 
  <div class="card">
-  <p><b>Enterprise Authentication</b> (802.1X): اختيار طريقة الأمان → طلب ارتباط → تحديد جهاز الـsupplicant → مشاركة مفتاح PMK → تحقق بيانات الاعتماد → نقل مصادقة ومفتاح → اشتقاق مفتاح الجلسة.</p>
+  <p data-ar><b>Enterprise Authentication</b> (802.1X): اختيار طريقة الأمان → طلب ارتباط → تحديد جهاز الـsupplicant → مشاركة مفتاح PMK → تحقق بيانات الاعتماد → نقل مصادقة ومفتاح → اشتقاق مفتاح الجلسة.</p>
+  <p data-en hidden><b>Enterprise Authentication</b> (802.1X): choose the security method → send an association request → identify the supplicant device → share the PMK key → verify credentials → transmit authentication and key → derive the session key.</p>
  </div>
 
  <div class="card">
-  <p><b>Guest Networks</b>: وصول منفصل للزوار، معزول عن الشبكة الرئيسية — أمان معزز (فصل وصول الضيوف عن الموارد الداخلية)، اتصال مبسّط دون المساس بسلامة الشبكة. الإعداد: <b>SSID منفصل</b> ووصول مقيّد (إنترنت فقط، بدون وصول للسيرفرات المحلية/البيانات الحساسة).</p>
+  <p data-ar><b>Guest Networks</b>: وصول منفصل للزوار، معزول عن الشبكة الرئيسية — أمان معزز (فصل وصول الضيوف عن الموارد الداخلية)، اتصال مبسّط دون المساس بسلامة الشبكة. الإعداد: <b>SSID منفصل</b> ووصول مقيّد (إنترنت فقط، بدون وصول للسيرفرات المحلية/البيانات الحساسة).</p>
+  <p data-en hidden><b>Guest Networks</b>: separate access for visitors, isolated from the main network — enhanced security (separating guest access from internal resources), simplified connectivity without compromising network integrity. Setup: a <b>separate SSID</b> and restricted access (internet only, no access to local servers/sensitive data).</p>
  </div>
 
  <div class="card">
-  <p><b>Captive Portals</b>: خطوة مصادقة ثانوية بالشبكات المفتوحة، تتطلب تسجيل دخول عبر صفحة ويب. تستخدم <b>HTTPS</b> لتأمين بيانات الدخول، وشهادة رقمية لضمان ثقة المتصفح. أفضل الممارسات: شروط استخدام واضحة، والتوصية باستخدام <b>VPN</b> للتصفح الآمن على الشبكات المفتوحة.</p>
+  <p data-ar><b>Captive Portals</b>: خطوة مصادقة ثانوية بالشبكات المفتوحة، تتطلب تسجيل دخول عبر صفحة ويب. تستخدم <b>HTTPS</b> لتأمين بيانات الدخول، وشهادة رقمية لضمان ثقة المتصفح. أفضل الممارسات: شروط استخدام واضحة، والتوصية باستخدام <b>VPN</b> للتصفح الآمن على الشبكات المفتوحة.</p>
+  <p data-en hidden><b>Captive Portals</b>: a secondary authentication step on open networks, requiring login through a web page. Uses <b>HTTPS</b> to secure login data, and a digital certificate to ensure browser trust. Best practices: clear terms of use, and recommending a <b>VPN</b> for safe browsing on open networks.</p>
  </div>
 
  <div class="card">
-  <p><b>مشاكل BYOD</b>: تعقيد التوافق عبر الأجهزة/الأنظمة، مستويات حماية متفاوتة، أجهزة غير محدَّثة، تحكم IT محدود، تهديدات داخلية. المكافحة: أنظمة <b>EMM</b>، مساحات عمل مؤسسية منفصلة، فرض سياسات أمنية، وفصل بيانات الشركة عن الشخصية.</p>
+  <p data-ar><b>مشاكل BYOD</b>: تعقيد التوافق عبر الأجهزة/الأنظمة، مستويات حماية متفاوتة، أجهزة غير محدَّثة، تحكم IT محدود، تهديدات داخلية. المكافحة: أنظمة <b>EMM</b>، مساحات عمل مؤسسية منفصلة، فرض سياسات أمنية، وفصل بيانات الشركة عن الشخصية.</p>
+  <p data-en hidden><b>BYOD challenges</b>: compatibility complexity across devices/systems, varying protection levels, unpatched devices, limited IT control, insider threats. Countermeasures: <b>EMM</b> systems, separate enterprise workspaces, enforcing security policies, and separating company data from personal data.</p>
  </div>
 
  <div class="two">
   <div class="card">
-   <p><b>Rogue Access Points / Evil Twin</b></p>
-   <p>نقطة وصول مزيّفة تحاكي شبكة شرعية — يتصل المستخدمون بدون علمهم، فيعترض المهاجم بياناتهم، ويلتقط تفاصيل الدخول، أو يثبّت برمجيات ضارة. المكافحة: فحص دوري لنقاط الوصول المارقة، وتوعية المستخدمين.</p>
+   <p data-ar><b>Rogue Access Points / Evil Twin</b></p>
+   <p data-en hidden><b>Rogue Access Points / Evil Twin</b></p>
+   <p data-ar>نقطة وصول مزيّفة تحاكي شبكة شرعية — يتصل المستخدمون بدون علمهم، فيعترض المهاجم بياناتهم، ويلتقط تفاصيل الدخول، أو يثبّت برمجيات ضارة. المكافحة: فحص دوري لنقاط الوصول المارقة، وتوعية المستخدمين.</p>
+   <p data-en hidden>A fake access point mimicking a legitimate network — users connect unknowingly, letting the attacker intercept their data, capture login details, or install malware. Countermeasures: periodic scanning for rogue access points, and user awareness.</p>
    <div class="diagram">
     <svg viewBox="0 0 380 160" style="max-width:380px">
      <rect x="20" y="15" width="130" height="45" rx="8" fill="#12617c"/><text x="85" y="34" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">Legitimate AP</text><text x="85" y="50" text-anchor="middle" fill="#cfe4ec" font-size="9.5">SSID: "Office-WiFi"</text>
@@ -298,68 +364,91 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
      <line x1="150" y1="60" x2="195" y2="112" stroke="#b7c6cc" stroke-width="2" stroke-dasharray="4 3"/>
      <line x1="230" y1="60" x2="200" y2="112" stroke="#e8672c" stroke-width="2.5"/>
     </svg>
-    <div class="cap">نفس اسم الشبكة (SSID) بالضبط — الجهاز يظن أنه يتصل بالشبكة الشرعية بينما يتصل فعليًا بجهاز المهاجم.</div>
+    <div class="cap" data-ar>نفس اسم الشبكة (SSID) بالضبط — الجهاز يظن أنه يتصل بالشبكة الشرعية بينما يتصل فعليًا بجهاز المهاجم.</div>
+    <div class="cap" data-en hidden>The exact same network name (SSID) — the device thinks it's connecting to the legitimate network while actually connecting to the attacker's device.</div>
    </div>
   </div>
   <div class="card">
-   <p><b>Deauthentication Attacks</b></p>
-   <p>تُعطّل اتصال المستخدمين بنقاط الوصول، وتجبر الأجهزة على الانفصال ثم الاتصال بشبكة يتحكم بها المهاجم — تُستغل إطارات الإدارة غير المشفرة. المكافحة: مراقبة أنماط deauthentication غير الطبيعية، وتشفير/مصادقة قوية.</p>
+   <p data-ar><b>Deauthentication Attacks</b></p>
+   <p data-en hidden><b>Deauthentication Attacks</b></p>
+   <p data-ar>تُعطّل اتصال المستخدمين بنقاط الوصول، وتجبر الأجهزة على الانفصال ثم الاتصال بشبكة يتحكم بها المهاجم — تُستغل إطارات الإدارة غير المشفرة. المكافحة: مراقبة أنماط deauthentication غير الطبيعية، وتشفير/مصادقة قوية.</p>
+   <p data-en hidden>Disrupts users' connections to access points, forcing devices to disconnect and then connect to a network controlled by the attacker — exploits unencrypted management frames. Countermeasures: monitoring abnormal deauthentication patterns, and strong encryption/authentication.</p>
   </div>
  </div>
 </section>
 
 <section id="m12-ts">
  <span class="mod-tag">MODULE 12 · LESSON 12.4</span>
- <h2>استكشاف أخطاء الشبكات اللاسلكية</h2>
+ <h2 data-ar>استكشاف أخطاء الشبكات اللاسلكية</h2>
+ <h2 data-en hidden>Wireless Network Troubleshooting</h2>
  <p class="sub">Coverage · Channel Overlap · Interference · Roaming · Overcapacity</p>
 
  <div class="card">
-  <p><b>مقاييس مهمة</b>: <b>Bit Rate</b> وaffected by <b>Throughput</b>؛ <b>RF Attenuation</b>: تدهور الإشارة مع المسافة حسب قاعدة التربيع العكسي، يُقاس بـdB؛ <b>SNR</b>: هامش مثالي لجودة الاتصال. أدوات: <b>Wi-Fi Analyzers</b> (قياسات لحظية) و<b>Dedicated Wi-Fi Tester Hardware</b> (تحليل شامل).</p>
+  <p data-ar><b>مقاييس مهمة</b>: <b>Bit Rate</b> وaffected by <b>Throughput</b>؛ <b>RF Attenuation</b>: تدهور الإشارة مع المسافة حسب قاعدة التربيع العكسي، يُقاس بـdB؛ <b>SNR</b>: هامش مثالي لجودة الاتصال. أدوات: <b>Wi-Fi Analyzers</b> (قياسات لحظية) و<b>Dedicated Wi-Fi Tester Hardware</b> (تحليل شامل).</p>
+  <p data-en hidden><b>Key metrics</b>: <b>Bit Rate</b> is affected by <b>Throughput</b>; <b>RF Attenuation</b>: signal degradation with distance following the inverse-square rule, measured in dB; <b>SNR</b>: an ideal margin for connection quality. Tools: <b>Wi-Fi Analyzers</b> (real-time measurements) and <b>Dedicated Wi-Fi Tester Hardware</b> (comprehensive analysis).</p>
  </div>
 
  <div class="two">
   <div class="card">
-   <p><b>ضعف التغطية اللاسلكية</b></p>
-   <p><b>الأسباب</b>: حواجز فيزيائية، مسافة أكبر من المثالية عن الـAP، تداخل كهربائي.<br><b>الحلول</b>: تركيب نقاط وصول إضافية، مُوسّعات مدى/جسور لاسلكية، مسح ميداني لتحديد المكان الأمثل، معايرة قوة الإرسال حسب أضعف جهاز عميل.</p>
+   <p data-ar><b>ضعف التغطية اللاسلكية</b></p>
+   <p data-en hidden><b>Weak wireless coverage</b></p>
+   <p data-ar><b>الأسباب</b>: حواجز فيزيائية، مسافة أكبر من المثالية عن الـAP، تداخل كهربائي.<br><b>الحلول</b>: تركيب نقاط وصول إضافية، مُوسّعات مدى/جسور لاسلكية، مسح ميداني لتحديد المكان الأمثل، معايرة قوة الإرسال حسب أضعف جهاز عميل.</p>
+   <p data-en hidden><b>Causes</b>: physical barriers, greater-than-ideal distance from the AP, electrical interference.<br><b>Solutions</b>: install additional access points, range extenders/wireless bridges, a site survey to find the optimal placement, calibrating transmit power for the weakest client device.</p>
   </div>
   <div class="card">
-   <p><b>تداخل القنوات (Channel Overlap)</b></p>
-   <p><b>Co-channel Interference (CCI)</b>: تنافس أجهزة على نفس القناة. <b>Adjacent Channel Interference (ACI)</b>: أجهزة على قنوات متداخلة تُبطئ الاتصال.<br><b>الحلول</b>: قنوات 2.4 GHz المثلى (1, 6, 11)، تباعد 25 MHz بين القنوات، وخفض قوة الـAP.</p>
+   <p data-ar><b>تداخل القنوات (Channel Overlap)</b></p>
+   <p data-en hidden><b>Channel Overlap</b></p>
+   <p data-ar><b>Co-channel Interference (CCI)</b>: تنافس أجهزة على نفس القناة. <b>Adjacent Channel Interference (ACI)</b>: أجهزة على قنوات متداخلة تُبطئ الاتصال.<br><b>الحلول</b>: قنوات 2.4 GHz المثلى (1, 6, 11)، تباعد 25 MHz بين القنوات، وخفض قوة الـAP.</p>
+   <p data-en hidden><b>Co-channel Interference (CCI)</b>: devices competing on the same channel. <b>Adjacent Channel Interference (ACI)</b>: devices on overlapping channels slow the connection.<br><b>Solutions</b>: optimal 2.4 GHz channels (1, 6, 11), 25 MHz spacing between channels, and lowering AP power.</p>
   </div>
  </div>
 
  <div class="diagrow" style="grid-template-columns:1fr 1fr">
   <div class="dbox">
    <svg viewBox="0 0 300 90"><rect x="10" y="20" width="80" height="50" fill="#1a7f5c" opacity="0.85" rx="4"/><text x="50" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Ch 1</text><rect x="110" y="20" width="80" height="50" fill="#1a7f5c" opacity="0.85" rx="4"/><text x="150" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Ch 6</text><rect x="210" y="20" width="80" height="50" fill="#1a7f5c" opacity="0.85" rx="4"/><text x="250" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Ch 11</text></svg>
-   <div class="cap">Non-Overlapping — بدون تداخل (الأفضل)</div>
+   <div class="cap" data-ar>Non-Overlapping — بدون تداخل (الأفضل)</div>
+   <div class="cap" data-en hidden>Non-Overlapping — no overlap (best)</div>
   </div>
   <div class="dbox">
    <svg viewBox="0 0 300 90"><rect x="30" y="20" width="80" height="50" fill="#e8672c" opacity="0.55" rx="4"/><rect x="80" y="20" width="80" height="50" fill="#e8672c" opacity="0.55" rx="4"/><rect x="130" y="20" width="80" height="50" fill="#e8672c" opacity="0.55" rx="4"/><text x="120" y="50" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Ch 2-3-4</text></svg>
-   <div class="cap">Adjacent Channel Interference — قنوات متجاورة متداخلة (مشكلة)</div>
+   <div class="cap" data-ar>Adjacent Channel Interference — قنوات متجاورة متداخلة (مشكلة)</div>
+   <div class="cap" data-en hidden>Adjacent Channel Interference — overlapping adjacent channels (a problem)</div>
   </div>
  </div>
 
  <div class="card">
-  <p><b>مشاكل التداخل (Interference)</b>: CCI/ACI، حواجز فيزيائية (جدران، أثاث، أشخاص) تُضعف الإشارة، وEMI من أجهزة بنفس التردد (مايكروويف، بلوتوث). <b>الحلول</b>: وضع الـAP استراتيجيًا لتفادي الحواجز، تغيير التردد/القناة، واستخدام أدوات تحليل الطيف.</p>
+  <p data-ar><b>مشاكل التداخل (Interference)</b>: CCI/ACI، حواجز فيزيائية (جدران، أثاث، أشخاص) تُضعف الإشارة، وEMI من أجهزة بنفس التردد (مايكروويف، بلوتوث). <b>الحلول</b>: وضع الـAP استراتيجيًا لتفادي الحواجز، تغيير التردد/القناة، واستخدام أدوات تحليل الطيف.</p>
+  <p data-en hidden><b>Interference issues</b>: CCI/ACI, physical barriers (walls, furniture, people) weakening the signal, and EMI from same-frequency devices (microwaves, Bluetooth). <b>Solutions</b>: strategic AP placement to avoid barriers, changing frequency/channel, and using spectrum analysis tools.</p>
  </div>
 
  <div class="card">
-  <p><b>مشاكل التجوال والانفصال (Roaming & Disassociation)</b>:</p>
-  <ul>
+  <p data-ar><b>مشاكل التجوال والانفصال (Roaming & Disassociation)</b>:</p>
+  <p data-en hidden><b>Roaming & Disassociation issues</b>:</p>
+  <ul data-ar>
    <li><b>Sticky Clients</b>: لا تنتقل لـAP أفضل رغم توفره.</li>
    <li><b>Flapping Clients</b>: تتنقل بكثرة بين نقاط الوصول.</li>
    <li>نقص دعم معايير التجوال <b>802.11k/r/v</b> يؤثر على سلاسة التجوال.</li>
    <li>الانفصال قد ينتج عن التجوال، التداخل، عدم التوافق، أو هجمات (استغلال إطارات إدارة غير مشفرة).</li>
   </ul>
-  <p><b>الحلول</b>: تحليل سجلات ارتباط الـAP، ضبط موقع/قوة الـAP لتغطية متوازنة، وإجراءات أمنية لكشف هجمات الانتحال.</p>
+  <ul data-en hidden>
+   <li><b>Sticky Clients</b>: don't move to a better AP even when one is available.</li>
+   <li><b>Flapping Clients</b>: bounce frequently between access points.</li>
+   <li>Lack of support for roaming standards <b>802.11k/r/v</b> affects roaming smoothness.</li>
+   <li>Disassociation can result from roaming, interference, incompatibility, or attacks (exploiting unencrypted management frames).</li>
+  </ul>
+  <p data-ar><b>الحلول</b>: تحليل سجلات ارتباط الـAP، ضبط موقع/قوة الـAP لتغطية متوازنة، وإجراءات أمنية لكشف هجمات الانتحال.</p>
+  <p data-en hidden><b>Solutions</b>: analyze AP association logs, adjust AP placement/power for balanced coverage, and security measures to detect spoofing attacks.</p>
  </div>
 
  <div class="card">
-  <p><b>تجاوز السعة (Overcapacity)</b>: أجهزة كثيرة تحاول الاتصال بـAP واحد → ازدحام الشبكة، تشبّع bandwidth، بطء أو عدم استقرار الاتصال.</p>
-  <p><b>الحلول</b>: توزيع استراتيجي لعدة APs، تحديد عدد أقصى للأجهزة لكل AP، أدوات تشكيل الترافيك (traffic shaping)، تعيين قنوات ديناميكي، ومراقبة مستمرة بأدوات Wi-Fi للمؤسسات.</p>
+  <p data-ar><b>تجاوز السعة (Overcapacity)</b>: أجهزة كثيرة تحاول الاتصال بـAP واحد → ازدحام الشبكة، تشبّع bandwidth، بطء أو عدم استقرار الاتصال.</p>
+  <p data-en hidden><b>Overcapacity</b>: too many devices trying to connect to one AP → network congestion, bandwidth saturation, slow or unstable connections.</p>
+  <p data-ar><b>الحلول</b>: توزيع استراتيجي لعدة APs، تحديد عدد أقصى للأجهزة لكل AP، أدوات تشكيل الترافيك (traffic shaping)، تعيين قنوات ديناميكي، ومراقبة مستمرة بأدوات Wi-Fi للمؤسسات.</p>
+  <p data-en hidden><b>Solutions</b>: strategic distribution of multiple APs, capping the maximum devices per AP, traffic shaping tools, dynamic channel assignment, and continuous monitoring with enterprise Wi-Fi tools.</p>
  </div>
 
- <div class="tip"><b>ملخص الوحدة 12</b>: حدّدي متطلبات الشبكة → مسح ميداني بمخطط الموقع وWi-Fi Analyzer → حدّدي مدى الـAP حسب التقنية المختارة → اختبري التركيب (الحجم، الأمان، الوظائف) بظروف واقعية.</div>
+ <div class="tip" data-ar><b>ملخص الوحدة 12</b>: حدّدي متطلبات الشبكة → مسح ميداني بمخطط الموقع وWi-Fi Analyzer → حدّدي مدى الـAP حسب التقنية المختارة → اختبري التركيب (الحجم، الأمان، الوظائف) بظروف واقعية.</div>
+ <div class="tip" data-en hidden><b>Module 12 summary</b>: define network requirements → a site survey with a site map and Wi-Fi Analyzer → determine AP range based on the chosen technology → test the installation (scale, security, functionality) under real-world conditions.</div>
 </section>
 
 
@@ -368,5 +457,22 @@ code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;ba
 <div class="modnav"><a href="module11-guide.html">← الوحدة 11</a><a href="index.html" class="home">🏠 الرئيسية</a><a href="module13-guide.html">الوحدة 13 →</a></div>
 
 <footer>ملخص دراسي — CompTIA Network+ N10-009 · Module 12 · أُعد للمذاكرة الشخصية<br><span style="font-size:12px;opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
 </body>
 </html>
