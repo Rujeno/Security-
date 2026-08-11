@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار محاكي — CompTIA Security+ SY0-701</title>
+<meta name="description" content="اختبار محاكي تفاعلي لشهادة CompTIA Security+ SY0-701 بالعربي — أسئلة لكل درس مع شرح مفصّل للإجابة الصحيحة.">
+<meta name="keywords" content="اختبار CompTIA Security+, SY0-701 practice test, اختبار محاكي Security+, أسئلة Security+">
+<link rel="canonical" href="https://rujeno.github.io/Security-/sec-quiz.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="اختبار محاكي — CompTIA Security+ SY0-701">
+<meta property="og:description" content="اختبار محاكي تفاعلي لشهادة CompTIA Security+ SY0-701 بالعربي — أسئلة لكل درس مع شرح مفصّل.">
+<meta property="og:url" content="https://rujeno.github.io/Security-/sec-quiz.html">
+<meta property="og:locale" content="ar_AR">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0e1b25;--paper:#f7f9fa;--deep:#0d3b4f;--teal:#12617c;--signal:#e8672c;--line:#d8e2e7;--muted:#5b7280;--soft:#eef4f6;--good:#1a7f5c;--bad:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.85;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.93em}
+header{background:linear-gradient(135deg,var(--deep),#0a2a3a);color:#fff;padding:34px 20px;text-align:center}
+header h1{font-size:clamp(21px,3.4vw,30px)}
+header p{color:#b9d2dd;font-size:14.5px;margin-top:6px}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:820px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:14px;font-weight:600;padding:14px 18px;display:inline-block;border-bottom:3px solid transparent;transition:.15s}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.wrap{max-width:820px;margin:0 auto;padding:26px 18px 70px}
+
+#home{padding:10px 0}
+#home h2{color:var(--deep);font-size:20px;margin-bottom:6px}
+#home p.lead{color:var(--muted);font-size:14.5px;margin-bottom:24px}
+.selgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:560px){.selgrid{grid-template-columns:1fr}}
+.selcard{display:block;text-decoration:none;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:22px;cursor:pointer;transition:.15s;text-align:right;font-family:inherit;width:100%}
+.selcard:hover{border-color:var(--signal);transform:translateY(-2px);box-shadow:0 4px 14px rgba(13,59,79,.1)}
+.selcard .stag{font-family:'IBM Plex Mono',monospace;direction:ltr;color:var(--signal);font-weight:700;font-size:12px;letter-spacing:.08em}
+.selcard .stitle{color:var(--deep);font-weight:700;font-size:17px;margin:6px 0 4px}
+.selcard .scount{color:var(--muted);font-size:13.5px}
+.selcard.all{grid-column:1/-1;background:linear-gradient(135deg,var(--deep),#0a2a3a);border-color:var(--deep)}
+.selcard.all .stag{color:#ffb48c}
+.selcard.all .stitle{color:#fff}
+.selcard.all .scount{color:#b9d2dd}
+
+.meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:14px;color:var(--muted);font-weight:600}
+.bar{height:8px;background:#e2eaee;border-radius:99px;overflow:hidden;margin-bottom:22px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--signal));transition:width .35s}
+
+.qcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;box-shadow:0 2px 8px rgba(13,59,79,.06)}
+.qtag{display:inline-block;font-size:12px;font-weight:700;color:var(--teal);background:var(--soft);border-radius:99px;padding:3px 12px;margin-bottom:12px;font-family:'IBM Plex Mono',monospace;direction:ltr}
+.qtext{font-size:18px;font-weight:700;color:var(--deep);margin-bottom:18px;direction:ltr;text-align:left;font-family:'IBM Plex Mono',monospace;line-height:1.6}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;background:#fff;text-align:left;direction:ltr;font-family:'IBM Plex Mono',monospace;font-size:15px;line-height:1.6;transition:.15s;width:100%}
+.opt:hover:not(:disabled){border-color:var(--teal);background:var(--soft)}
+.opt.correct{border-color:var(--good);background:#e9f6f0;font-weight:600}
+.opt.wrong{border-color:var(--bad);background:#fdeeec}
+.opt:disabled{cursor:default;opacity:.92}
+
+.explain{display:none;margin-top:16px;border-radius:12px;padding:14px 18px;font-size:15px;background:#fff7f1;border:1px solid #f3c9ab}
+.explain.show{display:block}
+.explain b{color:var(--signal)}
+.verdict{display:none;font-weight:700;margin-top:14px;font-size:15.5px}
+.verdict.ok{display:block;color:var(--good)}
+.verdict.no{display:block;color:var(--bad)}
+
+.controls{display:flex;justify-content:space-between;margin-top:20px;gap:10px}
+button.nav{font-family:inherit;font-weight:700;font-size:15px;border:none;border-radius:12px;padding:11px 26px;cursor:pointer}
+#nextBtn{background:var(--deep);color:#fff}
+#nextBtn:disabled{background:#c3d2da;cursor:not-allowed}
+#backBtn{background:none;color:var(--muted);border:1.5px solid var(--line)!important;padding:11px 22px}
+#backBtn:hover{border-color:var(--teal)!important;color:var(--teal)}
+
+#result{display:none;text-align:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:44px 28px}
+.score-ring{width:150px;height:150px;border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:var(--deep);background:conic-gradient(var(--good) calc(var(--p)*1%), #e2eaee 0)}
+.score-ring span{background:#fff;width:112px;height:112px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+#result h2{color:var(--deep);margin-bottom:8px}
+#result p{color:var(--muted);margin-bottom:6px}
+#result .msg{font-weight:700;font-size:18px;margin:10px 0 20px}
+.resultBtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+#restart{background:var(--signal);color:#fff}
+#menuBtn{background:var(--deep);color:#fff}
+.review{margin-top:26px;text-align:right}
+.review h3{color:var(--teal);margin-bottom:12px}
+.rv{border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px;font-size:14.5px;background:#fff}
+.rv .rvq{direction:ltr;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#33475a;display:block;margin:4px 0}
+.rv .rvc{direction:ltr;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:13.5px;display:block}
+.rv.miss{border-right:4px solid var(--bad)}
+.rv.hit{border-right:4px solid var(--good)}
+@media(max-width:560px){.qcard{padding:20px 16px}}
+</style>
+</head>
+<body>
+<header>
+ <h1>اختبار محاكي · CompTIA Security+ SY0-701</h1>
+ <p>الدروس 1 إلى 4 حاليًا (سيُضاف المزيد تباعًا) — الأسئلة بالإنجليزي والشرح بالعربي</p>
+</header>
+
+<div class="switcher"><div class="swrap">
+ <a href="sec-index.html">🏠</a>
+ <a href="sec-lesson1-guide.html">1</a>
+ <a href="sec-lesson2-guide.html">2</a>
+ <a href="sec-lesson3-guide.html">3</a>
+ <a href="sec-lesson4-guide.html">4</a>
+ <a href="sec-quiz.html" class="active">📝</a>
+</div></div>
+
+<div class="wrap">
+
+ <div id="home">
+  <h2>اختاري اختبار الدرس</h2>
+  <p class="lead">كل اختبار مستقل بنافذته الخاصة — الأسئلة بالإنجليزي (بنفس لغة الاختبار الفعلي) والشرح بالعربي بعد كل إجابة.</p>
+  <div class="selgrid" id="selGrid"></div>
+ </div>
+
+ <div id="quizArea" style="display:none">
+  <div class="meta"><span id="counter"></span><span id="scoreLive"></span></div>
+  <div class="bar"><i id="prog"></i></div>
+  <div class="qcard">
+   <span class="qtag" id="qtag"></span>
+   <div class="qtext" id="qtext"></div>
+   <div class="opts" id="opts"></div>
+   <div class="verdict" id="verdict"></div>
+   <div class="explain" id="explain"></div>
+   <div class="controls">
+    <button class="nav" id="backBtn">← رجوع لقائمة الدروس</button>
+    <button class="nav" id="nextBtn" disabled>السؤال التالي ←</button>
+   </div>
+  </div>
+ </div>
+
+ <div id="result">
+  <div class="score-ring" id="ring"><span id="scoreTxt"></span></div>
+  <h2>انتهى الاختبار!</h2>
+  <p id="finalLine"></p>
+  <p class="msg" id="msg"></p>
+  <div class="resultBtns">
+   <button class="nav" id="restart">إعادة هذا الاختبار ⟳</button>
+   <button class="nav" id="menuBtn">قائمة الدروس 🏠</button>
+  </div>
+  <div class="review" id="reviewBox"></div>
+ </div>
+
+ <p style="margin-top:30px;text-align:center;font-size:12px;color:var(--muted);opacity:.8">جميع الحقوق محفوظة © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></p>
+</div>
+
+<script>
+const Q = [
+// ---------- Lesson 1 ----------
+{t:"L1 · CIA Triad", q:"Which property of information security ensures that a person cannot deny having created or modified a piece of data?",
+ o:["Confidentiality","Availability","Non-repudiation","Integrity"], a:2,
+ e:"<b>Non-repudiation</b> يعني الشخص لا يستطيع إنكار إنشائه أو تعديله للبيانات — يُحقَّق عادةً بالتوقيع الرقمي وسجلات المراجعة."},
+
+{t:"L1 · CIA Triad", q:"A file is modified by an unauthorized process while in transit. Which CIA property has been violated?",
+ o:["Confidentiality","Integrity","Availability","Non-repudiation"], a:1,
+ e:"<b>Integrity</b> تعني أن البيانات تُنقل وتُخزَّن كما هي وأي تعديل عليها يجب أن يكون مصرَّحًا به — هنا حصل تعديل غير مصرَّح، فهذا انتهاك للـIntegrity."},
+
+{t:"L1 · NIST CSF", q:"Which NIST Cybersecurity Framework function focuses on restoring systems and services to normal operation after an incident?",
+ o:["Protect","Detect","Respond","Recover"], a:3,
+ e:"<b>Recover</b> هي الوظيفة الأخيرة في NIST CSF، وتركز على استعادة الأنظمة والخدمات بعد وقوع الحادثة. Respond تعنى بالاحتواء الفوري، بينما Recover تعنى بالعودة للوضع الطبيعي."},
+
+{t:"L1 · Gap Analysis", q:"What is the primary purpose of a gap analysis after adopting a security framework?",
+ o:["To replace the framework with a new one","To compare the current state against the desired state and identify gaps","To assign roles to the CIO and CSO","To encrypt sensitive data"], a:1,
+ e:"<b>Gap Analysis</b> تقارن الوضع الحالي (current state) بالوضع المستهدف حسب الإطار (desired state) لتحديد الفجوات التي تحتاج معالجة — وهي مدخل أساسي لإدارة المخاطر لاحقًا."},
+
+{t:"L1 · Access Control", q:"What is the key difference between Identification and Authentication?",
+ o:["Identification happens every login, Authentication happens once","Identification creates the account, Authentication proves the account is used by its real owner","They are the same process","Authentication is only used for physical access"], a:1,
+ e:"<b>Identification</b> = إنشاء الحساب لأول مرة (مرة واحدة). <b>Authentication</b> = إثبات أن الحساب يُستخدم من صاحبه الحقيقي، ويحدث في كل عملية دخول."},
+
+{t:"L1 · Access Control", q:"In the AAA framework, which component is responsible for logging what a user actually did on a system?",
+ o:["Authentication","Authorization","Accounting","Identification"], a:2,
+ e:"<b>Accounting</b> يسجّل تصرفات المستخدم الفعلية (سجلات ومراجعة). Authentication يثبت الهوية، وAuthorization يحدد الصلاحيات."},
+
+{t:"L1 · Control Categories", q:"A security awareness training program that depends on a person to deliver it is best classified as which control category?",
+ o:["Technical","Physical","Managerial","Operational"], a:3,
+ e:"<b>Operational</b> تعتمد على شخص لتنفيذها — مثل التدريب الأمني. Managerial تكون سياسات وإشراف، وTechnical تُنفَّذ في الأنظمة والبرمجيات."},
+
+{t:"L1 · Control Categories", q:"File-system permissions enforced by the operating system are an example of which control category?",
+ o:["Managerial","Technical","Operational","Physical"], a:1,
+ e:"صلاحيات نظام الملفات تُنفَّذ داخل نظام التشغيل نفسه، وهذا تعريف الفئة <b>Technical</b>."},
+
+{t:"L1 · Functional Types", q:"A visible security camera that is not actively monitored is best classified as which functional control type?",
+ o:["Detective","Deterrent","Corrective","Compensating"], a:1,
+ e:"الكاميرا الظاهرة بدون مراقبة فعلية لا تكتشف الحادثة، بل تُخيف المهاجم نفسيًا فقط — هذا تعريف <b>Deterrent</b>، وليس Detective."},
+
+{t:"L1 · Functional Types", q:"A backup restoration process used after a ransomware incident is an example of which functional control type?",
+ o:["Preventive","Detective","Corrective","Directive"], a:2,
+ e:"استعادة النسخ الاحتياطي تُصلح النظام بعد وقوع الحادثة وقد تمنع تكراره — هذا تعريف <b>Corrective</b> (يعمل بعد الهجوم)."},
+
+{t:"L1 · Functional Types", q:"An organization implements extra manual monitoring because a required technical control cannot currently be deployed. Which control type is this?",
+ o:["Compensating","Deterrent","Directive","Preventive"], a:0,
+ e:"<b>Compensating</b> يُستخدم كبديل لضابط أساسي غير متاح، غالبًا لأغراض الالتزام بإطار عمل."},
+
+{t:"L1 · Roles", q:"Which role typically combines both managerial and technical responsibility for an organization's security posture?",
+ o:["Chief Information Officer (CIO)","Chief Security Officer (CSO)","Information Systems Security Officer (ISSO)","Help Desk Technician"], a:1,
+ e:"<b>CSO</b> يجمع بين الجانب الإداري والتقني للأمن. الـCIO مسؤولية إدارية عامة، والـISSO دور غير تقني بحت يرتبط بالمساءلة (due care)."},
+
+{t:"L1 · Business Units", q:"Which business unit is responsible for continuous monitoring and responding to security alerts?",
+ o:["DevSecOps","CIRT","SOC","ISSO"], a:2,
+ e:"<b>SOC (Security Operations Center)</b> هو الفريق المسؤول عن المراقبة المستمرة والاستجابة للتنبيهات الأمنية."},
+
+// ---------- Lesson 2 ----------
+{t:"L2 · Vuln/Threat/Risk", q:"What term describes the likelihood that a threat will exploit a vulnerability, combined with the resulting impact?",
+ o:["Vulnerability","Threat","Risk","Attack surface"], a:2,
+ e:"<b>Risk</b> = احتمالية استغلال تهديد لثغرة معيّنة مضروبة بحجم الأثر. بدون ثغرة أو بدون تهديد، لا توجد مخاطرة فعلية."},
+
+{t:"L2 · Threat Actors", q:"An employee with legitimate access misuses that access for personal financial gain. This is an example of which threat actor type?",
+ o:["Nation-state actor","External hacktivist","Malicious internal threat actor","Script kiddie"], a:2,
+ e:"وجود وصول مصرَّح به مسبقًا يُستخدم بشكل مسيء = <b>Malicious internal threat actor</b>. Internal/External سمة للجهة نفسها وليست مكان وقوع الهجوم."},
+
+{t:"L2 · Threat Actors", q:"Which threat actor type is most associated with high capability, espionage, strategic advantage, and deniability through false flag operations?",
+ o:["Script kiddie","Nation-state actor / APT","Hacktivist","Competitor"], a:1,
+ e:"<b>Nation-state actors / APT (Advanced Persistent Threat)</b> مرتبطون بجهات عسكرية/استخباراتية، قدرات عالية جدًا، وأهداف تجسسية مع إمكانية الإنكار."},
+
+{t:"L2 · Threat Actors", q:"An unskilled attacker who relies entirely on pre-made, downloadable attack tools is commonly referred to as a:",
+ o:["Nation-state actor","Script kiddie","Insider threat","Competitor"], a:1,
+ e:"مصطلح <b>Script kiddie</b> يصف مهاجمًا قليل المهارة يعتمد بالكامل على أدوات جاهزة (commodity tools)."},
+
+{t:"L2 · Attack Surface", q:"What is the difference between an attack surface and a threat vector?",
+ o:["They are the same thing","Attack surface is where a breach could start, threat vector is how it actually starts","Threat vector only applies to physical security","Attack surface only applies to software"], a:1,
+ e:"<b>Attack Surface</b> = كل النقاط الممكن استغلالها. <b>Threat Vector</b> = الطريقة المحددة التي يسلكها المهاجم فعليًا."},
+
+{t:"L2 · Attack Surface", q:"Redirecting a victim to a malicious site through DNS manipulation, without requiring the victim to click a link, is best described as:",
+ o:["Vishing","Pharming","Typosquatting","Whaling"], a:1,
+ e:"<b>Pharming</b> يعتمد على تلاعب بنظام أسماء النطاقات (DNS spoofing) لإعادة توجيه الضحية — تقنية سلبية أقل عرضة للاكتشاف."},
+
+{t:"L2 · Attack Surface", q:"Compromising a third-party website that the attacker knows the target visits regularly, instead of attacking the target directly, is known as a:",
+ o:["Watering hole attack","Supply chain attack","Drop attack","Business email compromise"], a:0,
+ e:"<b>Watering Hole Attack</b> يعتمد على اختراق موقع طرف ثالث يعلم المهاجم أن الهدف يستخدمه بانتظام."},
+
+{t:"L2 · Attack Surface", q:"A USB drive left in a parking lot, hoping an employee will plug it in, is an example of which attack vector category?",
+ o:["Message-based vector","Lure-based vector","Network vector","Supply chain vector"], a:1,
+ e:"<b>Lure-based vector</b>: طُعم يُغري الضحية بفتحه — هذا السيناريو معروف بـ<b>drop attack</b> باستخدام جهاز تخزين قابل للإزالة."},
+
+{t:"L2 · Social Engineering", q:"An attacker calls an employee, claims to be from IT support, and creates a false sense of urgency to extract a password. This primarily uses which technique?",
+ o:["Pharming","Pretexting","Typosquatting","Watering hole attack"], a:1,
+ e:"<b>Pretexting</b> يستغل مواقف يصعب فيها التحقق من الهوية، باستخدام سيناريو مقنع (هنا: انتحال صفة الدعم الفني + استعجال) للحصول على معلومات."},
+
+{t:"L2 · Social Engineering", q:"A highly targeted phishing email sent specifically to a company's CFO, impersonating the CEO, is best described as:",
+ o:["Spear phishing / whaling","Vishing","SMiShing","Pharming"], a:0,
+ e:"استهداف شخص محدد وبمنصب رفيع (CFO) بانتحال صفة الرئيس التنفيذي = <b>Whaling</b> (نوع من Spear phishing) — يصف مدى الاستهداف، وليس القناة."},
+
+{t:"L2 · Social Engineering", q:"Registering a domain like 'rnadain.com' (visually similar to 'madain.com') to trick users into visiting it is an example of:",
+ o:["Typosquatting","Vishing","Watering hole attack","Pretexting"], a:0,
+ e:"<b>Typosquatting</b> يستخدم نطاقات 'أخ/شقيق' (cousin domains) تشبه بصريًا نطاقًا موثوقًا لخداع المستخدمين."},
+
+{t:"L2 · Social Engineering", q:"Which term describes deliberately spreading false information to mislead a target audience, as opposed to unintentionally incorrect information?",
+ o:["Misinformation","Disinformation","Pretexting","Pharming"], a:1,
+ e:"<b>Disinformation</b> = تضليل متعمّد. <b>Misinformation</b> = معلومات خاطئة غير مقصودة."},
+
+// ---------- Lesson 3 ----------
+{t:"L3 · Symmetric", q:"What is the main limitation of symmetric encryption when it comes to authentication and non-repudiation?",
+ o:["It is too slow for bulk data","Both sender and recipient know the same key, so identity cannot be proven","It cannot encrypt large files","It requires a certificate authority"], a:1,
+ e:"في Symmetric يعرف الطرفان نفس المفتاح، فلا يمكن إثبات مَن أنشأ الرسالة تحديدًا — لذلك توفّر <b>Confidentiality فقط</b>، وليس Authentication أو Non-repudiation."},
+
+{t:"L3 · Key Length", q:"Why does a 256-bit AES key provide exponentially stronger protection than a 128-bit key?",
+ o:["It uses a different algorithm entirely","It dramatically increases the keyspace, resisting brute force","It removes the need for a key altogether","It converts the cipher from symmetric to asymmetric"], a:1,
+ e:"طول المفتاح يحدد حجم <b>keyspace</b> — كل بت إضافي يضاعف عدد القيم الممكنة، مما يجعل هجمات القوة الغاشمة أصعب أُسّيًا."},
+
+{t:"L3 · Asymmetric", q:"In asymmetric encryption, if data is encrypted with the recipient's public key, what is required to decrypt it?",
+ o:["The same public key","Any private key","The recipient's matching private key","A shared secret key"], a:2,
+ e:"في Asymmetric، ما يُشفَّر بالمفتاح العام لا يُفكّ إلا بالمفتاح <b>الخاص</b> المقابل له تحديدًا — ولا يمكن اشتقاق الخاص من العام."},
+
+{t:"L3 · Hashing", q:"Which property of a hashing algorithm ensures that the original plaintext cannot be recovered from the digest?",
+ o:["Anti-collision","One-way","Non-repudiation","Key stretching"], a:1,
+ e:"خاصية <b>One-way</b> تعني أن الملخَّص (hash) لا يمكن عكسه لاسترجاع النص الأصلي — هذا ما يجعل Hashing مناسبًا لتخزين كلمات المرور."},
+
+{t:"L3 · Digital Signatures", q:"A digital signature is created by encrypting a message's hash with which key?",
+ o:["The recipient's public key","The sender's private key","A shared symmetric key","The recipient's private key"], a:1,
+ e:"التوقيع الرقمي يُنشأ بتشفير بصمة الرسالة بالمفتاح <b>الخاص</b> للمُرسل، ويتحقق منه أي شخص يملك المفتاح <b>العام</b> المقابل."},
+
+{t:"L3 · PKI", q:"During certificate enrollment, what does the subject send to the CA as part of the Certificate Signing Request (CSR)?",
+ o:["The private key only","Both the public and private keys","The public key only","Nothing — the CA generates both keys"], a:2,
+ e:"الموضوع يُرسل <b>المفتاح العام فقط</b> مع CSR. المفتاح الخاص لا يُرسَل أبدًا للـCA ويبقى محفوظًا لدى الموضوع نفسه."},
+
+{t:"L3 · PKI", q:"What is the key characteristic of a root certificate in a PKI hierarchy?",
+ o:["It is issued by an intermediate CA","It is self-signed, requiring users to trust the CA's own security procedures","It expires every 24 hours","It cannot be used to sign other certificates"], a:1,
+ e:"شهادة الجذر <b>self-signed</b> — لا يوجد جهة أعلى توقّعها، لذا يجب على المستخدمين الوثوق بإجراءات أمان الـCA نفسها."},
+
+{t:"L3 · PKI", q:"What is the main difference between CRL and OCSP for checking certificate revocation status?",
+ o:["CRL checks one certificate at a time; OCSP downloads a full list","OCSP queries a single certificate per transaction for near real-time status; CRL is a downloaded list","They are identical protocols","CRL only works with self-signed certificates"], a:1,
+ e:"<b>OCSP</b> يستعلم عن شهادة واحدة فقط لكل عملية بحالة شبه فورية، بينما <b>CRL</b> قائمة كاملة بالشهادات الملغاة يفحصها المتصفح."},
+
+{t:"L3 · Key Management", q:"Which hardware component is typically embedded directly on a computer's motherboard or CPU to provide cryptographic key storage?",
+ o:["HSM","TPM","KDC","CRL"], a:1,
+ e:"<b>TPM (Trusted Platform Module)</b> معالج تشفيري مدمج في المعالج أو اللوحة الأم لجهاز واحد. HSM عادة عتاد منفصل للبيئات المؤسسية."},
+
+{t:"L3 · Key Escrow", q:"What is the purpose of M-of-N control in key recovery processes?",
+ o:["To require a minimum number of recovery agents to agree before a key can be recovered","To generate M different keys for N users","To limit password length","To disable key escrow entirely"], a:0,
+ e:"<b>M-of-N control</b> يقسّم عملية استعادة المفتاح بين عدة وكلاء، ويتطلب اجتماع عدد أدنى منهم (M من N) للموافقة — فلا يستطيع شخص واحد التصرف منفردًا."},
+
+{t:"L3 · PFS", q:"What is the main security benefit of Perfect Forward Secrecy (PFS) in TLS?",
+ o:["It makes encryption faster","Even if a long-term private key is later compromised, previously recorded sessions cannot be decrypted","It eliminates the need for certificates","It allows unlimited key reuse"], a:1,
+ e:"<b>PFS</b> يُولّد مفتاح جلسة جديد لكل اتصال، فحتى لو تسرّب المفتاح الخاص طويل الأمد لاحقًا، لا يمكن فك تشفير الجلسات المسجَّلة سابقًا."},
+
+{t:"L3 · Salting", q:"What problem does salting a password hash primarily solve?",
+ o:["It makes the password longer","It prevents the use of pre-computed hash tables (rainbow tables)","It encrypts the password with a symmetric key","It speeds up login time"], a:1,
+ e:"<b>Salting</b> يضيف قيمة عشوائية لكل كلمة مرور قبل حساب الـhash، مما يمنع مهاجمًا من استخدام جداول hash محسوبة مسبقًا (rainbow tables)."},
+
+// ---------- Lesson 4 ----------
+{t:"L4 · MFA", q:"An organization requires a password plus a fingerprint scan to log in. Which two factor categories does this combine?",
+ o:["Something you know + something you know","Something you have + something you are","Something you know + something you are","Somewhere you are + something you have"], a:2,
+ e:"كلمة المرور = <b>something you know</b>، وبصمة الإصبع = <b>something you are</b> (biometric) — عاملان من نوعين مختلفين، وهذا تعريف MFA الحقيقي."},
+
+{t:"L4 · Biometrics", q:"A biometric system wrongly denies access to an authorized employee. What is this error called?",
+ o:["False Acceptance Rate (FAR)","False Rejection Rate (FRR)","Key stretching failure","Attestation failure"], a:1,
+ e:"<b>FRR (False Rejection Rate) / Type I error</b> = رفض شخص مصرَّح له خطأً. FAR هو العكس (قبول شخص غير مصرَّح له) وعادة الأخطر أمنيًا."},
+
+{t:"L4 · Passwordless", q:"What is the key difference between MFA and passwordless authentication?",
+ o:["MFA never uses a password; passwordless always does","Passwordless relies on an authenticator only, with no password at all; MFA still retains a password plus another factor","They are the same thing","Passwordless requires a CA"], a:1,
+ e:"<b>MFA</b> لا تزال تحتفظ بكلمة مرور مع عامل إضافي، بينما <b>Passwordless</b> يعتمد على المُوثِّق (authenticator) وحده بلا كلمة مرور من الأساس."},
+
+{t:"L4 · Access Control", q:"In which access control model does the resource owner decide who gets access, typically via ACLs?",
+ o:["MAC","RBAC","DAC","ABAC"], a:2,
+ e:"<b>DAC (Discretionary Access Control)</b> يعتمد على مالك المورد نفسه لمنح الصلاحيات عبر قوائم التحكم بالوصول (ACLs)."},
+
+{t:"L4 · Access Control", q:"A government system enforces strict classification labels that no individual user can override, system-wide. Which model is this?",
+ o:["DAC","MAC","RBAC","Rule-based only"], a:1,
+ e:"<b>MAC (Mandatory Access Control)</b> يعتمد على تصنيفات وتصاريح يفرضها مالك النظام على مستوى النظام كله، ولا يستطيع المستخدمون تجاوزها."},
+
+{t:"L4 · Access Control", q:"Access is granted automatically based on a user's job function, such as 'Accountant' or 'HR Manager'. Which model does this describe?",
+ o:["DAC","RBAC","MAC","ABAC"], a:1,
+ e:"<b>RBAC (Role-Based Access Control)</b>: تُعرَّف الأدوار أولًا، ثم يُعيَّن المستخدمون لها — ويرث المستخدم صلاحيات دوره فقط."},
+
+{t:"L4 · Access Control", q:"An access decision considers the user's role, the time of day, and whether the device is company-managed, all at once. Which model is this?",
+ o:["DAC","MAC","RBAC","ABAC"], a:3,
+ e:"<b>ABAC (Attribute-Based Access Control)</b> يبني قرار الوصول على مجموعة سمات (للموضوع والمورد والسياق) معًا، وليس دورًا ثابتًا فقط."},
+
+{t:"L4 · PAM", q:"What does 'zero standing privileges' mean in privileged access management?",
+ o:["Administrators never receive any permissions","Administrators hold full privileges permanently","Privileges are elevated temporarily only when needed, then automatically expire","All privileges are shared publicly"], a:2,
+ e:"<b>Zero Standing Privileges</b>: بدل أن يملك المدير صلاحيات كاملة طوال الوقت، تُرفَع مؤقتًا فقط عند الحاجة الفعلية ثم تنتهي تلقائيًا — يقلّص نافذة الاستغلال المحتملة."},
+
+{t:"L4 · Least Privilege", q:"An employee who has changed roles multiple times still retains permissions from every previous role. What is this called?",
+ o:["Zero standing privileges","Authorization creep","Attestation","Federation"], a:1,
+ e:"<b>Authorization creep</b>: تراكم صلاحيات زائدة بمرور الوقت لأن الصلاحيات القديمة لم تُسحب عند تغيير الدور — تُكتشف عادة عبر المراجعة الدورية (auditing)."},
+
+{t:"L4 · Directory Services", q:"Which protocol is most associated with centralized directory services storing users, computers, and security groups?",
+ o:["OCSP","LDAP","OAuth","OTP"], a:1,
+ e:"<b>LDAP (Lightweight Directory Access Protocol)</b> هو البروتوكول القياسي للوصول لخدمات الدليل المركزية مثل Active Directory."},
+
+{t:"L4 · Kerberos", q:"In Kerberos SSO, which component issues the Ticket Granting Ticket (TGT) after a user's initial identity is verified?",
+ o:["The application server","The Authentication Service (part of the KDC)","The client itself","The OCSP responder"], a:1,
+ e:"<b>Authentication Service</b> (جزء من الـKDC) يُصدر الـTGT بعد التحقق الأولي من هوية المستخدم؛ ثم تُستخدم Ticket Granting Service لإصدار تذاكر الخدمة لاحقًا."},
+
+{t:"L4 · Federation", q:"What is the core difference between SAML and OAuth?",
+ o:["SAML focuses on authorization, OAuth on authentication","SAML focuses on authentication (who you are), OAuth focuses on authorization (what you're allowed to do)","They are identical protocols","OAuth requires XML while SAML does not"], a:1,
+ e:"<b>SAML</b> يركّز على التوثيق (إثبات الهوية)، بينما <b>OAuth</b> يركّز على التفويض (ما يُسمح للتطبيق فعله نيابة عن المستخدم)."},
+
+{t:"L4 · OAuth", q:"In an OAuth flow, who or what is the 'client'?",
+ o:["The end user","The website or app interacting with the IdP/resource server on the user's behalf","The identity provider itself","The certificate authority"], a:1,
+ e:"عميل OAuth ليس المستخدم نفسه — بل الموقع أو التطبيق الذي يتفاعل نيابةً عن المستخدم مع مزوّد الهوية أو خادم الموارد."},
+];
+
+const LESSONS = [
+ {key:"L1", label:"الدرس 1", eng:"Fundamental Security Concepts"},
+ {key:"L2", label:"الدرس 2", eng:"Comparing Threat Types"},
+ {key:"L3", label:"الدرس 3", eng:"Cryptographic Solutions"},
+ {key:"L4", label:"الدرس 4", eng:"Identity &amp; Access Management"},
+];
+
+let activeQ = [];
+let currentKey = null;
+let idx=0, score=0, answers=[];
+const $=id=>document.getElementById(id);
+
+function buildHome(){
+ const grid = $("selGrid");
+ grid.innerHTML = "";
+ LESSONS.forEach(m=>{
+  const count = Q.filter(q=>q.t.startsWith(m.key+" ")).length;
+  const btn = document.createElement("button");
+  btn.className = "selcard";
+  btn.innerHTML = `<div class="stag">${m.eng}</div><div class="stitle">${m.label}</div><div class="scount">${count} أسئلة</div>`;
+  btn.onclick = ()=>startQuiz(m.key);
+  grid.appendChild(btn);
+ });
+ const allBtn = document.createElement("button");
+ allBtn.className = "selcard all";
+ allBtn.innerHTML = `<div class="stag">ALL LESSONS</div><div class="stitle">كل الدروس المتاحة</div><div class="scount">${Q.length} سؤالًا</div>`;
+ allBtn.onclick = ()=>startQuiz("ALL");
+ grid.appendChild(allBtn);
+}
+
+function startQuiz(key){
+ currentKey = key;
+ activeQ = key==="ALL" ? Q : Q.filter(q=>q.t.startsWith(key+" "));
+ idx=0; score=0; answers=[];
+ $("home").style.display="none";
+ $("result").style.display="none";
+ $("quizArea").style.display="block";
+ render();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function render(){
+ const q=activeQ[idx];
+ $("qtag").textContent=q.t;
+ $("qtext").textContent=q.q;
+ $("counter").textContent=`السؤال ${idx+1} من ${activeQ.length}`;
+ $("scoreLive").textContent=`النتيجة: ${score}`;
+ $("prog").style.width=((idx)/activeQ.length*100)+"%";
+ $("verdict").className="verdict"; $("explain").className="explain"; $("explain").innerHTML="";
+ $("nextBtn").disabled=true;
+ $("nextBtn").textContent = idx===activeQ.length-1 ? "عرض النتيجة 🏁" : "السؤال التالي ←";
+ const box=$("opts"); box.innerHTML="";
+ q.o.forEach((opt,i)=>{
+  const b=document.createElement("button");
+  b.className="opt"; b.textContent=opt;
+  b.onclick=()=>choose(i,b);
+  box.appendChild(b);
+ });
+}
+function choose(i,btn){
+ const q=activeQ[idx];
+ [...$("opts").children].forEach((b,j)=>{b.disabled=true; if(j===q.a)b.classList.add("correct");});
+ const ok = i===q.a;
+ if(ok){score++;}else{btn.classList.add("wrong");}
+ answers.push({q:q.q,ok,correct:q.o[q.a],tag:q.t});
+ $("verdict").textContent = ok? "✓ إجابة صحيحة":"✗ إجابة خاطئة — الصحيح مظلل بالأخضر";
+ $("verdict").className = "verdict "+(ok?"ok":"no");
+ $("explain").innerHTML = "<b>الشرح:</b> "+q.e;
+ $("explain").className="explain show";
+ $("scoreLive").textContent=`النتيجة: ${score}`;
+ $("nextBtn").disabled=false;
+}
+$("nextBtn").onclick=()=>{
+ if(idx<activeQ.length-1){idx++; render(); window.scrollTo({top:0,behavior:"smooth"});}
+ else finish();
+};
+$("backBtn").onclick=()=>{
+ $("quizArea").style.display="none";
+ $("home").style.display="block";
+ window.scrollTo({top:0,behavior:"smooth"});
+};
+$("restart").onclick=()=>{
+ startQuiz(currentKey);
+};
+$("menuBtn").onclick=()=>{
+ $("result").style.display="none";
+ $("home").style.display="block";
+ window.scrollTo({top:0,behavior:"smooth"});
+};
+function finish(){
+ $("quizArea").style.display="none";
+ const pct=Math.round(score/activeQ.length*100);
+ $("ring").style.setProperty("--p",pct);
+ $("scoreTxt").textContent=pct+"%";
+ $("finalLine").textContent=`أجبتِ صحيحًا على ${score} من ${activeQ.length} سؤالًا`;
+ const m=$("msg");
+ if(pct>=90){m.textContent="ممتاز — مستوى جاهزية عالٍ لهذا الدرس 👏"; m.style.color="var(--good)";}
+ else if(pct>=75){m.textContent="جيد جدًا — راجعي الأسئلة الخاطئة أدناه وأعيدي المحاولة"; m.style.color="var(--teal)";}
+ else if(pct>=60){m.textContent="على الحد — راجعي ملخص هذا الدرس ثم أعيدي الاختبار"; m.style.color="var(--signal)";}
+ else{m.textContent="تحتاجين مراجعة ملخص الدرس كاملًا قبل إعادة المحاولة"; m.style.color="var(--bad)";}
+ const rb=$("reviewBox");
+ const misses=answers.filter(a=>!a.ok);
+ rb.innerHTML = "<h3>مراجعة الأسئلة ("+misses.length+" خطأ)</h3>" + answers.map(a=>
+   `<div class="rv ${a.ok?'hit':'miss'}"><b>${a.ok?'✓':'✗'} ${a.tag}</b><span class="rvq">${a.q}</span><span class="rvc" style="color:var(--good)">Correct answer: ${a.correct}</span></div>`).join("");
+ $("result").style.display="block";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+buildHome();
+</script>
+</body>
+</html>

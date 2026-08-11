@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 4 — تطبيق إدارة الهويات والوصول — CompTIA Security+ SY0-701</title>
+<meta name="description" content="شرح الدرس 4 من منهج CompTIA Security+ SY0-701 بالعربي — التوثيق بكلمة المرور وMFA، نماذج ضبط الوصول DAC/MAC/RBAC/ABAC، إدارة الحسابات، Privileged Access Management، Directory Services، SSO عبر Kerberos، والاتحاد الفدرالي SAML/OAuth.">
+<meta name="keywords" content="CompTIA Security+, SY0-701, الدرس 4, IAM, MFA, Access Control, RBAC, ABAC, SSO, Kerberos, SAML, OAuth">
+<link rel="canonical" href="https://rujeno.github.io/Security-/sec-lesson4-guide.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="الدرس 4 — تطبيق إدارة الهويات والوصول — CompTIA Security+ SY0-701">
+<meta property="og:description" content="شرح الدرس 4 من منهج CompTIA Security+ SY0-701 بالعربي — MFA، DAC/MAC/RBAC/ABAC، PAM، Directory Services، Kerberos، SAML/OAuth.">
+<meta property="og:url" content="https://rujeno.github.io/Security-/sec-lesson4-guide.html">
+<meta property="og:locale" content="ar_AR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+nav{position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.diagrow{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:13.5px;font-weight:600;padding:14px 14px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+@media print{
+ .switcher,nav,.modnav,.no-print{display:none !important}
+ @page{size:A4;margin:14mm}
+ body{background:#fff;font-size:12.5px;line-height:1.6}
+ header{background:#0d3b4f !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:26px 20px}
+ header::after{display:none}
+ main{padding:20px 0 30px;max-width:100%}
+ section{margin-bottom:20px}
+ .card,table,.diagram,.diagrow,.tip{break-inside:avoid}
+ a{color:inherit;text-decoration:none}
+ h2{border-right-width:4px}
+}
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+html[dir="ltr"] .modnav a.home{order:1}
+[data-en]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Security+ SY0-701 · LESSON 4</span>
+  <h1 data-ar>الدرس 4 — تطبيق إدارة الهويات والوصول</h1>
+  <h1 data-en hidden>Lesson 4 — Implement Identity and Access Management</h1>
+  <p data-ar>التوثيق بكلمة المرور وMFA · نماذج ضبط الوصول · إدارة الحسابات والصلاحيات المميّزة · الدلائل، SSO، والاتحاد الفدرالي</p>
+  <p data-en hidden>Password &amp; MFA Authentication · Access Control Models · Account &amp; Privileged Access Management · Directories, SSO &amp; Federation</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="sec-index.html">🏠</a><a href="sec-lesson1-guide.html">1</a><a href="sec-lesson2-guide.html">2</a><a href="sec-lesson3-guide.html">3</a><a href="sec-lesson4-guide.html" class="active">4</a><a href="sec-quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+
+<nav><div class="nwrap">
+ <a href="#l4-authdesign" data-ar>4.1 التوثيق وكلمات المرور</a>
+ <a href="#l4-authdesign" data-en hidden>4.1 Authentication &amp; Passwords</a>
+ <a href="#l4-mfa">4.1 MFA &amp; Tokens</a>
+ <a href="#l4-accesscontrol">4.2 Access Control Models</a>
+ <a href="#l4-provisioning">4.2 Provisioning &amp; PAM</a>
+ <a href="#l4-identity">4.3 SSO &amp; Federation</a>
+</div></nav>
+
+<main>
+
+<section id="l4-authdesign">
+ <span class="mod-tag">LESSON 4 · TOPIC 4A</span>
+ <h2 data-ar>تصميم التوثيق ومفاهيم كلمة المرور</h2>
+ <h2 data-en hidden>Authentication Design &amp; Password Concepts</h2>
+ <p class="sub" data-ar>أي آلية توثيق يجب أن تخدم CIA الثلاثة معًا</p>
+ <p class="sub" data-en hidden>Any authentication mechanism must serve all three CIA properties</p>
+
+ <div class="card">
+  <p data-ar>تصميم التوثيق الجيد يحقّق:</p>
+  <p data-en hidden>Good authentication design achieves:</p>
+  <ul data-ar>
+   <li><b>السرية</b>: يحافظ على سرية بيانات الاعتماد.</li>
+   <li><b>السلامة</b>: لا يستطيع المهاجم تجاوز أو تخريب آلية التوثيق.</li>
+   <li><b>التوفر</b>: لا يسبّب تأخيرًا غير مبرَّر أو مشاكل دعم فني.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Confidentiality</b>: keeps credentials secure.</li>
+   <li><b>Integrity</b>: threat actors cannot bypass or subvert the mechanism.</li>
+   <li><b>Availability</b>: the mechanism does not cause undue delay or support issues.</li>
+  </ul>
+  <p data-ar>أبسط عامل توثيق: <b>Something you know (عامل المعرفة)</b> — كلمة المرور أو رقم التعريف الشخصي <span class="en">(PIN)</span>.</p>
+  <p data-en hidden>The simplest authentication factor: <b>something you know</b> — a password or <span class="en">PIN</span>.</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>مفاهيم كلمة المرور</h3>
+  <h3 style="margin-top:0" data-en hidden>Password Concepts</h3>
+  <ul data-ar>
+   <li><b>الطول (Length)</b> و<b>التعقيد (Complexity)</b>: مزيج من أنواع الأحرف — رغم أن إرشادات NIST الحديثة تُقلّل التركيز على التعقيد المُفرَط لصالح الطول وعدم إعادة الاستخدام.</li>
+   <li><b>التقادم (Aging)</b> و<b>إعادة الاستخدام والسجل (Reuse/History)</b> و<b>الانتهاء (Expiration)</b>: سياسات تقليدية لا تزال مطلوبة بمعايير الاختبار، لكن NIST الحديثة تنصح بعدم فرض تغيير دوري إجباري بدون سبب (لأنه يُشجّع أنماطًا يسهل تخمينها).</li>
+   <li><b>تلميحات كلمة المرور (Password Hints)</b>: خطر أمني إن كانت سهلة التخمين أو الهندسة الاجتماعية.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Length</b> and <b>Complexity</b>: a mix of character types — though updated NIST guidance reduces emphasis on excessive complexity in favor of length and non-reuse.</li>
+   <li><b>Aging</b>, <b>Reuse/History</b>, and <b>Expiration</b>: traditional policies still expected on the exam, but modern NIST guidance advises against forced periodic changes without cause (since it encourages easily-guessed patterns).</li>
+   <li><b>Password hints</b>: a security risk if easily guessed or socially engineered.</li>
+  </ul>
+  <p data-ar>ملايين كلمات المرور المُسرَّبة من اختراقات سابقة (هاشات و/أو نصوص صريحة مع أسماء مستخدمين أو بريد إلكتروني) تُغذّي هجمات <span class="en">password spraying</span> — تجربة كلمة مرور شائعة واحدة على عدد كبير من الحسابات لتفادي إغلاق الحساب.</p>
+  <p data-en hidden>Millions of passwords leaked from past breaches (hashes and/or plaintext, plus usernames or emails) feed <span class="en">password spraying</span> attacks — trying one common password across many accounts to avoid account lockout.</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>مديرو كلمات المرور</h3>
+  <h3 style="margin-top:0" data-en hidden>Password Managers</h3>
+  <p data-ar>خزنة <span class="en">(vault)</span> مشفَّرة تُفتح بكلمة مرور رئيسية واحدة <span class="en">(master password)</span> — مدمجة في نظام التشغيل/المتصفح، أو تطبيقات سحابية/إضافات من طرف ثالث. تُتيح توليد كلمات مرور عشوائية طويلة لكل موقع وتعبئتها بأمان — أطول وأصعب تخمينًا مما يقدر عليه معظم المستخدمين ذهنيًا، لكن التطبيقات نفسها ليست خالية من ثغرات محتملة.</p>
+  <p data-en hidden>An encrypted <span class="en">vault</span> unlocked by a single <span class="en">master password</span> — built into the OS/browser, or a third-party cloud/plug-in app. Enables per-site random password generation and secure filling — longer and harder to guess than most users could remember on their own, though the apps themselves aren't free of vulnerabilities.</p>
+ </div>
+
+ <div class="tip" data-ar>سؤال شائع: "ما توصية NIST الحديثة بشأن كلمات المرور؟" ← التركيز على <b>الطول</b> وعدم <b>إعادة الاستخدام</b>، مع تقليل الاعتماد على التعقيد المُفرَط والتغيير الدوري الإجباري دون سبب. لكن معايير الاختبار نفسها لا تزال تعتبر Complexity وAging سياسات مقبولة — احفظي الاثنين معًا.</div>
+ <div class="tip" data-en hidden>Common question: "What's NIST's modern recommendation on passwords?" ← focus on <b>length</b> and avoiding <b>reuse</b>, with reduced emphasis on excessive complexity and forced periodic changes without cause. But the exam objectives themselves still treat complexity and aging as acceptable policies — know both.</div>
+</section>
+
+<section id="l4-mfa">
+ <span class="mod-tag">LESSON 4 · TOPIC 4A</span>
+ <h2 data-ar>التوثيق متعدد العوامل والرموز</h2>
+ <h2 data-en hidden>Multifactor Authentication &amp; Tokens</h2>
+ <p class="sub" data-ar>عاملان مختلفان النوع، لا نفس النوع مكرَّرًا</p>
+ <p class="sub" data-en hidden>Two different factor types, not the same type repeated</p>
+
+ <div class="card">
+  <p data-ar><b>MFA (Multifactor Authentication)</b>: تجمع بين <b>شيء تعرفينه</b> و<b>شيء تملكينه</b> — وليس شيئين تعرفينهما (سؤالان أمنيان مثلًا لا يُعتبران MFA حقيقيًا).</p>
+  <p data-en hidden><b>MFA</b>: combines something you <b>KNOW</b> and something you <b>HAVE</b> — NOT something you know and something else you know (two security questions is not true MFA).</p>
+  <table>
+   <tr data-ar><th>العامل</th><th>المثال</th></tr>
+   <tr data-en hidden><th>Factor</th><th>Example</th></tr>
+   <tr data-ar><td><b>Something you know</b></td><td>كلمة مرور، PIN</td></tr>
+   <tr data-en hidden><td><b>Something you know</b></td><td>Password, PIN</td></tr>
+   <tr data-ar><td><b>Something you have (Ownership)</b></td><td>رموز عتادية <span class="en">(hardware tokens/fobs)</span></td></tr>
+   <tr data-en hidden><td><b>Something you have (Ownership)</b></td><td>Hardware tokens and fobs</td></tr>
+   <tr data-ar><td><b>Something you are/do (Biometric)</b></td><td>بصمة الإصبع، مسح الوجه</td></tr>
+   <tr data-en hidden><td><b>Something you are/do (Biometric)</b></td><td>Fingerprint and facial scans</td></tr>
+   <tr data-ar><td><b>Somewhere you are</b></td><td>الموقع الجغرافي، موقع IP/الشبكة</td></tr>
+   <tr data-en hidden><td><b>Somewhere you are</b></td><td>Geolocation, IP/network location</td></tr>
+  </table>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>التوثيق الحيوي — Biometric</h3>
+  <h3 style="margin-top:0" data-en hidden>Biometric Authentication</h3>
+  <p data-ar>مراحله: <b>Enrollment</b> (تسجيل أولي) ← استشعار واستخراج ميزات <span class="en">(sensor and feature extraction)</span>. مقاييس الفعالية:</p>
+  <p data-en hidden>Stages: <b>Enrollment</b> ← <span class="en">sensor and feature extraction</span>. Efficacy metrics:</p>
+  <ul data-ar>
+   <li><b>False Rejection Rate (FRR) / Type I error</b>: رفض شخص مصرَّح له خطأً.</li>
+   <li><b>False Acceptance Rate (FAR) / Type II error</b>: قبول شخص غير مصرَّح له خطأً — عادةً الأخطر أمنيًا.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>False Rejection Rate (FRR) / Type I error</b>: wrongly rejecting an authorized person.</li>
+   <li><b>False Acceptance Rate (FAR) / Type II error</b>: wrongly accepting an unauthorized person — usually the more security-critical error.</li>
+  </ul>
+  <p data-ar>عوامل أخرى للمقارنة: سرعة الإنجاز <span class="en">(throughput)</span>، التكلفة، وإمكانية الوصول <span class="en">(inaccessibility)</span> لبعض المستخدمين. أمثلة: التعرف على بصمة الإصبع والتعرف على الوجه. ملاحظة إضافية: <b>CAPTCHA</b> تتحقق من أن الطلب صادر من إنسان فعلي وليس بوت.</p>
+  <p data-en hidden>Other comparison factors: <span class="en">throughput</span>, cost, and <span class="en">inaccessibility</span> for some users. Examples: fingerprint recognition and facial recognition. Side note: <b>CAPTCHA</b> verifies a request is coming from an actual human, not a bot.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <h3 style="margin-top:0" data-ar>الرموز العتادية</h3>
+   <h3 style="margin-top:0" data-en hidden>Hard Authentication Tokens</h3>
+   <p data-ar>أنواع توليد الرمز: قائم على الشهادات (يحتاج PKI)، كلمة مرور لمرة واحدة <span class="en">(OTP)</span>، أو <span class="en">FIDO U2F</span>. أشكاله: بطاقة ذكية، fob لـOTP، أو مفتاح أمان <span class="en">(security key)</span> — غالبًا يتطلب تفعيل يدوي يُثبت الحضور الفعلي.</p>
+   <p data-en hidden>Token generation types: certificate-based (requires PKI), one-time password (<span class="en">OTP</span>), or <span class="en">FIDO U2F</span>. Form factors: smart card, OTP fob, or a <span class="en">security key</span> — often needing an activation gesture that proves physical presence.</p>
+  </div>
+  <div class="card">
+   <h3 style="margin-top:0" data-ar>الرموز البرمجية</h3>
+   <h3 style="margin-top:0" data-en hidden>Soft Authentication Tokens</h3>
+   <p data-ar>يُرسَل رمز عبر قناة خارج النطاق <span class="en">(out-of-band)</span>: رسالة نصية <span class="en">SMS</span>، بريد إلكتروني، مكالمة صوتية، إشعار دفع <span class="en">(push notification)</span>، أو تطبيق مصادقة <span class="en">(authenticator app)</span> — مع احتمال اعتراض الرمز أثناء النقل (خصوصًا SMS).</p>
+   <p data-en hidden>A code is transmitted via an <span class="en">out-of-band</span> channel: SMS, email, phone call, push notification, or an authenticator app — with the possibility of interception during transit (especially SMS).</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>التوثيق بلا كلمة مرور — Passwordless</h3>
+  <h3 style="margin-top:0" data-en hidden>Passwordless Authentication</h3>
+  <p data-ar>يعتمد على <b>المُوثِّق (authenticator)</b> فقط بدل كلمة المرور. الحسابات تُعرَّف بزوج مفاتيح عام/خاص (دون الحاجة لـPKI كاملة بالضرورة)، والمفتاح الخاص يبقى محفوظًا فقط داخل الموثِّق نفسه. قد يطلب الموثِّق بصمة أو PIN محليًا كإثبات حضور <span class="en">(local gesture)</span>.</p>
+  <p data-en hidden>Relies on the <b>authenticator</b> alone instead of a password. Accounts are identified by a public/private key pair (not necessarily requiring full PKI), and the private key is stored only on the authenticator. The authenticator may require a biometric or PIN locally as a proof-of-presence <span class="en">(local gesture)</span>.</p>
+  <p data-ar><b>Attestation</b>: عملية إثبات أن الموثِّق نفسه هو جذر ثقة <span class="en">(root of trust)</span> موثوق — لا تخلطيها بـ<span class="en">Authentication</span> (التي تثبت هوية المستخدم).</p>
+  <p data-en hidden><b>Attestation</b>: the process of proving the authenticator itself is a trustworthy <span class="en">root of trust</span> — don't confuse it with <span class="en">Authentication</span> (which proves the user's identity).</p>
+ </div>
+
+ <div class="tip" data-ar>الفرق الجوهري: <b>MFA</b> لا تزال تحتفظ بكلمة مرور + عامل إضافي، بينما <b>Passwordless</b> يعتمد على الموثِّق وحده بلا كلمة مرور من الأساس. FRR/FAR سؤال كلاسيكي: تذكّري FAR = قبول غير مصرَّح (الأخطر)، FRR = رفض مصرَّح له (إزعاج فقط).</div>
+ <div class="tip" data-en hidden>The key distinction: <b>MFA</b> still retains a password plus an additional factor, while <b>Passwordless</b> relies on the authenticator alone with no password at all. FRR/FAR is a classic question: remember FAR = accepting the unauthorized (more security-critical), FRR = rejecting the authorized (just an inconvenience).</div>
+</section>
+
+<section id="l4-accesscontrol">
+ <span class="mod-tag">LESSON 4 · TOPIC 4B</span>
+ <h2 data-ar>نماذج ضبط الوصول</h2>
+ <h2 data-en hidden>Access Control Models</h2>
+ <p class="sub" data-ar>من يقرر مَن يصل إلى ماذا؟</p>
+ <p class="sub" data-en hidden>Who decides who gets access to what?</p>
+
+ <div class="card">
+  <table>
+   <tr data-ar><th>النموذج</th><th>من يقرر</th><th>الآلية</th></tr>
+   <tr data-en hidden><th>Model</th><th>Who Decides</th><th>Mechanism</th></tr>
+   <tr data-ar><td><b>DAC (Discretionary)</b></td><td>مالك المورد نفسه</td><td>قوائم التحكم بالوصول <span class="en">(ACLs)</span> — عرضة لخطر اختراق حساب مستخدم مميّز</td></tr>
+   <tr data-en hidden><td><b>DAC (Discretionary)</b></td><td>The resource owner</td><td><span class="en">Access Control Lists (ACLs)</span> — vulnerable to compromised privileged accounts</td></tr>
+   <tr data-ar><td><b>MAC (Mandatory)</b></td><td>مالك النظام (يُطبَّق عبر النظام كاملًا)</td><td>تصنيفات وتصاريح <span class="en">(labels/clearance)</span> وسياسات نظام صارمة</td></tr>
+   <tr data-en hidden><td><b>MAC (Mandatory)</b></td><td>The system owner (enforced system-wide)</td><td><span class="en">Labels and clearance</span>, strict system policies</td></tr>
+   <tr data-ar><td><b>RBAC (Role-Based)</b></td><td>النظام — غير تقديري ومركزي أكثر</td><td>تعريف أدوار، ثم تعيين المستخدمين لها؛ المستخدم يرث صلاحيات دوره فقط</td></tr>
+   <tr data-en hidden><td><b>RBAC (Role-Based)</b></td><td>The system — non-discretionary, more centralized</td><td>Define roles, then assign users to them; a user inherits only their role's permissions</td></tr>
+   <tr data-ar><td><b>ABAC (Attribute-Based)</b></td><td>النظام</td><td>قرارات الوصول تُبنى على مجموعة سمات (للموضوع، للمورد، والسياق) وليس دورًا ثابتًا فقط</td></tr>
+   <tr data-en hidden><td><b>ABAC (Attribute-Based)</b></td><td>The system</td><td>Access decisions combine subject, object, and context-sensitive/system-wide attributes — not just a fixed role</td></tr>
+  </table>
+  <p data-ar>الفرق الجوهري بين DAC وMAC: في DAC القرار عند مالك المورد، وفي MAC القرار عند مالك النظام (تُطبَّق الضوابط على مستوى النظام كله ولا يستطيع المستخدمون "من الداخل" تجاوزها).</p>
+  <p data-en hidden>The key difference between DAC and MAC: in DAC, decision-making lies with the resource owner; in MAC, it lies with the system owner (controls are enforced system-wide and cannot be countermanded by users "within" the system).</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>مجموعات الأمان مقابل الأدوار</h3>
+  <h3 style="margin-top:0" data-en hidden>Security Groups vs. Roles</h3>
+  <p data-ar>تُعيَّن الصلاحيات لمجموعات أمان <span class="en">(security groups)</span>، وتُضاف حسابات المستخدمين للمجموعة المناسبة — يمكن ربط المجموعات بالأدوار، لكنها ليست مطابقة تمامًا: توجد أيضًا أنظمة صلاحيات قائمة على الأدوار صراحةً (مثل أنظمة IAM في Azure أو AWS).</p>
+  <p data-en hidden>Permissions are assigned to <span class="en">security groups</span>, and user accounts are added to the relevant group — groups can map to roles, but they're not identical: there are also explicitly role-based permission systems (like Azure or AWS IAM).</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>ضبط الوصول القائم على القواعد</h3>
+  <h3 style="margin-top:0" data-en hidden>Rule-Based Access Control</h3>
+  <p data-ar>غير تقديري <span class="en">(non-discretionary)</span> — النظام هو من يحدد القواعد، لا المستخدمون. تندرج تحته MAC وRBAC وABAC، بالإضافة إلى مفاهيم مثل <b>Conditional Access</b> و<b>Continual Authentication</b>، وأدوات نظامية مثل <span class="en">User Account Control (UAC)</span> على ويندوز و<span class="en">sudo</span> على لينكس. ملاحظة: القاعدة قد لا ترتبط أصلًا بهوية المستخدم (مثل قاعدة ACL على جدار حماية).</p>
+  <p data-en hidden>Non-discretionary — the system determines the rules, not users. This umbrella includes MAC, RBAC, and ABAC, plus concepts like <b>Conditional Access</b> and <b>Continual Authentication</b>, and system tools like <span class="en">User Account Control (UAC)</span> on Windows and <span class="en">sudo</span> on Linux. Note: a rule doesn't necessarily depend on user identity at all (e.g. a firewall ACL rule).</p>
+ </div>
+
+ <div class="tip" data-ar>سؤال كلاسيكي: "موظف يملك ملفًا ويستطيع منح زميله صلاحية قراءته بنفسه" ← <b>DAC</b>. "نظام عسكري يفرض تصنيفات سرية لا يستطيع أي مستخدم تجاوزها" ← <b>MAC</b>. "مستخدم يُمنح صلاحيات تلقائيًا فور تعيينه بوظيفة مُحاسِب" ← <b>RBAC</b>. "الوصول يُسمح فقط إذا كان الوقت ضمن ساعات الدوام ومن جهاز مُدار" ← <b>ABAC</b>.</div>
+ <div class="tip" data-en hidden>Classic question: "An employee owns a file and can personally grant a colleague read access" ← <b>DAC</b>. "A military system enforces classification labels no user can override" ← <b>MAC</b>. "A user automatically gets permissions the moment they're assigned the Accountant role" ← <b>RBAC</b>. "Access is only allowed if it's during work hours AND from a managed device" ← <b>ABAC</b>.</div>
+</section>
+
+<section id="l4-provisioning">
+ <span class="mod-tag">LESSON 4 · TOPIC 4B</span>
+ <h2 data-ar>إدارة الحسابات، أقل الصلاحيات، والوصول المميّز</h2>
+ <h2 data-en hidden>Account Management, Least Privilege &amp; Privileged Access</h2>
+ <p class="sub" data-ar>من التزويد بالحساب إلى إلغائه، مرورًا بالحد الأدنى الضروري من الصلاحيات</p>
+ <p class="sub" data-en hidden>From account provisioning to deprovisioning, with only the minimum necessary permissions in between</p>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>مبدأ أقل الصلاحيات</h3>
+  <h3 style="margin-top:0" data-en hidden>Least Privilege Permission Assignments</h3>
+  <p data-ar>منح <b>الصلاحيات الكافية فقط</b> لأداء المهمة، لا أكثر. التبعات عند الإخلال به:</p>
+  <p data-en hidden>Granting <b>sufficient permissions only</b> to do the job — no more. Implications when violated:</p>
+  <ul data-ar>
+   <li><b>صلاحيات غير كافية</b>: تعطيل العمل وطلبات دعم متكررة.</li>
+   <li><b>Authorization creep</b>: تراكم صلاحيات زائدة بمرور الوقت (كل ما تغيّر دور الموظف تُضاف صلاحيات جديدة دون سحب القديمة).</li>
+   <li><b>المراجعة (Auditing)</b>: ضرورية لاكتشاف الصلاحيات الزائدة ومعالجتها دوريًا.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Insufficient permissions</b>: blocks work and generates repeated support requests.</li>
+   <li><b>Authorization creep</b>: excess permissions accumulate over time (each role change adds new permissions without removing old ones).</li>
+   <li><b>Auditing</b>: essential for periodically discovering and remediating excess permissions.</li>
+  </ul>
+  <p data-ar>"صلاحيات دائمة" افتراضية لحساب المدير/الجذر <span class="en">(standing permissions)</span> كانت سبب كثير من الاختراقات الأمنية تاريخيًا.</p>
+  <p data-en hidden>Default "standing" administrator/root permissions have historically been the cause of many security breaches.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <h3 style="margin-top:0" data-ar>تزويد الحسابات وإلغاؤها</h3>
+   <h3 style="margin-top:0" data-en hidden>Provisioning &amp; Deprovisioning</h3>
+   <p data-ar><b>Provisioning</b>: إثبات الهوية <span class="en">(identity proofing)</span> ← إصدار بيانات الاعتماد ← تخصيص الأصول ← توعية بالسياسات وتدريب أمني ← تعيين الصلاحيات.</p>
+   <p data-en hidden><b>Provisioning</b>: identity proofing ← issuing credentials ← asset allocation ← policy awareness/security education ← permission assignments.</p>
+   <p data-ar><b>Deprovisioning</b>: عند مغادرة موظف/متعاقد أو تغيير دوره — إزالة أو تعطيل الصلاحيات فورًا لتفادي وصول غير مصرَّح.</p>
+   <p data-en hidden><b>Deprovisioning</b>: when an employee/contractor leaves or changes roles — remove or disable permission assignments immediately to prevent unauthorized access.</p>
+  </div>
+  <div class="card">
+   <h3 style="margin-top:0" data-ar>سمات الحساب وسياسات الوصول</h3>
+   <h3 style="margin-top:0" data-en hidden>Account Attributes &amp; Access Policies</h3>
+   <p data-ar><b>سمات الحساب</b>: معرّف الأمان <span class="en">(SID)</span>، اسم الحساب، بيانات الاعتماد، وسمات ملف تعريف موسَّعة (إعدادات وملفات لكل تطبيق). <b>سياسات الوصول</b>: صلاحيات الملفات، حقوق الوصول، وكائنات سياسة المجموعة <span class="en">(Active Directory GPOs)</span>.</p>
+   <p data-en hidden><b>Account attributes</b>: <span class="en">Security Identifier (SID)</span>, account name, credential, and extended profile attributes (per-app settings and files). <b>Access policies</b>: file permissions, access rights, and <span class="en">Active Directory Group Policy Objects (GPOs)</span>.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>قيود الحسابات</h3>
+  <h3 style="margin-top:0" data-en hidden>Account Restrictions</h3>
+  <ul data-ar>
+   <li><b>سياسات قائمة على الموقع</b>: الموقع الشبكي/المنطقي، الموقع الجغرافي (عبر عنوان IP أو خدمات الموقع).</li>
+   <li><b>قيود زمنية</b>: ساعات الدخول المسموحة <span class="en">(logon hours)</span>، مدة الجلسة <span class="en">(logon duration)</span>، واكتشاف "سفر مستحيل" أو دخول مريب <span class="en">(impossible travel time / risky login)</span> — تسجيل دخول من دولتين متباعدتين خلال وقت قصير جدًا يستحيل السفر بينهما فعليًا.</li>
+   <li><b>صلاحيات مؤقتة (Temporary permissions)</b>: تُمنح لفترة محدودة ثم تنتهي تلقائيًا.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Location-based policies</b>: network/logical location, geolocation (via IP address or location services).</li>
+   <li><b>Time-based restrictions</b>: <span class="en">logon hours</span>, <span class="en">logon duration</span>, and detecting "impossible travel time"/risky logins — a login from two distant countries within a timeframe too short to physically travel between them.</li>
+   <li><b>Temporary permissions</b>: granted for a limited time, then automatically expire.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>إدارة الوصول المميّز — PAM</h3>
+  <h3 style="margin-top:0" data-en hidden>Privileged Access Management (PAM)</h3>
+  <p data-ar>سياسات وإجراءات وضوابط تقنية لمنع إساءة استخدام الحسابات ذات الصلاحيات النظامية الواسعة — لا يقتصر مفهوم "الحساب المميّز" على مدير/جذر النظام فقط؛ أي صلاحية إدارية قد تؤثر على النموذج الأمني (أو تصل لبيانات حساسة/سرّية) تُعتبر مميّزة، وقد تنطبق على حسابات الخدمات والتطبيقات أيضًا.</p>
+  <p data-en hidden>Policies, procedures, and technical controls to prevent malicious abuse of accounts with system-wide access — "privileged account" isn't limited to admin/root; any administrative permission that could affect the security model (or access sensitive/private data) counts as privileged, and this can extend to service and application accounts too.</p>
+  <ul data-ar>
+   <li>محطات عمل إدارية آمنة <span class="en">(secure administrative workstations)</span></li>
+   <li>سياسة "لا صلاحيات دائمة" <span class="en">(zero standing privileges)</span> للمدراء</li>
+   <li>رفع مؤقت للصلاحية <span class="en">(temporary elevation)</span> عند الحاجة فقط</li>
+   <li>خزن/وساطة كلمات المرور <span class="en">(password vaulting/brokering)</span></li>
+   <li>بيانات اعتماد لحظية <span class="en">(ephemeral credentials)</span> تنتهي بعد الاستخدام</li>
+  </ul>
+  <ul data-en hidden>
+   <li><span class="en">Secure administrative workstations</span></li>
+   <li><span class="en">Zero standing privileges</span> policies for administrators</li>
+   <li><span class="en">Temporary elevation</span> only when needed</li>
+   <li><span class="en">Password vaulting/brokering</span></li>
+   <li><span class="en">Ephemeral credentials</span> that expire after use</li>
+  </ul>
+ </div>
+
+ <div class="tip" data-ar>مبدأ PAM المحوري: <b>Zero Standing Privileges</b> — بدل أن يملك المدير صلاحيات كاملة طوال الوقت، تُرفَع صلاحياته مؤقتًا فقط عند الحاجة الفعلية ثم تنتهي تلقائيًا. هذا يقلّل النافذة الزمنية التي يستطيع فيها مهاجم استغلال حساب مُخترَق ذي صلاحيات عالية.</div>
+ <div class="tip" data-en hidden>The core PAM principle: <b>Zero Standing Privileges</b> — instead of an administrator holding full permissions at all times, privileges are elevated only temporarily when actually needed, then automatically expire. This shrinks the window an attacker has to exploit a compromised high-privilege account.</div>
+</section>
+
+<section id="l4-identity">
+ <span class="mod-tag">LESSON 4 · TOPIC 4C</span>
+ <h2 data-ar>إدارة الهوية — الدلائل، تسجيل الدخول الموحّد، والاتحاد الفدرالي</h2>
+ <h2 data-en hidden>Identity Management — Directories, SSO &amp; Federation</h2>
+ <p class="sub" data-ar>كيف تُدار الهويات وتُشارَك الصلاحيات عبر أنظمة متعددة</p>
+ <p class="sub" data-en hidden>How identities are managed and authorizations shared across multiple systems</p>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>التوثيق المحلي والشبكي والبعيد</h3>
+  <h3 style="margin-top:0" data-en hidden>Local, Network &amp; Remote Authentication</h3>
+  <p data-ar>يجب التفريق بين نطاق تسجيل الدخول: قاعدة بيانات كلمات مرور جهاز محلي واحد، أو دليل شبكي مركزي. على ويندوز: تسجيل دخول محلي، شبكي (عبر <span class="en">Kerberos</span> أو <span class="en">NTLM</span>)، أو بعيد. على لينكس: ملفا <code class="k">/etc/passwd</code> و<code class="k">/etc/shadow</code>، مع وحدات توثيق قابلة للتوصيل <span class="en">(PAMs - Pluggable Authentication Modules)</span>.</p>
+  <p data-en hidden>The scope of a login matters: a single local machine's password database, versus a centralized network directory. On Windows: local sign-in, network sign-in (via <span class="en">Kerberos</span> or <span class="en">NTLM</span>), or remote sign-in. On Linux: the <code class="k">/etc/passwd</code> and <code class="k">/etc/shadow</code> files, plus <span class="en">Pluggable Authentication Modules (PAMs)</span>.</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>خدمات الدليل — Directory Services</h3>
+  <h3 style="margin-top:0" data-en hidden>Directory Services</h3>
+  <p data-ar>قاعدة بيانات مركزية للموضوعات: مستخدمون، أجهزة، مجموعات/أدوار أمنية، وخدمات — بالإضافة لقوائم التحكم بالوصول (التفويضات). المعيار: <b>X.500</b> وبروتوكول <b>LDAP (Lightweight Directory Access Protocol)</b>. تُعرَّف الكائنات بأسماء مميَّزة <span class="en">(Distinguished Names)</span> بصيغة أزواج سمة=قيمة:</p>
+  <p data-en hidden>A centralized database of subjects: users, computers, security groups/roles, and services — plus access control lists (authorizations). The standard: <b>X.500</b> and the <b>LDAP (Lightweight Directory Access Protocol)</b>. Objects are identified by <span class="en">Distinguished Names</span> as attribute=value pairs:</p>
+  <p style="direction:ltr;text-align:left"><code class="k">CN=WIDGETWEB, OU=Marketing, O=Widget, C=UK, DC=widget, DC=foo</code></p>
+  <p data-ar>الاهتمامات الأمنية الرئيسية بخدمات الدليل: سرية المعلومات (وصول القراءة)، سلامتها (وصول الكتابة)، والتوفر (منع هجمات حجب الخدمة على خادم الدليل).</p>
+  <p data-en hidden>The main security concerns with directory services: confidentiality of information (read access), integrity (write access), and availability (preventing denial-of-service against the directory server).</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>تسجيل الدخول الموحّد — SSO عبر Kerberos</h3>
+  <h3 style="margin-top:0" data-en hidden>Single Sign-on via Kerberos</h3>
+  <p data-ar>مكوّنات Kerberos: العملاء <span class="en">(clients)</span>، خوادم التطبيقات <span class="en">(application servers)</span>، ومركز توزيع المفاتيح <span class="en">(KDC - Key Distribution Center)</span> الذي يضم خدمتين:</p>
+  <p data-en hidden>Kerberos components: clients, application servers, and the <span class="en">KDC (Key Distribution Center)</span>, which contains two services:</p>
+  <ul data-ar>
+   <li><b>Authentication Service</b>: يصدر <span class="en">Ticket Granting Ticket (TGT)</span> بعد التحقق الأولي من هوية المستخدم.</li>
+   <li><b>Ticket Granting Service</b>: يستخدم الـTGT لإصدار <span class="en">Service Ticket</span> لكل خدمة يطلبها المستخدم.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Authentication Service</b>: issues a <span class="en">Ticket Granting Ticket (TGT)</span> after initial identity verification.</li>
+   <li><b>Ticket Granting Service</b>: uses the TGT to issue a <span class="en">Service Ticket</span> for each service the user requests.</li>
+  </ul>
+ </div>
+
+ <div class="diagram">
+  <svg viewBox="0 0 460 160" style="max-width:440px">
+   <rect x="10" y="60" width="90" height="40" rx="8" fill="#0d3b4f"/><text x="55" y="85" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Client</text>
+   <rect x="185" y="10" width="90" height="40" rx="8" fill="#e8672c"/><text x="230" y="35" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">KDC</text>
+   <rect x="360" y="60" width="90" height="40" rx="8" fill="#12617c"/><text x="405" y="85" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">App Server</text>
+   <line x1="100" y1="70" x2="183" y2="35" stroke="#5b7280" stroke-width="1.6"/>
+   <line x1="185" y1="45" x2="100" y2="85" stroke="#5b7280" stroke-width="1.6"/>
+   <line x1="275" y1="35" x2="358" y2="70" stroke="#5b7280" stroke-width="1.6"/>
+   <text x="145" y="55" font-size="9" fill="#5b7280">1. TGT</text>
+   <text x="315" y="55" font-size="9" fill="#5b7280">2. Ticket</text>
+   <line x1="100" y1="95" x2="358" y2="95" stroke="#d8e2e7" stroke-width="1.6" stroke-dasharray="4,3"/>
+   <text x="230" y="112" text-anchor="middle" font-size="9" fill="#5b7280">3. Client presents Service Ticket directly to App Server</text>
+  </svg>
+  <div class="cap" data-ar>العميل والخادم لا يعرف أحدهما كلمة مرور الآخر — فقط الـKDC يعرف الاثنين، ويثبت للخادم أن العميل أدخل كلمة المرور الصحيحة</div>
+  <div class="cap" data-en hidden>The client and server don't know each other's password — only the KDC knows both, proving to the server that the client entered the correct password</div>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>الاتحاد الفدرالي — Federation</h3>
+  <h3 style="margin-top:0" data-en hidden>Federation</h3>
+  <p data-ar>شبكات تحت إدارات مستقلة تشارك هويات المستخدمين فيما بينها. المفاهيم الأساسية: <b>مزوّد الهوية (Identity Provider - IdP)</b> يُصدر ادعاءات <span class="en">(claims)</span>، و<b>مزوّد الخدمة (Service Provider)</b> يثق بها بدل توثيق المستخدم مباشرة بنفسه — عبر أطر عمل وبروتوكولات مشتركة تحقق التوافقية <span class="en">(interoperability)</span>.</p>
+  <p data-en hidden>Networks under separate administrative control share user identities. Core concepts: an <b>Identity Provider (IdP)</b> issues <span class="en">claims</span>, and a <b>Service Provider</b> trusts them instead of authenticating the user itself — via shared frameworks and protocols achieving <span class="en">interoperability</span>.</p>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <h3 style="margin-top:0" data-ar>SAML</h3>
+   <h3 style="margin-top:0" data-en hidden>Security Assertion Markup Language</h3>
+   <p data-ar>معيار مفتوح لتنفيذ التواصل بين مزوّد الهوية ومزوّد الخدمة، عبر ادعاءات/تصديقات <span class="en">(assertions)</span> بصيغة <span class="en">XML</span> مُوقَّعة رقميًا (وفق مواصفة XML Signature)، تُنقَل عادة عبر <span class="en">HTTPS</span> أو <span class="en">SOAP</span>. الفكرة الجوهرية: مزوّد الخدمة لا يُوثِّق المستخدم مباشرة؛ بل يحصل على تصديق من مزوّد الهوية بأن المستخدم تم توثيقه.</p>
+   <p data-en hidden>An open standard for identity/service provider communication via digitally signed <span class="en">XML</span> <span class="en">assertions</span> (per the XML Signature spec), typically transported over <span class="en">HTTPS</span> or <span class="en">SOAP</span>. The core idea: the service provider doesn't authenticate the user directly; it obtains an assertion from the identity provider that the user has been authenticated.</p>
+  </div>
+  <div class="card">
+   <h3 style="margin-top:0" data-ar>OAuth</h3>
+   <h3 style="margin-top:0" data-en hidden>Open Authorization (OAuth)</h3>
+   <p data-ar>خدمات اتحاد فدرالي "محورها المستخدم"، أنسب لمواقع المستهلكين، مبنية على واجهات <span class="en">RESTful APIs</span> — هو إطار عمل للتنفيذ لا بروتوكول واحد ثابت. مصمَّم لنقل <b>التفويضات (Authorizations)</b> لا التوثيق الصريح للموضوع. العميل (موقع/تطبيق) يتفاعل مع مزوّد هوية OAuth وخوادم موارد تحمل بيانات المستخدم الأساسي، بمسارات مختلفة (خادم لخادم، أو تطبيق جوال لخادم) — غالبًا باستخدام <span class="en">JWT (JSON Web Token)</span>.</p>
+   <p data-en hidden>"User-centric" federated services better suited to consumer websites, built on <span class="en">RESTful APIs</span> — a framework for implementation, not a single fixed protocol. Designed to communicate <b>Authorizations</b>, not explicitly authenticate a subject. The client (a site/app) interacts with an OAuth IdP and resource servers holding the principal's data, via different flow types (server-to-server, or mobile app-to-server) — often using a <span class="en">JWT (JSON Web Token)</span>.</p>
+  </div>
+ </div>
+
+ <div class="tip" data-ar>لا تخلطي: <b>SAML</b> يركّز على التوثيق (يثبت "من أنت")، و<b>OAuth</b> يركّز على التفويض (يثبت "ماذا يُسمح لك بفعله" أو للتطبيق الوصول إليه نيابة عنك). و<b>عميل OAuth ليس المستخدم نفسه</b> — بل الموقع أو التطبيق الذي يتفاعل نيابةً عنه مع مزوّد الهوية أو خادم الموارد.</div>
+ <div class="tip" data-en hidden>Don't confuse them: <b>SAML</b> centers on authentication (proving "who you are"), while <b>OAuth</b> centers on authorization (proving "what you/the app is allowed to do on your behalf"). And <b>an OAuth client is not the user</b> — it's the site or app interacting with the IdP or resource server on the user's behalf.</div>
+</section>
+
+</main>
+
+<div class="modnav"><a href="sec-lesson3-guide.html"><span data-ar>← الدرس 3</span><span data-en hidden>← Lesson 3</span></a><a href="sec-index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a></div>
+
+<footer><span data-ar>ملخص دراسي — CompTIA Security+ SY0-701 · Lesson 4 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Security+ SY0-701 · Lesson 4 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
+</body>
+</html>

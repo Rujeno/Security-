@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 2 — مقارنة أنواع التهديدات — CompTIA Security+ SY0-701</title>
+<meta name="description" content="شرح الدرس 2 من منهج CompTIA Security+ SY0-701 بالعربي — الجهات المهدِّدة (Threat Actors)، سطح الهجوم ومتجهاته (Attack Surface/Vectors)، والهندسة الاجتماعية (Social Engineering).">
+<meta name="keywords" content="CompTIA Security+, SY0-701, الدرس 2, Threat Actors, Attack Surface, Attack Vectors, Social Engineering, Phishing">
+<link rel="canonical" href="https://rujeno.github.io/Security-/sec-lesson2-guide.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="الدرس 2 — مقارنة أنواع التهديدات — CompTIA Security+ SY0-701">
+<meta property="og:description" content="شرح الدرس 2 من منهج CompTIA Security+ SY0-701 بالعربي — Threat Actors، Attack Surface/Vectors، Social Engineering.">
+<meta property="og:url" content="https://rujeno.github.io/Security-/sec-lesson2-guide.html">
+<meta property="og:locale" content="ar_AR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}}
+
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.diagrow{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:13.5px;font-weight:600;padding:14px 14px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+@media print{
+ .switcher,nav,.modnav,.no-print{display:none !important}
+ @page{size:A4;margin:14mm}
+ body{background:#fff;font-size:12.5px;line-height:1.6}
+ header{background:#0d3b4f !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:26px 20px}
+ header::after{display:none}
+ main{padding:20px 0 30px;max-width:100%}
+ section{margin-bottom:20px}
+ .card,table,.diagram,.diagrow,.tip{break-inside:avoid}
+ a{color:inherit;text-decoration:none}
+ h2{border-right-width:4px}
+}
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .modnav a.home{order:1}
+[data-en]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Security+ SY0-701 · LESSON 2</span>
+  <h1 data-ar>الدرس 2 — مقارنة أنواع التهديدات</h1>
+  <h1 data-en hidden>Lesson 2 — Comparing Threat Types</h1>
+  <p data-ar>الجهات المهدِّدة وسماتها ودوافعها · سطح الهجوم ومتجهاته · الهندسة الاجتماعية</p>
+  <p data-en hidden>Threat Actor Attributes &amp; Motivations · Attack Surface &amp; Vectors · Social Engineering</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="sec-index.html">🏠</a><a href="sec-lesson1-guide.html">1</a><a href="sec-lesson2-guide.html" class="active">2</a><a href="sec-lesson3-guide.html">3</a><a href="sec-lesson4-guide.html">4</a><a href="sec-quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+
+<nav><div class="nwrap">
+ <a href="#l2-vtr" data-ar>2.1 Vulnerability/Threat/Risk</a>
+ <a href="#l2-vtr" data-en hidden>2.1 Vulnerability/Threat/Risk</a>
+ <a href="#l2-attributes">2.1 Actor Attributes</a>
+ <a href="#l2-actors">2.1 Actor Types</a>
+ <a href="#l2-surface">2.2 Attack Surface</a>
+ <a href="#l2-social">2.3 Social Engineering</a>
+</div></nav>
+
+<main>
+
+<section id="l2-vtr">
+ <span class="mod-tag">LESSON 2 · TOPIC 2A</span>
+ <h2 data-ar>الثغرة، التهديد، والمخاطرة</h2>
+ <h2 data-en hidden>Vulnerability, Threat, and Risk</h2>
+ <p class="sub" data-ar>ثلاث كلمات تُستخدم بشكل خاطئ كمترادفات — الفرق بينها أساسي لبقية المنهج</p>
+ <p class="sub" data-en hidden>Three words often misused as synonyms — the distinction is foundational for the rest of the course</p>
+
+ <div class="card">
+  <ul data-ar>
+   <li><b>Vulnerability (ثغرة)</b>: ضعف أو نقطة قصور في نظام أو عملية يمكن استغلالها.</li>
+   <li><b>Threat (تهديد)</b>: أي شيء لديه القدرة على استغلال ثغرة — قد يكون شخصًا (threat actor) أو حدثًا (كارثة طبيعية).</li>
+   <li><b>Risk (مخاطرة)</b>: احتمالية أن يستغل تهديدٌ ما ثغرةً معيّنة، مضروبةً في حجم الأثر الناتج.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Vulnerability</b>: a weakness or gap in a system or process that can be exploited.</li>
+   <li><b>Threat</b>: anything with the capability to exploit a vulnerability — could be a person (threat actor) or an event (natural disaster).</li>
+   <li><b>Risk</b>: the likelihood that a threat will exploit a given vulnerability, combined with the resulting impact.</li>
+  </ul>
+  <p data-ar>تقييم الثغرات والتهديدات معًا هو ما يقود لحساب المخاطرة — وهذا سيُشرح بالتفصيل لاحقًا ضمن موضوع إدارة المخاطر.</p>
+  <p data-en hidden>Assessing vulnerability and threat together is what drives the calculation of risk — this is covered in full detail later under risk management.</p>
+ </div>
+
+ <div class="tip" data-ar>احفظيها كجملة واحدة: <b>لا ثغرة بدون تهديد = لا مخاطرة</b>. باب مفتوح (ثغرة) في منطقة بدون أي شخص (لا يوجد تهديد) = خطر شبه معدوم عمليًا.</div>
+ <div class="tip" data-en hidden>Remember it as one sentence: <b>no vulnerability without a threat = no risk</b>. An open door (vulnerability) in an area with nobody around (no threat) = practically negligible risk.</div>
+</section>
+
+<section id="l2-attributes">
+ <span class="mod-tag">LESSON 2 · TOPIC 2A</span>
+ <h2 data-ar>سمات ودوافع الجهات المهدِّدة</h2>
+ <h2 data-en hidden>Attributes and Motivations of Threat Actors</h2>
+ <p class="sub" data-ar>يحلّل المهاجم عبر ثلاثة محاور: أين يقف، وكم يقدر، ولماذا يفعل ذلك</p>
+ <p class="sub" data-en hidden>An attacker is profiled along three axes: where they stand, what they're capable of, and why they act</p>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>السمات — Attributes</h3>
+  <h3 style="margin-top:0" data-en hidden>Attributes</h3>
+  <ul data-ar>
+   <li><b>Internal / External</b>: هذه سمة للجهة المهدِّدة نفسها، وليست مكان وقوع الهجوم — التهديد الداخلي لديه وصول مصرَّح به مسبقًا للنظام.</li>
+   <li><b>مستوى التطوّر/القدرة (Sophistication/Capability)</b>: الجهات ضعيفة القدرة تعتمد على أدوات جاهزة <span class="en">(commodity tools)</span>، بينما عالية القدرة تستطيع تطوير هجمات جديدة والوصول لموارد سياسية أو عسكرية.</li>
+   <li><b>الموارد والتمويل (Resources/Funding)</b>: يحدد نطاق ومدة الهجوم الممكن تنفيذه.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Internal / External</b>: an attribute of the threat actor itself, not where the attack takes place — an internal threat already has authorized access to the system.</li>
+   <li><b>Sophistication/Capability</b>: low-capability actors rely on <span class="en">commodity tools</span>, while high-capability actors can develop new attacks and access political or military assets.</li>
+   <li><b>Resources/Funding</b>: determines the scope and duration of the attack that's possible.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>الدوافع — Motivations</h3>
+  <h3 style="margin-top:0" data-en hidden>Motivations</h3>
+  <p data-ar>هل الهجوم مُستهدَف بعناية أم انتهازي؟ هل هو مقصود أم غير مقصود <span class="en">(accidental/unintentional)</span>؟ ثم تأتي الاستراتيجية والدافع الأعمق:</p>
+  <p data-en hidden>Is the attack carefully targeted or opportunistic? Intentional or <span class="en">accidental/unintentional</span>? Then comes the strategy and the deeper motivation:</p>
+  <table>
+   <tr data-ar><th>الدافع</th><th>يظهر عادة في</th></tr>
+   <tr data-en hidden><th>Motivation</th><th>Commonly shows up as</th></tr>
+   <tr data-ar><td><b>الفوضى (Chaotic)</b></td><td>تعطيل الخدمة، تسريب البيانات، التضليل — بدون هدف مادي واضح</td></tr>
+   <tr data-en hidden><td><b>Chaotic</b></td><td>Service disruption, data exfiltration, disinformation — no clear material goal</td></tr>
+   <tr data-ar><td><b>مادي (Financial)</b></td><td>ابتزاز، احتيال، طلب فدية</td></tr>
+   <tr data-en hidden><td><b>Financial</b></td><td>Blackmail, extortion, fraud</td></tr>
+   <tr data-ar><td><b>سياسي (Political)</b></td><td>مبلّغون عن مخالفات، جماعات ضغط، جهات مدعومة من دول</td></tr>
+   <tr data-en hidden><td><b>Political</b></td><td>Whistleblowers, campaign groups, nation-state actors</td></tr>
+  </table>
+ </div>
+
+ <div class="tip" data-ar>دوافع الهجمات على الإنترنت تغيّرت تاريخيًا — من تخريب انتهازي عشوائي، إلى تهديدات منظّمة مرتبطة بالجريمة المنظمة والجهات المدعومة من دول. حللي أي جهة مهدِّدة بهذه الأسئلة الثلاثة دائمًا: داخلية أم خارجية؟ ما مستوى قدرتها؟ وما دافعها؟</div>
+ <div class="tip" data-en hidden>Internet threat motivations have shifted historically — from opportunistic, random vandalism to structured threats tied to organized crime and state-backed groups. Always profile any threat actor with these three questions: internal or external? What's their capability level? And what's their motivation?</div>
+</section>
+
+<section id="l2-actors">
+ <span class="mod-tag">LESSON 2 · TOPIC 2A</span>
+ <h2 data-ar>أنواع الجهات المهدِّدة</h2>
+ <h2 data-en hidden>Types of Threat Actors</h2>
+ <p class="sub" data-ar>من الهاكر الفردي إلى الجهات المدعومة من دول</p>
+ <p class="sub" data-en hidden>From the lone hacker to nation-state-backed groups</p>
+
+ <div class="card">
+  <ul data-ar>
+   <li><b>الهاكر الفردي (Lone Hacker)</b>: <span class="en">White hat</span> (مصرَّح له) مقابل <span class="en">black hat</span> (غير مصرَّح له) — المصطلحات الحيادية الحديثة: <span class="en">authorized</span> مقابل <span class="en">unauthorized</span>. المهاجمون قليلو المهارة يُعرفون بـ<span class="en">"script kiddies"</span> لاعتمادهم على أدوات جاهزة.</li>
+   <li><b>فرق الهاكرز والهاكتيفيست (Hacktivists)</b>: مجموعات منظّمة بدوافع أيديولوجية أو سياسية أكثر من فردية.</li>
+   <li><b>الجهات المدعومة من دول (Nation-state) وتهديدات APT</b>: مرتبطة بجهات عسكرية أو استخباراتية، بقدرات عالية جدًا. مصطلح <b>Advanced Persistent Threat (APT)</b> يصف تهديدًا مستمرًا وخفيًا يهدف للتجسس والحصول على ميزة استراتيجية، مع إمكانية الإنكار <span class="en">(deniability)</span> عبر عمليات "العلم الكاذب" <span class="en">(false flag)</span>.</li>
+   <li><b>الجريمة المنظّمة (Organized Crime)</b>: تعمل عبر حدود قانونية متعددة، دافعها الربح الإجرامي، وقد تكون ممولة بشكل كبير.</li>
+   <li><b>المنافسون (Competitors)</b>: تجسس تجاري وتضليل، قد يتقاطع مع التهديد الداخلي.</li>
+   <li><b>الجهات المهدِّدة الداخلية (Internal Threat Actors)</b>: إما <b>خبيثة</b> (موظف/متعاقد/شريك لديه وصول مصرَّح ويسيء استخدامه بدافع التخريب أو الربح المادي أو الميزة التجارية)، أو <b>غير مقصودة</b> (ناتجة عن سياسات ضعيفة، ضعف الالتزام، نقص التدريب، أو <span class="en">Shadow IT</span>).</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>The "Lone Hacker"</b>: <span class="en">white hat</span> (authorized) versus <span class="en">black hat</span> (unauthorized) — modern neutral terms: <span class="en">authorized</span> vs <span class="en">unauthorized</span>. Unskilled attackers are known as <span class="en">"script kiddies"</span> for relying on commodity tools.</li>
+   <li><b>Hacker teams and hacktivists</b>: organized groups with ideological or political motivations rather than individual ones.</li>
+   <li><b>Nation-state actors and APTs</b>: attached to military or secret services, with very high capability. <b>Advanced Persistent Threat (APT)</b> describes a continuous, stealthy threat aimed at espionage and strategic advantage, often with <span class="en">deniability</span> via <span class="en">false flag</span> operations.</li>
+   <li><b>Organized crime</b>: operates across legal jurisdictions, motivated by criminal profit, and can be very well resourced.</li>
+   <li><b>Competitors</b>: cyber espionage and disinformation, which can overlap with insider threat.</li>
+   <li><b>Internal threat actors</b>: either <b>malicious</b> (an employee/contractor/partner with authorized access who misuses it for sabotage, financial gain, or business advantage), or <b>unintentional</b> (stemming from weak policies, poor adherence, lack of training, or <span class="en">Shadow IT</span>).</li>
+  </ul>
+ </div>
+
+ <div class="tip" data-ar>لكل نوع جهة مهدِّدة اربطيها بمستوى القدرة والدافع: <span class="en">script kiddie</span> = قدرة منخفضة/فوضوي، <span class="en">hacktivist</span> = قدرة متوسطة/سياسي، <span class="en">nation-state APT</span> = قدرة عالية جدًا/سياسي أو استراتيجي، <span class="en">organized crime</span> = قدرة عالية/مادي. هذا الربط يتكرر كثيرًا في أسئلة الاختبار على شكل سيناريو.</div>
+ <div class="tip" data-en hidden>Link each threat actor type to a capability level and motivation: <span class="en">script kiddie</span> = low capability/chaotic, <span class="en">hacktivist</span> = medium capability/political, <span class="en">nation-state APT</span> = very high capability/political-strategic, <span class="en">organized crime</span> = high capability/financial. This mapping recurs often in scenario-based exam questions.</div>
+</section>
+
+<section id="l2-surface">
+ <span class="mod-tag">LESSON 2 · TOPIC 2B</span>
+ <h2 data-ar>سطح الهجوم ومتجهاته</h2>
+ <h2 data-en hidden>Attack Surface and Vectors</h2>
+ <p class="sub" data-ar>سطح الهجوم = أين يمكن أن يبدأ الاختراق، متجه الهجوم = كيف يبدأ فعليًا</p>
+ <p class="sub" data-en hidden>Attack surface = where a breach could start, attack vector = how it actually starts</p>
+
+ <div class="card">
+  <p data-ar><b>سطح الهجوم (Attack Surface)</b>: كل النقاط التي يمكن لمهاجم اكتشاف واستغلال ثغرات فيها — يشمل الأسطح الفيزيائية والشبكية والتطبيقية والبشرية. قد يغطي المؤسسة كاملة أو نظامًا/تطبيقًا واحدًا فقط.</p>
+  <p data-en hidden><b>Attack Surface</b>: all the points where an attacker can discover and exploit vulnerabilities — spans physical, network, application, and human surfaces. Scope can be the whole organization or a single system/app.</p>
+  <p data-ar><b>متجهات التهديد (Threat Vectors)</b>: الطرق المحددة التي يسلكها المهاجم فعليًا. الجهات عالية القدرة تستطيع توسيع سطح الهجوم بابتكار متجهات جديدة تمامًا.</p>
+  <p data-en hidden><b>Threat Vectors</b>: the specific paths an attacker actually takes. High-capability actors can expand the attack surface by developing entirely novel vectors.</p>
+ </div>
+
+ <div class="diagrow">
+  <div class="dbox">
+   <svg viewBox="0 0 140 140"><rect x="20" y="20" width="100" height="100" rx="14" fill="#0d3b4f"/><text x="70" y="76" text-anchor="middle" fill="#fff" font-size="30">💻</text></svg>
+   <div class="cap" data-ar>برمجيات ضعيفة</div>
+   <div class="cap" data-en hidden>Vulnerable software</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 140 140"><rect x="20" y="20" width="100" height="100" rx="14" fill="#12617c"/><text x="70" y="76" text-anchor="middle" fill="#fff" font-size="30">🌐</text></svg>
+   <div class="cap" data-ar>الشبكة</div>
+   <div class="cap" data-en hidden>Network</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 140 140"><rect x="20" y="20" width="100" height="100" rx="14" fill="#e8672c"/><text x="70" y="76" text-anchor="middle" fill="#fff" font-size="30">📎</text></svg>
+   <div class="cap" data-ar>عناصر جذب / رسائل</div>
+   <div class="cap" data-en hidden>Lures / Messages</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 140 140"><rect x="20" y="20" width="100" height="100" rx="14" fill="#1a7f5c"/><text x="70" y="76" text-anchor="middle" fill="#fff" font-size="30">🚚</text></svg>
+   <div class="cap" data-ar>سلسلة الإمداد</div>
+   <div class="cap" data-en hidden>Supply chain</div>
+  </div>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>متجهات البرمجيات الضعيفة</h3>
+  <h3 style="margin-top:0" data-en hidden>Vulnerable Software Vectors</h3>
+  <p data-ar>عيوب في الكود أو التصميم، تأخر أو صعوبة تطبيق التصحيحات <span class="en">(patching)</span>، وأنظمة/تطبيقات لم تعد مدعومة <span class="en">(unsupported)</span>. تختلف أدوات فحص الثغرات بين <span class="en">client-based</span> (تحتاج تثبيت عميل) و<span class="en">agentless</span> (بدون تثبيت).</p>
+  <p data-en hidden>Faults in code or design, delays or difficulty in <span class="en">patching</span>, and <span class="en">unsupported</span> systems and applications. Vulnerability scanning tools split between <span class="en">client-based</span> (require an installed agent) and <span class="en">agentless</span>.</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>متجهات الشبكة</h3>
+  <h3 style="margin-top:0" data-en hidden>Network Vectors</h3>
+  <p data-ar>تقنيات استغلال عن بُعد <span class="en">(remote)</span> أو محليًا <span class="en">(local)</span>، وشبكات غير آمنة تفتقر لخصائص CIA. متجهات محددة:</p>
+  <p data-en hidden><span class="en">Remote</span> versus <span class="en">local</span> exploit techniques, and unsecure networks lacking CIA properties. Specific vectors:</p>
+  <ul data-ar>
+   <li>وصول مباشر وسلكي عبر منافذ فيزيائية</li>
+   <li>وصول عن بُعد، لاسلكي، سحابي، وBluetooth</li>
+   <li>بيانات اعتماد افتراضية <span class="en">(default credentials)</span> غير مُغيَّرة</li>
+   <li>منافذ خدمة مفتوحة <span class="en">(open TCP/UDP ports)</span></li>
+  </ul>
+  <ul data-en hidden>
+   <li>Direct access and wired (physical ports)</li>
+   <li>Remote, wireless, cloud, and Bluetooth</li>
+   <li>Unchanged <span class="en">default credentials</span></li>
+   <li>Open service ports (TCP and UDP)</li>
+  </ul>
+ </div>
+
+ <div class="two">
+  <div class="card">
+   <h3 style="margin-top:0" data-ar>متجهات الطُّعم</h3>
+   <h3 style="margin-top:0" data-en hidden>Lure-based Vectors</h3>
+   <p data-ar>طُعم يُغري الضحية بفتحه: جهاز تخزين قابل للإزالة <span class="en">(drop attack)</span>، ملف تنفيذي <span class="en">(Trojan Horse)</span>، ملف مستند يحمل ماكرو ضار، أو ملف صورة يستغل ثغرة في المتصفح/العارض.</p>
+   <p data-en hidden>Bait that tempts the target into opening it: a removable device (<span class="en">drop attack</span>), an executable file (<span class="en">Trojan Horse</span>), a document with a malicious macro, or an image file exploiting a viewer/browser vulnerability.</p>
+  </div>
+  <div class="card">
+   <h3 style="margin-top:0" data-ar>متجهات الرسائل</h3>
+   <h3 style="margin-top:0" data-en hidden>Message-based Vectors</h3>
+   <p data-ar>البريد الإلكتروني، الرسائل النصية <span class="en">(SMS)</span>، تطبيقات المراسلة الفورية، الويب ومواقع التواصل، والمكالمات الصوتية — بعضها يستغل ثغرات تقنية متقدمة، لكن كثيرًا منها ينجح فقط بفعالية نفسية بسيطة.</p>
+   <p data-en hidden>Email, SMS, instant messaging, web/social media, and voice calls — some leverage advanced technical exploits, but many succeed purely through psychologically effective techniques.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>سطح هجوم سلسلة الإمداد</h3>
+  <h3 style="margin-top:0" data-en hidden>Supply Chain Attack Surface</h3>
+  <p data-ar>العملية الكاملة من تصميم وتصنيع وتوزيع منتج أو خدمة للعميل النهائي — تشمل إدارة المشتريات والموردين والشركاء. كلما كبرت سلسلة الإمداد زاد تعقيدها. أغلب المؤسسات تعتمد على موردين موثوقين وتحذر من المعدات المستعملة، بينما مؤسسات عسكرية/استخباراتية قد تُجري تدقيقًا مباشرًا على مورّديها. تُستخدم أيضًا شركات الخدمات المُدارة <span class="en">(Managed Service Providers - MSPs)</span> كجزء من هذا السطح.</p>
+  <p data-en hidden>The end-to-end process of designing, manufacturing, and distributing goods and services to a customer — covers procurement management, suppliers, vendors, and business partners. The larger the supply chain, the more complex it is. Most businesses just rely on reputable suppliers and are cautious about secondhand equipment, while military/intelligence organizations may directly audit their suppliers. <span class="en">Managed Service Providers (MSPs)</span> are also part of this surface.</p>
+ </div>
+
+ <div class="tip" data-ar>هدف المؤسسة الدفاعي دائمًا: تقليل سطح الهجوم <span class="en">(reduce the attack surface)</span> — إغلاق منافذ غير مستخدمة، تصحيح البرمجيات، تعطيل خدمات غير ضرورية. الجهات عالية القدرة فقط من يستطيع فعليًا "توسيع" سطح الهجوم بابتكار ثغرات جديدة كليًا.</div>
+ <div class="tip" data-en hidden>The defensive goal is always to reduce the attack surface — close unused ports, patch software, disable unnecessary services. Only high-capability actors can actually "expand" the attack surface by inventing entirely novel vulnerabilities.</div>
+</section>
+
+<section id="l2-social">
+ <span class="mod-tag">LESSON 2 · TOPIC 2C</span>
+ <h2 data-ar>الهندسة الاجتماعية — Social Engineering</h2>
+ <h2 data-en hidden>Social Engineering</h2>
+ <p class="sub" data-ar>"اختراق الإنسان" — أكثر متجه هجوم فعالية رغم بساطته التقنية أحيانًا</p>
+ <p class="sub" data-en hidden>"Hacking the human" — often the most effective attack vector, sometimes with minimal technical sophistication</p>
+
+ <div class="card">
+  <p data-ar>غرض الهندسة الاجتماعية إما <b>استطلاعي</b> (جمع معلومات) أو <b>اقتحامي</b> (الوصول غير المصرَّح به مباشرة). سيناريوهات شائعة: إقناع مستخدم بتشغيل ملف ضار، الاتصال بمكتب الدعم الفني وانتزاع معلومات، أو الوصول لمبنى وتركيب جهاز مراقبة.</p>
+  <p data-en hidden>The purpose of social engineering is either <b>reconnaissance</b> (eliciting information) or <b>intrusion</b> (gaining unauthorized access directly). Common scenarios: persuading a user to run a malicious file, contacting a help desk to solicit information, or gaining access to premises to install a monitoring device.</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>الانتحال والتذرّع — Impersonation &amp; Pretexting</h3>
+  <h3 style="margin-top:0" data-en hidden>Impersonation and Pretexting</h3>
+  <ul data-ar>
+   <li><b>Impersonation</b>: التظاهر بأنك شخص آخر — إما عبر أسلوب الإقناع/التوافق/الاستحسان، أو أسلوب الإكراه/التهديد/الاستعجال.</li>
+   <li><b>Pretexting</b>: استغلال المواقف التي يصعب فيها التحقق من الهوية، باستخدام سيناريو مقنع بتفاصيل إضافية، وأحيانًا بيانات مزوَّرة تدعم ادّعاء الهوية.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Impersonation</b>: pretending to be someone else — either via a persuasiveness/consensus/liking approach, or a coercion/threat/urgency approach.</li>
+   <li><b>Pretexting</b>: exploiting situations where identity-proofing is difficult, using a scenario with convincing additional detail, and sometimes spoofed data supporting the identity claim.</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>التصيّد وأشكاله</h3>
+  <h3 style="margin-top:0" data-en hidden>Phishing and Its Variants</h3>
+  <table>
+   <tr data-ar><th>المصطلح</th><th>القناة</th></tr>
+   <tr data-en hidden><th>Term</th><th>Channel</th></tr>
+   <tr data-ar><td><b>Phishing</b></td><td>خداع الهدف لاستخدام مورد أو موقع مزيَّف عبر تقليد اتصالات ومواقع شرعية — أي وسيلة اتصال</td></tr>
+   <tr data-en hidden><td><b>Phishing</b></td><td>Tricking the target into using a malicious resource by spoofing legitimate communications/sites — any communication method</td></tr>
+   <tr data-ar><td><b>Vishing</b></td><td>عبر القناة الصوتية</td></tr>
+   <tr data-en hidden><td><b>Vishing</b></td><td>Using a voice channel</td></tr>
+   <tr data-ar><td><b>SMiShing</b></td><td>عبر الرسائل النصية</td></tr>
+   <tr data-en hidden><td><b>SMiShing</b></td><td>Using text messaging</td></tr>
+   <tr data-ar><td><b>Pharming</b></td><td>إعادة توجيه الضحية لموقع مزيَّف عبر تلاعب بنظام أسماء النطاقات <span class="en">(DNS spoofing)</span> — تقنية سلبية أقل عرضة للاكتشاف</td></tr>
+   <tr data-en hidden><td><b>Pharming</b></td><td>Redirecting the victim via <span class="en">DNS spoofing</span> — a passive technique with less risk of detection</td></tr>
+  </table>
+  <p style="margin-top:12px" data-ar><b>Typosquatting</b>: استخدام نطاقات "أخ/شقيق" <span class="en">(cousin domains)</span> تشبه بصريًا نطاقًا موثوقًا، غالبًا مع تلاعب بحقل "From" في البريد لجعل الرسالة أكثر إقناعًا.</p>
+  <p data-en hidden><b>Typosquatting</b>: using <span class="en">cousin domains</span> that visually resemble a trusted domain, often combined with email "From" field manipulation to make the message more convincing.</p>
+ </div>
+
+ <div class="card">
+  <h3 style="margin-top:0" data-ar>اختراق البريد التجاري وما يتصل به</h3>
+  <h3 style="margin-top:0" data-en hidden>Business Email Compromise and Related Techniques</h3>
+  <p data-ar><b>Business Email Compromise (BEC)</b>: تصيّد/تصيّد صوتي/تصيّد نصي مُوجَّه لفرد محدد، منتحلًا صفة زميل أو شريك عمل أو مورّد — يشمل <span class="en">spear phishing</span> (استهداف دقيق)، <span class="en">whaling</span> (استهداف كبار المسؤولين)، <span class="en">CEO fraud</span>، و<span class="en">angler phishing</span> (عبر قنوات التواصل الاجتماعي).</p>
+  <p data-en hidden><b>Business Email Compromise (BEC)</b>: phishing/vishing/SMiShing targeted at a specific individual, posing as a colleague, business partner, or vendor — includes <span class="en">spear phishing</span> (precise targeting), <span class="en">whaling</span> (targeting senior executives), <span class="en">CEO fraud</span>, and <span class="en">angler phishing</span> (via social media channels).</p>
+  <p data-ar><b>انتحال العلامة التجارية والتضليل</b>: صناعة رسائل تصيّد ومراسلات تجارية ومواقع pharming مقنعة جدًا. يُفرَّق بين <span class="en">disinformation</span> (تضليل متعمّد) و<span class="en">misinformation</span> (معلومات خاطئة غير مقصودة).</p>
+  <p data-en hidden><b>Brand impersonation and disinformation</b>: crafting very convincing phishing messages, business correspondence, and pharming websites. Distinguish <span class="en">disinformation</span> (deliberately false) from <span class="en">misinformation</span> (unintentionally false).</p>
+  <p data-ar><b>هجوم حفرة الري (Watering Hole Attack)</b>: اختراق موقع طرف ثالث يعلم المهاجم أن الهدف يستخدمه بانتظام، بدل مهاجمة الهدف مباشرة.</p>
+  <p data-en hidden><b>Watering Hole Attack</b>: compromising a third-party site the attacker knows the target uses regularly, instead of attacking the target directly.</p>
+ </div>
+
+ <div class="tip" data-ar>فرّقي بين المصطلحات بالقناة لا بالمحتوى: الاسم الأساسي دائمًا <span class="en">Phishing</span> (أي وسيلة)، و<span class="en">Vishing</span> = صوت، و<span class="en">SMiShing</span> = رسائل نصية، و<span class="en">Pharming</span> = عبر DNS بدون تفاعل مباشر من الضحية بالضرورة. أما <span class="en">Spear phishing / Whaling / CEO fraud</span> فتصف <b>مدى الاستهداف</b> (عام مقابل شخص/منصب محدد) وليس القناة.</div>
+ <div class="tip" data-en hidden>Distinguish terms by channel, not content: the base term is always <span class="en">Phishing</span> (any channel), <span class="en">Vishing</span> = voice, <span class="en">SMiShing</span> = text messaging, <span class="en">Pharming</span> = via DNS without necessarily requiring the victim to interact directly. <span class="en">Spear phishing / Whaling / CEO fraud</span> instead describe the <b>degree of targeting</b> (general vs. a specific person/role), not the channel.</div>
+</section>
+
+</main>
+
+<div class="modnav"><a href="sec-lesson1-guide.html"><span data-ar>← الدرس 1</span><span data-en hidden>← Lesson 1</span></a><a href="sec-index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="sec-lesson3-guide.html"><span data-ar>الدرس 3 →</span><span data-en hidden>Lesson 3 →</span></a></div>
+
+<footer><span data-ar>ملخص دراسي — CompTIA Security+ SY0-701 · Lesson 2 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Security+ SY0-701 · Lesson 2 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
+</body>
+</html>

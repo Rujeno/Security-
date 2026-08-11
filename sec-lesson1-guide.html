@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 1 — أساسيات مفاهيم الأمن — CompTIA Security+ SY0-701</title>
+<meta name="description" content="شرح الدرس 1 من منهج CompTIA Security+ SY0-701 بالعربي — مفاهيم أمن المعلومات: CIA Triad، أطر العمل الأمنية NIST CSF، تحليل الفجوات، ضبط الوصول IAM/AAA، أنواع الضوابط الأمنية، الأدوار والمسؤوليات.">
+<meta name="keywords" content="CompTIA Security+, SY0-701, الدرس 1, CIA Triad, NIST CSF, Access Control, IAM, AAA, Security Controls">
+<link rel="canonical" href="https://rujeno.github.io/Security-/sec-lesson1-guide.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="الدرس 1 — أساسيات مفاهيم الأمن — CompTIA Security+ SY0-701">
+<meta property="og:description" content="شرح الدرس 1 من منهج CompTIA Security+ SY0-701 بالعربي — CIA Triad، NIST CSF، Access Control، أنواع الضوابط الأمنية، الأدوار والمسؤوليات.">
+<meta property="og:url" content="https://rujeno.github.io/Security-/sec-lesson1-guide.html">
+<meta property="og:locale" content="ar_AR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#0e1b25;
+  --paper:#f7f9fa;
+  --card:#ffffff;
+  --deep:#0d3b4f;
+  --teal:#12617c;
+  --signal:#e8672c;
+  --line:#d8e2e7;
+  --muted:#5b7280;
+  --soft:#eef4f6;
+  --good:#1a7f5c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9;font-size:16.5px}
+.en{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;font-size:.92em;color:var(--teal);font-weight:500}
+b .en, h2 .en, h3 .en{color:inherit}
+
+header{background:linear-gradient(135deg,var(--deep) 0%,#0a2a3a 100%);color:#fff;padding:56px 24px 48px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:0;background:
+ repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px);pointer-events:none}
+.hwrap{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.16);color:#ffb48c;border:1px solid rgba(232,103,44,.45);padding:4px 14px;border-radius:999px;margin-bottom:18px}
+header h1{font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.4}
+header p{color:#b9d2dd;margin-top:12px;max-width:680px}
+
+.crosslink{text-align:center;padding:14px 16px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.crosslink a{color:var(--signal);font-weight:700;text-decoration:none;font-size:15px}
+.crosslink a:hover{text-decoration:underline}
+
+nav{position:sticky;top:47px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+nav .nwrap{max-width:960px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:14px;font-weight:600;padding:6px 14px;border-radius:999px}
+nav a:hover{background:var(--soft);color:var(--deep)}
+nav a.sep{color:var(--line);pointer-events:none;padding:6px 2px}
+
+main{max-width:960px;margin:0 auto;padding:40px 20px 80px}
+section{margin-bottom:56px}
+.mod-tag{font-family:'IBM Plex Mono',monospace;direction:ltr;display:inline-block;font-size:12px;letter-spacing:.12em;color:#fff;background:var(--signal);padding:3px 12px;border-radius:4px;margin-bottom:10px}
+h2{font-size:26px;font-weight:700;color:var(--deep);border-right:5px solid var(--signal);padding-right:14px;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:22px}
+h3{font-size:19px;font-weight:700;color:var(--teal);margin:30px 0 12px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(13,59,79,.05)}
+.card p{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+ul{padding-right:22px;margin:8px 0}
+li{margin-bottom:8px}
+b{font-weight:700;color:var(--deep)}
+
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:14px 0;font-size:15px}
+th{background:var(--deep);color:#fff;padding:11px 14px;text-align:right;font-weight:600}
+td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+
+.tip{background:#fff7f1;border:1px solid #f3c9ab;border-radius:12px;padding:16px 20px;margin:16px 0}
+.tip::before{content:"💡 نقطة اختبار";display:block;font-weight:700;color:var(--signal);margin-bottom:6px;font-size:14px}
+html[dir="ltr"] .tip::before{content:"💡 Exam Tip"}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.two{grid-template-columns:1fr}}
+
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.flow span{background:var(--deep);color:#fff;border-radius:8px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.flow i{color:var(--signal);font-style:normal;font-weight:700}
+
+.diagram{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0;text-align:center;overflow-x:auto}
+.diagram svg{max-width:100%;height:auto}
+.diagram .cap{direction:rtl;margin-top:10px;font-size:13px;color:var(--muted);line-height:1.7}
+html[dir="ltr"] .diagram .cap{direction:ltr}
+.diagrow{direction:ltr;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+.diagrow .dbox{direction:ltr;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.diagrow .dbox svg{max-width:100%;height:auto}
+.diagrow .dbox .cap{direction:rtl;margin-top:8px;font-size:13px;font-weight:700;color:var(--teal)}
+@media(max-width:720px){.diagrow{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.diagrow{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#a9c6d3;text-align:center;padding:26px;font-size:14px}
+code.k{font-family:'IBM Plex Mono',monospace;direction:ltr;unicode-bidi:embed;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 8px;font-size:.9em;color:var(--deep)}
+
+.switcher{background:var(--deep);padding:0;overflow-x:auto;white-space:nowrap;border-bottom:2px solid var(--signal)}
+.switcher .swrap{max-width:960px;margin:0 auto;display:flex}
+.switcher a{color:#b9d2dd;text-decoration:none;font-size:13.5px;font-weight:600;padding:14px 14px;display:inline-block;border-bottom:3px solid transparent;transition:.15s;white-space:nowrap}
+.switcher a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.switcher a.active{color:#fff;border-bottom-color:var(--signal);background:rgba(255,255,255,.04)}
+
+.modnav{display:flex;justify-content:space-between;align-items:center;max-width:960px;margin:40px auto 0;padding:0 20px 40px}
+.modnav a{text-decoration:none;color:var(--teal);font-weight:700;font-size:14.5px;padding:10px 18px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.modnav a:hover{border-color:var(--teal);background:var(--soft)}
+.modnav a.home{color:var(--signal);border-color:transparent}
+
+.printbtn,.langbtn{background:none;border:none;color:#b9d2dd;font-family:inherit;font-size:13.5px;font-weight:600;padding:14px 14px;cursor:pointer;white-space:nowrap}
+.printbtn:hover,.langbtn:hover{background:rgba(255,255,255,.06);color:#fff}
+@media print{
+ .switcher,nav,.modnav,.no-print{display:none !important}
+ @page{size:A4;margin:14mm}
+ body{background:#fff;font-size:12.5px;line-height:1.6}
+ header{background:#0d3b4f !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:26px 20px}
+ header::after{display:none}
+ main{padding:20px 0 30px;max-width:100%}
+ section{margin-bottom:20px}
+ .card,table,.diagram,.diagrow,.tip{break-inside:avoid}
+ a{color:inherit;text-decoration:none}
+ h2{border-right-width:4px}
+}
+
+/* English / LTR mirroring */
+html[dir="ltr"] h2{border-right:none;border-left:5px solid var(--signal);padding-right:0;padding-left:14px}
+html[dir="ltr"] ul{padding-right:0;padding-left:22px}
+html[dir="ltr"] table th{text-align:left}
+html[dir="ltr"] .flow i{font-size:0}
+html[dir="ltr"] .flow i::after{content:"→";font-size:13.5px}
+html[dir="ltr"] .modnav a.home{order:1}
+[data-en]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hwrap">
+  <span class="eyebrow">CompTIA Security+ SY0-701 · LESSON 1</span>
+  <h1 data-ar>الدرس 1 — تلخيص مفاهيم الأمن الأساسية</h1>
+  <h1 data-en hidden>Lesson 1 — Summarizing Fundamental Security Concepts</h1>
+  <p data-ar>مفاهيم أمن المعلومات · CIA Triad · أطر العمل الأمنية · تحليل الفجوات · ضبط الوصول · أنواع الضوابط الأمنية · الأدوار والمسؤوليات</p>
+  <p data-en hidden>Information Security Concepts · CIA Triad · Cybersecurity Frameworks · Gap Analysis · Access Control · Security Control Types · Roles &amp; Responsibilities</p>
+ </div>
+</header>
+
+<div class="switcher"><div class="swrap"><a href="sec-index.html">🏠</a><a href="sec-lesson1-guide.html" class="active">1</a><a href="sec-lesson2-guide.html">2</a><a href="sec-lesson3-guide.html">3</a><a href="sec-lesson4-guide.html">4</a><a href="sec-quiz.html">📝</a><button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>
+
+<nav><div class="nwrap">
+ <a href="#l1-cia" data-ar>1.1 مفهوم أمن المعلومات</a>
+ <a href="#l1-cia" data-en hidden>1.1 Information Security</a>
+ <a href="#l1-framework">1.1 NIST CSF</a>
+ <a href="#l1-access">1.1 Access Control</a>
+ <a href="#l1-controlcat">1.2 Control Categories</a>
+ <a href="#l1-functype">1.2 Functional Types</a>
+ <a href="#l1-roles">1.2 Roles &amp; Units</a>
+</div></nav>
+
+<main>
+
+<section id="l1-cia">
+ <span class="mod-tag">LESSON 1 · TOPIC 1A</span>
+ <h2 data-ar>مفهوم أمن المعلومات — CIA Triad</h2>
+ <h2 data-en hidden>Information Security — The CIA Triad</h2>
+ <p class="sub" data-ar>الأساس الذي يُبنى عليه كل قرار أمني في الشهادة كلها</p>
+ <p class="sub" data-en hidden>The foundation every security decision in the whole certification is built on</p>
+
+ <div class="card">
+  <p data-ar>أمن المعلومات <span class="en">(Information Security)</span> يقوم على أربع خصائص أساسية يجب حمايتها في أي نظام. الثلاث الأولى تُعرف بـ<b>CIA Triad</b>:</p>
+  <p data-en hidden><span class="en">Information Security</span> rests on four core properties that must be protected in any system. The first three are known as the <b>CIA Triad</b>:</p>
+  <ul data-ar>
+   <li><b>Confidentiality (السرية)</b>: المعلومة تُقرأ فقط من قِبل الأشخاص المصرّح لهم <span class="en">(authorized persons)</span> — تُحقَّق غالبًا عبر التشفير <span class="en">(encryption)</span> وضبط الوصول.</li>
+   <li><b>Integrity (السلامة)</b>: البيانات تُخزَّن وتُنقل كما هي، وأي تعديل عليها لازم يكون مصرَّحًا به — تُحقَّق عبر <span class="en">hashing</span> والتوقيع الرقمي.</li>
+   <li><b>Availability (التوفر)</b>: المعلومة متاحة للأشخاص المصرَّح لهم عند الحاجة — لا تُهمَل رغم إنها أقل خاصية يُتحدَّث عنها.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Confidentiality</b>: information should only be read by <span class="en">authorized persons</span> — typically enforced via <span class="en">encryption</span> and access control.</li>
+   <li><b>Integrity</b>: data is stored and transferred as intended, and any modification must be authorized — enforced via <span class="en">hashing</span> and digital signatures.</li>
+   <li><b>Availability</b>: information is accessible to authorized people when needed — don't overlook this property just because it's discussed less.</li>
+  </ul>
+  <p data-ar>وتضاف لها خاصية رابعة مهمة: <b>Non-repudiation (عدم الإنكار)</b> — الشخص لا يستطيع إنكار أنه أنشأ أو عدَّل بيانات معينة (يُحقَّق عبر التوقيع الرقمي وسجلات المراجعة).</p>
+  <p data-en hidden>A fourth important property is added: <b>Non-repudiation</b> — a person cannot deny creating or modifying data (enforced via digital signatures and audit logs).</p>
+ </div>
+
+ <div class="diagram">
+  <svg viewBox="0 0 360 220" style="max-width:320px">
+   <polygon points="180,20 40,190 320,190" fill="none" stroke="#0d3b4f" stroke-width="3"/>
+   <circle cx="180" cy="20" r="30" fill="#0d3b4f"/>
+   <text x="180" y="25" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">C</text>
+   <circle cx="40" cy="190" r="30" fill="#12617c"/>
+   <text x="40" y="195" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">I</text>
+   <circle cx="320" cy="190" r="30" fill="#e8672c"/>
+   <text x="320" y="195" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">A</text>
+  </svg>
+  <div class="cap" data-ar>C = Confidentiality (السرية) · I = Integrity (السلامة) · A = Availability (التوفر) — مثلث CIA + خاصية رابعة: Non-repudiation</div>
+  <div class="cap" data-en hidden>C = Confidentiality · I = Integrity · A = Availability — the CIA triangle, plus a fourth property: Non-repudiation</div>
+ </div>
+
+ <div class="tip" data-ar>اختصار بديل مفيد للحفظ: <b>PAIN</b> = <span class="en">Privacy, Authentication, Integrity, Non-Repudiation</span>. لا تخلطي بين "الأمن" <span class="en">Security</span> و"الخصوصية" <span class="en">Privacy</span> — سيأتي الفرق بينهما لاحقًا بالمنهج.</div>
+ <div class="tip" data-en hidden>A useful alternative mnemonic: <b>PAIN</b> = <span class="en">Privacy, Authentication, Integrity, Non-Repudiation</span>. Don't confuse "Security" with "Privacy" — the distinction is covered later in the course.</div>
+</section>
+
+<section id="l1-framework">
+ <span class="mod-tag">LESSON 1 · TOPIC 1A</span>
+ <h2 data-ar>أطر العمل الأمنية — NIST Cybersecurity Framework</h2>
+ <h2 data-en hidden>Cybersecurity Framework — NIST CSF</h2>
+ <p class="sub" data-ar>تنظّم كيف تدير المؤسسة عملياتها الأمنية، ثم تحليل الفجوات لقياس مدى الالتزام بها</p>
+ <p class="sub" data-en hidden>Organizes how a business runs its security operations, followed by gap analysis to measure compliance with it</p>
+
+ <div class="card">
+  <p data-ar><b>إطار العمل (Framework)</b>: مجموعة إرشادات وأفضل ممارسات تساعد المؤسسة على بناء وتقييم برنامجها الأمني. أشهرها <b>NIST Cybersecurity Framework (CSF)</b> الصادر عن المعهد الوطني الأمريكي للمعايير والتقنية.</p>
+  <p data-en hidden><b>Framework</b>: a set of guidelines and best practices that help an organization build and assess its security program. The best-known is the <b>NIST Cybersecurity Framework (CSF)</b>, published by the US National Institute of Standards and Technology.</p>
+  <p data-ar>يقسّم NIST CSF العمليات الأمنية إلى وظائف أساسية <span class="en">(functions)</span> متسلسلة تغطي دورة حياة الحماية كاملة:</p>
+  <p data-en hidden>NIST CSF splits security operations into core, sequential <span class="en">functions</span> that cover the full protection lifecycle:</p>
+ </div>
+
+ <div class="flow">
+  <span>Identify</span><i>←</i>
+  <span>Protect</span><i>←</i>
+  <span>Detect</span><i>←</i>
+  <span>Respond</span><i>←</i>
+  <span>Recover</span>
+ </div>
+
+ <div class="card">
+  <table>
+   <tr data-ar><th>الوظيفة</th><th>ماذا تعني</th></tr>
+   <tr data-en hidden><th>Function</th><th>What It Means</th></tr>
+   <tr data-ar><td><b>Identify</b></td><td>فهم الأصول <span class="en">(assets)</span>، المخاطر، وسطح الهجوم — لا تقدرين تحمين ما لا تعرفينه</td></tr>
+   <tr data-en hidden><td><b>Identify</b></td><td>Understand <span class="en">assets</span>, risks, and attack surface — you can't protect what you don't know exists</td></tr>
+   <tr data-ar><td><b>Protect</b></td><td>تطبيق الضوابط الوقائية: التشفير، ضبط الوصول، التدريب</td></tr>
+   <tr data-en hidden><td><b>Protect</b></td><td>Apply preventive controls: encryption, access control, training</td></tr>
+   <tr data-ar><td><b>Detect</b></td><td>اكتشاف الحوادث الأمنية عند وقوعها عبر المراقبة والتنبيهات</td></tr>
+   <tr data-en hidden><td><b>Detect</b></td><td>Discover security incidents as they happen via monitoring and alerts</td></tr>
+   <tr data-ar><td><b>Respond</b></td><td>احتواء الحادثة والتعامل معها فور اكتشافها</td></tr>
+   <tr data-en hidden><td><b>Respond</b></td><td>Contain and act on the incident once it's discovered</td></tr>
+   <tr data-ar><td><b>Recover</b></td><td>استعادة الأنظمة والخدمات لوضعها الطبيعي بعد الحادثة</td></tr>
+   <tr data-en hidden><td><b>Recover</b></td><td>Restore systems and services back to normal after the incident</td></tr>
+  </table>
+ </div>
+
+ <div class="tip" data-ar>لاحظي أن ترتيب الوظائف الخمس يطابق تسلسل التعامل مع أي حادثة أمنية منطقيًا: تعرفين أصولك أولًا، تحمينها، تكتشفين الاختراق، تستجيبين له، ثم تتعافين. هذا الترتيب نفسه يتكرر بمفاهيم لاحقة في المنهج مثل Incident Response.</div>
+ <div class="tip" data-en hidden>Notice the five functions follow the same logical sequence as handling any security incident: know your assets first, protect them, detect a breach, respond to it, then recover. This same sequence reappears later in the course under Incident Response.</div>
+
+ <h3 data-ar>تحليل الفجوات — Gap Analysis</h3>
+ <h3 data-en hidden>Gap Analysis</h3>
+ <div class="card">
+  <p data-ar>بعد تبنّي إطار عمل، تحتاج المؤسسة معرفة أين تقف فعليًا مقارنة بما يتطلبه الإطار — هذا هو <b>Gap Analysis</b>: مقارنة الوضع الحالي <span class="en">(current state)</span> بالوضع المستهدف <span class="en">(desired state)</span> لتحديد الفجوات <span class="en">(gaps)</span> التي تحتاج معالجة.</p>
+  <p data-en hidden>After adopting a framework, an organization needs to know where it actually stands relative to what the framework requires — this is <b>Gap Analysis</b>: comparing the <span class="en">current state</span> to the <span class="en">desired state</span> to identify the <span class="en">gaps</span> that need addressing.</p>
+  <p data-ar>قد تتبنى المؤسسة إطار عمل لأنه أفضل ممارسة، أو لأن قانونًا أو جهة تنظيمية <span class="en">(regulatory requirement)</span> يفرضه عليها. تحليل الفجوات يُستخدم لاحقًا كمدخل أساسي لإدارة المخاطر <span class="en">(risk management)</span>، وهو موضوع مفصّل لاحقًا في المنهج.</p>
+  <p data-en hidden>An organization might adopt a framework because it's best practice, or because a law or <span class="en">regulatory requirement</span> mandates it. Gap analysis later feeds directly into <span class="en">risk management</span>, a topic covered in detail later in the course.</p>
+ </div>
+</section>
+
+<section id="l1-access">
+ <span class="mod-tag">LESSON 1 · TOPIC 1A</span>
+ <h2 data-ar>ضبط الوصول — Access Control</h2>
+ <h2 data-en hidden>Access Control</h2>
+ <p class="sub" data-ar>الفرق بين "من أنت؟" و"أثبتي أنك من تدّعين"</p>
+ <p class="sub" data-en hidden>The difference between "who are you?" and "prove you are who you claim"</p>
+
+ <div class="two">
+  <div class="card">
+   <p><b>Identification</b></p>
+   <p data-ar>عملية إثبات الهوية <span class="en">(identity proofing)</span> وإنشاء حساب مستخدم لأول مرة — تحدث مرة واحدة عند التسجيل.</p>
+   <p data-en hidden>The process of <span class="en">identity proofing</span> and creating a user account for the first time — happens once at enrollment.</p>
+  </div>
+  <div class="card">
+   <p><b>Authentication</b></p>
+   <p data-ar>العملية التي تُثبت أن الحساب يُستخدم فعلًا من قِبل الشخص الذي أُنشئ له — تحدث في كل مرة يسجّل فيها الشخص الدخول.</p>
+   <p data-en hidden>The process that proves the account is being accessed by the person it was created for — happens every time someone logs in.</p>
+  </div>
+ </div>
+
+ <div class="card">
+  <p data-ar>مصطلح <b>IAM (Identity and Access Management)</b> يعكس أهمية مكوّن <span class="en">Identification</span>، وهو مصطلح أشمل من إطار العمل الأقدم <b>AAA</b>:</p>
+  <p data-en hidden>The term <b>IAM (Identity and Access Management)</b> reflects the importance of the <span class="en">Identification</span> component, and is broader than the older <b>AAA</b> framework:</p>
+  <table>
+   <tr data-ar><th>المكوّن</th><th>يعني ماذا</th></tr>
+   <tr data-en hidden><th>Component</th><th>What It Means</th></tr>
+   <tr data-ar><td><b>Authentication</b></td><td>إثبات هوية المستخدم (كلمة مرور، بصمة، شهادة رقمية...)</td></tr>
+   <tr data-en hidden><td><b>Authentication</b></td><td>Proving the user's identity (password, fingerprint, digital certificate...)</td></tr>
+   <tr data-ar><td><b>Authorization</b></td><td>تحديد ما يُسمح للمستخدم فعله بعد إثبات هويته (صلاحيات)</td></tr>
+   <tr data-en hidden><td><b>Authorization</b></td><td>Determining what the user is allowed to do once authenticated (permissions)</td></tr>
+   <tr data-ar><td><b>Accounting</b></td><td>تسجيل ما فعله المستخدم فعليًا (سجلات ومراجعة)</td></tr>
+   <tr data-en hidden><td><b>Accounting</b></td><td>Logging what the user actually did (logs and audit trail)</td></tr>
+  </table>
+ </div>
+
+ <div class="tip" data-ar>سؤال اختبار كلاسيكي: "ما الفرق بين Identification وAuthentication؟" ← <span class="en">Identification</span> = إنشاء الحساب لأول مرة، <span class="en">Authentication</span> = إثبات أن مستخدم الحساب هو صاحبه الحقيقي في كل دخول. تفاصيل أنظمة المصادقة ونماذج التفويض ستُشرح بالتفصيل لاحقًا بالمنهج — هذا فقط نظرة عامة تأسيسية.</div>
+ <div class="tip" data-en hidden>Classic exam question: "What's the difference between Identification and Authentication?" ← <span class="en">Identification</span> = creating the account for the first time, <span class="en">Authentication</span> = proving the account's real owner is using it on every login. Authentication systems and authorization models are covered in full detail later — this is only a foundational overview.</div>
+</section>
+
+<section id="l1-controlcat">
+ <span class="mod-tag">LESSON 1 · TOPIC 1B</span>
+ <h2 data-ar>فئات الضوابط الأمنية — Security Control Categories</h2>
+ <h2 data-en hidden>Security Control Categories</h2>
+ <p class="sub" data-ar>الفئة تصف كيف يُنفَّذ الضابط الأمني</p>
+ <p class="sub" data-en hidden>A category describes how a control is implemented</p>
+
+ <div class="diagrow">
+  <div class="dbox">
+   <svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="55" fill="#0d3b4f"/><text x="70" y="66" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">📋</text><text x="70" y="86" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Managerial</text></svg>
+   <div class="cap" data-ar>إشراف على النظام</div>
+   <div class="cap" data-en hidden>Oversight of the system</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="55" fill="#12617c"/><text x="70" y="66" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">🧑</text><text x="70" y="86" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Operational</text></svg>
+   <div class="cap" data-ar>يعتمد على شخص للتنفيذ</div>
+   <div class="cap" data-en hidden>Relies on a person to implement</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="55" fill="#e8672c"/><text x="70" y="66" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">💻</text><text x="70" y="86" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Technical</text></svg>
+   <div class="cap" data-ar>يُنفَّذ بالأنظمة والبرمجيات</div>
+   <div class="cap" data-en hidden>Implemented in systems/software</div>
+  </div>
+  <div class="dbox">
+   <svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="55" fill="#1a7f5c"/><text x="70" y="66" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">🔒</text><text x="70" y="86" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Physical</text></svg>
+   <div class="cap" data-ar>يضبط الوصول للمبنى والأجهزة</div>
+   <div class="cap" data-en hidden>Mediates access to premises/hardware</div>
+  </div>
+ </div>
+
+ <div class="card">
+  <ul data-ar>
+   <li><b>Managerial (إداري)</b>: يمنح إشرافًا على النظام — مثل السياسات <span class="en">(policies)</span> وإجراءات إدارة المخاطر.</li>
+   <li><b>Operational (تشغيلي)</b>: يعتمد على شخص لتنفيذه — مثل التدريب الأمني والتحقق من الالتزام بالسياسة يدويًا.</li>
+   <li><b>Technical (تقني)</b>: يُنفَّذ داخل أنظمة التشغيل والبرمجيات وأجهزة الحماية — مثل صلاحيات نظام الملفات وجدران الحماية.</li>
+   <li><b>Physical (فيزيائي)</b>: أجهزة تضبط الوصول للمبنى والمعدات — مثل الأقفال والكاميرات والحواجز.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Managerial</b>: gives oversight of the system — e.g. <span class="en">policies</span> and risk-management procedures.</li>
+   <li><b>Operational</b>: relies on a person for implementation — e.g. security training, manually verifying policy compliance.</li>
+   <li><b>Technical</b>: implemented in operating systems, software, and security appliances — e.g. file-system permissions and firewalls.</li>
+   <li><b>Physical</b>: devices that mediate access to premises and hardware — e.g. locks, cameras, barriers.</li>
+  </ul>
+  <p data-ar><b>مثال يوضّح التداخل</b>: سياسة الوصول للمستندات <span class="en">managerial</span>، والتحقّق من تطبيق الصلاحيات فعليًا <span class="en">operational</span>، وصلاحيات نظام الملفات نفسها <span class="en">technical</span> — نفس الموضوع، لكن أربع زوايا مختلفة.</p>
+  <p data-en hidden><b>An example showing the overlap</b>: a document access policy is <span class="en">managerial</span>, checking that permissions are actually applied is <span class="en">operational</span>, and the file-system permissions themselves are <span class="en">technical</span> — the same subject, seen from different angles.</p>
+ </div>
+
+ <div class="tip" data-ar>تصنيف الفئة يوجد فيه تداخل طبيعي دائمًا — الهدف من التصنيف ليس دقة رياضية، بل مساعدتك تقيّمين قدرات مؤسستك مقارنة بأطر العمل وأفضل الممارسات.</div>
+ <div class="tip" data-en hidden>There's always natural overlap in category classification — the point isn't mathematical precision, it's helping you assess your organization's capabilities against frameworks and best-practice guides.</div>
+</section>
+
+<section id="l1-functype">
+ <span class="mod-tag">LESSON 1 · TOPIC 1B</span>
+ <h2 data-ar>الأنواع الوظيفية للضوابط الأمنية</h2>
+ <h2 data-en hidden>Security Control Functional Types</h2>
+ <p class="sub" data-ar>النوع الوظيفي يصف الغرض من الضابط، لا طريقة تنفيذه</p>
+ <p class="sub" data-en hidden>The functional type describes a control's purpose, not how it's implemented</p>
+
+ <div class="card">
+  <table>
+   <tr data-ar><th>النوع</th><th>الوصف</th><th>يعمل</th><th>أمثلة</th></tr>
+   <tr data-en hidden><th>Type</th><th>Description</th><th>Operates</th><th>Examples</th></tr>
+   <tr data-ar><td><b>Preventive</b></td><td>يقيّد الوصول غير المصرَّح به فيزيائيًا أو منطقيًا</td><td>قبل الهجوم</td><td>سياسة الصلاحيات، التشفير، الجدار الناري، الأقفال</td></tr>
+   <tr data-en hidden><td><b>Preventive</b></td><td>Restricts unauthorized access physically or logically</td><td>Before an attack</td><td>Permissions policy, encryption, firewall, locks</td></tr>
+   <tr data-ar><td><b>Detective</b></td><td>يكتشف محاولة أو نجاح اختراق</td><td>أثناء الهجوم</td><td>أجهزة الإنذار، المراقبة، التحقق من سلامة الملفات</td></tr>
+   <tr data-en hidden><td><b>Detective</b></td><td>Identifies attempted or successful intrusions</td><td>During an attack</td><td>Alarms, monitoring, file verification</td></tr>
+   <tr data-ar><td><b>Corrective</b></td><td>يستجيب للحادثة ويصلحها وقد يمنع تكرارها</td><td>بعد الهجوم</td><td>سياسات الاستجابة للحوادث، النسخ الاحتياطي، إدارة التصحيحات</td></tr>
+   <tr data-en hidden><td><b>Corrective</b></td><td>Responds to and fixes an incident, may prevent recurrence</td><td>After an attack</td><td>Incident response policies, data backup, patch management</td></tr>
+   <tr data-ar><td><b>Directive</b></td><td>يفرض قاعدة سلوك معيّنة</td><td>—</td><td>سياسة استخدام مقبول، لافتات تحذيرية</td></tr>
+   <tr data-en hidden><td><b>Directive</b></td><td>Enforces a rule of behavior</td><td>—</td><td>Acceptable use policy, warning signage</td></tr>
+   <tr data-ar><td><b>Deterrent</b></td><td>يُثبّط الاختراق نفسيًا دون منعه فعليًا</td><td>—</td><td>كاميرات ظاهرة، لافتة "موقع مراقَب"</td></tr>
+   <tr data-en hidden><td><b>Deterrent</b></td><td>Psychologically discourages intrusion</td><td>—</td><td>Visible cameras, "site under surveillance" sign</td></tr>
+   <tr data-ar><td><b>Compensating</b></td><td>بديل لضابط أساسي غير متاح، غالبًا لأغراض الالتزام بإطار عمل</td><td>—</td><td>مراقبة يدوية إضافية عند تعذّر تطبيق ضابط تقني</td></tr>
+   <tr data-en hidden><td><b>Compensating</b></td><td>Substitutes for a principal control that isn't available, often for compliance purposes</td><td>—</td><td>Extra manual monitoring when a technical control can't be applied</td></tr>
+  </table>
+ </div>
+
+ <div class="tip" data-ar>الفئة الأولى الثلاثية (Preventive → Detective → Corrective) لها ترتيب زمني واضح مرتبط بالهجوم: قبل → أثناء → بعد. أما الثلاثية الثانية (Directive, Deterrent, Compensating) فليس لها ترتيب زمني، وترتبط أكثر بالسياسات والالتزام. سؤال شائع: "ما نوع الكاميرا الظاهرة بدون مراقبة فعلية؟" ← <b>Deterrent</b>، وليس <span class="en">Detective</span>، لأنها لا تكتشف الحادثة فعليًا — فقط تُخيف المهاجم.</div>
+ <div class="tip" data-en hidden>The first trio (Preventive → Detective → Corrective) has a clear timeline tied to the attack: before → during → after. The second trio (Directive, Deterrent, Compensating) has no timeline and relates more to policy and compliance. Common question: "What type is a visible camera with no active monitoring?" ← <b>Deterrent</b>, not <span class="en">Detective</span>, because it doesn't actually detect the incident — it only discourages the attacker.</div>
+</section>
+
+<section id="l1-roles">
+ <span class="mod-tag">LESSON 1 · TOPIC 1B</span>
+ <h2 data-ar>الأدوار والمسؤوليات ووحدات الأعمال الأمنية</h2>
+ <h2 data-en hidden>Security Roles, Responsibilities &amp; Business Units</h2>
+ <p class="sub" data-ar>من يملك المسؤولية النهائية، ومن ينفّذ فعليًا</p>
+ <p class="sub" data-en hidden>Who holds ultimate responsibility, and who actually implements</p>
+
+ <div class="card">
+  <ul data-ar>
+   <li><b>Chief Information Officer (CIO)</b>: المسؤول الأعلى — إداري في الأساس.</li>
+   <li><b>Chief Security Officer (CSO)</b>: يجمع بين الجانب الإداري والتقني للأمن.</li>
+   <li><b>Information Systems Security Officer (ISSO)</b>: دور غير تقني بحت، يتعلق بالمساءلة والالتزام <span class="en">(due care / liability)</span>.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Chief Information Officer (CIO)</b>: overall responsibility — primarily managerial.</li>
+   <li><b>Chief Security Officer (CSO)</b>: combines managerial and technical responsibility for security.</li>
+   <li><b>Information Systems Security Officer (ISSO)</b>: a non-purely-technical role tied to accountability — <span class="en">due care / liability</span>.</li>
+  </ul>
+  <p data-ar>المسؤولية عن الأمن قد تحتاج توضيحًا عندما توجد وظيفة أمنية متخصصة إلى جانب مسؤوليات مدراء الأقسام المختلفين — لتجنّب التداخل أو الفجوات في التغطية.</p>
+  <p data-en hidden>Responsibility for security may need clarifying when there's a specialist security function alongside the responsibilities of different department managers — to avoid overlap or coverage gaps.</p>
+ </div>
+
+ <div class="card">
+  <p data-ar><b>الكفاءات الأمنية الأساسية</b> التي يُتوقَّع من فريق الأمن إتقانها:</p>
+  <p data-en hidden><b>Core information security competencies</b> expected of a security team:</p>
+  <ul data-ar>
+   <li>تقييمات المخاطر والاختبارات <span class="en">(risk assessments &amp; testing)</span></li>
+   <li>تحديد ومصادر وتركيب وتهيئة الأجهزة والبرمجيات الآمنة</li>
+   <li>ضبط الوصول وصلاحيات المستخدمين</li>
+   <li>مراجعة السجلات والأحداث <span class="en">(auditing logs and events)</span></li>
+   <li>الاستجابة للحوادث والتقارير</li>
+   <li>استمرارية الأعمال والتعافي من الكوارث <span class="en">(BC/DR)</span></li>
+   <li>برامج التدريب والتوعية الأمنية</li>
+  </ul>
+  <ul data-en hidden>
+   <li><span class="en">Risk assessments and testing</span></li>
+   <li>Specifying, sourcing, installing, and configuring secure devices and software</li>
+   <li>Access control and user privileges</li>
+   <li>Auditing logs and events</li>
+   <li>Incident response and reporting</li>
+   <li>Business continuity and disaster recovery</li>
+   <li>Security training and education programs</li>
+  </ul>
+ </div>
+
+ <div class="card">
+  <p data-ar><b>وحدات الأعمال الأمنية</b> — كيف تُنظَّم الوظيفة الأمنية داخل المؤسسة عمليًا:</p>
+  <p data-en hidden><b>Security business units</b> — how the security function is organized in practice:</p>
+  <ul data-ar>
+   <li><b>Security Operations Center (SOC)</b>: الفريق المسؤول عن المراقبة المستمرة والاستجابة للتنبيهات الأمنية.</li>
+   <li><b>DevSecOps</b>: دمج الأمن ضمن دورة التطوير والتشغيل من البداية (Development + Security + Operations)، بدل إضافته كخطوة أخيرة.</li>
+   <li><b>Cyber Incident Response Team (CIRT)</b>: فريق متخصص للتعامل مع الحوادث الأمنية عند وقوعها.</li>
+  </ul>
+  <ul data-en hidden>
+   <li><b>Security Operations Center (SOC)</b>: the team responsible for continuous monitoring and responding to security alerts.</li>
+   <li><b>DevSecOps</b>: embedding security into the development and operations lifecycle from the start (Development + Security + Operations), instead of bolting it on at the end.</li>
+   <li><b>Cyber Incident Response Team (CIRT)</b>: a specialized team for handling security incidents as they occur.</li>
+  </ul>
+ </div>
+
+ <div class="tip" data-ar>لخّصي الدرس بهذا الترتيب الذهني: <span class="en">CIA Triad</span> (ماذا نحمي) ← <span class="en">NIST CSF</span> (كيف ندير الحماية) ← <span class="en">Access Control / IAM</span> (من يدخل) ← فئات وأنواع الضوابط (كيف نطبّق ونصنّف) ← الأدوار والوحدات (من ينفّذ). هذا التسلسل يتكرر منطقيًا في معظم مواضيع الشهادة.</div>
+ <div class="tip" data-en hidden>Summarize the lesson with this mental order: <span class="en">CIA Triad</span> (what we protect) → <span class="en">NIST CSF</span> (how we manage protection) → <span class="en">Access Control / IAM</span> (who gets in) → control categories &amp; types (how we apply and classify) → roles &amp; units (who implements). This sequence recurs logically across most of the certification's topics.</div>
+</section>
+
+</main>
+
+<div class="modnav"><a href="sec-index.html" class="home"><span data-ar>🏠 الرئيسية</span><span data-en hidden>🏠 Home</span></a><a href="sec-lesson2-guide.html"><span data-ar>الدرس 2 →</span><span data-en hidden>Lesson 2 →</span></a></div>
+
+<footer><span data-ar>ملخص دراسي — CompTIA Security+ SY0-701 · Lesson 1 · أُعد للمذاكرة الشخصية</span><span data-en hidden>Study guide — CompTIA Security+ SY0-701 · Lesson 1 · prepared for personal study</span><br><span style="font-size:12px;opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></span></footer>
+<script>
+function applyLang(lang){
+ document.documentElement.lang = lang;
+ document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+ document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
+ document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+ var btn = document.getElementById('langBtn');
+ if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
+ localStorage.setItem('site-lang', lang);
+}
+function toggleLang(){
+ var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
+ applyLang(cur === 'en' ? 'ar' : 'en');
+}
+applyLang(localStorage.getItem('site-lang') || 'ar');
+</script>
+</body>
+</html>
