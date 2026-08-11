@@ -1,0 +1,38 @@
+name: Update Security Navigation
+on:
+  push:
+    paths:
+      - '.github/workflows/update-security-nav.yml'
+permissions:
+  contents: write
+jobs:
+  update-nav:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add lessons 5-16 to Security+ navigation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          for n in range(1,5):
+              p=Path(f'sec-lesson{n}-guide.html')
+              s=p.read_text(encoding='utf-8')
+              links=['<a href="sec-index.html">🏠</a>']
+              for i in range(1,17):
+                  active=' class="active"' if i==n else ''
+                  links.append(f'<a href="sec-lesson{i}-guide.html"{active}>{i}</a>')
+              links.append(f'<a href="sec-quiz.html?lesson={n}" title="أسئلة الدرس {n}">📝</a>')
+              replacement='<div class="switcher"><div class="swrap">'+''.join(links)+'<button class="langbtn no-print" id="langBtn" onclick="toggleLang()">🌐 EN</button><button class="printbtn no-print" onclick="window.print()">🖨️ PDF</button></div></div>'
+              s2=re.sub(r'<div class="switcher"><div class="swrap">.*?</div></div>',replacement,s,count=1,flags=re.S)
+              if s2==s:
+                  raise SystemExit(f'Navigation block not found in {p}')
+              p.write_text(s2,encoding='utf-8')
+          PY
+      - name: Commit updated navigation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sec-lesson1-guide.html sec-lesson2-guide.html sec-lesson3-guide.html sec-lesson4-guide.html
+          git diff --cached --quiet || git commit -m 'Show Security+ lessons 1-16 in lesson navigation'
+          git push
