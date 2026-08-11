@@ -1,127 +1,26 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CompTIA Security+ SY0-701 — دليل مذاكرة بالعربي</title>
 <meta name="description" content="دليل مذاكرة مجاني لشهادة CompTIA Security+ SY0-701 بالعربي — شرح كل درس مع اختبار محاكي تفاعلي، يُضاف تباعًا.">
 <meta name="keywords" content="CompTIA Security+, SY0-701, شرح Security+ بالعربي, دليل مذاكرة Security+, اختبار Security+ محاكي">
 <link rel="canonical" href="https://rujeno.github.io/Security-/sec-index.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CompTIA Security+ SY0-701 — دليل مذاكرة بالعربي">
-<meta property="og:description" content="دليل مذاكرة مجاني لشهادة CompTIA Security+ SY0-701 بالعربي — شرح كل درس مع اختبار محاكي تفاعلي.">
-<meta property="og:url" content="https://rujeno.github.io/Security-/sec-index.html">
-<meta property="og:locale" content="ar_AR">
+<meta property="og:type" content="website"><meta property="og:title" content="CompTIA Security+ SY0-701 — دليل مذاكرة بالعربي"><meta property="og:description" content="دليل مذاكرة مجاني لشهادة CompTIA Security+ SY0-701 بالعربي — شرح كل درس مع اختبار محاكي تفاعلي."><meta property="og:url" content="https://rujeno.github.io/Security-/sec-index.html"><meta property="og:locale" content="ar_AR">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--deep:#0d3b4f;--teal:#12617c;--signal:#e8672c;--line:#d8e2e7;--muted:#5b7280;--paper:#f7f9fa}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:#0e1b25;min-height:100vh;padding:40px 24px}
-.wrap{max-width:960px;width:100%;margin:0 auto;text-align:center}
-.eyebrow{font-family:monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.12);color:var(--signal);border:1px solid rgba(232,103,44,.4);padding:4px 14px;border-radius:999px;margin-bottom:16px}
-h1{font-size:clamp(24px,4vw,34px);color:var(--deep);margin-bottom:10px}
-p.sub{color:var(--muted);margin-bottom:36px;font-size:14px}
-h2.sec{color:var(--teal);font-size:15px;font-weight:700;margin:30px 0 14px;text-align:right}
-html[dir="ltr"] h2.sec{text-align:left}
-.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-@media(max-width:900px){.cards{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:600px){.cards{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:420px){.cards{grid-template-columns:1fr 1fr}}
-a.card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;box-shadow:0 2px 8px rgba(13,59,79,.06);transition:.15s}
-a.card:hover{border-color:var(--signal);transform:translateY(-3px)}
-a.card .icon{font-size:22px;margin-bottom:6px}
-a.card .title{color:var(--deep);font-weight:700;font-size:13px;margin-bottom:3px}
-a.card .desc{color:var(--muted);font-size:10.5px;line-height:1.45}
-.comingsoon{display:block;background:#fff;border:1.5px dashed var(--line);border-radius:14px;padding:16px 10px;opacity:.55}
-.comingsoon .icon{font-size:22px;margin-bottom:6px}
-.comingsoon .title{color:var(--muted);font-weight:700;font-size:13px}
-.quizcard{display:block;text-decoration:none;background:linear-gradient(135deg,var(--deep),#0a2a3a);border-radius:16px;padding:26px 22px;margin-top:26px;transition:.15s}
-.quizcard:hover{transform:translateY(-3px)}
-.quizcard .icon{font-size:30px;margin-bottom:10px}
-.quizcard .title{color:#fff;font-weight:700;font-size:18px;margin-bottom:6px}
-.quizcard .desc{color:#b9d2dd;font-size:13.5px}
-.crosscard{display:block;text-decoration:none;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:16px 22px;margin-top:14px;text-align:right}
-html[dir="ltr"] .crosscard{text-align:left}
-.crosscard:hover{border-color:var(--teal)}
-.crosscard .title{color:var(--teal);font-weight:700;font-size:14px}
-.langbtn{position:fixed;top:16px;left:16px;background:#fff;border:1.5px solid var(--line);color:var(--deep);font-family:inherit;font-weight:700;font-size:13px;padding:8px 14px;border-radius:999px;cursor:pointer;box-shadow:0 2px 8px rgba(13,59,79,.08);z-index:100}
-.langbtn:hover{border-color:var(--signal)}
-[data-en]{unicode-bidi:isolate}
-</style>
-</head>
-<body>
-<button class="langbtn" id="langBtn" onclick="toggleLang()">🌐 EN</button>
-<div class="wrap">
- <span class="eyebrow">CompTIA Security+ SY0-701</span>
- <h1 data-ar>دليل مذاكرة Security+ — الدروس تُضاف تباعًا</h1>
- <h1 data-en hidden>Security+ Study Guide — Lessons Added Progressively</h1>
- <p class="sub" data-ar>Fundamental Security Concepts · Threat Types · Attack Surface · Social Engineering — والمزيد قريبًا</p>
- <p class="sub" data-en hidden>Fundamental Security Concepts · Threat Types · Attack Surface · Social Engineering — more coming soon</p>
-
- <h2 class="sec" data-ar>📖 دروس الشرح</h2>
- <h2 class="sec" data-en hidden>📖 Lesson Guides</h2>
- <div class="cards">
-  <a class="card" href="sec-lesson1-guide.html">
-   <div class="icon">1️⃣</div>
-   <div class="title" data-ar>الدرس 1</div>
-   <div class="title" data-en hidden>Lesson 1</div>
-   <div class="desc">CIA Triad · NIST CSF · Access Control</div>
-  </a>
-  <a class="card" href="sec-lesson2-guide.html">
-   <div class="icon">2️⃣</div>
-   <div class="title" data-ar>الدرس 2</div>
-   <div class="title" data-en hidden>Lesson 2</div>
-   <div class="desc">Threat Actors · Attack Surface · Social Eng.</div>
-  </a>
-  <a class="card" href="sec-lesson3-guide.html">
-   <div class="icon">3️⃣</div>
-   <div class="title" data-ar>الدرس 3</div>
-   <div class="title" data-en hidden>Lesson 3</div>
-   <div class="desc">Cryptography · PKI · Certificates</div>
-  </a>
-  <a class="card" href="sec-lesson4-guide.html">
-   <div class="icon">4️⃣</div>
-   <div class="title" data-ar>الدرس 4</div>
-   <div class="title" data-en hidden>Lesson 4</div>
-   <div class="desc">IAM · MFA · Access Control · SSO</div>
-  </a>
-  <div class="comingsoon">
-   <div class="icon">➕</div>
-   <div class="title" data-ar>الدرس 5</div>
-   <div class="title" data-en hidden>Lesson 5</div>
-  </div>
+:root{--deep:#0d3b4f;--teal:#12617c;--signal:#e8672c;--line:#d8e2e7;--muted:#5b7280;--paper:#f7f9fa}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:#0e1b25;min-height:100vh;padding:40px 24px}.wrap{max-width:960px;width:100%;margin:0 auto;text-align:center}.eyebrow{font-family:monospace;direction:ltr;display:inline-block;font-size:13px;letter-spacing:.14em;background:rgba(232,103,44,.12);color:var(--signal);border:1px solid rgba(232,103,44,.4);padding:4px 14px;border-radius:999px;margin-bottom:16px}h1{font-size:clamp(24px,4vw,34px);color:var(--deep);margin-bottom:10px}p.sub{color:var(--muted);margin-bottom:36px;font-size:14px}h2.sec{color:var(--teal);font-size:15px;font-weight:700;margin:30px 0 14px;text-align:right}html[dir="ltr"] h2.sec{text-align:left}.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}@media(max-width:900px){.cards{grid-template-columns:repeat(4,1fr)}}@media(max-width:600px){.cards{grid-template-columns:repeat(3,1fr)}}@media(max-width:420px){.cards{grid-template-columns:1fr 1fr}}a.card{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;box-shadow:0 2px 8px rgba(13,59,79,.06);transition:.15s}a.card:hover{border-color:var(--signal);transform:translateY(-3px)}a.card .icon{font-size:22px;margin-bottom:6px}a.card .title{color:var(--deep);font-weight:700;font-size:13px;margin-bottom:3px}a.card .desc{color:var(--muted);font-size:10.5px;line-height:1.45}.comingsoon{display:block;background:#fff;border:1.5px dashed var(--line);border-radius:14px;padding:16px 10px;opacity:.55}.comingsoon .icon{font-size:22px;margin-bottom:6px}.comingsoon .title{color:var(--muted);font-weight:700;font-size:13px}.quizcard{display:block;text-decoration:none;background:linear-gradient(135deg,var(--deep),#0a2a3a);border-radius:16px;padding:26px 22px;margin-top:26px;transition:.15s}.quizcard:hover{transform:translateY(-3px)}.quizcard .icon{font-size:30px;margin-bottom:10px}.quizcard .title{color:#fff;font-weight:700;font-size:18px;margin-bottom:6px}.quizcard .desc{color:#b9d2dd;font-size:13.5px}.crosscard{display:block;text-decoration:none;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:16px 22px;margin-top:14px;text-align:right}html[dir="ltr"] .crosscard{text-align:left}.crosscard:hover{border-color:var(--teal)}.crosscard .title{color:var(--teal);font-weight:700;font-size:14px}.langbtn{position:fixed;top:16px;left:16px;background:#fff;border:1.5px solid var(--line);color:var(--deep);font-family:inherit;font-weight:700;font-size:13px;padding:8px 14px;border-radius:999px;cursor:pointer;box-shadow:0 2px 8px rgba(13,59,79,.08);z-index:100}.langbtn:hover{border-color:var(--signal)}[data-en]{unicode-bidi:isolate}
+</style></head><body>
+<button class="langbtn" id="langBtn" onclick="toggleLang()">🌐 EN</button><div class="wrap">
+ <span class="eyebrow">CompTIA Security+ SY0-701</span><h1 data-ar>دليل مذاكرة Security+ — الدروس تُضاف تباعًا</h1><h1 data-en hidden>Security+ Study Guide — Lessons Added Progressively</h1><p class="sub" data-ar>Fundamental Security Concepts · Threat Types · Attack Surface · Social Engineering — والمزيد قريبًا</p><p class="sub" data-en hidden>Fundamental Security Concepts · Threat Types · Attack Surface · Social Engineering — more coming soon</p>
+ <h2 class="sec" data-ar>📖 دروس الشرح</h2><h2 class="sec" data-en hidden>📖 Lesson Guides</h2><div class="cards">
+  <a class="card" href="sec-lesson1-guide.html"><div class="icon">1️⃣</div><div class="title" data-ar>الدرس 1</div><div class="title" data-en hidden>Lesson 1</div><div class="desc">CIA Triad · NIST CSF · Access Control</div></a>
+  <a class="card" href="sec-lesson2-guide.html"><div class="icon">2️⃣</div><div class="title" data-ar>الدرس 2</div><div class="title" data-en hidden>Lesson 2</div><div class="desc">Threat Actors · Attack Surface · Social Eng.</div></a>
+  <a class="card" href="sec-lesson3-guide.html"><div class="icon">3️⃣</div><div class="title" data-ar>الدرس 3</div><div class="title" data-en hidden>Lesson 3</div><div class="desc">Cryptography · PKI · Certificates</div></a>
+  <a class="card" href="sec-lesson4-guide.html"><div class="icon">4️⃣</div><div class="title" data-ar>الدرس 4</div><div class="title" data-en hidden>Lesson 4</div><div class="desc">IAM · MFA · Access Control · SSO</div></a>
+  <div class="comingsoon"><div class="icon">➕</div><div class="title" data-ar>الدرس 5</div><div class="title" data-en hidden>Lesson 5</div></div>
  </div>
-
- <a class="quizcard" href="sec-quiz.html">
-  <div class="icon">📝</div>
-  <div class="title" data-ar>اختبار محاكي — الدروس المتاحة</div>
-  <div class="title" data-en hidden>Practice Quiz — Available Lessons</div>
-  <div class="desc" data-ar>اختبار منفصل لكل درس (الأسئلة بالإنجليزي والشرح بالعربي) — يُحدَّث تلقائيًا مع كل درس جديد يُضاف</div>
-  <div class="desc" data-en hidden>A separate quiz per lesson (questions in English, explanations in Arabic) — updated automatically as new lessons are added</div>
- </a>
-
- <a class="crosscard" href="index.html">
-  <div class="title" data-ar>← الانتقال إلى مسار CompTIA Network+ N10-009</div>
-  <div class="title" data-en hidden>← Go to the CompTIA Network+ N10-009 track</div>
- </a>
-
+ <a class="quizcard" href="sec-quiz.html"><div class="icon">📝</div><div class="title" data-ar>اختبار محاكي — الدروس المتاحة</div><div class="title" data-en hidden>Practice Quiz — Available Lessons</div><div class="desc" data-ar>اختبار منفصل لكل درس (الأسئلة بالإنجليزي والشرح بالعربي) — يُحدَّث تلقائيًا مع كل درس جديد يُضاف</div><div class="desc" data-en hidden>A separate quiz per lesson (questions in English, explanations in Arabic) — updated automatically as new lessons are added</div></a>
+ <a class="crosscard" href="index.html"><div class="title" data-ar>← العودة إلى صفحة اختيار المسارات</div><div class="title" data-en hidden>← Back to study tracks</div></a>
  <p style="margin-top:34px;font-size:12px;color:var(--muted);opacity:.8"><span data-ar>جميع الحقوق محفوظة</span><span data-en hidden>All rights reserved</span> © Lujain Alshamrani · <a href="mailto:lujain.shumrani@gmail.com" style="color:inherit;text-decoration:underline">lujain.shumrani@gmail.com</a></p>
-</div>
-<script>
-function applyLang(lang){
- document.documentElement.lang = lang;
- document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
- document.querySelectorAll('[data-ar]').forEach(function(el){ el.hidden = (lang === 'en'); });
- document.querySelectorAll('[data-en]').forEach(function(el){ el.hidden = (lang !== 'en'); });
- var btn = document.getElementById('langBtn');
- if (btn) btn.textContent = lang === 'en' ? '🌐 عربي' : '🌐 EN';
- localStorage.setItem('site-lang', lang);
-}
-function toggleLang(){
- var cur = document.documentElement.lang === 'en' ? 'en' : 'ar';
- applyLang(cur === 'en' ? 'ar' : 'en');
-}
-applyLang(localStorage.getItem('site-lang') || 'ar');
-</script>
-</body>
-</html>
+</div><script>function applyLang(lang){document.documentElement.lang=lang;document.documentElement.dir=lang==='en'?'ltr':'rtl';document.querySelectorAll('[data-ar]').forEach(function(el){el.hidden=(lang==='en');});document.querySelectorAll('[data-en]').forEach(function(el){el.hidden=(lang!=='en');});var btn=document.getElementById('langBtn');if(btn)btn.textContent=lang==='en'?'🌐 عربي':'🌐 EN';localStorage.setItem('site-lang',lang);}function toggleLang(){var cur=document.documentElement.lang==='en'?'en':'ar';applyLang(cur==='en'?'ar':'en');}applyLang(localStorage.getItem('site-lang')||'ar');</script></body></html>
