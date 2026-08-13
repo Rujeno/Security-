@@ -1,191 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>اختبارات CompTIA Security+ SY0-701</title>
-<meta name="description" content="اختبار مستقل لكل درس من دروس CompTIA Security+ SY0-701 واختبار شامل يجمع جميع الدروس.">
+<meta name="description" content="اختبار مستقل لكل درس من دروس CompTIA Security+ SY0-701 واختبار شامل لجميع الدروس.">
 <link rel="canonical" href="https://rujeno.github.io/Security-/sec-quiz.html">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0e1b25;--paper:#f5f8fa;--deep:#0d3b4f;--deep2:#082b3a;--teal:#12617c;--signal:#e8672c;--line:#d8e2e7;--muted:#607784;--soft:#edf4f6;--good:#177a58;--bad:#be3f32}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:var(--ink);line-height:1.8}
-a{color:inherit}
-.top{background:var(--deep);border-bottom:2px solid var(--signal);overflow-x:auto;white-space:nowrap}
-.topin{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:center}
-.top a{color:#bdd4de;text-decoration:none;padding:12px 11px;font-weight:700;font-size:13px;border-bottom:3px solid transparent}
-.top a:hover,.top a.active{color:#fff;background:rgba(255,255,255,.06);border-bottom-color:var(--signal)}
-header{background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;padding:48px 18px 44px;text-align:center}
-header .eyebrow{font:700 12px 'IBM Plex Mono',monospace;color:#ffb48c;letter-spacing:.1em;margin-bottom:9px}
-header h1{font-size:clamp(25px,4vw,38px);line-height:1.35}
-header p{color:#bfd5de;margin:10px auto 0;max-width:760px;font-size:15px}
-.wrap{max-width:1020px;margin:auto;padding:30px 18px 70px}
-.intro{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px 20px;margin-bottom:20px;color:var(--muted)}
-.intro b{color:var(--deep)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-@media(max-width:680px){.grid{grid-template-columns:1fr}.topin{justify-content:flex-start}.top a{padding:11px 9px}}
-.card{display:flex;flex-direction:column;justify-content:space-between;min-height:155px;text-decoration:none;background:#fff;border:1.5px solid var(--line);border-radius:17px;padding:20px;transition:.16s;box-shadow:0 2px 7px rgba(13,59,79,.035)}
-.card:hover{transform:translateY(-2px);border-color:var(--signal);box-shadow:0 6px 18px rgba(13,59,79,.09)}
-.card .num{font:700 12px 'IBM Plex Mono',monospace;color:var(--signal);letter-spacing:.08em;direction:ltr;text-align:left}
-.card h3{color:var(--deep);margin:7px 0 4px;font-size:18px}
-.card .en{font:500 12px 'IBM Plex Mono',monospace;color:var(--muted);direction:ltr;text-align:left;line-height:1.45}
-.card .meta{margin-top:12px;color:var(--teal);font-size:13px;font-weight:700}
-.card.all{grid-column:1/-1;min-height:175px;background:linear-gradient(135deg,var(--deep),#0a2f40);border-color:var(--deep);color:#fff}
-.card.all h3{color:#fff;font-size:22px}.card.all .en,.card.all .meta{color:#c5dce5}.card.all .num{color:#ffb48c}
-.examHead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px;flex-wrap:wrap}
-.examTitle .small{font:700 12px 'IBM Plex Mono',monospace;color:var(--signal);direction:ltr;text-align:left}
-.examTitle h2{color:var(--deep);font-size:24px;margin-top:4px}.examTitle p{color:var(--muted);font-size:14px}
-.backlink{display:inline-block;text-decoration:none;border:1.5px solid var(--line);background:#fff;color:var(--teal);border-radius:11px;padding:9px 15px;font-weight:700;font-size:14px}
-.quizmeta{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:14px;font-weight:700;margin:0 2px 9px}
-.bar{height:8px;background:#dee8ec;border-radius:99px;overflow:hidden;margin-bottom:20px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--signal));transition:.25s}
-.qbox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:25px;box-shadow:0 3px 12px rgba(13,59,79,.055)}
-.qtag{display:inline-block;background:var(--soft);color:var(--teal);padding:4px 11px;border-radius:99px;font:700 12px 'IBM Plex Mono',monospace;direction:ltr;margin-bottom:13px}
-.qtext{font:600 17px 'IBM Plex Mono',monospace;direction:ltr;text-align:left;color:var(--deep);line-height:1.65;margin-bottom:17px}
-.opts{display:grid;gap:10px}.opt{width:100%;text-align:left;direction:ltr;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:500 14px 'IBM Plex Mono',monospace;cursor:pointer;line-height:1.5;transition:.12s}.opt:hover:not(:disabled){border-color:var(--teal);background:var(--soft)}.opt.correct{border-color:var(--good);background:#e9f6f0}.opt.wrong{border-color:var(--bad);background:#fdecea}.opt:disabled{cursor:default}
-.feedback{display:none;margin-top:14px;padding:13px 15px;border-radius:12px;background:#fff7f1;border:1px solid #efc8aa;font-size:14.5px}.feedback.show{display:block}.feedback b{color:var(--signal)}
-.actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}.btn{border:none;border-radius:11px;padding:10px 18px;font-family:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}.btn.primary{background:var(--deep);color:#fff}.btn.secondary{background:#fff;color:var(--teal);border:1.5px solid var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}
-#result{display:none;background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px 24px;text-align:center}.score{font:700 42px 'IBM Plex Mono',monospace;color:var(--deep)}#result h2{color:var(--deep);margin:4px 0}#result p{color:var(--muted)}.review{margin-top:25px;text-align:right}.review h3{color:var(--teal);margin-bottom:10px}.rv{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:9px}.rvq{font:500 12.5px 'IBM Plex Mono',monospace;direction:ltr;text-align:left;color:#405968;margin:5px 0}.rva{font:600 12.5px 'IBM Plex Mono',monospace;direction:ltr;text-align:left;color:var(--bad)}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 15px}
+:root{--paper:#f5f8fa;--deep:#0d3b4f;--deep2:#082b3a;--teal:#12617c;--signal:#e8672c;--line:#d8e2e7;--muted:#607784;--soft:#edf4f6}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--paper);color:#0e1b25;line-height:1.8}.top{background:var(--deep);border-bottom:2px solid var(--signal);overflow-x:auto;white-space:nowrap}.topin{max-width:1100px;margin:auto;display:flex;justify-content:center}.top a{color:#bdd4de;text-decoration:none;padding:12px 10px;font-weight:700;font-size:13px}.top a:hover{color:#fff;background:rgba(255,255,255,.06)}header{background:linear-gradient(135deg,var(--deep),var(--deep2));color:#fff;text-align:center;padding:46px 18px 42px}header .eyebrow{font:700 12px 'IBM Plex Mono',monospace;color:#ffb48c;letter-spacing:.1em}header h1{font-size:clamp(25px,4vw,38px);margin-top:7px}header p{max-width:760px;margin:8px auto 0;color:#bfd5de}.wrap{max-width:1030px;margin:auto;padding:30px 18px 70px}.intro{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px 20px;margin-bottom:20px;color:var(--muted)}.intro b{color:var(--deep)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{display:flex;flex-direction:column;justify-content:space-between;min-height:158px;text-decoration:none;background:#fff;color:inherit;border:1.5px solid var(--line);border-radius:17px;padding:20px;transition:.15s}.card:hover{transform:translateY(-2px);border-color:var(--signal);box-shadow:0 6px 18px rgba(13,59,79,.09)}.num{font:700 12px 'IBM Plex Mono',monospace;color:var(--signal);direction:ltr;text-align:left}.card h3{color:var(--deep);font-size:18px;margin:6px 0 3px}.en{font:500 12px 'IBM Plex Mono',monospace;direction:ltr;text-align:left;color:var(--muted);line-height:1.45}.meta{margin-top:12px;color:var(--teal);font-size:13px;font-weight:700}.all{grid-column:1/-1;min-height:180px;background:linear-gradient(135deg,var(--deep),#0a2f40);color:#fff;border-color:var(--deep)}.all h3{color:#fff;font-size:23px}.all .en,.all .meta{color:#c5dce5}.all .num{color:#ffb48c}footer{text-align:center;color:var(--muted);font-size:12px;padding:28px 15px}@media(max-width:680px){.grid{grid-template-columns:1fr}.topin{justify-content:flex-start}.all{grid-column:auto}}
 </style>
+<script>
+const p=new URLSearchParams(location.search);const oldLesson=Number(p.get('lesson'));if(oldLesson>=1&&oldLesson<=16)location.replace(`sec-quiz-lesson${oldLesson}.html`);else if(p.get('all')==='1')location.replace('sec-quiz-all.html');
+</script>
 </head>
 <body>
-<div class="top"><div class="topin" id="topnav"></div></div>
-<header>
-  <div class="eyebrow">COMPTIA SECURITY+ SY0-701</div>
-  <h1 id="heroTitle">اختبارات Security+</h1>
-  <p id="heroText">اختبار مستقل لكل درس، بالإضافة إلى اختبار شامل يجمع أسئلة جميع الدروس.</p>
-</header>
-<main class="wrap">
-  <section id="menu">
-    <div class="intro"><b>اختاري الاختبار:</b> كل درس له اختبار خاص لا يخلط أسئلته مع بقية الدروس. وفي الأسفل يوجد اختبار شامل يجمع بنك الأسئلة كاملًا من الدروس 1–16.</div>
-    <div class="grid" id="lessonGrid"></div>
-  </section>
-
-  <section id="quiz" style="display:none">
-    <div class="examHead">
-      <div class="examTitle">
-        <div class="small" id="examCode"></div>
-        <h2 id="examName"></h2>
-        <p id="examDesc"></p>
-      </div>
-      <a class="backlink" href="sec-quiz.html">← قائمة الاختبارات</a>
-    </div>
-    <div class="quizmeta"><span id="counter"></span><span id="liveScore"></span></div>
-    <div class="bar"><i id="progress"></i></div>
-    <div class="qbox" id="qbox">
-      <span class="qtag" id="qtag"></span>
-      <div class="qtext" id="qtext"></div>
-      <div class="opts" id="opts"></div>
-      <div class="feedback" id="feedback"></div>
-      <div class="actions">
-        <a class="btn secondary" href="sec-quiz.html">قائمة الاختبارات</a>
-        <button class="btn primary" id="nextBtn" disabled>السؤال التالي ←</button>
-      </div>
-    </div>
-  </section>
-
-  <section id="result">
-    <div class="score" id="scoreText"></div>
-    <h2 id="resultTitle">انتهى الاختبار</h2>
-    <p id="resultMsg"></p>
-    <div class="actions" style="justify-content:center;margin-top:18px">
-      <button class="btn primary" id="restartBtn">إعادة الاختبار</button>
-      <a class="btn secondary" href="sec-quiz.html">اختيار اختبار آخر</a>
-    </div>
-    <div class="review" id="review"></div>
-  </section>
-</main>
+<div class="top"><div class="topin"><a href="sec-index.html">🏠 Security+</a><a href="sec-quiz.html">الاختبارات</a><a href="sec-quiz-all.html">الاختبار الشامل</a></div></div>
+<header><div class="eyebrow">COMPTIA SECURITY+ SY0-701</div><h1>اختبارات Security+</h1><p>لكل درس اختبار مستقل بصفحته الخاصة، بالإضافة إلى اختبار شامل يجمع جميع الدروس.</p></header>
+<main class="wrap"><div class="intro"><b>اختاري الاختبار:</b> لن تنتقلي الآن داخل اختبار واحد عام؛ كل بطاقة تفتح اختبارًا مستقلًا لذلك الدرس فقط. الاختبار الشامل موجود في بطاقة منفصلة أسفل القائمة.</div><div class="grid" id="grid"></div></main>
 <footer>Lujain Alshamrani · CompTIA Security+ SY0-701 Study Site ©</footer>
-<script src="sec-quiz-data.js"></script>
+<script src="sec-quiz-data.js?v=3"></script>
 <script>
-const topnav=document.getElementById('topnav');
-topnav.innerHTML='<a href="sec-index.html">🏠 الرئيسية</a>'+Array.from({length:16},(_,i)=>`<a href="sec-quiz.html?lesson=${i+1}">${i+1}</a>`).join('')+'<a href="sec-quiz.html?all=1">الشامل</a>';
-
-const grid=document.getElementById('lessonGrid');
-const countFor=n=>SEC_QUESTIONS.filter(q=>q.l===n).length;
+const grid=document.getElementById('grid');
 for(let n=1;n<=16;n++){
-  const d=SEC_LESSONS[n],count=countFor(n);
-  grid.insertAdjacentHTML('beforeend',`<a class="card" href="sec-quiz.html?lesson=${n}"><div><div class="num">LESSON ${n}</div><h3>اختبار الدرس ${n} — ${d.ar}</h3><div class="en">${d.en}</div></div><div class="meta">${count} سؤال · اختبار مستقل</div></a>`);
+ const qs=SEC_QUESTIONS.filter(q=>q.l===n), sections=new Set(qs.map(q=>q.s));
+ const d=SEC_LESSONS[n];
+ grid.insertAdjacentHTML('beforeend',`<a class="card" href="sec-quiz-lesson${n}.html"><div><div class="num">LESSON ${n}</div><h3>اختبار الدرس ${n} — ${d.ar}</h3><div class="en">${d.en}</div></div><div class="meta">${qs.length} أسئلة · ${sections.size} أقسام</div></a>`);
 }
-grid.insertAdjacentHTML('beforeend',`<a class="card all" href="sec-quiz.html?all=1"><div><div class="num">COMPREHENSIVE EXAM</div><h3>الاختبار الشامل — جميع الدروس 1 إلى 16</h3><div class="en">All Security+ lessons in one exam</div></div><div class="meta">${SEC_QUESTIONS.length} سؤال · يجمع بنك الأسئلة كاملًا</div></a>`);
-
-const params=new URLSearchParams(location.search);
-const lessonParam=params.get('lesson');
-const allMode=params.get('all')==='1'||lessonParam==='all';
-const lessonNum=lessonParam&&!allMode?Number(lessonParam):null;
-let pool=[];
-if(allMode){pool=[...SEC_QUESTIONS];}
-else if(Number.isInteger(lessonNum)&&lessonNum>=1&&lessonNum<=16){pool=SEC_QUESTIONS.filter(q=>q.l===lessonNum);}
-
-let index=0,score=0,answered=false,answers=[];
-const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
-
-if(pool.length){
-  shuffle(pool);
-  document.getElementById('menu').style.display='none';
-  document.getElementById('quiz').style.display='block';
-  if(allMode){
-    document.title='الاختبار الشامل — CompTIA Security+ SY0-701';
-    document.getElementById('heroTitle').textContent='الاختبار الشامل — جميع الدروس';
-    document.getElementById('heroText').textContent='اختبار واحد يجمع بنك أسئلة الدروس 1 إلى 16.';
-    document.getElementById('examCode').textContent='COMPREHENSIVE EXAM · LESSONS 1–16';
-    document.getElementById('examName').textContent='اختبار Security+ الشامل';
-    document.getElementById('examDesc').textContent=`${pool.length} سؤال من جميع الدروس.`;
-  }else{
-    const d=SEC_LESSONS[lessonNum];
-    document.title=`اختبار الدرس ${lessonNum} — ${d.ar}`;
-    document.getElementById('heroTitle').textContent=`اختبار الدرس ${lessonNum} — ${d.ar}`;
-    document.getElementById('heroText').textContent='هذا الاختبار خاص بهذا الدرس فقط ولا يخلط أسئلة الدروس الأخرى.';
-    document.getElementById('examCode').textContent=`LESSON ${lessonNum} EXAM`;
-    document.getElementById('examName').textContent=`اختبار الدرس ${lessonNum}`;
-    document.getElementById('examDesc').textContent=`${pool.length} سؤال تغطي أقسام درس ${d.ar}.`;
-  }
-  renderQuestion();
-}
-
-function renderQuestion(){
-  answered=false;
-  const q=pool[index];
-  document.getElementById('counter').textContent=`السؤال ${index+1} من ${pool.length}`;
-  document.getElementById('liveScore').textContent=`النتيجة: ${score}`;
-  document.getElementById('progress').style.width=`${(index/pool.length)*100}%`;
-  document.getElementById('qtag').textContent=`L${q.l} · ${q.s}`;
-  document.getElementById('qtext').textContent=q.q;
-  document.getElementById('feedback').className='feedback';
-  document.getElementById('feedback').innerHTML='';
-  const opts=document.getElementById('opts');opts.innerHTML='';
-  q.o.forEach((label,i)=>{
-    const b=document.createElement('button');b.className='opt';b.textContent=label;b.onclick=()=>choose(i,b);opts.appendChild(b);
-  });
-  const next=document.getElementById('nextBtn');next.disabled=true;next.textContent=index===pool.length-1?'عرض النتيجة ←':'السؤال التالي ←';
-}
-
-function choose(choice,button){
-  if(answered)return;answered=true;
-  const q=pool[index],buttons=[...document.querySelectorAll('.opt')];
-  buttons.forEach(b=>b.disabled=true);buttons[q.a].classList.add('correct');
-  const ok=choice===q.a;if(ok)score++;else button.classList.add('wrong');
-  answers.push({q,choice,ok});
-  document.getElementById('liveScore').textContent=`النتيجة: ${score}`;
-  const fb=document.getElementById('feedback');fb.innerHTML=(ok?'<b>إجابة صحيحة.</b> ':'<b>الإجابة الصحيحة:</b> '+q.o[q.a]+'<br>')+q.e;fb.classList.add('show');
-  document.getElementById('nextBtn').disabled=false;
-}
-
-document.getElementById('nextBtn').onclick=()=>{if(index<pool.length-1){index++;renderQuestion()}else showResult()};
-document.getElementById('restartBtn').onclick=()=>{index=0;score=0;answers=[];shuffle(pool);document.getElementById('result').style.display='none';document.getElementById('quiz').style.display='block';renderQuestion();scrollTo({top:0,behavior:'smooth'})};
-
-function showResult(){
-  document.getElementById('quiz').style.display='none';document.getElementById('result').style.display='block';
-  const pct=Math.round((score/pool.length)*100);document.getElementById('scoreText').textContent=`${score} / ${pool.length}`;
-  document.getElementById('resultTitle').textContent=pct>=80?'ممتاز — اجتزت الاختبار':'انتهى الاختبار';
-  document.getElementById('resultMsg').textContent=`نسبتك ${pct}%`;
-  document.getElementById('progress').style.width='100%';
-  const misses=answers.filter(x=>!x.ok),review=document.getElementById('review');
-  if(!misses.length){review.innerHTML='<h3>كل الإجابات صحيحة 👏</h3>';}
-  else{review.innerHTML='<h3>مراجعة الأخطاء</h3>'+misses.map(x=>`<div class="rv"><div class="rvq">${x.q.q}</div><div class="rva">Correct: ${x.q.o[x.q.a]}</div></div>`).join('');}
-  scrollTo({top:0,behavior:'smooth'});
-}
+const allSections=new Set(SEC_QUESTIONS.map(q=>`L${q.l}-${q.s}`));
+grid.insertAdjacentHTML('beforeend',`<a class="card all" href="sec-quiz-all.html"><div><div class="num">COMPREHENSIVE EXAM</div><h3>الاختبار الشامل — جميع الدروس 1–16</h3><div class="en">All Security+ lessons in one exam</div></div><div class="meta">${SEC_QUESTIONS.length} سؤال · يغطي جميع الدروس والأقسام</div></a>`);
 </script>
-</body>
-</html>
+</body></html>
